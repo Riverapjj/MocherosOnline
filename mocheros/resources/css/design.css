@@ -1,0 +1,15 @@
+
+main.text {
+	background: rgba(0,0,0,0.5);
+	color: #fff;
+	padding: 20px;
+	margin: 5%;
+	width: 40%;
+}
+main.boton {
+	background: #8D4C77;
+	color: #8D4C77;
+	margin: 5%;
+	width: 9.9%;
+
+}
