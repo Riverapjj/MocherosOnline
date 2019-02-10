@@ -19,16 +19,16 @@
         <div class="slider">
                 <ul class="slides">
                   <li>
-                    <img class="responsive-img" src="../web/images/slider/slider1.jpg"> 
+                    <img class="responsive-img" src="../resources/img/slider1.jpg"> 
                   </li>
                   <li>
-                    <img class="responsive-img" src="../web/images/slider/slider2.jpg"> 
+                    <img class="responsive-img" src="../resources/img/slider2.jpg"> 
                   </li>
                   <li>
-                    <img class="responsive-img" src="../web/images/slider/slider3.jpg"> 
+                    <img class="responsive-img" src="../resources/img/slider3.jpg"> 
                   </li>
                   <li>
-                    <img class="responsive-img" src="../web/images/slider/slider4.jpg"> 
+                    <img class="responsive-img" src="../resources/img/slider4.jpg"> 
                   </li>
                 </ul>
         </div>
