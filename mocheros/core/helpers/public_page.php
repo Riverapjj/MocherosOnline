@@ -16,21 +16,20 @@ class Public_page{
             <body>
                 <header>
                     <div class="header">
-                        <div class="container">
                             <div class="row">
-                            <div class="col s2">
-                                <img class="col s3 l8" src="../../resources/img/marca-mochilas.jpg">
+                            <div class="col col-sm-3 col-lg-3">
+                                <img class="center col col-sm-12" src="../../resources/img/marca-mochilas.jpg">
                             </div>
-                            <div class="col s9 l8">
+                            <div class="col col-sm-12 col-lg-9 orange darken-2">
                                 <h1> Mocheros </h1>
-                            </div>
+                                <h4> Tus compañeros en tus aventuras </h4>
                             </div>
                         </div>
                     </div>
                 </header>
-                <nav>
+                <nav class="orange darken-2">
                     <div class="nav-wrapper">
-                    <a href="#" class="brand-logo">Mocheros</a>
+                    <a href="#" class="brand-logo"></a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="#">Mochilas</a></li>
@@ -40,10 +39,11 @@ class Public_page{
                     </div>
                 </nav>
                 <ul class="sidenav" id="mobile-demo">
-                    <li><a href="sass.html">Mochilas</a></li>
+                    <li><a href="sass.html">Mocheros</a></li>
+                    <hr>
+                    <li><a href="badges.html">Mochilas</a></li>
                     <li><a href="badges.html">Loncheras</a></li>
                     <li><a href="collapsible.html">Accesorios</a></li>
-                    <li><a href="mobile.html">Mobile</a></li>
                 </ul>
             ');
         }
