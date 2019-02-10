@@ -13,7 +13,7 @@
           <div class="navbar-fixed">
             <nav class="grey lighten-5">
                 <div class="nav-wrapper">
-                    <a href="index.php" class="brand-logo logok"> <img src="../web/images/logo.png " height="50"></a>
+                    <a href="index.php" class="brand-logo logok"> <img src="../resources/img/logo.png " height="50"></a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse cyan-text"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                       <li><a class="modal-trigger cyan-text" href="#modal1">Iniciar sesión</a></li>
