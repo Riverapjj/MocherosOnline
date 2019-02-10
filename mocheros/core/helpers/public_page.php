@@ -1,7 +1,7 @@
 <?php
 class Public_page{
     public static function header($title){
-        print(
+        print('
             <!DOCTYPE html>
             <html lang="en">
             <head>
@@ -18,8 +18,11 @@ class Public_page{
                     <div class="header">
                         <div class="container">
                             <div class="row">
-                            <div class="col s3 l3">
+                            <div class="col s3 l8">
                                 <img src="../../resources/img/marca-mochilas.jpg">
+                            </div>
+                            <div class="col s9 l8">
+                                <h1> Mocheros </h1>
                             </div>
                             </div>
                         </div>
@@ -42,7 +45,7 @@ class Public_page{
                     <li><a href="collapsible.html">Accesorios</a></li>
                     <li><a href="mobile.html">Mobile</a></li>
                 </ul>
-            );
+            ');
         }
 
     public static function footer(){
