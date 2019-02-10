@@ -14,21 +14,35 @@ class Public_page{
                 <title>'.$title.'</title>
             </head>
             <body>
+                <header>
+                    <div class="header">
+                        <div class="container">
+                            <div class="row">
+                            <div class="col s3 l8">
+                                <img src="../../resources/img/marca-mochilas.jpg">
+                            </div>
+                            <div class="col s9 l8">
+                                <h1> Mocheros </h1>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
                 <nav>
                     <div class="nav-wrapper">
-                    <a href="#" class="brand-logo">Logo</a>
+                    <a href="#" class="brand-logo">Mocheros</a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="sass.html">Sass</a></li>
-                        <li><a href="badges.html">Components</a></li>
-                        <li><a href="collapsible.html">JavaScript</a></li>
+                        <li><a href="#">Mochilas</a></li>
+                        <li><a href="#">Locheras</a></li>
+                        <li><a href="#">Accesorios</a></li>
                     </ul>
                     </div>
                 </nav>
                 <ul class="sidenav" id="mobile-demo">
-                    <li><a href="sass.html">Sass</a></li>
-                    <li><a href="badges.html">Components</a></li>
-                    <li><a href="collapsible.html">Javascript</a></li>
+                    <li><a href="sass.html">Mochilas</a></li>
+                    <li><a href="badges.html">Loncheras</a></li>
+                    <li><a href="collapsible.html">Accesorios</a></li>
                     <li><a href="mobile.html">Mobile</a></li>
                 </ul>
             ');
