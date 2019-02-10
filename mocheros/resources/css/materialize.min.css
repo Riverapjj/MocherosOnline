@@ -694,7 +694,7 @@
  color:#00acc1 !important
 }
 .cyan.darken-2 {
- background-color:#0097a7 !important
+ background-color:#015293 !important
 }
 .cyan-text.text-darken-2 {
  color:#0097a7 !important
@@ -1824,7 +1824,6 @@ ul:not(.browser-default)>li {
  list-style-type:none
 }
 a {
- color:#039be5;
  text-decoration:none;
  -webkit-tap-highlight-color:transparent
 }
@@ -3521,7 +3520,7 @@ nav .input-field label.active i {
  }
 }
 a {
- text-decoration:none
+ text-decoration:#015293;
 }
 html {
  line-height:1.5;

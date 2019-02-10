@@ -16,8 +16,7 @@
                 </div>
                                   
             </nav>            
-        </div> 
-        <br><br><br><br>
+        </div>
         <!--Declaración del modelo del navbar para moviles
         <ul class="side-nav" id="mobile-demo">
             <li><a href="priv_usuarios.php">Gestión de administradores</a></li>

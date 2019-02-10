@@ -17,22 +17,9 @@
     </header>
     
         <!--Creación de un slider con sus respectivas imagenes responsivas para el inicio del apartado de usuarios-->
-        <div class="slider">
-                <ul class="slides">
-                  <li>
-                    <img class="responsive-img" src="../resources/img/slider3.jpg"> 
-                  </li>
-                  <li>
-                    <img class="responsive-img" src="../resources/img/slider6.jpg"> 
-                  </li>
-                  <li>
-                    <img class="responsive-img" src="../resources/img/slider4.jpg"> 
-                  </li>
-                  <li>
-                    <img class="responsive-img" src="../resources/img/slider1.jpg"> 
-                  </li>
-                </ul>
-        </div>
+        <?php
+        require('../app/view/slider.php');
+        ?>
         <!--Creando una columna para la tabla de estado-->
     <div class="row">
             <div class="col s12">
