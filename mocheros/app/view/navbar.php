@@ -6,15 +6,16 @@
                 <div class="nav-wrapper">
                         <a href="Dashboard.php" class="brand-logo logok"><img src="../resources/img/mocheros.jpeg" height="50"></a>
                         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons cyan-text darken-2">menu</i></a>
-                    <ul class="left hide-on-med-and-down">
-                        <li><a href="priv_usuarios.php"  class="cyan-text darken-2">Gestión de administradores</a></li>
-                        <li><a href="priv_productos.php" class="cyan-text darken-2">Administración productos</a></li>
-                        <li><a href="priv_estado.php" class="cyan-text darken-2">Administración estados</a></li>
-                        <li><a href="index_dashboard.php" class="cyan-text darken-2">Cerrar sesión</a></li>
-                    </ul>
-                </div> 
-            </nav>
+                    <ul class="hide-on-med-and-down">
+                        <li><a href="priv_usuarios.php" class="waves-effect waves-orange btn-large">Gestión de usuarios</a></li>
+                        <li><a href="priv_productos.php" class="waves-effect waves-orange btn-large">Administración productos</a></li>
+                        <li><a href="priv_estado.php" class="waves-effect waves-orange btn-large">Administración estados</a></li>
+                        <li><a href="index_dashboard.php" class="waves-effect waves-orange btn-large">Cerrar sesión</a></li>
+                    </ul>                    
+                </div>                 
+            </nav>            
         </div> 
+        <br><br><br><br>
         <!--Declaración del modelo del navbar para moviles
         <ul class="side-nav" id="mobile-demo">
             <li><a href="priv_usuarios.php">Gestión de administradores</a></li>
