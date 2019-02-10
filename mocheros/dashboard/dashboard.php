@@ -94,6 +94,7 @@ $("#titulo").click(function() {
         $(this).hide();
 });
 
+
 </script>
 </body>
 </html>
