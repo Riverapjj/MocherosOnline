@@ -17,21 +17,19 @@ class Public_page{
                 <header>
                     <div class="header">
                             <div class="row">
-                            <div class="col col-sm-3 col-lg-3">
-                                <img class="center col col-sm-12" src="../../resources/img/marca-mochilas.jpg">
-                            </div>
-                            <div class="col col-sm-12 col-lg-9 orange darken-2">
-                                <h1> Mocheros </h1>
-                                <h4> Tus compañeros en tus aventuras </h4>
+                            <div class="col col-sm-12 col-lg-12 orange darken-2">
+                                <img class="col col-sm-3" src="../../resources/img/marca-mochilas.jpg">
+                                <h1 class="blue-text text-darken-4"> Mocheros </h1>
+                                <h4 class="yellow-text text-accent-2"> Tus compañeros en tus aventuras </h4>
                             </div>
                         </div>
                     </div>
                 </header>
-                <nav class="orange darken-2">
+                <nav class="amber accent-3">
                     <div class="nav-wrapper">
                     <a href="#" class="brand-logo"></a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <ul id="nav-mobile" class="left hide-on-med-and-down">
                         <li><a href="#">Mochilas</a></li>
                         <li><a href="#">Locheras</a></li>
                         <li><a href="#">Accesorios</a></li>
