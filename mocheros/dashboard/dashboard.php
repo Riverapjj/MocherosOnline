@@ -21,16 +21,14 @@
 
                 <!-- Inicio de Grafico -->
                 <div class="row">
-                    <div class="col s4">
+                    <div class="col s6">
                     <canvas id="myChart" class="r"  width="200" height="60"></canvas>
+                    <h5 id="chart2" class="center"> Pedidos mensuales </h5>
                     </div>
  
-                    <div class="col s4">
+                    <div class="col s6">
                     <canvas id="myChart2" class="r"  width="200" height="60"></canvas>
-                    </div>
-
-                    <div class="col s4">
-                    <canvas id="myChart3" class="r" width="200" height="60"></canvas>
+                    <h5 id="chart2" class="center"> Productos más vendidos </h5>
                     </div>
                 </div>
             </div>
@@ -42,19 +40,19 @@
 <script>
 var ctx = $('#myChart');
 var ctx2 =  $('#myChart2');
-var ctx3 =  $('#myChart3');
 
 
 makeChart(ctx);
 makeChart(ctx2);
-makeChart(ctx3);
+
 function makeChart(context) {
+    
     var myChart = new Chart(context, {
     type: 'bar',
     data: {
-        labels: ["Rojo", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: ["", "", "", "", "", ""],
         datasets: [{
-            label: '# of Votes',
+           // label: 'Productos más vendidos',
             data: [3, 2, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -87,12 +85,12 @@ function makeChart(context) {
 });
 }
 
-$("#titulo").click(function() {
-        $(".r").show();
-});
-    $(".r").click(function() {
-        $(this).hide();
-});
+//$("#titulo").click(function() {
+//        $(".r").show();
+//});
+//    $(".r").click(function() {
+//        $(this).hide();
+//});
 
 
 </script>
