@@ -5,30 +5,31 @@ public_page::header("Principal");
 <div class="slider">
     <ul class="slides">
         <li>
-            <img src="../../resources/img/mochilas-7.jpg"> <!-- random image -->
+            <img src="../../resources/img/banner-mochilas3.jpg"> <!-- random image -->
             <div class="caption center-align">
-                <h1>MOCHILAS</h1>
-                <h5 class="light grey-text text-lighten-3"><a href="">Ver más</a></h5>
+                <h1 class="indigo-text text-darken-4">MOCHILAS</h1>
+                <h5 class="orange-text text-darken-3"><a href="">Ver más</a></h5>
             </div>
         </li>
         <li>
-            <img src="../../resources/img/mochilas-6.png"> <!-- random image -->
+            <img src="../../resources/img/banner-mochilas2.jpg"> <!-- random image -->
             <div class="caption left-align">
-                <h3>Left Aligned Caption</h3>
-                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                <h3 class="indigo-text text-darken-4">¡Bienvenido a Mocheros!</h3>
+                <h5 class="orange-text text-darken-3">Somos tus compañeros en tus aventuras del día a día</h5>
+                <a href="" class="orange-text text-darken-3">Haz click aquí para ver nuestras mochilas</a>
             </div>
         </li>
         <li>
-            <img src="../../resources/img/mochilas-8.jpg"> <!-- random image -->
-            <div class="caption right-align">
-                <h3>Right Aligned Caption</h3>
-                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            <img src="../../resources/img/banner-mochilas.jpg"> <!-- random image -->
+            <div class="caption left-align">
+                <h3 class="indigo-text text-darken-4">Febrero, el mes de la amistad</h3>
+                <h5 class="orange-text text-darken-3">¡Regala alguno de nuestros productos para tus seres queridos!</h5>
             </div>
         </li>
         <li>
-            <img src="../../resources/img/mochilas-11.jpg"> <!-- random image -->
+            <img src="../../resources/img/mochilas-3.jpg"> <!-- random image -->
             <div class="caption center-align">
-                
+                <h3 class="indigo-text text-darken-4">Las mejores mochilas a tu alcance</h3>
             </div>
         </li>
     </ul>
@@ -98,54 +99,6 @@ public_page::header("Principal");
             </div>
         </li>
     </ul>
-</div>
-
-<div class="row">
-    <div class="col s12 m6 l4">
-        <div class="card">
-        <div class="card-image">
-            <img src="../../resources/img/palmeras.jpg">
-            <span class="card-title">Card Title</span>
-        </div>
-        <div class="card-content">
-            <p>I am a very simple card. I am good at containing small bits of information.
-            I am convenient because I require little markup to use effectively.</p>
-        </div>
-        <div class="card-action">
-            <a href="#">This is a link</a>
-        </div>
-        </div>
-    </div>
-    <div class="col s12 m6 l4">
-        <div class="card">
-        <div class="card-image">
-            <img src="../../resources/img/palmeras.jpg">
-            <span class="card-title">Card Title</span>
-        </div>
-        <div class="card-content">
-            <p>I am a very simple card. I am good at containing small bits of information.
-            I am convenient because I require little markup to use effectively.</p>
-        </div>
-        <div class="card-action">
-            <a href="#">This is a link</a>
-        </div>
-        </div>
-    </div>
-    <div class="col s12 m6 l4">
-        <div class="card">
-        <div class="card-image">
-            <img src="../../resources/img/palmeras.jpg">
-            <span class="card-title">Card Title</span>
-        </div>
-        <div class="card-content">
-            <p>I am a very simple card. I am good at containing small bits of information.
-            I am convenient because I require little markup to use effectively.</p>
-        </div>
-        <div class="card-action">
-            <a href="#">This is a link</a>
-        </div>
-        </div>
-    </div>
 </div>
 
 <?php
