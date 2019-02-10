@@ -1,5 +1,5 @@
           <!--Estructura del footer-->
-           <footer class="page-footer cyan darken-2">
+           <footer class="page-footer orange darken-2">
            <div class="container">
             <div class="row">
                 <div class="col l6 s12">
@@ -26,12 +26,7 @@
                   <div class="container">
                     © 2018 Derechos reservados a Mocheros S.A. de C.V.    
                   </div>
-                  <div class="container">
-                      <a class="grey-text text-lighten-4 right" href="https://www.facebook.com"><i class="material-icons">language</i> Facebook&nbsp;&nbsp;&nbsp;</a>
-                      <a class="grey-text text-lighten-4 right" href="https://www.twitter.com"><i class="material-icons">favorite</i> Twitter&nbsp;&nbsp;&nbsp;</a>
-                      <a class="grey-text text-lighten-4 right" href="https://www.instagram.com"><i class="material-icons">photo_camera</i> Instagram&nbsp;&nbsp;&nbsp;</a>
-                      <a class="grey-text text-lighten-4 right" href="https://www.plus.google.com"><i class="material-icons">add</i> Google+&nbsp;&nbsp;&nbsp;</a>
-                  </div>
+                  
                 </div>
               </footer>
                 <!--Import jQuery before materialize.js-->
