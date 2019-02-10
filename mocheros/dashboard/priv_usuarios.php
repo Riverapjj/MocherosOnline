@@ -16,32 +16,19 @@
         ?>
     </header>
         <!--Creación de un slider con sus respectivas imagenes responsivas para el inicio del apartado de usuarios-->
-        <div class="slider">
-                <ul class="slides">
-                  <li>
-                    <img class="responsive-img" src="../resources/img/slider5.jpg"> 
-                  </li>
-                  <li>
-                    <img class="responsive-img" src="../resources/img/slider6.jpg"> 
-                  </li>
-                  <li>
-                    <img class="responsive-img" src="../resources/img/slider7.jpg"> 
-                  </li>
-                  <li>
-                    <img class="responsive-img" src="../resources/img/slider8.jpg"> 
-                  </li>
-                </ul>
-        </div>
+        <?php
+        require('../app/view/slider.php');
+        ?>
         <!--Creando una columna para la tabla de usuarios-->
     <div class="row">
             <div class="col s12">
                 <!--Creando un "tab" para elegir entre gestionar admins o los detalles de permisos necesarios-->
                 <ul class="tabs">
-                    <li class="tab col s3"><a class="active cyan-text darken-2" href="#test1">Administradores</a></li>
-                    <li class="tab col s3"><a class="cyan-text darken-2" href="#test2">Permisos </a></li>
-                    <li class="tab col s3"><a href="#test3" class="cyan-text darken-2">Detalles del permiso</a></li>
-                    <li class="tab col s3 disabled"><a href="#test5" class="white-text">D</a></li>
-                    <li class="tab col s3 disabled"><a href="#test6" class="white-text">Disabled sdsdzssdsdfasdasfTab</a></li>
+                <li class="tab col s3"><a class="active cyan-text darken-2" href="#test1">Administradores</a></li>
+                <li class="tab col s3"><a class="cyan-text darken-2" href="#test2">Permisos </a></li>
+                <li class="tab col s3"><a href="#test3" class="cyan-text darken-2">Detalles del permiso</a></li>
+                <li class="tab col s3 disabled"><a href="#test5" class="white-text">D</a></li>
+                <li class="tab col s3 disabled"><a href="#test6" class="white-text">Disabled sdsdzssdsdfasdasfTab</a></li>
                 </ul>
             </div> <br><br><br>
             <!--Creando una barra de búsqueda para facilitar el acceso a los registros-->

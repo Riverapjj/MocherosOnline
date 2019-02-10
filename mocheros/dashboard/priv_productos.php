@@ -16,30 +16,16 @@
         ?>
     </header>
         <!--Creación de un slider con sus respectivas imagenes responsivas para el inicio del apartado de usuarios-->
-        <div class="slider">
-                <ul class="slides">
-                  <li>
-                    <img class="responsive-img" src="../resources/img/slider1.jpg"> 
-                  </li>
-                  <li>
-                    <img class="responsive-img" src="../resources/img/slider2.jpg"> 
-                  </li>
-                  <li>
-                    <img class="responsive-img" src="../resources/img/slider3.jpg"> 
-                  </li>
-                  <li>
-                    <img class="responsive-img" src="../resources/img/slider4.jpg"> 
-                  </li>
-                </ul>
-        </div>
+        <?php
+        require('../app/view/slider.php');
+        ?>
         <!--Creando una columna para la tabla de juguetes-->
     <div class="row">
             <div class="col s12">
                 <!--Creando un "tab" para elegir entre administrar juguetes, tipo de juguetes y su categorias necesarias-->
                 <ul class="tabs">
-                <li class="tab col s3"><a class="active cyan-text darken-2" href="#test1">Juguetes</a></li>
-                <li class="tab col s3"><a class="cyan-text darken-2" href="#test2">Tipo </a></li>
-                <li class="tab col s3"><a class="cyan-text darken-2" href="#test4">Categoria</a></li>
+                <li class="tab col s6 m6 l6"><a class="cyan-text darken-2" href="#test1">Juguetes</a></li>
+                <li class="tab col s6 m6 l6"><a class="cyan-text darken-2" href="#test4">Categoria</a></li>
                 <li class="tab col s3 disabled"><a href="#test5" class="white-text">Disabled sdsdzssdsdfasdasfTab</a></li>
                 </ul>
             </div> <br><br><br>
@@ -60,12 +46,9 @@
                     <tr>
                         <th>Imagen</th>
                         <th>Nombre</th>
-                        <th>Tipo de juguete</th>
                         <th>Existencias</th>
                         <th>Categoria</th>
-                        <th>Rango de edad</th>
                         <th>Precio</th>
-                        <th>Calificación</th>
                         <th>Descripción</th>
                         <th>Acciones</th>
                     </tr>
@@ -87,14 +70,11 @@
                             </div>
                         </td>
                          <!--Agregando registros a la tabla-->
-                        <td>Carro aerodinamico</td>
-                        <td>Acción</td>
-                        <td>Niños</td>
-                        <td>100 existencias</td>
-                        <td>5 a 10 años</td>
-                        <td>$7.99</td>
-                        <td>4.5 Estrellas</td>
-                        <td>Carro aerodinamico a escala</td>  
+                        <td>Mochila escolar</td>
+                        <td>49 unidades</td>
+                        <td>Escolar</td>
+                        <td>$20.99</td>
+                        <td>Mochila escolar con bonito diseño</td> 
                         <!--Declarando que al interactuar con el icono "delete" activará un modal que sirve para borrar o uno un registro-->
                         <td><i class="material-icons"><a class = "modal-trigger"href="#modal3">border_color</a></i></td> 
                         <td><i class="material-icons"><a class = "modal-trigger"href="#modal16">delete</a></i></td>            
@@ -105,20 +85,17 @@
                                 <div class="col s12 m7">
                                     <div class="card">
                                         <div class="card-image ">
-                                            <img class="responsive-img z-depth-3"  src="../web/images/productos/cot.jpg">
+                                            <img class="responsive-img z-depth-3"  src="../resources/img/mochilas-1.jpeg">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </td>
-                        <td>Maquinaria de construcción</td>
-                        <td>Construcción</td>
-                        <td>Niños</td>
-                        <td>20 existencias</td>
-                        <td>7 a 11 años</td>
-                        <td>$8.99</td>
-                        <td>2.5 Estrellas</td>
-                        <td>Color amarillo con accesorios como la tierra incluidos</td> 
+                        <td>Mochila de viaje</td>
+                        <td>23 unidades</td>
+                        <td>Viaje</td>
+                        <td>$39.99</td>
+                        <td>Mochila para viaje resistente</td>  
                         <td><i class="material-icons"><a class = "modal-trigger"href="#modal3">border_color</a></i></td> 
                         <td><i class="material-icons"><a class = "modal-trigger"href="#modal16">delete</a></i></td> 
                     </tr>
@@ -134,14 +111,11 @@
                                 </div>
                             </div>
                         </td>
-                        <td>Pato de goma</td>
-                        <td>Baño</td>
-                        <td>Todas las categorias</td>
-                        <td>Sin existencias</td>
-                        <td>Todas las edades</td>
-                        <td>$1.99</td>
-                        <td>5 Estrellas</td>
-                        <td>Color amarillo de 10cm de ancho por 20 de ancho hecho de goma</td>
+                        <td>Lonchera</td>
+                        <td>56 unidades</td>
+                        <td>Varios</td>
+                        <td>$11.99</td>
+                        <td>Lonchera común</td> 
                         <td><i class="material-icons"><a class = "modal-trigger"href="#modal3">border_color</a></i></td> 
                         <td><i class="material-icons"><a class = "modal-trigger"href="#modal16">delete</a></i></td> 
                     </tr>
@@ -157,14 +131,11 @@
                                 </div>
                             </div>
                         </td>
-                        <td>Carro electrico</td>
-                        <td>Acción</td>
-                        <td>Niños</td>
-                        <td>200 existencias</td>
-                        <td>6 a 11 años</td>
-                        <td>$20.00</td>
-                        <td>0 Estrellas</td>
-                        <td>Color amarillo capacidad para 2 personas</td> 
+                        <td>Mochila personalizada</td>
+                        <td>37 unidades</td>
+                        <td>Personalizable</td>
+                        <td>$25.99</td>
+                        <td>Mochila personalizable</td> 
                         <td><i class="material-icons"><a class = "modal-trigger"href="#modal3">border_color</a></i></td>
                         <td><i class="material-icons"><a class = "modal-trigger"href="#modal16">delete</a></i></td>       
                     </tr>
@@ -316,12 +287,12 @@
                 </ul>
             </div>                    
         </div>
-        <!-- creando un segundo div con id "test2" para la sección a elegir en el tab -->
+        <!-- creando un segundo div con id "test2" para la sección a elegir en el tab 
         <div id="test2" class="col s12">
-             <!-- declarando que sea responsiva -->
+             declarando que sea responsiva
                 <table class="striped responsive-table">
                     <thead>
-                        <!-- Definiendo los campos para la tabla -->
+                         Definiendo los campos para la tabla
                         <tr>
                             <th>Código</th>
                             <th>Nombre</th>
@@ -330,7 +301,7 @@
                     </thead>
             
                     <tbody>
-                        <!-- Agregando registros  -->
+                         Agregando registros  
                         <tr>
                             <td>1</td>
                             <td>Acción</td> 
@@ -357,6 +328,7 @@
                         </tr>
                     </tbody>
                 </table> 
+                -->
         <!-- Creando el efecto modal para cada accion a realizar (agregar, modificar y eliminar) -->
                 <!-- Creando modal5 para opcion agregar -->
                 <div id="modal5" class="modal">
@@ -426,25 +398,25 @@
                          <!-- Agregando registros  -->
                         <tr>
                             <td>1</td>
-                            <td>Niños</td> 
+                            <td>Escolar</td> 
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal9">border_color</a></i></td>   
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal16">delete</a></i></td>                              
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td>Niñas</td>
+                            <td>Viaje</td>
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal9">border_color</a></i></td> 
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal16">delete</a></i></td>                          
                         </tr>
                         <tr>
                             <td>3</td>
-                            <td>Bebés</td>
+                            <td>Varios</td>
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal9">border_color</a></i></td>  
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal16">delete</a></i></td> 
                         </tr>
                         <tr>
                             <td>4</td>
-                            <td>Todas las categorias</td>
+                            <td>Personalizable</td>
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal9">border_color</a></i></td> 
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal16">delete</a></i></td>       
                         </tr>
