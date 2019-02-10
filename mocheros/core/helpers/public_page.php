@@ -18,8 +18,8 @@ class Public_page{
                     <div class="header">
                         <div class="container">
                             <div class="row">
-                            <div class="col s3 l8">
-                                <img src="../../resources/img/marca-mochilas.jpg">
+                            <div class="col s2">
+                                <img class="col s3 l8" src="../../resources/img/marca-mochilas.jpg">
                             </div>
                             <div class="col s9 l8">
                                 <h1> Mocheros </h1>

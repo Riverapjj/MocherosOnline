@@ -1,5 +1,5 @@
 <?php
-include "../core/helpers/public_page.php";
+include "../../core/helpers/public_page.php";
 public_page::header("Principal");
 ?>
 <div class="slider">
