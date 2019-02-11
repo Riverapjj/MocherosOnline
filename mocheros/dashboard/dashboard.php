@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <?php
-    require('../app/view/head.php');
+    require('../app/view/priv_header.php');
     ?>
 <title> Dashboard  </title>
 
