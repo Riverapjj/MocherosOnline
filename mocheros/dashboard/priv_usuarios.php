@@ -58,45 +58,35 @@
                 <!--Agregando registros a la tabla-->
                 <tbody>
                     <tr>
-                        <td>Luis Gustavo</td>
-                        <td>Hernández Rivas</td>
+                        <td>Carlos Federico</td>
+                        <td>Ramírez Soriano</td>
                         <td>Activo</td>
                         <td>7528-0267</td>
-                        <td>lugher.h@gmail.com</td>
+                        <td>fede.h@gmail.com</td>
                         <td>**********</td>  
                         <!--Declarando que al interactuar con el icono "delete" activará un modal que sirve para borrar o uno un registro-->
                         <td><i class="material-icons"><a class = "modal-trigger"href="#modal11">border_color</a></i></td>
                         <td><i class="material-icons"><a class= "modal-trigger" href="#modal15">delete</a></i></td>           
                     </tr>
                     <tr>
-                        <td>Fátima Mercedes</td>
-                        <td>Aguilar Aguirre</td>
+                        <td>Josué Alexander</td>
+                        <td>Rivera Palacios</td>
                         <td>Activo</td>
                         <td>7418-9835</td>
-                        <td>fatima_aguilar@ricaldone.edu.sv</td>
+                        <td>josue@gmail.com</td>
                         <td>**********</td> 
                         <td><i class="material-icons"><a class = "modal-trigger"href="#modal11">border_color</a></i></td>
                         <td><i class="material-icons"><a class = "modal-trigger" href="#modal15">delete</a></i></td> 
                     </tr>
                     <tr>
-                        <td>Jonathan Alexis</td>
-                        <td>Olmedo López</td>
+                        <td>Issela Guadalupe</td>
+                        <td>Mejía Beltrán</td>
                         <td>Inactivo</td>
                         <td>7925-4865</td>
-                        <td>jona.159@gmail.com</td>
+                        <td>iss.159@gmail.com</td>
                         <td>**********</td>
                         <td><i class="material-icons"><a class = "modal-trigger"href="#modal11">border_color</a></i></td>
                         <td><i class="material-icons"><a class = "modal-trigger" href="#modal15">delete</a></i></td> 
-                    </tr>
-                    <tr>
-                        <td>Alexandra Marina</td>
-                        <td>Castillo Méndez</td>
-                        <td>Activo</td>
-                        <td>7692-7815</td>
-                        <td>alexandra_castillo@gmail.com</td>
-                        <td>**********</td> 
-                        <td><i class="material-icons"><a class = "modal-trigger"href="#modal11">border_color</a></i></td>
-                        <td><i class="material-icons"><a class = "modal-trigger" href="#modal15">delete</a></i></td>      
                     </tr>
                 </tbody>
             </table>
@@ -320,42 +310,42 @@
                         <!-- Agregando registros  -->
                         <tr>
                             <td>1</td>
-                            <td>Luis Hernández</td>
+                            <td>Josué Rivera</td>
                             <td>Agregar productos</td>
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal21">border_color</a></i></td>
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal15">delete</a></i></td>           
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td>Luis Hernández</td>
+                            <td>Josué Rivera</td>
                             <td>Modificar productos</td>
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal22">border_color</a></i></td>
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal15">delete</a></i></td> 
                         </tr>
                         <tr>
                             <td>3</td>
-                            <td>Luis Hernández</td>
+                            <td>Josué Rivera</td>
                             <td>Eliminar productos</td>
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal22">border_color</a></i></td>
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal15">delete</a></i></td> 
                         </tr>
                         <tr>
                             <td>4</td>
-                            <td>Fátima Aguilar</td>
+                            <td>Carlos Ramírez</td>
                             <td>Agregar administradores</td>
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal22">border_color</a></i></td>
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal15">delete</a></i></td> 
                         </tr>
                         <tr>
                             <td>5</td>
-                            <td>Fátima Aguilar
+                            <td>Carlos Ramírez</td>
                             <td>Modificar administradores</td>
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal22">border_color</a></i></td>
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal15">delete</a></i></td> 
                         </tr>
                         <tr>
                             <td>6</td>
-                            <td>Luis Hernández</td>
+                            <td>Carlos Ramírez</td>
                             <td>Eliminar administradores</td>
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal22">border_color</a></i></td>
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal15">delete</a></i></td> 

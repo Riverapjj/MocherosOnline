@@ -178,7 +178,7 @@
                         <tr>
                             <td>1</td>
                             <td>Compra</td> 
-                            <td><i class="material-icons"><a class = "modal-trigger"href="#modal20">border_color</a></i></td>
+                            <td><i class="material-icons"><a class = "modal-trigger"data-target="modal20">border_color</a></i></td>
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal15">delete</a></i></td>           
                         </tr>
                         <tr>
