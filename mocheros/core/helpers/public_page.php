@@ -30,9 +30,9 @@ class Public_page{
                     <a href="#" class="brand-logo"></a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
-                        <li><a href="#">Mochilas</a></li>
+                        <li><a href="../../views/public/mochilas.php">Mochilas</a></li>
                         <li><a href="#">Locheras</a></li>
-                        <li><a href="#">Accesorios</a></li>
+                        <li><a id="dashboard" href="../../dashboard/dashboard.php">Iniciar sesión</a></li>
                     </ul>
                     </div>
                 </nav>
@@ -48,30 +48,35 @@ class Public_page{
 
     public static function footer(){
         print('
-               <footer class="page-footer">
-                <div class="container">
-                    <div class="row">
+               <footer class="page-footer orange darken-2">
+               <div class="container">
+                <div class="row">
                     <div class="col l6 s12">
-                        <h5 class="white-text">Footer Content</h5>
-                        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                        <h5 class="white-text">Contáctanos</h5>
+                        <p class="grey-text text-lighten-4"><b>Técnicos de mantenimiento</b></p>
+                        <blockquote>
+                            <p class="grey-text text-lighten-4">Carlos Ramírez - Correo electrónico: federamirez_outlook.com</p>
+                            <p class="grey-text text-lighten-4">Josué Rivera - Correo electrónico: riverapj@gmail.com</p>
+                        </blockquote>
                     </div>
                     <div class="col l4 offset-l2 s12">
-                        <h5 class="white-text">Links</h5>
-                        <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-                        </ul>
-                    </div>
-                    </div>
-                </div>
-                <div class="footer-copyright">
-                    <div class="container">
-                    © 2014 Copyright Text
-                    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                        <p class="grey-text text-lighten-4"><b>Dirección</b></p>
+                        <blockquote>
+                            <p class="grey-text text-lighten-4">CALLE SIEMENS, URB. INDUSTRIAL SANTA ELENA, #54, ANTIGUO CUSCATLAN, LA LIBERTAD, Antiguo Cuscatlan CP 1503</p>
+                        </blockquote>
+                        <p class="grey-text text-lighten-4"><b>Correo eléctronico</b></p>
+                        <blockquote>
+                            <p class="grey-text text-lighten-4">mocheros@gmail.com</p>
+                        </blockquote>
                     </div>
                 </div>
+               </div>
+                    <div class="footer-copyright">
+                      <div class="container">
+                        © 2018 Derechos reservados a Mocheros S.A. de C.V.    
+                      </div>
+                      
+                    </div>
                 </footer>
                 <script type="text/javascript" src="../../resources/js/jquery-3.3.1.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>

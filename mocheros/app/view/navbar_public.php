@@ -35,14 +35,14 @@
                         <li><a href="inicio.php">Inicio</a></li>
                         <li><a href="mochilas.php">Mochilas</a></li>
                         <li><a href="#">Locheras</a></li>
-                        <li><a href="#">Accesorios</a></li>
+                        <li><a class="modal-trigger" href="#modal1">Iniciar sesión</a></li>
                     </ul>
                     </div>
                 </nav>
                 <ul class="sidenav" id="mobile-demo">
                     <li><a href="sass.html">Mocheros</a></li>
                     <hr>
-                    <li><a href="badges.html">Mochilas</a></li>
+                    <li><a href="mochilas.php">Mochilas</a></li>
                     <li><a href="badges.html">Loncheras</a></li>
                     <li><a href="collapsible.html">Accesorios</a></li>
                 </ul>
