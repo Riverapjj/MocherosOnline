@@ -25,10 +25,7 @@
             <div class="col s12">
                 <!--Creando un "tab" para elegir entre administrar estados o el tipo de estado necesarios-->
                 <ul class="tabs">
-                <li class="tab col s3 disabled"><a href="#test5" class="white-text">Disabled sdsdzssdsdfasdasf</a></li>
-                <li class="tab col s3"><a class="active cyan-text darken-2" href="#test1">Estado</a></li>
-                <li class="tab col s3"><a class="cyan-text darken-2" href="#test2">Tipo </a></li>
-                <li class="tab col s3 disabled"><a href="#test5" class="white-text">Disabled sdsdzssdsdfasdasfTab</a></li>
+                <li class="tab col s12"><a class="active cyan-text darken-2" href="#test1">Estado</a></li>
                 </ul>
             </div> <br><br><br>
             <!--Creando una barra de búsqueda para facilitar el acceso a los registros-->
@@ -46,9 +43,11 @@
                 <thead>
                     <!--Agregando los campos fijos a la tabla-->
                     <tr>
-                        <th>Código del estado</th>
-                        <th>Tipo de estado</th>
-                        <th>Nombre</th>
+                        <th>Código del pedido</th>
+                        <th>Nombre de cliente</th>
+                        <th>Contacto</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -56,30 +55,38 @@
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>Compra</td>
-                        <td>En proceso</td>  
+                        <td>Juan Pérez</td>
+                        <td>juan@gmail.com</td> 
+                        <td>24/05/16</td>
+                        <td>Entregado</td> 
                         <!--Declarando que al interactuar con el icono "delete" activará un modal que sirve para borrar o uno un registro-->
                         <td><i class="material-icons"><a class = "modal-trigger"href="#modal18">border_color</a></i></td>
                         <td><i class="material-icons"><a class= "modal-trigger" href="#modal15">delete</a></i></td>           
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>Compra</td>
-                        <td>Finalizada</td> 
+                        <td>Alberto Laínez</td>
+                        <td>alberto@gmail.com</td> 
+                        <td>02/11/18</td>
+                        <td>Entregado</td> 
                         <td><i class="material-icons"><a class = "modal-trigger"href="#modal18">border_color</a></i></td>
                         <td><i class="material-icons"><a class = "modal-trigger" href="#modal15">delete</a></i></td> 
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>Usuario</td>
-                        <td>Activo</td>
+                        <td>Pedro Andrade</td>
+                        <td>pedro@gmail.com</td> 
+                        <td>07/02/19</td>
+                        <td>En proceso</td> 
                         <td><i class="material-icons"><a class = "modal-trigger"href="#modal18">border_color</a></i></td>
                         <td><i class="material-icons"><a class = "modal-trigger" href="#modal15">delete</a></i></td> 
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td>Usuario</td>
-                        <td>Inactivo</td> 
+                        <td>Benjamin Contreras</td>
+                        <td>benja@gmail.com</td> 
+                        <td>09/02/19</td>
+                        <td>En proceso</td>  
                         <td><i class="material-icons"><a class = "modal-trigger"href="#modal18">border_color</a></i></td>
                         <td><i class="material-icons"><a class = "modal-trigger" href="#modal15">delete</a></i></td>      
                     </tr>
@@ -160,12 +167,12 @@
                 </ul>
             </div>                    
         </div>
-        <!-- creando un segundo div con id "test2" para la sección a elegir en el tab -->
+        <!-- creando un segundo div con id "test2" para la sección a elegir en el tab
         <div id="test2" class="col s12">
-            <!-- declarando que sea responsiva -->
+            declarando que sea responsiva 
                 <table class="striped responsive-table">
                     <thead>
-                        <!-- declarando que sea responsiva -->
+                        declarando que sea responsiva 
                         <tr>
                             <th>Código</th>
                             <th>Tipo de estado</th>
@@ -174,7 +181,7 @@
                     </thead>
             
                     <tbody>
-                        <!-- Agregando registros  -->
+                         Agregando registros
                         <tr>
                             <td>1</td>
                             <td>Compra</td> 
@@ -189,6 +196,7 @@
                         </tr>
                     </tbody>
                 </table> 
+                -->
         <!-- Creando el efecto modal para cada accion a realizar (agregar, modificar y eliminar) -->
                 <!-- Creando modal19 para opcion agregar -->
                 <div id="modal19" class="modal">
