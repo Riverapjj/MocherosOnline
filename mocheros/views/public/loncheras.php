@@ -10,7 +10,7 @@ public_page::header("Mocheros");
                 <img src="../../resources/img/mochila1.jpg">
             </div>
             <div class="card-content">
-                <p>Mochila 1.</p>
+                <p>Lonchera 1.</p>
             </div>
             <div class="card-action">
                 <a href="#">Ver producto</a>
@@ -23,7 +23,7 @@ public_page::header("Mocheros");
                 <img src="../../resources/img/mochila2.jpg" class="responsive-img">
             </div>
             <div class="card-content">
-                <p>Mochila 2.</p>
+                <p>Lonchera 2.</p>
             </div>
             <div class="card-action">
                 <a href="#">Ver producto</a>
@@ -36,7 +36,7 @@ public_page::header("Mocheros");
                 <img src="../../resources/img/mochila3.jpg">
             </div>
             <div class="card-content">
-                    <p>Mochila 3.</p>
+                    <p>Lonchera 3.</p>
             </div>
             <div class="card-action">
                     <a href="#">Ver producto</a>
@@ -49,7 +49,7 @@ public_page::header("Mocheros");
                 <img src="../../resources/img/mochila4.jpg">
             </div>
             <div class="card-content">
-                <p>Mochila 4.</p>
+                <p>Lonchera 4.</p>
             </div>
             <div class="card-action">
                 <a href="#">Ver producto</a>

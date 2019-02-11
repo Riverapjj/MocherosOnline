@@ -183,6 +183,14 @@ public_page::header("Principal");
     </ul>
 </div>
 
+<div class="container-fluid blue-lightned-2">
+    <div class="row">
+        <div class="col col-sm-12">
+            <h1>PERSONALIZAMOS TUS PRODUCTOS</h1>
+        </div>
+    </div>
+</div>
+
 <?php
 Public_page::footer();
 ?>

@@ -30,8 +30,10 @@ class Public_page{
                     <a href="#" class="brand-logo"></a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
+                        <li><a href="../../views/public/index.php">Inicio</a></li>
                         <li><a href="../../views/public/mochilas.php">Mochilas</a></li>
-                        <li><a href="#">Locheras</a></li>
+                        <li><a href="../../views/public/loncheras.php">Locheras</a></li>
+                        <li><a href="../../views/public/accesorios.php">Accesorios</a></li>
                         <li><a id="dashboard" href="../../dashboard/dashboard.php">Iniciar sesión</a></li>
                     </ul>
                     </div>
@@ -39,9 +41,10 @@ class Public_page{
                 <ul class="sidenav" id="mobile-demo">
                     <li><a href="sass.html">Mocheros</a></li>
                     <hr>
-                    <li><a href="badges.html">Mochilas</a></li>
-                    <li><a href="badges.html">Loncheras</a></li>
-                    <li><a href="collapsible.html">Accesorios</a></li>
+                    <li><a href="../../views/public/mochilas.php">Mochilas</a></li>
+                    <li><a href="../../views/public/loncheras.php">Loncheras</a></li>
+                    <li><a href="../../views/public/accesorios.php">Accesorios</a></li>
+                    <li><a id="dashboard" href="../../dashboard/dashboard.php">Iniciar sesión</a></li>
                 </ul>
             ');
         }
@@ -73,7 +76,7 @@ class Public_page{
                </div>
                     <div class="footer-copyright">
                       <div class="container">
-                        © 2018 Derechos reservados a Mocheros S.A. de C.V.    
+                        © 2019 Derechos reservados a Mocheros S.A. de C.V.    
                       </div>
                       
                     </div>
