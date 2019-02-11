@@ -39,8 +39,9 @@ class Public_page{
                     </div>
                 </nav>
                 <ul class="sidenav" id="mobile-demo">
-                    <li><a href="sass.html">Mocheros</a></li>
+                    <li><a href="../../views/public/index.php">Mocheros</a></li>
                     <hr>
+                    <li><a href="../../views/public/index.php">Inicio</a></li>
                     <li><a href="../../views/public/mochilas.php">Mochilas</a></li>
                     <li><a href="../../views/public/loncheras.php">Loncheras</a></li>
                     <li><a href="../../views/public/accesorios.php">Accesorios</a></li>
