@@ -183,10 +183,17 @@ public_page::header("Principal");
     </ul>
 </div>
 
-<div class="container-fluid blue-lightned-2">
+<div class=" blue lightned-2 container-fluid">
     <div class="row">
         <div class="col col-sm-12">
-            <h1>PERSONALIZAMOS TUS PRODUCTOS</h1>
+            <h1 class="caption center-align">PERSONALIZAMOS TUS PRODUCTOS</h1>
+        </div>
+        <div class="col col-sm-12 col-lg-6">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos repellendus sapiente incidunt, voluptate quis possimus, nostrum minus optio error facilis consectetur? Est, error perspiciatis cumque obcaecati sint reprehenderit et hic?
+        </div>
+        <div class="col col-sm-12 col-lg-6">
+            <img class="col col-sm-6" src="../../resources/img/banner-accesorios.jpeg">
+            <img class="col col-sm-6" src="../../resources/img/banner-mochilas3.jpeg">
         </div>
     </div>
 </div>
