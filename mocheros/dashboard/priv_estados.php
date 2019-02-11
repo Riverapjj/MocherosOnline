@@ -147,7 +147,7 @@
                                 <label for="contact">Contacto</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="date" type="text" class="validate">
+                                <input id="date" type="text" class="datepicker">
                                 <label for="date">Fecha</label>
                             </div>
                             <div class="input-field col s12">

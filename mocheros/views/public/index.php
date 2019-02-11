@@ -3,7 +3,7 @@ include "../../core/helpers/public_page.php";
 public_page::header("Principal");
 ?>
 <!-- Estructura de modal iniciar sesión -->
-    <div id="modal1" class="modal">
+    <div id="modal1" class="modal modal-fixed-footer">
               <div class="modal-content">
                   <h4 class="cyan-text">Iniciar sesión</h4>
                   <div class="row">
@@ -22,7 +22,7 @@ public_page::header("Principal");
                   </div>
               </div>
               <div class="modal-footer">
-                  <a href="inicio.php" class="modal-action modal-close waves-effect waves-cyan btn-flat">Iniciar sesión</a>
+                  <a href="../../dashboard/dashboard.php" class="modal-action modal-close waves-effect waves-cyan btn-flat">Iniciar sesión</a>
               </div>
         </div>
         <!--Estructura de modal para términos y condiciones -->
