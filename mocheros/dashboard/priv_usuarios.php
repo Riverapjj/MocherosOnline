@@ -111,7 +111,7 @@
                             <div class="input-field col s12 m6">
                                 <!--Creación de un select para definir las opciones predeterminadas para cada tipo de usuario-->
                                 <select>
-                                    <option value="" disabled selected>Escoge una opción</option>
+                                    <option value="estado">Escoge una opción</option>
                                     <option value="1">Activo</option>
                                     <option value="2">Inactivo</option>
                                 </select>
@@ -153,11 +153,12 @@
                             </div>
                             <div class="input-field col s12 m6">
                                 <select>
-                                    <option value="" disabled selected>Escoge una opción</option>
+                                    <option value="estado">Escoge una opción</option>
                                     <option value="1">Activo</option>
                                     <option value="2">Inactivo</option>
                                 </select>
                                 <label>Estado</label>
+                                <input id="state" type="text" class="validate">
                             </div>
                             <div class="input-field col s12 m6">
                                 <input id="tel" type="text" class="validate">
@@ -178,9 +179,51 @@
                     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Modificar</a>
                 </div>
             </div>
+            <!-- Creando modal12 para opcion agregar -->
+            <div id="modal12" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h5 class="cyan-text darker-2 center-align"><b>Agregar un administrador</b></h5>
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <input id="name" type="text" class="validate">
+                                <label for="name">Nombre</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <input id="last_name" type="text" class="validate">
+                                <label for="last_name">Apellido</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <select>
+                                    <option value="estado">Escoge una opción</option>
+                                    <option value="1">Activo</option>
+                                    <option value="2">Inactivo</option>
+                                </select>
+                                <label>Estado</label>
+                                <input id="state" type="text" class="validate">
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <input id="tel" type="text" class="validate">
+                                <label for="tel">Teléfono</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <input id="email" type="text" class="validate">
+                                <label for="email">Correo eléctronico</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <input id="pass" type="text" class="validate">
+                                <label for="pass">Contraseña</label>
+                            </div>                    
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agregar</a>
+                </div>
+            </div>
             <!-- Declarando que el botón para agregar y modificar esté fijo en una esquina de la página -->
             <div class="fixed-action-btn toolbar">
-                <a class="btn-floating btn-large cyan darken-2"><i class="large material-icons">mode_edit</i></a>
+                <a class="btn-floating btn-large cyan darken-2"><i class="large material-icons">add</i></a>
                 <ul>  
                     <!-- Declarando los iconos deseados para cada acción, definiendo que modal activará cada botón -->
                     <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal10"><i class="material-icons">add_circle</i></a></li>
@@ -240,8 +283,8 @@
                         </tr>
                     </tbody>
                 </table> 
-        <!-- Creando el efecto modal para cada accion a realizar (agregar, modificar y eliminar) -->
-                <!-- Creando modal13 para opcion agregar -->
+        <!-- Creando el efecto modal para cada accion a realizar (agregar, modificar y eliminar) 
+                Creando modal13 para opcion agregar
                 <div id="modal13" class="modal">
                     <div class="modal-content">
                         <h5 class="cyan-text darker-2 center-align"><b>Agregar un nuevo permiso</b></h5>
@@ -261,8 +304,8 @@
                     <div class="modal-footer">
                         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agregar</a>
                     </div>
-                </div>
-                <!-- Creando modal14 para opcion modificar -->
+                </div>-->
+                <!-- Creando modal14 para opcion modificar
                 <div id="modal14" class="modal">
                     <div class="modal-content">
                             <h5 class="cyan-text darker-2 center-align"><b>Modificar un permiso</b></h5>
@@ -278,7 +321,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                        </div> -->
                         <!-- Declarando como es el estilo del footer del modal -->
                         <div class="modal-footer">
                             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Modificar</a>
@@ -286,9 +329,9 @@
                 </div>
                 <!-- Declarando el boton siempre fijo para agregar y modificar tipo de usuarios con su respectivo icono y modal a ejecutar -->
                 <div class="fixed-action-btn toolbar">
-                    <a class="btn-floating btn-large cyan darken-2"><i class="large material-icons">mode_edit</i></a>
+                <a href="#modal12" class="btn-floating btn-large cyan darken-2 modal-trigger"><i class="large material-icons">add</i></a>
                     <ul>  
-                        <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal13"><i class="material-icons">add_circle</i></a></li>
+                        <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal12"><i class="material-icons">add_circle</i></a></li>
                     </ul>
                 </div>                    
             </div>
@@ -434,7 +477,7 @@
                 </div>
                 <!-- Declarando el boton siempre fijo para agregar y modificar tipo de usuarios con su respectivo icono y modal a ejecutar -->
                 <div class="fixed-action-btn toolbar">
-                    <a class="btn-floating btn-large cyan darken-2"><i class="large material-icons">mode_edit</i></a>
+                <a href="#modal12" class="btn-floating btn-large cyan darken-2 modal-trigger"><i class="large material-icons">add</i></a>
                     <ul>  
                         <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal21"><i class="material-icons">add_circle</i></a></li>
                     </ul>

@@ -130,17 +130,25 @@
             <!-- Creando modal18 para opcion modificar -->
             <div id="modal18" class="modal modal-fixed-footer">
                 <div class="modal-content">
-                    <h5 class="cyan-text darker-2 center-align"><b>Modificar un estado</b></h5>
+                    <h5 class="cyan-text darker-2 center-align"><b>Modificar un pedido</b></h5>
                     <form class="col s12">
                         <div class="row">
                             <!--Creando los campos requeridos para agregar un usuario-->
                             <div class="input-field col s12 m6">
                                 <input disabled value= "Codigo autonumerico" id="disabled" type="text" class="validate">
-                                <label for="disabled">Código del estado</label>
+                                <label for="disabled">Código del pedido</label>
                             </div>
                             <div class="input-field col s12 m6">
                                 <input id="name" type="text" class="validate">
-                                <label for="name">Nombre</label>
+                                <label for="name">Nombre del cliente</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <input id="contact" type="text" class="validate">
+                                <label for="contact">Contacto</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <input id="date" type="text" class="validate">
+                                <label for="date">Fecha</label>
                             </div>
                             <div class="input-field col s12">
                                 <!--Creación de un select para definir las opciones predeterminadas para cada tipo de usuario-->
@@ -150,7 +158,9 @@
                                     <option value="2">Usuario</option>
                                 </select>
                                 <label>Tipo de estado</label>
-                            </div>                
+                                <input id="state" type="text" class="validate">
+                            </div>  
+                                          
                         </div>
                     </form>
                 </div>
@@ -158,9 +168,50 @@
                     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Modificar</a>
                 </div>
             </div>
+             <!-- Creando modal19 para opcion agregar -->
+             <div id="modal19" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h5 class="cyan-text darker-2 center-align"><b>Agregar pedido</b></h5>
+                    <form class="col s12">
+                        <div class="row">
+                            <!--Creando los campos requeridos para agregar un usuario-->
+                            <div class="input-field col s12 m6">
+                                <input disabled value= "Codigo autonumerico" id="disabled" type="text" class="validate">
+                                <label for="disabled">Código del estado</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <input id="name" type="text" class="validate">
+                                <label for="name">Nombre del cliente</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <input id="contact" type="text" class="validate">
+                                <label for="contact">Contacto</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <input id="date" type="text" class="validate">
+                                <label for="date">Fecha</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <!--Creación de un select para definir las opciones predeterminadas para cada tipo de usuario-->
+                                <select>
+                                    <option value="" disabled selected>Escoge una opción</option>
+                                    <option value="1">Compra</option>
+                                    <option value="2">Usuario</option>
+                                </select>
+                                <label>Tipo de estado</label>
+                                <input id="state" type="text" class="validate">
+                            </div>  
+                                          
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agregar</a>
+                </div>
+            </div>
             <!-- Declarando que el botón para agregar y modificar esté fijo en una esquina de la página -->
             <div class="fixed-action-btn toolbar">
-                <a class="btn-floating btn-large cyan darken-2"><i class="large material-icons">mode_edit</i></a>
+                <a class="btn-floating btn-large cyan darken-2 modal-trigger" href="#modal19"><i class="large material-icons">add</i></a>
                 <ul>  
                     <!-- Declarando los iconos deseados para cada acción, definiendo que modal activará cada botón -->
                     <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal17"><i class="material-icons">add_circle</i></a></li>
@@ -243,7 +294,7 @@
                 </div>
                 <!-- Declarando el boton siempre fijo para agregar y modificar tipo de usuarios con su respectivo icono y modal a ejecutar -->
                 <div class="fixed-action-btn toolbar">
-                    <a class="btn-floating btn-large cyan darken-2"><i class="large material-icons">mode_edit</i></a>
+                    <a class="btn-floating btn-large cyan darken-2 modal-trigger" href="#modal19"><i class="large material-icons">add</i></a>
                     <ul>  
                         <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal19"><i class="material-icons">add_circle</i></a></li>
                     </ul>
