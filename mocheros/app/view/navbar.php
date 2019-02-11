@@ -10,7 +10,7 @@
                             <li><a href="priv_usuarios.php" class="waves-effect waves-orange btn-large">Gestión de usuarios</a></li>
                             <li><a href="priv_productos.php" class="waves-effect waves-orange btn-large">Administración productos</a></li>
                             <li><a href="priv_estados.php" class="waves-effect waves-orange btn-large">Gestión de pedidos</a></li>
-                            <li><a href="../public/inicio.php" class="waves-effect waves-orange btn-large">Cerrar sesión</a></li>
+                            <li><a href="../views/public/index.php" class="waves-effect waves-orange btn-large">Cerrar sesión</a></li>
                             </ul>                        
                     </div>            
                 </div>
