@@ -46,6 +46,7 @@
                     <!--Agregando los campos fijos a la tabla-->
                     <tr>
                         <th>Imagen</th>
+                        <th>Código del producto</th>
                         <th>Nombre</th>
                         <th>Existencias</th>
                         <th>Categoria</th>
@@ -71,7 +72,8 @@
                             </div>
                         </td>
                          <!--Agregando registros a la tabla-->
-                        <td>Mochila escolar</td>
+                        <td>1</td>
+                        <td>Mochila escolar</td>                        
                         <td>49 unidades</td>
                         <td>Escolar</td>
                         <td>$20.99</td>
@@ -92,6 +94,7 @@
                                 </div>
                             </div>
                         </td>
+                        <td>2</td>
                         <td>Mochila de viaje</td>
                         <td>23 unidades</td>
                         <td>Viaje</td>
@@ -112,6 +115,7 @@
                                 </div>
                             </div>
                         </td>
+                        <td>3</td>
                         <td>Lonchera</td>
                         <td>56 unidades</td>
                         <td>Varios</td>
@@ -132,6 +136,7 @@
                                 </div>
                             </div>
                         </td>
+                        <td>4</td>
                         <td>Mochila personalizada</td>
                         <td>37 unidades</td>
                         <td>Personalizable</td>
@@ -217,14 +222,18 @@
             <!-- Creando modal3 para opcion modificar -->
             <div id="modal3" class="modal modal-fixed-footer">
                 <div class="modal-content">
-                    <h5 class="cyan-text darker-2 center-align"><b>Modificar un juguete</b></h5>
+                    <h5 class="cyan-text darker-2 center-align"><b>Modificar un producto</b></h5>
                     <form class="col s12">
                         <div class="row">
                             <div class="input-field col s12 m6">
-                                <input id="name" type="text" class="validate">
-                                <label for="name">Nombre del juguete</label>
+                                <input disabled value= "Codigo autonumerico" id="disabled" type="text" class="validate">
+                                <label for="disabled">Código del producto</label>
                             </div>
                             <div class="input-field col s12 m6">
+                                <input id="name" type="text" class="validate">
+                                <label for="name">Nombre del producto</label>
+                            </div>
+                            <!--<div class="input-field col s12 m6">
                                 <select>
                                     <option value="" disabled selected>Escoge una opción</option>
                                     <option value="1">Acción</option>
@@ -233,7 +242,7 @@
                                 </select>
                                 <label>Tipo de juguete</label>
                                 <input id="type" type="text" class="validate">
-                            </div>
+                            </div>-->
                             <div class="input-field col s12 m6">
                                 <select>
                                     <option value="" disabled selected>Escoge una opción</option>
@@ -249,21 +258,14 @@
                                 <label for="exist">Existencias</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="age" type="text" class="validate">
-                                <label for="age">Rango de edad</label>
-                            </div>
-                            <div class="input-field col s12 m6">
                                 <input id="price" type="text" class="validate">
                                 <label for="price">Precio</label>
-                            </div>
-                            <div class="input-field col s12 m6">
-                                <input id="cal" type="text" class="validate">
-                                <label for="cal">Calificación</label>
                             </div>
                             <div class="input-field col s12 m6">
                                 <input id="desc" type="text" class="validate">
                                 <label for="desc">Descripción</label>
                             </div>
+                            <br>
                             <div class="col s12 m6">
                                 <div class="card card small">
                                     <div class="card-image">
@@ -281,17 +283,21 @@
                     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Modificar</a>
                 </div>
             </div>
-            <!-- Creando modal4 para opcion modificar -->
+            <!-- Creando modal4 para opcion agregar -->
             <div id="modal4" class="modal modal-fixed-footer">
-                <div class="modal-content">
+            <div class="modal-content">
                     <h5 class="cyan-text darker-2 center-align"><b>Agregar un producto</b></h5>
                     <form class="col s12">
                         <div class="row">
                             <div class="input-field col s12 m6">
-                                <input id="name" type="text" class="validate">
-                                <label for="name">Nombre del juguete</label>
+                                <input disabled value= "Codigo autonumerico" id="disabled" type="text" class="validate">
+                                <label for="disabled">Código del producto</label>
                             </div>
                             <div class="input-field col s12 m6">
+                                <input id="name" type="text" class="validate">
+                                <label for="name">Nombre del producto</label>
+                            </div>
+                            <!--<div class="input-field col s12 m6">
                                 <select>
                                     <option value="" disabled selected>Escoge una opción</option>
                                     <option value="1">Acción</option>
@@ -300,7 +306,7 @@
                                 </select>
                                 <label>Tipo de juguete</label>
                                 <input id="type" type="text" class="validate">
-                            </div>
+                            </div>-->
                             <div class="input-field col s12 m6">
                                 <select>
                                     <option value="" disabled selected>Escoge una opción</option>
@@ -316,21 +322,14 @@
                                 <label for="exist">Existencias</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="age" type="text" class="validate">
-                                <label for="age">Rango de edad</label>
-                            </div>
-                            <div class="input-field col s12 m6">
                                 <input id="price" type="text" class="validate">
                                 <label for="price">Precio</label>
-                            </div>
-                            <div class="input-field col s12 m6">
-                                <input id="cal" type="text" class="validate">
-                                <label for="cal">Calificación</label>
                             </div>
                             <div class="input-field col s12 m6">
                                 <input id="desc" type="text" class="validate">
                                 <label for="desc">Descripción</label>
                             </div>
+                            <br>
                             <div class="col s12 m6">
                                 <div class="card card small">
                                     <div class="card-image">

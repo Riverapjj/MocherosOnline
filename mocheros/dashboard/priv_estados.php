@@ -104,7 +104,7 @@
                             <!--Creando los campos requeridos para agregar un usuario-->
                             <div class="input-field col s12 m6">
                                 <input disabled value= "Codigo autonumerico" id="disabled" type="text" class="validate">
-                                <label for="disabled">Código del estado</label>
+                                <label for="disabled">Código del pedido</label>
                             </div>
                             <div class="input-field col s12 m6">
                                 <input id="name" type="text" class="validate">
