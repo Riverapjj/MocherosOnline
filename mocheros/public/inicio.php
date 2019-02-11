@@ -20,7 +20,7 @@
     <div class="slider">
         <ul class="slides">
             <li>
-                <img src="../resources/img/banner-mochilas3.jpg"> <!-- random image -->
+                <img src="../resources/img/mochilas-3.jpg"> <!-- random image -->
                 <div class="caption center-align">
                     <h1 class="indigo-text text-darken-4">MOCHILAS</h1>
                     <h5 class="orange-text text-darken-3"><a href="">Ver más</a></h5>
