@@ -32,7 +32,8 @@
                     <a href="#" class="brand-logo"></a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
-                        <li><a href="#">Mochilas</a></li>
+                        <li><a href="inicio.php">Inicio</a></li>
+                        <li><a href="mochilas.php">Mochilas</a></li>
                         <li><a href="#">Locheras</a></li>
                         <li><a href="#">Accesorios</a></li>
                     </ul>

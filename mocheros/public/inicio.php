@@ -4,7 +4,7 @@
     <?php
     require('../app/view/head.php');
     ?>
-    <title>Document</title>
+    <title>Inicio</title>
 </head>
 <body>
     <header>
@@ -23,7 +23,7 @@
                 <img src="../resources/img/banner-mochilas3.jpeg"> <!-- random image -->
                 <div class="caption center-align">
                     <h1 class="indigo-text text-darken-4">MOCHILAS</h1>
-                    <h5 class="orange-text text-darken-3"><a href="">Ver más</a></h5>
+                    <h5 class="orange-text text-darken-3"><a href="mochilas.php">Ver más</a></h5>
                 </div>
             </li>
             <li>
@@ -31,7 +31,7 @@
                 <div class="caption left-align">
                     <h3 class="indigo-text text-darken-4">¡Bienvenido a Mocheros!</h3>
                     <h5 class="orange-text text-darken-3">Somos tus compañeros en tus aventuras del día a día</h5>
-                    <a href="" class="orange-text text-darken-3">Haz click aquí para ver nuestras mochilas</a>
+                    <a href="mochilas.php" class="orange-text text-darken-3">Haz click aquí para ver nuestras mochilas</a>
                 </div>
             </li>
             <li>
@@ -39,6 +39,7 @@
                 <div class="caption left-align">
                     <h3 class="indigo-text text-darken-4">Febrero, el mes de la amistad</h3>
                     <h5 class="orange-text text-darken-3">¡Regala alguno de nuestros productos para tus seres queridos!</h5>
+                    <a href="mochilas.php" class="orange-text text-darken-3">Ver mochilas</a>
                 </div>
             </li>
             <li>
