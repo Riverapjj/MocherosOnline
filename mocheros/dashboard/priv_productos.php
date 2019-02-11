@@ -64,7 +64,7 @@
                                     <div class="card">
                                          <!--Definiendo que la imagen sea responsiva-->
                                         <div class="card-image">
-                                            <img class="responsive-img z-depth-3" src="../web/images/productos/toys.jpg">
+                                            <img class="responsive-img z-depth-3" src="../resources/img/mochipro.bmp">
                                         </div>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@
                                 <div class="col s12 m7">
                                     <div class="card">
                                         <div class="card-image ">
-                                            <img class="responsive-img z-depth-3"  src="../resources/img/mochilas-1.jpeg">
+                                            <img class="responsive-img z-depth-3"  src="../resources/img/mochipro.bmp">
                                         </div>
                                     </div>
                                 </div>
@@ -106,7 +106,7 @@
                                 <div class="col s12 m7">
                                     <div class="card ">
                                         <div class="card-image">
-                                            <img class="responsive-img z-depth-3" src="../web/images/productos/duck.jpg">
+                                            <img class="responsive-img z-depth-3" src="../resources/img/mochipro.bmp">
                                         </div>
                                     </div>
                                 </div>
@@ -126,7 +126,7 @@
                                 <div class="col s12 m7">
                                     <div class="card">
                                         <div class="card-image">
-                                            <img class="responsive-img z-depth-3" src="../web/images/productos/car.jpg">
+                                            <img class="responsive-img z-depth-3" src="../resources/img/mochipro.bmp">
                                         </div>
                                     </div>
                                 </div>
@@ -199,7 +199,7 @@
                                 <div class="card card small">
                                     <div class="card-image">
                                         <!--Hacemos la imagen responsiva-->
-                                        <img class="responsive-img z-depth-3" src="../web/images/productos/image2.jpg"> 
+                                        <img class="responsive-img z-depth-3" src="../resources/img/mochipro.bmp"> 
                                     </div>
                                 </div>
                             </div>
@@ -232,6 +232,7 @@
                                     <option value="3">Baño</option>
                                 </select>
                                 <label>Tipo de juguete</label>
+                                <input id="type" type="text" class="validate">
                             </div>
                             <div class="input-field col s12 m6">
                                 <select>
@@ -241,6 +242,7 @@
                                     <option value="3">Todas las categorias</option>
                                 </select>
                                 <label>Categoria</label>
+                                <input id="category" type="text" class="validate">
                             </div>
                             <div class="input-field col s12 m6">
                                 <input id="exist" type="text" class="validate">
@@ -265,7 +267,7 @@
                             <div class="col s12 m6">
                                 <div class="card card small">
                                     <div class="card-image">
-                                        <img class="responsive-img z-depth-3" src="../web/images/productos/image2.jpg"> 
+                                        <img class="responsive-img z-depth-3" src="../resources/img/mochipro.bmp"> 
                                     </div>
                                 </div>
                             </div>
@@ -279,9 +281,76 @@
                     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Modificar</a>
                 </div>
             </div>
+            <!-- Creando modal4 para opcion modificar -->
+            <div id="modal4" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h5 class="cyan-text darker-2 center-align"><b>Agregar un producto</b></h5>
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <input id="name" type="text" class="validate">
+                                <label for="name">Nombre del juguete</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <select>
+                                    <option value="" disabled selected>Escoge una opción</option>
+                                    <option value="1">Acción</option>
+                                    <option value="2">Construcción</option>
+                                    <option value="3">Baño</option>
+                                </select>
+                                <label>Tipo de juguete</label>
+                                <input id="type" type="text" class="validate">
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <select>
+                                    <option value="" disabled selected>Escoge una opción</option>
+                                    <option value="1">Niños</option>
+                                    <option value="2">Niñas</option>
+                                    <option value="3">Todas las categorias</option>
+                                </select>
+                                <label>Categoria</label>
+                                <input id="category" type="text" class="validate">
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <input id="exist" type="text" class="validate">
+                                <label for="exist">Existencias</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <input id="age" type="text" class="validate">
+                                <label for="age">Rango de edad</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <input id="price" type="text" class="validate">
+                                <label for="price">Precio</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <input id="cal" type="text" class="validate">
+                                <label for="cal">Calificación</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <input id="desc" type="text" class="validate">
+                                <label for="desc">Descripción</label>
+                            </div>
+                            <div class="col s12 m6">
+                                <div class="card card small">
+                                    <div class="card-image">
+                                        <img class="responsive-img z-depth-3" src="../resources/img/mochipro.bmp"> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-field col s12 m6"><br><br><br><br><br><br><br><br><br><br><br>
+                                <a class="waves-effect waves-light btn card-panel cyan darken-2"><i class="material-icons left">attach_file</i>Subir archivo</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agregar</a>
+                </div>
+            </div>
             <!-- Declarando que el botón para agregar y modificar esté fijo en una esquina de la página -->
             <div class="fixed-action-btn toolbar">
-                <a class="btn-floating btn-large cyan darken-2"><i class="large material-icons">mode_edit</i></a>
+                <a class="btn-floating btn-large cyan darken-2 modal-trigger" href="#modal4"><i class="large material-icons">add</i></a>
                 <ul>  
                      <!-- Declarando los iconos deseados para cada acción, definiendo que modal activará cada botón -->
                     <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal2"><i class="material-icons">add_circle</i></a></li>
@@ -376,7 +445,7 @@
                 </div>
                 <!-- Declarando el boton siempre fijo para agregar y modificar tipo de usuarios con su respectivo icono y modal a ejecutar -->
                 <div class="fixed-action-btn toolbar">
-                    <a class="btn-floating btn-large cyan darken-2"><i class="large material-icons">mode_edit</i></a>
+                    <a class="btn-floating btn-large cyan darken-2 modal-trigger" href="#modal4"><i class="large material-icons">add</i></a>
                     <ul>  
                         <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal5"><i class="material-icons">add_circle</i></a></li>
                     </ul>
@@ -470,8 +539,7 @@
                 </div>
                 <!-- Declarando el boton siempre fijo para agregar y modificar tipo de usuarios con su respectivo icono y modal a ejecutar -->
                 <div class="fixed-action-btn toolbar">
-                    <a class="btn-floating btn-large cyan darken-2"><i class="large material-icons">mode_edit</i></a>
-                    <ul>  
+                        <a class="btn-floating btn-large cyan darken-2 modal-trigger" href="#modal4"><i class="large material-icons">add</i></a>
                         <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal8"><i class="material-icons">add_circle</i></a></li>
                     </ul>
                 </div>                    
