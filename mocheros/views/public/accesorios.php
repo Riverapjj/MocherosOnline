@@ -2,7 +2,7 @@
 include "../../core/helpers/public_page.php";
 public_page::header("Mocheros");
 ?>
-<div class="container-fluid">
+<div class="container-fluid grey lighten-2">
     <div class="row">
     <div class="col col-sm-12">
         <h1 class="caption center-align indigo-text text-darken-3">ACCESORIOS</h1>
