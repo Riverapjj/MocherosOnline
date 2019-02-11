@@ -4,7 +4,7 @@
     <?php
     require('../app/view/head.php');
     ?>
-    <title>Document</title>
+    <title>Mochilas</title>
 </head>
 <body>
     <header>

@@ -13,7 +13,7 @@
                 <div class="col l4 offset-l2 s12">
                     <p class="grey-text text-lighten-4"><b>Dirección</b></p>
                     <blockquote>
-                        <p class="grey-text text-lighten-4">Calle El Mirador, Colonia Escalón, World Trade Center San Salvador San Salvador, El Salvador</p>
+                        <p class="grey-text text-lighten-4">CALLE SIEMENS, URB. INDUSTRIAL SANTA ELENA, #54, ANTIGUO CUSCATLAN, LA LIBERTAD, Antiguo Cuscatlan CP 1503</p>
                     </blockquote>
                     <p class="grey-text text-lighten-4"><b>Correo eléctronico</b></p>
                     <blockquote>
@@ -34,3 +34,4 @@
                 <script type="text/javascript" src="../resources/js/materialize.min.js"></script>
                 <script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
                 <script type="text/javascript" src="../resources/js/main.js"></script>
+                <script type="text/javascript" src="../resources/js/public.js"></script>
