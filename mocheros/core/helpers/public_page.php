@@ -10,7 +10,7 @@ class Public_page{
                 <meta http-equiv="X-UA-Compatible" content="ie=edge">
                 <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap.css">
                 <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css">
-                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                <link href="../../resources/css/material_icons.css" rel="stylesheet">
                 <title>'.$title.'</title>
             </head>
             <body>

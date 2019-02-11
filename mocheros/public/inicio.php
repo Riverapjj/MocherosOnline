@@ -20,14 +20,14 @@
     <div class="slider">
         <ul class="slides">
             <li>
-                <img src="../resources/img/mochilas-3.jpg"> <!-- random image -->
+                <img src="../resources/img/banner-mochilas3.jpeg"> <!-- random image -->
                 <div class="caption center-align">
                     <h1 class="indigo-text text-darken-4">MOCHILAS</h1>
                     <h5 class="orange-text text-darken-3"><a href="">Ver más</a></h5>
                 </div>
             </li>
             <li>
-                <img src="../resources/img/banner-mochilas2.jpg"> <!-- random image -->
+                <img src="../resources/img/banner-mochilas2.jpeg"> <!-- random image -->
                 <div class="caption left-align">
                     <h3 class="indigo-text text-darken-4">¡Bienvenido a Mocheros!</h3>
                     <h5 class="orange-text text-darken-3">Somos tus compañeros en tus aventuras del día a día</h5>
@@ -35,7 +35,7 @@
                 </div>
             </li>
             <li>
-                <img src="../resources/img/banner-mochilas.jpg"> <!-- random image -->
+                <img src="../resources/img/banner-mochilas.png"> <!-- random image -->
                 <div class="caption left-align">
                     <h3 class="indigo-text text-darken-4">Febrero, el mes de la amistad</h3>
                     <h5 class="orange-text text-darken-3">¡Regala alguno de nuestros productos para tus seres queridos!</h5>
