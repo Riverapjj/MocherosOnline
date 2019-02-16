@@ -12,6 +12,11 @@
         require('../app/view/header.php');
     ?>
 </header>
+<nav>
+    <?php
+    require('../app/view/navbar_public.php');
+    ?>
+</nav>
 <main>
 <div class="slider">
     <ul class="slides">

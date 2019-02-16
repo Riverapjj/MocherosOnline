@@ -32,17 +32,18 @@
                     <a href="#" class="brand-logo"></a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
-                        <li><a href="inicio.php">Inicio</a></li>
+                        <li><a href="index.php">Inicio</a></li>
                         <li><a href="mochilas.php">Mochilas</a></li>
-                        <li><a href="#">Locheras</a></li>
+                        <li><a href="loncheras.php">Locheras</a></li>
+                        <li><a href="accesorios.php">Accesorios</a></li>
                         <li><a class="modal-trigger" href="#modal1">Iniciar sesión</a></li>
                     </ul>
                     </div>
                 </nav>
                 <ul class="sidenav" id="mobile-demo">
-                    <li><a href="sass.html">Mocheros</a></li>
+                    <li><a href="index.php">Mocheros</a></li>
                     <hr>
                     <li><a href="mochilas.php">Mochilas</a></li>
-                    <li><a href="badges.html">Loncheras</a></li>
-                    <li><a href="collapsible.html">Accesorios</a></li>
+                    <li><a href="loncheras.php">Loncheras</a></li>
+                    <li><a href="accesorios.php">Accesorios</a></li>
                 </ul>
