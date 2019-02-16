@@ -34,7 +34,7 @@
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
                         <li><a href="index.php">Inicio</a></li>
                         <li><a href="mochilas.php">Mochilas</a></li>
-                        <li><a href="loncheras.php">Locheras</a></li>
+                        <li><a href="loncheras.php">Loncheras</a></li>
                         <li><a href="accesorios.php">Accesorios</a></li>
                         <li><a class="modal-trigger" href="#modal1">Iniciar sesión</a></li>
                     </ul>

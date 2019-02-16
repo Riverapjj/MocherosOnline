@@ -128,16 +128,16 @@
 
 <div class="blue lightned-2 container-fluid">
     <div class="row">
-        <div class="col col-sm-12">
+        <div class="col s12">
             <h1 class="caption center-align">PERSONALIZAMOS TUS PRODUCTOS</h1>
         </div>
-        <div class="col col-sm-12 col-lg-6">
+        <div class="col s12 l6">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos repellendus sapiente incidunt, voluptate quis possimus, nostrum minus optio error facilis consectetur? Est, error perspiciatis cumque obcaecati sint reprehenderit et hic?
         </div>
-        <div class="caption center-align col col-sm-12 col-lg-6">
-            <img class="col col-sm-4" src="../resources/img/banner-accesorios.jpeg">
-            <img class="col col-sm-4" src="../resources/img/banner-mochilas3.jpeg">
-            <img class="col col-sm-4" src="../resources/img/mochila5.jpg">
+        <div class="caption center-align col s12 l6">
+            <img class="col s4" src="../resources/img/banner-accesorios.jpeg">
+            <img class="col s4" src="../resources/img/banner-mochilas3.jpeg">
+            <img class="col s4" src="../resources/img/mochila5.jpg">
         </div>
     </div>
 </div>
@@ -148,8 +148,10 @@
     ?>
 </footer>   
       <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="../resources/js/jquery-3.3.1.min.js"></script>
-      <script type="text/javascript" src="../resources/js/materialize.min.js"></script>
-      <script type="text/javascript" src="../resources/js/main.js"></script>
+        <script type="text/javascript" src="../resources/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="../resources/js/materialize.min.js"></script>
+        <script type="text/javascript" src="../resources/js/main.js"></script>
+        <script type="text/javascript" src="../resources/js/public.js"></script>
+        <script type="text/javascript" src="../resources/js/Chart.js"></script>
 </body>
 </html>
