@@ -102,17 +102,17 @@
         <li>
             <img src="../resources/img/banner-mochilas3.jpeg"> <!-- random image -->
             <div class="caption center-align">
-                <h3 class="indigo-text text-darken-4">Los mejores accesorios para toda ocasión que podrás encontrar</h3>
-                <h5 class="orange-text text-darken-3">Perfecto para la escuela, la universidad, el trabajo y muchas cosas más</h5>
-                <a href="../views/public/accesorios.php" class="orange-text text-darken-3">Haz click aquí para ver nuestros accesorios</a>
+                <h3 class="indigo-text text-darken-4 flow-text">Los mejores accesorios para toda ocasión que podrás encontrar</h3>
+                <h5 class="orange-text text-darken-3 flow-text">Perfecto para la escuela, la universidad, el trabajo y muchas cosas más</h5>
+                <a href="../views/public/accesorios.php" class="orange-text text-darken-3 flow-text">Haz click aquí para ver nuestros accesorios</a>
             </div>
         </li>
         <li>
             <img src="../resources/img/banner-mochilas.png"> <!-- random image -->
             <div class="caption center-align">
-                <h3 class="indigo-text text-darken-4">Regala nuestros accesorios para sorprender a tus seres queridos</h3>
-                <h5 class="orange-text text-darken-3">En febrero, la época perfecta para regalar nuestros productos</h5>
-                <a href="../views/public/accesorios.php" class="orange-text text-darken-3">Haz click aquí para ver nuestros accesorios</a>
+                <h3 class="indigo-text text-darken-4 flow-text">Regala nuestros accesorios para sorprender a tus seres queridos</h3>
+                <h5 class="orange-text text-darken-3 flow-text">En febrero, la época perfecta para regalar nuestros productos</h5>
+                <a href="../views/public/accesorios.php" class="orange-text text-darken-3 flow-text">Haz click aquí para ver nuestros accesorios</a>
             </div>
         </li>
         <li>
