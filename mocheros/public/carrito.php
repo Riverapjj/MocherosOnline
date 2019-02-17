@@ -55,7 +55,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>$47.42</td>
+                                    <td>$22.50</td>
                               </tr>        
                           </table>
                     </div>
@@ -65,8 +65,8 @@
                                 <div class="col s12 m6 l12">
                                   <div class="card  grey lighten-3 ">
                                     <div class="card-content black-text">                                  
-                                      <p><b>SUBTOTAL</b> $94.84 </p>
-                                      <br><b>TOTAL  </b>  $94.84
+                                      <p><b>SUBTOTAL</b> $67.50 </p>
+                                      <br><b>TOTAL  </b>  $67.50
                                     </div>                                   
                                   </div>
                                   <a href="#modal1"class="modal-trigger waves-effect waves-light btn-large amber darken-2">Realizar compra</a>
