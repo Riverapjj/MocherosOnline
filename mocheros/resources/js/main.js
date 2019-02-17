@@ -11,4 +11,4 @@ $( document ).ready(function(){
     $('input#input_text, textarea#textarea1').characterCounter();  
 })
 
-M.toast({html: 'Añadido al carrito'})
+M.toast({html: 'toast'})
