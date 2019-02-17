@@ -36,6 +36,7 @@
                         <li><a href="mochilas.php">Mochilas</a></li>
                         <li><a href="loncheras.php">Loncheras</a></li>
                         <li><a href="accesorios.php">Accesorios</a></li>
+                        <li><a href="carrito.php">Carrito</a></li>
                         <li><a class="modal-trigger" href="#modal1">Iniciar sesión</a></li>
                     </ul>
                     </div>
@@ -43,7 +44,10 @@
                 <ul class="sidenav" id="mobile-demo">
                     <li><a href="index.php">Mocheros</a></li>
                     <hr>
+                    <li><a href="accesorios.php">Inicia</a></li>
                     <li><a href="mochilas.php">Mochilas</a></li>
                     <li><a href="loncheras.php">Loncheras</a></li>
                     <li><a href="accesorios.php">Accesorios</a></li>
+                    <li><a href="carrito.php">Carrito</a></li>
+                    <li><a class="modal-trigger" href="#modal1">Iniciar sesión</a></li>
                 </ul>
