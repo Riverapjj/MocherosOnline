@@ -446,7 +446,7 @@
                 <div class="fixed-action-btn toolbar">
                     <a class="btn-floating btn-large cyan darken-2 modal-trigger" href="#modal4"><i class="large material-icons">add</i></a>
                     <ul>  
-                        <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal5"><i class="material-icons">add_circle</i></a></li>
+                        <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal4"><i class="material-icons">add_circle</i></a></li>
                     </ul>
                 </div>                    
             </div>
