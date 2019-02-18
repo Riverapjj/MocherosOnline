@@ -4,7 +4,7 @@
     <?php
     require('../app/view/head.php');
     ?>
-    <title>Mochilas</title>
+    <title>Loncheras</title>
 </head>
 <body>
     <header>
@@ -20,11 +20,11 @@
     <div class="container-fluid grey lighten-2">
         <div class="row">
             <div class="col s12">
-                <h1 class="caption center-align indigo-text text-darken-3">MOCHILAS</h1>
+                <h1 class="caption center-align indigo-text text-darken-3">LONCHERAS</h1>
                 <div class="col s12 m6 l3">
                     <div class="card">
                         <div class="card-image">
-                            <img src="../resources/img/mochila3.jpg">
+                            <img src="../resources/img/lonchera1.jpg">
                                 <!--<a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="Materialize.toast('Añadido al carrito', 4000)" title="Añadir al carrito">-->
                                 <a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="M.toast({html: 'Añadido al carrito'})" title="Añadir al carrito">
                                 <!--<a class="btn-floating" onclick="M.toast({html: 'Añadido al carrito'})">add</a>-->
@@ -32,7 +32,7 @@
                                 </a>
                         </div>
                         <div class="card-content">
-                            <p>Mochila 1</p>
+                            <p>Lonchera 1</p>
                             <!--código para rating con estrellas
                                 <div class="ec-stars-wrapper">
                                     <a href="#" data-value="1" title="Votar con 1 estrellas">★</a>
@@ -53,7 +53,7 @@
                     <div class="col s12 m6 l3">
                         <div class="card">
                             <div class="card-image">
-                                <img src="../resources/img/mochila4.jpg">
+                                <img src="../resources/img/lonchera2.jpg">
                                 <!--<a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="Materialize.toast('Añadido al carrito', 4000)" title="Añadir al carrito">-->
                                 <a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="M.toast({html: 'Añadido al carrito'})" title="Añadir al carrito">
                                 <!--<a class="btn-floating" onclick="M.toast({html: 'Añadido al carrito'})">add</a>-->
@@ -61,7 +61,7 @@
                                 </a>
                             </div>
                             <div class="card-content">
-                                <p>Mochila 2</p>
+                                <p>Lonchera 2</p>
                                 <!--código para rating con estrellas
                                 <div class="ec-stars-wrapper">
                                     <a href="#" data-value="1" title="Votar con 1 estrellas">★</a>
@@ -82,7 +82,7 @@
                     <div class="col s12 m6 l3">
                         <div class="card">
                             <div class="card-image">
-                                <img src="../resources/img/mochila3.jpg">
+                                <img src="../resources/img/lonchera1.jpg">
                                 <!--<a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="Materialize.toast('Añadido al carrito', 4000)" title="Añadir al carrito">-->
                                 <a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="M.toast({html: 'Añadido al carrito'})" title="Añadir al carrito">
                                 <!--<a class="btn-floating" onclick="M.toast({html: 'Añadido al carrito'})">add</a>-->
@@ -90,7 +90,7 @@
                                 </a>
                             </div>
                             <div class="card-content">
-                                <p>Mochila 3</p>
+                                <p>Lonchera 3</p>
                                 <!--código para rating con estrellas
                                 <div class="ec-stars-wrapper">
                                     <a href="#" data-value="1" title="Votar con 1 estrellas">★</a>
@@ -111,7 +111,7 @@
                     <div class="col s12 m6 l3">
                         <div class="card">
                             <div class="card-image">
-                                <img src="../resources/img/mochila4.jpg">
+                                <img src="../resources/img/lonchera2.jpg">
                                 <!--<a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="Materialize.toast('Añadido al carrito', 4000)" title="Añadir al carrito">-->
                                 <a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="M.toast({html: 'Añadido al carrito'})" title="Añadir al carrito">
                                 <!--<a class="btn-floating" onclick="M.toast({html: 'Añadido al carrito'})">add</a>-->
@@ -119,7 +119,7 @@
                                 </a>
                             </div>
                             <div class="card-content">
-                                <p>Mochila 4</p>
+                                <p>Lonchera 4</p>
                                 <!--código para rating con estrellas
                                 <div class="ec-stars-wrapper">
                                     <a href="#" data-value="1" title="Votar con 1 estrellas">★</a>
@@ -140,7 +140,7 @@
                     <div class="col s12 m6 l3">
                         <div class="card">
                             <div class="card-image">
-                                <img src="../resources/img/mochila4.jpg">
+                                <img src="../resources/img/lonchera2.jpg">
                                 <!--<a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="Materialize.toast('Añadido al carrito', 4000)" title="Añadir al carrito">-->
                                 <a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="M.toast({html: 'Añadido al carrito'})" title="Añadir al carrito">
                                 <!--<a class="btn-floating" onclick="M.toast({html: 'Añadido al carrito'})">add</a>-->
@@ -148,7 +148,7 @@
                                 </a>
                             </div>
                             <div class="card-content">
-                                <p>Mochila 5</p>
+                                <p>Lonchera 5</p>
                                 <!--código para rating con estrellas
                                 <div class="ec-stars-wrapper">
                                     <a href="#" data-value="1" title="Votar con 1 estrellas">★</a>
@@ -169,7 +169,7 @@
                     <div class="col s12 m6 l3">
                         <div class="card">
                             <div class="card-image">
-                                <img src="../resources/img/mochila4.jpg">
+                                <img src="../resources/img/lonchera2.jpg">
                                 <!--<a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="Materialize.toast('Añadido al carrito', 4000)" title="Añadir al carrito">-->
                                 <a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="M.toast({html: 'Añadido al carrito'})" title="Añadir al carrito">
                                 <!--<a class="btn-floating" onclick="M.toast({html: 'Añadido al carrito'})">add</a>-->
@@ -177,7 +177,7 @@
                                 </a>
                             </div>
                             <div class="card-content">
-                                <p>Mochila 6</p>
+                                <p>Lonchera 6</p>
                                 <!--código para rating con estrellas
                                 <div class="ec-stars-wrapper">
                                     <a href="#" data-value="1" title="Votar con 1 estrellas">★</a>
@@ -198,7 +198,7 @@
                     <div class="col s12 m6 l3">
                         <div class="card">
                             <div class="card-image">
-                                <img src="../resources/img/mochila3.jpg">
+                                <img src="../resources/img/lonchera1.jpg">
                                 <!--<a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="Materialize.toast('Añadido al carrito', 4000)" title="Añadir al carrito">-->
                                 <a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="M.toast({html: 'Añadido al carrito'})" title="Añadir al carrito">
                                 <!--<a class="btn-floating" onclick="M.toast({html: 'Añadido al carrito'})">add</a>-->
@@ -206,7 +206,7 @@
                                 </a>
                             </div>
                             <div class="card-content">
-                                <p>Mochila 7</p>
+                                <p>Lonchera 7</p>
                                 <!--código para rating con estrellas
                                 <div class="ec-stars-wrapper">
                                     <a href="#" data-value="1" title="Votar con 1 estrellas">★</a>
@@ -227,7 +227,7 @@
                     <div class="col s12 m6 l3">
                         <div class="card">
                             <div class="card-image">
-                                <img src="../resources/img/mochila3.jpg">
+                                <img src="../resources/img/lonchera1.jpg">
                                 <!--<a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="Materialize.toast('Añadido al carrito', 4000)" title="Añadir al carrito">-->
                                 <a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="M.toast({html: 'Añadido al carrito'})" title="Añadir al carrito">
                                 <!--<a class="btn-floating" onclick="M.toast({html: 'Añadido al carrito'})">add</a>-->
@@ -235,7 +235,7 @@
                                 </a>
                             </div>
                             <div class="card-content">
-                                <p>Mochila 8</p>
+                                <p>Lonchera 8</p>
                                 <!--código para rating con estrellas
                                 <div class="ec-stars-wrapper">
                                     <a href="#" data-value="1" title="Votar con 1 estrellas">★</a>
