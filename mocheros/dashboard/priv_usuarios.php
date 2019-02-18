@@ -223,7 +223,7 @@
             </div>
             <!-- Declarando que el botón para agregar y modificar esté fijo en una esquina de la página -->
             <div class="fixed-action-btn toolbar">
-                <a class="btn-floating btn-large cyan darken-2"><i class="large material-icons">add</i></a>
+                <a class="btn-floating btn-large cyan darken-2 modal-trigger" href="#modal10"><i class="large material-icons">add</i></a>
                 <ul>  
                     <!-- Declarando los iconos deseados para cada acción, definiendo que modal activará cada botón -->
                     <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal10"><i class="material-icons">add_circle</i></a></li>
@@ -329,10 +329,10 @@
                 </div>
                 <!-- Declarando el boton siempre fijo para agregar y modificar tipo de usuarios con su respectivo icono y modal a ejecutar -->
                 <div class="fixed-action-btn toolbar">
-                <a class="btn-floating btn-large cyan darken-2 modal-trigger" href=""><i class="large material-icons">add</i></a>
+                <a class="btn-floating btn-large cyan darken-2 modal-trigger" data-target="modal10"><i class="large material-icons">add</i></a>
                 <ul>  
                     <!-- Declarando los iconos deseados para cada acción, definiendo que modal activará cada botón -->
-                    <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal10"><i class="material-icons">add_circle</i></a></li>
+                    <li class="waves-effect waves-light"><a class="modal-trigger" href="modal10"><i class="material-icons">add_circle</i></a></li>
                 </ul>
                 </div>                   
                 </div>

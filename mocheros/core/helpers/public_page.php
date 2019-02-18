@@ -46,7 +46,7 @@ class Public_page{
                     <li><a href="../../views/public/mochilas.php">Mochilas</a></li>
                     <li><a href="../../views/public/loncheras.php">Loncheras</a></li>
                     <li><a href="../../views/public/accesorios.php">Accesorios</a></li>
-                    <li><a id="dashboard" href="../../dashboard/dashboard.php">Iniciar sesión</a></li>
+                    <li><a id="model-trigger" href="#modal1">Iniciar sesión</a></li>
                 </ul>
             ');
         }
