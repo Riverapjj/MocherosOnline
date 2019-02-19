@@ -10,23 +10,27 @@
 <body>
     <!--Creación de nuestra barra de navegación-->
     <header>
-        <!--Estructura del navbar-->
+    <?php
+        require('../app/view/navbar.php');
+        Navbar::indexDashNav();
+        ?>
+        <!--Estructura del navbar
         <div class="navbar-fixed">
-            <nav class="grey lighten-5">
+            <nav class="orange darken-5">
                 <div class="nav-wrapper">
-                    <a href="index_dashboard.php" class="brand-logo logok"> <img src="../web/images/logo.png" height="50"></a>
-                    <a href="#" data-activates="mobile-demo" class="button-collapse cyan-text"><i class="material-icons">menu</i></a>
+                    <a href="index_dashboard.php" class="brand-logo logok"> <img src="../resources/img/marca-mochilas.jpg" height="50"></a>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse white-text"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a class="modal-trigger cyan-text" href="#modal1">Iniciar sesión</a></li>
                         
                     </ul>
                 </div> 
             </nav>
-        </div> 
-          <!--Estructura del navbar para dispositivos moviles-->
+        </div> -->
+          <!--Estructura del navbar para dispositivos moviles
         <ul class="side-nav" id="mobile-demo">
         <li><a class="modal-trigger cyan-text" href="#modal1">Iniciar sesión</a></li>
-        </ul>
+        </ul>-->
     </header>
     <main>
         <!--Creanción del modal para ejecutarse al momento de querer iniciar sesión-->
@@ -56,13 +60,13 @@
         <!--Creando un espacio para un video con la etiqueta de video, definiendo que el video estará en loop y sin audio-->
         <video controls autoplay loop muted>
             <!--importando el video-->
-            <source src="../web/video/video2.mp4" type="video/mp4">
+            <source src="../resources/img/call-me-maybe.mp4" type="video/mp4">
         </video>
         <!--Creando un div para poner un texto-->
         <div class ="text row animated slideInLeft">
             <div class="col s12">
-                <h1 class="white-text black-font">KIDSZONE</h1>
-                <h5 class="white-text">"It's all about imagination"</h5>
+                <h1 class="white-text black-font">MOCHEROS</h1>
+                <h5 class="white-text">Tus compañeros en tus aventuras</h5>
             </div>
         </div>
     </main>            

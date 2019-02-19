@@ -8,6 +8,6 @@ $( document ).ready(function(){
     $('ul.tabs').tabs();
     $('.datepicker').datepicker();
     $('.sidenav').sidenav();
-    //$('select').material_select();
+    $('select').formSelect();
     $('input#input_text, textarea#textarea1').characterCounter();  
 })

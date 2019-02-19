@@ -17,7 +17,7 @@
                     </blockquote>
                     <p class="grey-text text-lighten-4"><b>Correo eléctronico</b></p>
                     <blockquote>
-                        <p class="grey-text text-lighten-4">mocheros@gmail.com</p>
+                        <p class="grey-text text-lighten-4">contacto@mocheros.com</p>
                     </blockquote>
                 </div>
             </div>

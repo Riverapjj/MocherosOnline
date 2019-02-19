@@ -38,7 +38,7 @@
                   </div>
               </div>
               <div class="modal-footer">
-                  <a href="../dashboard/dashboard.php" class="modal-action modal-close waves-effect waves-cyan btn-flat">Iniciar sesión</a>
+                  <a href="../dashboard/index_dashboard.php" class="modal-action modal-close waves-effect waves-cyan btn-flat">Iniciar sesión</a>
               </div>
         </div>
         <!--Estructura de modal para términos y condiciones -->
@@ -106,32 +106,32 @@
         <li>
             <img src="../resources/img/banner-mochilas3.jpeg"> <!-- random image -->
             <div class="caption center-align">
-                <h1 class="indigo-text text-darken-4">MOCHILAS</h1>
+                <h1 class="indigo-text text-darken-4 center-align">MOCHILAS</h1>
                 <h5 class="orange-text text-darken-3"><a href="../views/public/mochilas.php">Ver más</a></h5>
             </div>
         </li>
         <li>
             <img src="../resources/img/banner-mochilas2.jpeg"> <!-- random image -->
             <div class="caption center-align">
-                <h3 class="indigo-text text-darken-4">¡Bienvenido a Mocheros!</h3>
-                <h5 class="orange-text text-darken-3">Somos tus compañeros en tus aventuras del día a día</h5>
-                <a href="../views/public/mochilas.php" class="orange-text text-darken-3">Haz click aquí para ver nuestras mochilas</a>
+                <h3 class="indigo-text text-darken-4 flow-text">¡Bienvenido a Mocheros!</h3>
+                <h5 class="orange-text text-darken-3 flow-text">Somos tus compañeros en tus aventuras del día a día</h5>
+                <a href="../views/public/mochilas.php" class="orange-text text-darken-3 flow-text">Haz click aquí para ver nuestras mochilas</a>
             </div>
         </li>
         <li>
             <img src="../resources/img/banner-mochilas.png"> <!-- random image -->
             <div class="caption center-align">
-                <h3 class="indigo-text text-darken-4">Febrero, el mes de la amistad</h3>
-                <h5 class="orange-text text-darken-3">¡Regala alguno de nuestros productos para tus seres queridos!</h5>
-                <a href="../views/public/mochilas.php" class="orange-text text-darken-3">Haz click aquí para ver nuestras mochilas</a>
+                <h3 class="indigo-text text-darken-4 flow-text">Febrero, el mes de la amistad</h3>
+                <h5 class="orange-text text-darken-3 flow-text">¡Regala alguno de nuestros productos para tus seres queridos!</h5>
+                <a href="../views/public/mochilas.php" class="orange-text text-darken-3 flow-text">Haz click aquí para ver nuestras mochilas</a>
             </div>
         </li>
         <li>
             <img src="../resources/img/mochilas-8.jpg"> <!-- random image -->
             <div class="caption center-align">
-                <h3 class="indigo-text text-darken-4">Las mejores mochilas a tu alcance</h3>
-                <h5 class="orange-text text-darken-3">Mochilas que puedes utilizar en cualquier momento</h5>
-                <a href="../views/public/mochilas.php" class="orange-text text-darken-3">Haz click aquí para ver nuestras mochilas</a>
+                <h3 class="indigo-text text-darken-4 flow-text">Las mejores mochilas a tu alcance</h3>
+                <h5 class="orange-text text-darken-3 flow-text">Mochilas que puedes utilizar en cualquier momento</h5>
+                <a href="../views/public/mochilas.php" class="orange-text text-darken-3 flow-text">Haz click aquí para ver nuestras mochilas</a>
             </div>
         </li>
     </ul>
@@ -142,32 +142,32 @@
         <li>
             <img src="../resources/img/mochilas-8.jpg"> <!-- random image -->
             <div class="caption center-align">
-                <h1 class="indigo-text text-darken-4">LONCHERAS</h1>
+                <h1 class="indigo-text text-darken-4 center-align">LONCHERAS</h1>
                 <h5 class="orange-text text-darken-3"><a href="../views/public/loncheras.php">Ver más</a></h5>
             </div>
         </li>
         <li>
             <img src="../resources/img/banner-mochilas3.jpeg"> <!-- random image -->
             <div class="caption center-align">
-                <h3 class="indigo-text text-darken-4">Nuestras loncheras destacan por sus diseños y calidad</h3>
-                <h5 class="orange-text text-darken-3">Nuestras loncheras poseen los mejores diseños en el mercado</h5>
-                <a href="../views/public/loncheras.php" class="orange-text text-darken-3">Haz click aquí para ver nuestras loncheras</a>
+                <h3 class="indigo-text text-darken-4 flow-text">Nuestras loncheras destacan por sus diseños y calidad</h3>
+                <h5 class="orange-text text-darken-3 flow-text">Nuestras loncheras poseen los mejores diseños en el mercado</h5>
+                <a href="../views/public/loncheras.php" class="orange-text text-darken-3 flow-text">Haz click aquí para ver nuestras loncheras</a>
             </div>
         </li>
         <li>
             <img src="../resources/img/banner-mochilas.png"> <!-- random image -->
             <div class="caption center-align">
-                <h3 class="indigo-text text-darken-4">Febrero, el mes del amor y la amistad</h3>
-                <h5 class="orange-text text-darken-3">Este es el mes para demostrarle cuánto quieres a tus familiares y amigos con una lonchera</h5>
-                <a href="../views/public/loncheras.php" class="orange-text text-darken-3">Haz click aquí para ver nuestras loncheras</a>
+                <h3 class="indigo-text text-darken-4 flow-text">Febrero, el mes del amor y la amistad</h3>
+                <h5 class="orange-text text-darken-3 flow-text">Este es el mes para demostrarle cuánto quieres a tus familiares y amigos con una lonchera</h5>
+                <a href="../views/public/loncheras.php" class="orange-text text-darken-3 flow-text">Haz click aquí para ver nuestras loncheras</a>
             </div>
         </li>
         <li>
             <img src="../resources/img/banner-mochilas2.jpeg"> <!-- random image -->
             <div class="caption center-align">
-                <h3 class="indigo-text text-darken-4">¡Las mejores loncheras para ti!</h3>
-                <h5 class="orange-text text-darken-3">Loncheras con diseños irresistibles</h5>
-                <a href="../views/public/loncheras.php" class="orange-text text-darken-3">Haz click aquí para ver nuestras loncheras</a>
+                <h3 class="indigo-text text-darken-4 flow-text">¡Las mejores loncheras para ti!</h3>
+                <h5 class="orange-text text-darken-3 flow-text">Loncheras con diseños irresistibles</h5>
+                <a href="../views/public/loncheras.php" class="orange-text text-darken-3 flow-text">Haz click aquí para ver nuestras loncheras</a>
             </div>
         </li>
     </ul>
@@ -215,13 +215,12 @@
             <h3 class="caption center-align">PERSONALIZAMOS TUS PRODUCTOS</h3>
         </div>
         <div class="col s12 l6">
-            <p class="flow-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos repellendus sapiente incidunt, voluptate quis possimus, nostrum minus optio error facilis consectetur? 
-            Est, error perspiciatis cumque obcaecati sint reprehenderit et hic?</p>
+            <p class="flow-text">Personalizamos nuestros productos a tu gusto, solo envianos tus diseños a nuestro correo <u>contacto@mocheros.com</u> y nosotros te responderemos lo más pronto posible</p>
         </div>
         <div class="caption center-align col s12 l6">
-            <img class="col s4" src="../resources/img/banner-accesorios.jpeg">
-            <img class="col s4" src="../resources/img/banner-mochilas3.jpeg">
-            <img class="col s4" src="../resources/img/mochila5.jpg">
+            <img class="col s12 l4" src="../resources/img/banner-accesorios.jpeg">
+            <img class="col s12 l4" src="../resources/img/banner-mochilas3.jpeg">
+            <img class="col s12 l4" src="../resources/img/mochila5.jpg">
         </div>
     </div>
 </div>
