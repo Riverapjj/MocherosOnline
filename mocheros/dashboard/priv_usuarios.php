@@ -223,7 +223,7 @@
             </div>
             <!-- Declarando que el botón para agregar y modificar esté fijo en una esquina de la página -->
             <div class="fixed-action-btn toolbar">
-                <a class="btn-floating btn-large cyan darken-2"><i class="large material-icons">add</i></a>
+                <a class="btn-floating btn-large cyan darken-2 modal-trigger" href="#modal10"><i class="large material-icons">add</i></a>
                 <ul>  
                     <!-- Declarando los iconos deseados para cada acción, definiendo que modal activará cada botón -->
                     <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal10"><i class="material-icons">add_circle</i></a></li>
@@ -283,8 +283,8 @@
                         </tr>
                     </tbody>
                 </table> 
-        <!-- Creando el efecto modal para cada accion a realizar (agregar, modificar y eliminar) 
-                Creando modal13 para opcion agregar
+        <!-- Creando el efecto modal para cada accion a realizar (agregar, modificar y eliminar) -->
+              
                 <div id="modal13" class="modal">
                     <div class="modal-content">
                         <h5 class="cyan-text darker-2 center-align"><b>Agregar un nuevo permiso</b></h5>
@@ -304,8 +304,8 @@
                     <div class="modal-footer">
                         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agregar</a>
                     </div>
-                </div>-->
-                <!-- Creando modal14 para opcion modificar
+                </div>
+                <!-- Creando modal14 para opcion modificar-->
                 <div id="modal14" class="modal">
                     <div class="modal-content">
                             <h5 class="cyan-text darker-2 center-align"><b>Modificar un permiso</b></h5>
@@ -321,7 +321,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div> -->
+                            </div> 
                         <!-- Declarando como es el estilo del footer del modal -->
                         <div class="modal-footer">
                             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Modificar</a>
@@ -329,12 +329,13 @@
                 </div>
                 <!-- Declarando el boton siempre fijo para agregar y modificar tipo de usuarios con su respectivo icono y modal a ejecutar -->
                 <div class="fixed-action-btn toolbar">
-                <a href="#modal12" class="btn-floating btn-large cyan darken-2 modal-trigger"><i class="large material-icons">add</i></a>
-                    <ul>  
-                        <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal12"><i class="material-icons">add_circle</i></a></li>
-                    </ul>
-                </div>                    
-            </div>
+                <a class="btn-floating btn-large cyan darken-2 modal-trigger" data-target="modal10"><i class="large material-icons">add</i></a>
+                <ul>  
+                    <!-- Declarando los iconos deseados para cada acción, definiendo que modal activará cada botón -->
+                    <li class="waves-effect waves-light"><a class="modal-trigger" href="modal10"><i class="material-icons">add_circle</i></a></li>
+                </ul>
+                </div>                   
+                </div>
         </div>
         <div id="test3" class="col s12">
             <!-- declarando que sea responsiva -->

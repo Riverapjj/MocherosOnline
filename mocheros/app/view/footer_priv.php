@@ -2,7 +2,7 @@
 <footer class="page-footer orange darken-2">
     <div class="container">
         <div class="row">
-            <div class="col l6 s12">
+            <div class="col s12 l6">
                 <h5 class="white-text">Contáctanos</h5>
                 <p class="grey-text text-lighten-4"><b>Técnicos de mantenimiento</b></p>
                 <blockquote>
