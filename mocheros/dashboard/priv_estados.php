@@ -26,7 +26,10 @@
             <div class="col s12">
                 <!--Creando un "tab" para elegir entre administrar estados o el tipo de estado necesarios-->
                 <ul class="tabs">
-                <li class="tab col s12"><a class="active cyan-text darken-2" href="#test1">Estado</a></li>
+                <li class="tab col s6"><a class="active cyan-text darken-2" href="#test1">Pedidos</a></li>
+                <li class="tab col s6"><a class="active cyan-text darken-2" href="#test2">Estado</a></li>
+                <li class="tab col s3 disabled"><a href="#test5" class="white-text">Disabled sdsdzssdsdfasdasfTab</a></li>
+                <li class="tab col s3 disabled"><a href="#test5" class="white-text">Disabled sdsdzssdsdfasdasfTab</a></li>
                 </ul>
             </div> <br><br><br>
             <!--Creando una barra de búsqueda para facilitar el acceso a los registros-->
@@ -155,8 +158,8 @@
                                 <!--Creación de un select para definir las opciones predeterminadas para cada tipo de usuario-->
                                 <select>
                                     <option value="" disabled selected>Escoge una opción</option>
-                                    <option value="1">Compra</option>
-                                    <option value="2">Usuario</option>
+                                    <option value="1">Entregado</option>
+                                    <option value="2">En proceso</option>
                                 </select>
                                 <label>Tipo de estado</label>
                                 <input id="state" type="text" class="validate">
@@ -219,12 +222,10 @@
                 </ul>
             </div>                    
         </div>
-        <!-- creando un segundo div con id "test2" para la sección a elegir en el tab
+        <!-- Creando test2 para estados -->
         <div id="test2" class="col s12">
-            declarando que sea responsiva 
                 <table class="striped responsive-table">
                     <thead>
-                        declarando que sea responsiva 
                         <tr>
                             <th>Código</th>
                             <th>Tipo de estado</th>
@@ -233,22 +234,21 @@
                     </thead>
             
                     <tbody>
-                         Agregando registros
                         <tr>
                             <td>1</td>
-                            <td>Compra</td> 
-                            <td><i class="material-icons"><a class = "modal-trigger"data-target="modal20">border_color</a></i></td>
+                            <td>Entregado</td> 
+                            <td><i class="material-icons"><a class = "modal-trigger"href="#modal20">border_color</a></i></td>
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal15">delete</a></i></td>           
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td>Usuario</td>
+                            <td>En proceso</td>
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal20">border_color</a></i></td>
                             <td><i class="material-icons"><a class = "modal-trigger"href="#modal15">delete</a></i></td> 
                         </tr>
                     </tbody>
                 </table> 
-                -->
+               
         <!-- Creando el efecto modal para cada accion a realizar (agregar, modificar y eliminar) -->
                 <!-- Creando modal19 para opcion agregar -->
                 <div id="modal19" class="modal">

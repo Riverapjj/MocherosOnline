@@ -411,10 +411,9 @@
                                 <div class="input-field col s12 m6">
                                     <select>
                                         <option value="" disabled selected>Escoge una opción</option>
-                                        <option value="1">Luis Hernandez</option>
-                                        <option value="2">Fátima Aguilar</option>
-                                        <option value="3">Jonathan Olmedo</option>
-                                        <option value="4">Alexandra Castillo</option>
+                                        <option value="1">Josué Rivera</option>
+                                        <option value="2">Carlos Ramírez</option>
+                                        <option value="3">Issela Guadalupe</option>
                                     </select>
                                     <label>Administrador</label>
                                 </div>

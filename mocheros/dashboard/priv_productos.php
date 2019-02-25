@@ -174,9 +174,10 @@
                             <div class="input-field col s12 m6">
                                 <select>
                                     <option value="" disabled selected>Escoge una opción</option>
-                                    <option value="1">Niños</option>
-                                    <option value="2">Niñas</option>
-                                    <option value="3">Todas las categorias</option>
+                                    <option value="1">Escolar</option>
+                                    <option value="2">Viaje</option>
+                                    <option value="3">Varios</option>
+                                    <option value="3">Personalizable</option>
                                 </select>
                                 <label>Categoria</label>
                             </div>
@@ -247,12 +248,12 @@
                             <div class="input-field col s12 m6">
                                 <select>
                                     <option value="" disabled selected>Escoge una opción</option>
-                                    <option value="1">Niños</option>
-                                    <option value="2">Niñas</option>
-                                    <option value="3">Todas las categorias</option>
+                                    <option value="1">Escolar</option>
+                                    <option value="2">Viaje</option>
+                                    <option value="3">Varios</option>
+                                    <option value="3">Personalizable</option>
                                 </select>
                                 <label>Categoria</label>
-                                <input id="category" type="text" class="validate">
                             </div>
                             <div class="input-field col s12 m6">
                                 <input id="exist" type="text" class="validate">
@@ -308,15 +309,17 @@
                                 <label>Tipo de juguete</label>
                                 <input id="type" type="text" class="validate">
                             </div>-->
-                            <div class="input-field col s12 m6">
+                            
+                                <!--Creación de un select para definir las opciones predeterminadas para cada tipo de usuario-->
+                                <div class="input-field col s12 m6">
                                 <select>
                                     <option value="" disabled selected>Escoge una opción</option>
-                                    <option value="1">Niños</option>
-                                    <option value="2">Niñas</option>
-                                    <option value="3">Todas las categorias</option>
+                                    <option value="1">Escolar</option>
+                                    <option value="2">Viaje</option>
+                                    <option value="3">Varios</option>
+                                    <option value="3">Personalizable</option>
                                 </select>
                                 <label>Categoria</label>
-                                <input id="category" type="text" class="validate">
                             </div>
                             <div class="input-field col s12 m6">
                                 <input id="exist" type="text" class="validate">
