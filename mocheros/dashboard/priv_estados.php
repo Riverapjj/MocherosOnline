@@ -13,6 +13,7 @@
     <!--Creación de nuestra barra de navegación-->
     <?php
         require('../app/view/navbar.php');
+        Navbar::dashNav();
         ?>
     </header>
     

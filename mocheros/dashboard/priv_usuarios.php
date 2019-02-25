@@ -13,6 +13,7 @@
     <!--Creación de nuestra barra de navegación-->
     <?php
         require('../app/view/navbar.php');
+        Navbar::dashNav();
         ?>
     </header>
         <!--Creación de un slider con sus respectivas imagenes responsivas para el inicio del apartado de usuarios-->
