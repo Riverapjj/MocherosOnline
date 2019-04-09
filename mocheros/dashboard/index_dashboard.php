@@ -1,16 +1,18 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
+
+<head>
     <?php
         require('../app/view/head.php');
         ?>
-    <title> Login  </title>
+    <title> Login </title>
 
-    </head>
+</head>
+
 <body>
     <!--Creación de nuestra barra de navegación-->
     <header>
-    <?php
+        <?php
         require('../app/view/navbar.php');
         Navbar::indexDashNav();
         ?>
@@ -27,7 +29,7 @@
                 </div> 
             </nav>
         </div> -->
-          <!--Estructura del navbar para dispositivos moviles
+        <!--Estructura del navbar para dispositivos moviles
         <ul class="side-nav" id="mobile-demo">
         <li><a class="modal-trigger cyan-text" href="#modal1">Iniciar sesión</a></li>
         </ul>-->
@@ -54,25 +56,27 @@
             </div>
             <!--Declarando como se desea el footer del modal-->
             <div class="modal-footer">
-                <a href="Dashboard.php" class="modal-action modal-close waves-effect waves-green btn-flat">Iniciar sesión</a>
+                <a href="Dashboard.php" class="modal-action modal-close waves-effect waves-green btn-flat">Iniciar
+                    sesión</a>
             </div>
-        </div>   
+        </div>
         <!--Creando un espacio para un video con la etiqueta de video, definiendo que el video estará en loop y sin audio-->
         <video controls autoplay loop muted>
             <!--importando el video-->
             <source src="../resources/img/call-me-maybe.mp4" type="video/mp4">
         </video>
         <!--Creando un div para poner un texto-->
-        <div class ="text row animated slideInLeft">
+        <div class="text row animated slideInLeft">
             <div class="col s12">
                 <h1 class="white-text black-font">MOCHEROS</h1>
                 <h5 class="white-text">Tus compañeros en tus aventuras</h5>
             </div>
         </div>
-    </main>            
-                <!--importando los js necesarios-->
+    </main>
+    <!--importando los js necesarios-->
     <script type="text/javascript" src="../resources/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="../resources/js/materialize.min.js"></script>
     <script type="text/javascript" src="../resources/js/main.js"></script>
 </body>
+
 </html>

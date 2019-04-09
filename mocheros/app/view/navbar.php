@@ -1,4 +1,3 @@
-
 <?php
 class Navbar{ 
 
@@ -51,4 +50,3 @@ public static function dashNav(){
   
     }
 ?>
-  

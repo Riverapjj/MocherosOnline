@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <?php
     require('../app/view/head.php');
     ?>
     <title>Inicio</title>
 </head>
+
 <body>
     <header>
         <?php
@@ -31,14 +33,16 @@
                 <div class="caption left-align">
                     <h3 class="indigo-text text-darken-4">¡Bienvenido a Mocheros!</h3>
                     <h5 class="orange-text text-darken-3">Somos tus compañeros en tus aventuras del día a día</h5>
-                    <a href="mochilas.php" class="orange-text text-darken-3">Haz click aquí para ver nuestras mochilas</a>
+                    <a href="mochilas.php" class="orange-text text-darken-3">Haz click aquí para ver nuestras
+                        mochilas</a>
                 </div>
             </li>
             <li>
                 <img src="../resources/img/banner-mochilas.png"> <!-- random image -->
                 <div class="caption left-align">
                     <h3 class="indigo-text text-darken-4">Febrero, el mes de la amistad</h3>
-                    <h5 class="orange-text text-darken-3">¡Regala alguno de nuestros productos para tus seres queridos!</h5>
+                    <h5 class="orange-text text-darken-3">¡Regala alguno de nuestros productos para tus seres queridos!
+                    </h5>
                     <a href="mochilas.php" class="orange-text text-darken-3">Ver mochilas</a>
                 </div>
             </li>
@@ -122,4 +126,5 @@
         ?>
     </footer>
 </body>
+
 </html>
