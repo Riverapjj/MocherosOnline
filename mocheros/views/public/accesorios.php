@@ -3,7 +3,7 @@
 
 <head>
     <?php
-    require('../app/view/head.php');
+    require('../../core/helpers/head.php');
     ?>
     <title>Accesorios</title>
 </head>
@@ -11,12 +11,12 @@
 <body>
     <header>
         <?php
-        require('../app/view/header.php');
+        require('../../core/helpers/header.php');
         ?>
     </header>
     <nav>
         <?php
-        require('../app/view/navbar_public.php');
+        require('../../core/helpers/navbar_public.php');
         ?>
     </nav>
     <div id="modal1" class="modal modal-fixed-footer">
@@ -118,7 +118,7 @@
             <h4 class="orange-text">Estuche para lápices juvenil</h4>
             <div class="row">
                 <div class="col s12 m6">
-                    <img class="responsive-img" src="../resources/img/accesorios1.jpg">
+                    <img class="responsive-img" src="../../resources/img/accesorios1.jpg">
                 </div>
                 <div class="col s12 m6">
                     <p><b>Código Del Producto:</b> 87352214<br></p>
@@ -139,7 +139,7 @@
                 <div class="col s12 m6 l3">
                     <div class="card">
                         <div class="card-image">
-                            <img src="../resources/img/accesorios1.jpg">
+                            <img src="../../resources/img/accesorios1.jpg">
                             <!--<a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="Materialize.toast('Añadido al carrito', 4000)" title="Añadir al carrito">-->
                             <a class="btn-floating halfway-fab waves-effect waves-cyan"
                                 onclick="M.toast({html: 'Añadido al carrito'})" title="Añadir al carrito">
@@ -166,7 +166,7 @@
                 <div class="col s12 m6 l3">
                     <div class="card">
                         <div class="card-image">
-                            <img src="../resources/img/accesorios2.jpg">
+                            <img src="../../resources/img/accesorios2.jpg">
                             <!--<a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="Materialize.toast('Añadido al carrito', 4000)" title="Añadir al carrito">-->
                             <a class="btn-floating halfway-fab waves-effect waves-cyan"
                                 onclick="M.toast({html: 'Añadido al carrito'})" title="Añadir al carrito">
@@ -193,7 +193,7 @@
                 <div class="col s12 m6 l3">
                     <div class="card">
                         <div class="card-image">
-                            <img src="../resources/img/accesorios1.jpg">
+                            <img src="../../resources/img/accesorios1.jpg">
                             <!--<a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="Materialize.toast('Añadido al carrito', 4000)" title="Añadir al carrito">-->
                             <a class="btn-floating halfway-fab waves-effect waves-cyan"
                                 onclick="M.toast({html: 'Añadido al carrito'})" title="Añadir al carrito">
@@ -220,7 +220,7 @@
                 <div class="col s12 m6 l3">
                     <div class="card">
                         <div class="card-image">
-                            <img src="../resources/img/accesorios2.jpg">
+                            <img src="../../resources/img/accesorios2.jpg">
                             <!--<a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="Materialize.toast('Añadido al carrito', 4000)" title="Añadir al carrito">-->
                             <a class="btn-floating halfway-fab waves-effect waves-cyan"
                                 onclick="M.toast({html: 'Añadido al carrito'})" title="Añadir al carrito">
@@ -247,7 +247,7 @@
                 <div class="col s12 m6 l3">
                     <div class="card">
                         <div class="card-image">
-                            <img src="../resources/img/accesorios2.jpg">
+                            <img src="../../resources/img/accesorios2.jpg">
                             <!--<a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="Materialize.toast('Añadido al carrito', 4000)" title="Añadir al carrito">-->
                             <a class="btn-floating halfway-fab waves-effect waves-cyan"
                                 onclick="M.toast({html: 'Añadido al carrito'})" title="Añadir al carrito">
@@ -274,7 +274,7 @@
                 <div class="col s12 m6 l3">
                     <div class="card">
                         <div class="card-image">
-                            <img src="../resources/img/accesorios2.jpg">
+                            <img src="../../resources/img/accesorios2.jpg">
                             <!--<a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="Materialize.toast('Añadido al carrito', 4000)" title="Añadir al carrito">-->
                             <a class="btn-floating halfway-fab waves-effect waves-cyan"
                                 onclick="M.toast({html: 'Añadido al carrito'})" title="Añadir al carrito">
@@ -301,7 +301,7 @@
                 <div class="col s12 m6 l3">
                     <div class="card">
                         <div class="card-image">
-                            <img src="../resources/img/accesorios1.jpg">
+                            <img src="../../resources/img/accesorios1.jpg">
                             <!--<a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="Materialize.toast('Añadido al carrito', 4000)" title="Añadir al carrito">-->
                             <a class="btn-floating halfway-fab waves-effect waves-cyan"
                                 onclick="M.toast({html: 'Añadido al carrito'})" title="Añadir al carrito">
@@ -328,7 +328,7 @@
                 <div class="col s12 m6 l3">
                     <div class="card">
                         <div class="card-image">
-                            <img src="../resources/img/accesorios1.jpg">
+                            <img src="../../resources/img/accesorios1.jpg">
                             <!--<a class="btn-floating halfway-fab waves-effect waves-cyan" onclick="Materialize.toast('Añadido al carrito', 4000)" title="Añadir al carrito">-->
                             <a class="btn-floating halfway-fab waves-effect waves-cyan"
                                 onclick="M.toast({html: 'Añadido al carrito'})" title="Añadir al carrito">
@@ -356,7 +356,7 @@
         </div>
         <footer>
             <?php
-        require('../app/view/footer.php');
+        require('../../core/helpers/footer.php');
         ?>
         </footer>
 </body>

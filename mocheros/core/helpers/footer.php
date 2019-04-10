@@ -31,8 +31,8 @@
 </footer>
 
 <!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="../resources/js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="../resources/js/materialize.min.js"></script>
-<script type="text/javascript" src="../resources/js/main.js"></script>
-<script type="text/javascript" src="../resources/js/public.js"></script>
-<script type="text/javascript" src="../resources/js/Chart.js"></script>
+<script type="text/javascript" src="../../resources/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
+<script type="text/javascript" src="../../resources/js/main.js"></script>
+<script type="text/javascript" src="../../resources/js/public.js"></script>
+<script type="text/javascript" src="../../resources/js/Chart.js"></script>

@@ -123,7 +123,7 @@
                     <img src="../../resources/img/banner-mochilas3.jpeg"> <!-- random image -->
                     <div class="caption center-align">
                         <h1 class="indigo-text text-darken-4 center-align">MOCHILAS</h1>
-                        <h5 class="orange-text text-darken-3"><a href="../views/public/mochilas.php">Ver más</a></h5>
+                        <h5 class="orange-text text-darken-3"><a href="mochilas.php">Ver más</a></h5>
                     </div>
                 </li>
                 <li>
@@ -132,7 +132,7 @@
                         <h3 class="indigo-text text-darken-4 flow-text">¡Bienvenido a Mocheros!</h3>
                         <h5 class="orange-text text-darken-3 flow-text">Somos tus compañeros en tus aventuras del día a
                             día</h5>
-                        <a href="../../views/public/mochilas.php" class="orange-text text-darken-3 flow-text">Haz click
+                        <a href="mochilas.php" class="orange-text text-darken-3 flow-text">Haz click
                             aquí para ver nuestras mochilas</a>
                     </div>
                 </li>
@@ -142,7 +142,7 @@
                         <h3 class="indigo-text text-darken-4 flow-text">Febrero, el mes de la amistad</h3>
                         <h5 class="orange-text text-darken-3 flow-text">¡Regala alguno de nuestros productos para tus
                             seres queridos!</h5>
-                        <a href="../views/public/mochilas.php" class="orange-text text-darken-3 flow-text">Haz click
+                        <a href="mochilas.php" class="orange-text text-darken-3 flow-text">Haz click
                             aquí para ver nuestras mochilas</a>
                     </div>
                 </li>
@@ -152,7 +152,7 @@
                         <h3 class="indigo-text text-darken-4 flow-text">Las mejores mochilas a tu alcance</h3>
                         <h5 class="orange-text text-darken-3 flow-text">Mochilas que puedes utilizar en cualquier
                             momento</h5>
-                        <a href="../../views/public/mochilas.php" class="orange-text text-darken-3 flow-text">Haz click
+                        <a href="mochilas.php" class="orange-text text-darken-3 flow-text">Haz click
                             aquí para ver nuestras mochilas</a>
                     </div>
                 </li>
@@ -207,7 +207,7 @@
                     <img src="../../resources/img/banner-accesorios.jpeg"> <!-- random image -->
                     <div class="caption center-align">
                         <h1 class="indigo-text text-darken-4">ACCESORIOS</h1>
-                        <h5 class="orange-text text-darken-3"><a href="../views/public/accesorios.php">Ver más</a></h5>
+                        <h5 class="orange-text text-darken-3"><a href="accesorios.php">Ver más</a></h5>
                     </div>
                 </li>
                 <li>
@@ -257,9 +257,9 @@
                     </p>
                 </div>
                 <div class="caption center-align col s12 l6">
-                    <img class="col s12 l4" src="../resources/img/banner-accesorios.jpeg">
-                    <img class="col s12 l4" src="../resources/img/banner-mochilas3.jpeg">
-                    <img class="col s12 l4" src="../resources/img/mochila5.jpg">
+                    <img class="col s12 l4" src="../../resources/img/banner-accesorios.jpeg">
+                    <img class="col s12 l4" src="../../resources/img/banner-mochilas3.jpeg">
+                    <img class="col s12 l4" src="../../resources/img/mochila5.jpg">
                 </div>
             </div>
         </div>

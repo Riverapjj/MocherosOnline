@@ -3,7 +3,7 @@
 
 <head>
     <?php
-            require('../app/view/head.php');
+            require('../../core/helpers/head.php');
         ?>
     <title> Carrito </title>
 </head>
@@ -11,12 +11,12 @@
 <body>
     <header>
         <?php
-                require('../app/view/header.php');
+                require('../../core/helpers/header.php');
             ?>
     </header>
     <nav>
         <?php
-                require('../app/view/navbar_public.php');
+                require('../../core/helpers/navbar_public.php');
             ?>
     </nav>
     <main>
@@ -130,7 +130,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><img class="responsive-img" src="../resources/img/mochila3.jpg"></td>
+                        <td><img class="responsive-img" src="../../resources/img/mochila3.jpg"></td>
                         <td>Mochila 1</td>
                         <td>
                             <div class="row">
@@ -142,7 +142,7 @@
                         <td>$45.00</td>
                     </tr>
                     <tr>
-                        <td><img class="responsive-img" src="../resources/img/accesorios1.jpg"></td>
+                        <td><img class="responsive-img" src="../../resources/img/accesorios1.jpg"></td>
                         <td>Accesorio 1</td>
                         <td>
                             <div class="row">
@@ -173,7 +173,7 @@
         </div>
     </main>
     <?php
-            require('../app/view/footer.php');
+            require('../../core/helpers/footer.php');
         ?>
 </body>
 
