@@ -27,7 +27,7 @@
                         <li><a class="cyan-text darken-2" href="carrito.php"> Carrito</a></li>
                         <li><a class="cyan-text darken-2" href="index.php"> Cerrar sesión</a></li>
                 </ul>-->
-<nav class="amber accent-4">
+<nav class="amber accent-3">
     <div class="nav-wrapper">
         <a href="#" class="brand-logo"></a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
