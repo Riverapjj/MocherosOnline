@@ -27,6 +27,12 @@
         <div class="container">
             © 2019 Derechos reservados a Mocheros S.A. de C.V.
         </div>
+        <div class="container">
+            <a class="grey-text text-lighten-4 right" href="https://www.youtube.com"><i class="fab fa-youtube fa-lg"></i> Youtube&nbsp;&nbsp;&nbsp;</a>
+            <a class="grey-text text-lighten-4 right" href="https://www.twitter.com"><i class="fab fa-twitter fa-lg"></i> Twitter&nbsp;&nbsp;&nbsp;</a>
+            <a class="grey-text text-lighten-4 right" href="https://www.instagram.com"><i class="fab fa-instagram fa-lg"></i> Instagram&nbsp;&nbsp;&nbsp;</a>
+            <a class="grey-text text-lighten-4 right" href="https://www.facebook.com"><i class="fab fa-facebook-square fa-lg"></i> Facebook&nbsp;&nbsp;&nbsp;</a>
+        </div>
     </div>
 </footer>
 

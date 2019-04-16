@@ -1,9 +1,10 @@
 <!--Estructura del navbar-->
 <div class="navbar-fixed">
-    <nav class="amber accent-3">
+    <nav class="orange darken-3">
         <div class="nav-wrapper">
+            <a href="#" class="brand-logo"><img src="../../resources/img/mocheros-mini.jpg"></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="index.php"><i class="material-icons left">home</i>Inicio</a></li>
                 <li><a href="mochilas.php"><i class="material-icons left">work</i>Mochilas</a></li>
                 <li><a href="loncheras.php"><i class="material-icons left">work</i>Loncheras</a></li>
@@ -16,7 +17,7 @@
         </div>
     </nav>
 </div>
-<ul class="side-nav" id="mobile-demo">
+<ul class="sidenav orange darken-2" id="mobile-demo">
     <li><a href="index.php">Mocheros</a></li>
     <hr>
     <li><a href="index.php">Inicio</a></li>
