@@ -1,5 +1,5 @@
 <?php
-class Public_page{
+class publicHelper{
 
     public static function header($title){
         print('

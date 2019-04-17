@@ -1,9 +1,9 @@
 <?php
-    require('../../core/helpers/navbar.php');
-    Navbar::header('Inicio');
+    require('../../core/helpers/dashboardHelper.php');
+    DashboardHelper::header('Inicio');
 ?>
 <?php
-     Navbar::dashNav();
+     DashboardHelper::dashNav();
 ?>
 <div>
     <h1 id="titulo" class="cyan-text center">Bienvenido</h1>
@@ -23,7 +23,7 @@
     </div>
 </div>
 <?php
-    Navbar::footer();
+    DashboardHelper::footer();
 ?>
 <script>
     var ctx = $('#myChart');

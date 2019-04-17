@@ -1,14 +1,14 @@
 <?php
-    require('../../core/helpers/navbar.php');
-    Navbar::header('Estados');
+    require('../../core/helpers/dashboardHelper.php');
+    DashboardHelper::header('Estados');
 ?>
 <!--Creación de nuestra barra de navegación-->
 <?php
-    Navbar::dashNav();
+    DashboardHelper::dashNav();
 ?>
 <!--Creación de un slider con sus respectivas imagenes responsivas para el inicio del apartado de usuarios-->
 <?php
-    Navbar::slider();
+    DashboardHelper::slider();
 ?>
 <!--Creando una columna para la tabla de estado-->
 <div class="row">
@@ -310,5 +310,5 @@
 </div>
 </div>
 <?php
-    Navbar::footer();
+    DashboardHelper::footer();
 ?>

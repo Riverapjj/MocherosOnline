@@ -1,5 +1,5 @@
 <?php
-class Navbar{ 
+class dashboardHelper{ 
 
 public static function dashNav(){
       print('<div class="navbar-fixed">  

@@ -1,8 +1,7 @@
 <?php
-    require('../../core/helpers/public_page.php');
-    Public_page::header('Carrito');
+    require('../../core/helpers/publicHelper.php');
+    publicHelper::header('Carrito');
 ?>
-    <main>
         <div id="modal1" class="modal modal-fixed-footer">
             <div class="modal-content">
                 <h4 class="cyan-text">Iniciar sesión</h4>
@@ -154,7 +153,6 @@
                 </div>
             </div>
         </div>
-    </main>
 <?php
-    Public_page::footer();
+    publicHelper::footer();
 ?>

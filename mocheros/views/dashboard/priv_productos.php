@@ -1,14 +1,14 @@
 ﻿<?php
-    require('../../core/helpers/navbar.php');
-    Navbar::header('Productos');
+    require('../../core/helpers/dashboardHelper.php');
+    DashboardHelper::header('Productos');
 ?>
 <!--Creación de nuestra barra de navegación-->
 <?php
-    Navbar::dashNav();
+    DashboardHelper::dashNav();
 ?>
 <!--Creación de un slider con sus respectivas imagenes responsivas para el inicio del apartado de usuarios-->
 <?php
-    Navbar::slider();
+    DashboardHelper::slider();
 ?>
 <!--Creando una columna para la tabla de juguetes-->
 <div class="row">
@@ -562,5 +562,5 @@
 </div>
 </div>
 <?php
-    Navbar::footer();
+    DashboardHelper::footer();
 ?>

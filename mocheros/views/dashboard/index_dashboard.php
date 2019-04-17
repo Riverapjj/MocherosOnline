@@ -1,9 +1,9 @@
 ﻿<?php
-    require('../../core/helpers/navbar.php');
-    Navbar::header('Iniciar sesión');
+    require('../../core/helpers/dashboardHelper.php');
+    DashboardHelper::header('Iniciar sesión');
 ?>
 <?php
-    Navbar::indexDashNav();
+    DashboardHelper::indexDashNav();
 ?>
 <!--Creanción del modal para ejecutarse al momento de querer iniciar sesión-->
 <div id="modal1" class="modal">
@@ -43,5 +43,5 @@
     </div>
 </div>
 <?php
-    Navbar::indexDashFooter();
+    DashboardHelper::indexDashFooter();
 ?>
