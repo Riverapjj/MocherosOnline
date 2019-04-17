@@ -42,3 +42,5 @@
     <script type="text/javascript" src="../../resources/js/Chart.bundle.min.js"></script>
     <script type="text/javascript" src="../../resources/js/Chart.js"></script>
     <script type="text/javascript" src="../../resources/js/Chart.min.js"></script>
+</body>
+</html>

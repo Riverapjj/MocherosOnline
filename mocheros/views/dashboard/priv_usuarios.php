@@ -494,8 +494,5 @@
 </div>
 </div>
 <?php
-        require('../app/view/footer_priv.php');
-        ?>
-</body>
-
-</html>
+    Navbar::footer();
+?>

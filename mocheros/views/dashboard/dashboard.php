@@ -5,28 +5,26 @@
 <?php
      Navbar::dashNav();
 ?>
-<main>
-    <div>
-        <h1 id="titulo" class="cyan-text center">Bienvenido</h1>
-        <br>
+<div>
+    <h1 id="titulo" class="cyan-text center">Bienvenido</h1>
+    <br>
 
-        <!-- Inicio de Grafico -->
-        <div class="row center">
-            <div class="col s12 m6 l4 offset-l1">
-                <canvas id="myChart" class="r" width="100" height="40"></canvas>
-                <h5 id="chart2" class="center"> Pedidos mensuales </h5>
-            </div>
+    <!-- Inicio de Grafico -->
+    <div class="row center">
+        <div class="col s12 m6 l4 offset-l1">
+            <canvas id="myChart" class="r" width="100" height="40"></canvas>
+            <h5 id="chart2" class="center"> Pedidos mensuales </h5>
+        </div>
 
-            <div class="col s12 m6 l4 offset-l2">
-                <canvas id="myChart2" class="r" width="100" height="40"></canvas>
-                <h5 id="chart2" class="center"> Productos más vendidos </h5>
-            </div>
+        <div class="col s12 m6 l4 offset-l2">
+            <canvas id="myChart2" class="r" width="100" height="40"></canvas>
+            <h5 id="chart2" class="center"> Productos más vendidos </h5>
         </div>
     </div>
-</main>
+</div>
 <?php
-        require('../../core/helpers/footer_priv.php');
-        ?>
+    Navbar::footer();
+?>
 <script>
     var ctx = $('#myChart');
     var ctx2 = $('#myChart2');
