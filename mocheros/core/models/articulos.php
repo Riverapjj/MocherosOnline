@@ -1,7 +1,6 @@
 <?php
-class Articulos extends Validator
-{
+class Articulos extends Validator{
     //Declaración de propiedades
     private $id = null;
-    private $id
 }
+?>
