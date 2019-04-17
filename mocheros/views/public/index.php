@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <?php
-        require('../../core/helpers/head.php');
-    ?>
-    <title> Inicio </title>
-</head>
-
-<body>
-    <header>
-        <?php
-        require('../../core/helpers/header.php');
-    ?>
-    </header>
-    <nav>
-        <?php
-    require('../../core/helpers/navbar_public.php');
-    ?>
-    </nav>
+<?php
+require_once('../../core/helpers/public_page.php');
+Public_page::header('Inicio');
+?>
     <main>
         <!-- Estructura de modal iniciar sesión -->
         <div id="modal1" class="modal modal-fixed-footer">
@@ -116,135 +99,10 @@
                     class=" modal-trigger modal-action modal-close waves-effect waves-cyan btn-flat">Registrarse</a>
             </div>
         </div>
-        <!--Comienza a crearse slider-->
-        <div class="slider">
-            <ul class="slides">
-                <li>
-                    <img src="../../resources/img/banner-mochilas3.jpeg"> <!-- random image -->
-                    <div class="caption center-align">
-                        <h1 class="indigo-text text-darken-4 center-align">MOCHILAS</h1>
-                        <h5 class="orange-text text-darken-3"><a href="mochilas.php">Ver más</a></h5>
-                    </div>
-                </li>
-                <li>
-                    <img src="../../resources/img/banner-mochilas2.jpeg"> <!-- random image -->
-                    <div class="caption center-align">
-                        <h3 class="indigo-text text-darken-4 flow-text">¡Bienvenido a Mocheros!</h3>
-                        <h5 class="orange-text text-darken-3 flow-text">Somos tus compañeros en tus aventuras del día a
-                            día</h5>
-                        <a href="mochilas.php" class="orange-text text-darken-3 flow-text">Haz click
-                            aquí para ver nuestras mochilas</a>
-                    </div>
-                </li>
-                <li>
-                    <img src="../../resources/img/banner-mochilas.png"> <!-- random image -->
-                    <div class="caption center-align">
-                        <h3 class="indigo-text text-darken-4 flow-text">Febrero, el mes de la amistad</h3>
-                        <h5 class="orange-text text-darken-3 flow-text">¡Regala alguno de nuestros productos para tus
-                            seres queridos!</h5>
-                        <a href="mochilas.php" class="orange-text text-darken-3 flow-text">Haz click
-                            aquí para ver nuestras mochilas</a>
-                    </div>
-                </li>
-                <li>
-                    <img src="../../resources/img/mochilas-8.jpg"> <!-- random image -->
-                    <div class="caption center-align">
-                        <h3 class="indigo-text text-darken-4 flow-text">Las mejores mochilas a tu alcance</h3>
-                        <h5 class="orange-text text-darken-3 flow-text">Mochilas que puedes utilizar en cualquier
-                            momento</h5>
-                        <a href="mochilas.php" class="orange-text text-darken-3 flow-text">Haz click
-                            aquí para ver nuestras mochilas</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <div class="slider">
-            <ul class="slides">
-                <li>
-                    <img src="../../resources/img/mochilas-8.jpg"> <!-- random image -->
-                    <div class="caption center-align">
-                        <h1 class="indigo-text text-darken-4 center-align">LONCHERAS</h1>
-                        <h5 class="orange-text text-darken-3"><a href="loncheras.php">Ver más</a></h5>
-                    </div>
-                </li>
-                <li>
-                    <img src="../../resources/img/banner-mochilas3.jpeg"> <!-- random image -->
-                    <div class="caption center-align">
-                        <h3 class="indigo-text text-darken-4 flow-text">Nuestras loncheras destacan por sus diseños y
-                            calidad</h3>
-                        <h5 class="orange-text text-darken-3 flow-text">Nuestras loncheras poseen los mejores diseños en
-                            el mercado</h5>
-                        <a href="loncheras.php" class="orange-text text-darken-3 flow-text">Haz click
-                            aquí para ver nuestras loncheras</a>
-                    </div>
-                </li>
-                <li>
-                    <img src="../../resources/img/banner-mochilas.png"> <!-- random image -->
-                    <div class="caption center-align">
-                        <h3 class="indigo-text text-darken-4 flow-text">Febrero, el mes del amor y la amistad</h3>
-                        <h5 class="orange-text text-darken-3 flow-text">Este es el mes para demostrarle cuánto quieres a
-                            tus familiares y amigos con una lonchera</h5>
-                        <a href="loncheras.php" class="orange-text text-darken-3 flow-text">Haz click
-                            aquí para ver nuestras loncheras</a>
-                    </div>
-                </li>
-                <li>
-                    <img src="../../resources/img/banner-mochilas2.jpeg"> <!-- random image -->
-                    <div class="caption center-align">
-                        <h3 class="indigo-text text-darken-4 flow-text">¡Las mejores loncheras para ti!</h3>
-                        <h5 class="orange-text text-darken-3 flow-text">Loncheras con diseños irresistibles</h5>
-                        <a href="loncheras.php" class="orange-text text-darken-3 flow-text">Haz click
-                            aquí para ver nuestras loncheras</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <div class="slider">
-            <ul class="slides">
-                <li class="flow-text">
-                    <img src="../../resources/img/banner-accesorios.jpeg"> <!-- random image -->
-                    <div class="caption center-align">
-                        <h1 class="indigo-text text-darken-4">ACCESORIOS</h1>
-                        <h5 class="orange-text text-darken-3"><a href="accesorios.php">Ver más</a></h5>
-                    </div>
-                </li>
-                <li>
-                    <img src="../../resources/img/banner-mochilas3.jpeg"> <!-- random image -->
-                    <div class="caption center-align">
-                        <h3 class="indigo-text text-darken-4 flow-text">Los mejores accesorios para toda ocasión que
-                            podrás encontrar</h3>
-                        <h5 class="orange-text text-darken-3 flow-text">Perfecto para la escuela, la universidad, el
-                            trabajo y muchas cosas más</h5>
-                        <a href="accesorios.php" class="orange-text text-darken-3 flow-text">Haz click
-                            aquí para ver nuestros accesorios</a>
-                    </div>
-                </li>
-                <li>
-                    <img src="../../resources/img/banner-mochilas.png"> <!-- random image -->
-                    <div class="caption center-align">
-                        <h3 class="indigo-text text-darken-4 flow-text">Regala nuestros accesorios para sorprender a tus
-                            seres queridos</h3>
-                        <h5 class="orange-text text-darken-3 flow-text">En febrero, la época perfecta para regalar
-                            nuestros productos</h5>
-                        <a href="accesorios.php" class="orange-text text-darken-3 flow-text">Haz click
-                            aquí para ver nuestros accesorios</a>
-                    </div>
-                </li>
-                <li>
-                    <img src="../../resources/img/mochilas-8.jpg"> <!-- random image -->
-                    <div class="caption center-align">
-                        <h3 class="indigo-text text-darken-4 flow-text">¡Todos nuestros accesorios son elaborados para
-                            ti!</h3>
-                        <h5 class="orange-text text-darken-3 flow-text">Ponemos empeño y dedicación en cada producto que
-                            realizamos</h5>
-                        <a href="accesorios.php" class="orange-text text-darken-3 flow-text">Haz click
-                            aquí para ver nuestros accesorios</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
+        
+        <?php
+            Public_page::slider();
+        ?>
 
         <div class="blue lightned-2 container-fluid">
             <div class="row">
@@ -264,11 +122,6 @@
             </div>
         </div>
     </main>
-    <footer>
-        <?php
-        require('../../core/helpers/footer.php');
-    ?>
-    </footer>
-</body>
-
-</html>
+<?php
+    Public_page::footer();
+?>

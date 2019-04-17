@@ -1,24 +1,8 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <?php
-    require('../../core/helpers/head.php');
-    ?>
-    <title>Accesorios</title>
-</head>
-
-<body>
-    <header>
-        <?php
-        require('../../core/helpers/header.php');
-        ?>
-    </header>
-    <nav>
-        <?php
-        require('../../core/helpers/navbar_public.php');
-        ?>
-    </nav>
+<?php
+    require('../../core/helpers/public_page.php');
+    Public_page::header('Accesorios');
+?>
+<main>
     <div id="modal1" class="modal modal-fixed-footer">
         <div class="modal-content">
             <h4 class="cyan-text">Iniciar sesión</h4>
@@ -354,11 +338,7 @@
                 </div>
             </div>
         </div>
-        <footer>
-            <?php
-        require('../../core/helpers/footer.php');
-        ?>
-        </footer>
-</body>
-
-</html>
+    </main>
+<?php
+    Public_page::footer();
+?>

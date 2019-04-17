@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <?php
-            require('../../core/helpers/head.php');
-        ?>
-    <title> Carrito </title>
-</head>
-
-<body>
-    <header>
-        <?php
-                require('../../core/helpers/header.php');
-            ?>
-    </header>
-    <nav>
-        <?php
-                require('../../core/helpers/navbar_public.php');
-            ?>
-    </nav>
+<?php
+    require('../../core/helpers/public_page.php');
+    Public_page::header('Carrito');
+?>
     <main>
         <div id="modal1" class="modal modal-fixed-footer">
             <div class="modal-content">
@@ -172,9 +155,6 @@
             </div>
         </div>
     </main>
-    <?php
-            require('../../core/helpers/footer.php');
-        ?>
-</body>
-
-</html>
+<?php
+    Public_page::footer();
+?>
