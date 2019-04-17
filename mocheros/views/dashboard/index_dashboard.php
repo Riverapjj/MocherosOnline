@@ -3,36 +3,18 @@
 
 <head>
     <?php
-        require('../app/view/head.php');
+        require('../../core/helpers/head.php');
         ?>
     <title> Login </title>
 
 </head>
 
 <body>
-    <!--Creación de nuestra barra de navegación-->
     <header>
         <?php
-        require('../app/view/navbar.php');
+        require('../../core/helpers/navbar.php');
         Navbar::indexDashNav();
         ?>
-        <!--Estructura del navbar
-        <div class="navbar-fixed">
-            <nav class="orange darken-5">
-                <div class="nav-wrapper">
-                    <a href="index_dashboard.php" class="brand-logo logok"> <img src="../resources/img/marca-mochilas.jpg" height="50"></a>
-                    <a href="#" data-activates="mobile-demo" class="button-collapse white-text"><i class="material-icons">menu</i></a>
-                    <ul class="right hide-on-med-and-down">
-                        <li><a class="modal-trigger cyan-text" href="#modal1">Iniciar sesión</a></li>
-                        
-                    </ul>
-                </div> 
-            </nav>
-        </div> -->
-        <!--Estructura del navbar para dispositivos moviles
-        <ul class="side-nav" id="mobile-demo">
-        <li><a class="modal-trigger cyan-text" href="#modal1">Iniciar sesión</a></li>
-        </ul>-->
     </header>
     <main>
         <!--Creanción del modal para ejecutarse al momento de querer iniciar sesión-->

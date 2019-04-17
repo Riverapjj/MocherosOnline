@@ -8,6 +8,10 @@ body {
     
 }
 
+main{
+    background-color: #FAD904;
+}
+
 .logox {
     max-width: 300px;
 } 
