@@ -122,6 +122,15 @@ class Validator
         }
     }
 
+    public function validateNumeric($value)
+	{
+		if (preg_match('/^[1-9][0-9]{0,15}$/', $value)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
     public function validateMoney($value)
 	{
 		if (preg_match('/^[0-9]+(?:\.[0-9]{1,2})?$/', $value)) {
