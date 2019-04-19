@@ -337,5 +337,5 @@
         </div>
     </div>
 <?php
-    publicHelper::footer();
+    publicHelper::footer('catalogo.js');
 ?>

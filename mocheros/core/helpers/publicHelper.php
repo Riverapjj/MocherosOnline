@@ -59,7 +59,7 @@ class publicHelper{
             ');
         }
 
-    public static function footer(){
+    public static function footer($controller){
         print('
         <footer class="page-footer orange darken-2">
             <div class="container">
@@ -98,7 +98,7 @@ class publicHelper{
         <script type="text/javascript" src="../../resources/js/main.js"></script>
         <script type="text/javascript" src="../../resources/js/public.js"></script>
         <script type="text/javascript" src="../../resources/js/Chart.js"></script>
-        
+        <script type="text/javascript" src="../../core/controllers/public/'.$controller.'"></script>
         </body>
         
         </html>');

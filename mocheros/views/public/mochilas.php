@@ -1,5 +1,5 @@
 <?php
-    require('../../core/helpers/publichelper.php');
+    require_once('../../core/helpers/publichelper.php');
     publicHelper::header('Mochilas');
 ?>
 <div id="modal1" class="modal modal-fixed-footer">
@@ -113,6 +113,10 @@
     <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>
     </div>
+</div>
+<div class="container">
+    <h1 class="center indigo-text" id="title"></h1>
+    <div class="row" id="catalogo"></div>
 </div>
 <div class="container-fluid grey lighten-2">
     <div class="row">
@@ -337,5 +341,5 @@
         </div>
     </div>
 <?php
-    publicHelper::footer();
+    publicHelper::footer('catalogo.js');
 ?>
