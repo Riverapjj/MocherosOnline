@@ -38,9 +38,186 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             case 'create':
-                $_POST = $producto->validateForm($_POST);
+                $_POST = $articulo->validateForm($_POST);
                 if ($articulo->setCategoria($_POST['create_categoria'])) {
                     if ($articulo->setNombre($_POST['create_nombre'])) {
-                        if ($articulo)
+                        if ($articulo->setDescripcion($_POST['create_descripcion'])) {
+                            if ($articulo->setPrecio($_POST['create_precio'])) {
+                                if ($articulo->setCantidad($_POST['create_cantidad'])) {
+                                    if ($articulo->setEstado(isset($_POST['create_estado']) ? 1 : 0)) {
+                                        if (is_uploaded_file($_FILES['create_archivo']['tmp_name'])) {
+                                            if ($articulo->setFoto($_FILES['create_archivo'], null)) {
+                                                if ($articulo->createProducto()) {
+                                                    if ($articulo->saveFile($_FILES['create_archivo'], $articulo->getRuta(), $articulo->getFoto())) {
+                                                        $result['status'] = 1;
+                                                    } else {
+                                                        $result['status'] = 2;
+                                                        $result['exception'] = 'No se pudo realizar la operación';
+                                                    }
+                                                } else {
+                                                    $result['exception'] = 'Operación fallida';
+                                                }
+                                            } else {
+                                                $result['exception'] = $articulo->getImageError();
+                                            }
+                                        } else {
+                                            $result['exception'] = 'Seleccione una foto';
+                                        }
+                                    } else {
+                                        $result['exception'] = 'Estado incorrecto';
+                                    }
+                                } else {
+                                    $result['exception'] = 'Cantidad incorrecta';
+                                }
+                            } else {
+                                $result['exception'] = 'Precio incorrecto';
+                            }
+                        } else {
+                            $result['exception'] = 'Descripcioón incorrecta';
+                        }
+                    } else {
+                        $result['exception'] = 'Nombre incorrecto';
                     }
+                } else {
+                    $result['exception'] = 'Seleccione una categoría';
                 }
+            case 'get':
+                if ($articulo->setId($_POST['IdArticulos'])) {
+                    if ($result['dataset'] = $articulo->getProducto()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'Producto inexistente';
+                    }
+                } else {
+                    $result['exception'] = 'Producto incorrecto';
+                }
+                break;
+            case 'update':
+                $_POST = $articulo->validateForm($_POST);
+                if ($articulo->setId($_POST['IdArticulos'])) {
+                    if ($articulo->getProducto()) {
+                        if ($articulo->setCategoria($_POST['update_categoria'])) {
+                            if ($articulo->setNombre($_POST['update_nombre'])) {
+                                if ($articulo->setDescripcion($_POST['update_descripcion'])) {
+                                    if ($articulo->setPrecio($_POST['update_precio'])) {
+                                        if ($articulo->setCantidad($_POST['update_cantidad'])) {
+                                            if ($articulo->setEstado(isset($_POST['update_estado']) ? 1 : 0)) {
+                                                if (is_uploaded_file($_FILES['update_archivo']['tmp_name'])) {
+                                                    if ($articulo->setFoto($_FILES['update_archivo'], $_POST['Foto'])) {
+                                                        $archivo = true;
+                                                    } else {
+                                                        $result['exception'] = $articulo->getImageError();
+                                                        $archivo = false;
+                                                    }
+                                                } else {
+                                                    if ($articulo->setFoto(null, $_POST['Foto'])) {
+                                                        $result['exception'] = 'No se subió ningún archivo';
+                                                    } else {
+                                                        $result['exception'] = $articulo->getImageError();
+                                                    }
+                                                    $archivo = false;
+                                                }
+                                                if ($articulo->updateProducto()) {
+                                                    if ($archivo) {
+                                                        if ($articulo->saveFile($_FILES['update_archivo'], $articulo->getRuta(), $articulo->getFoto())) {
+                                                            $result['status'] = 1;
+                                                        } else {
+                                                            $result['status'] = 2;
+                                                            $result['exception'] = 'No se guardó el archivo';
+                                                        }
+                                                    } else {
+                                                        $result['status'] = 3;
+                                                    }
+                                                } else {
+                                                    $result['exception'] = 'Operación fallida';
+                                                }
+                                            } else {
+                                                $result['exception'] = 'Estado incorrecto';
+                                            }
+                                        } else {
+                                            $result['exception'] = 'Cantidad no válida';
+                                        }
+                                    } else {
+                                        $result['exception'] = 'Precio incorrecto';
+                                    }
+                                } else {
+                                    $result['exception'] = 'Descripción incorrecta';
+                                }
+                            } else {
+                                $result['exception'] = 'Nombre incorrecto';
+                            }
+                        } else {
+                            $result['exception'] = 'Seleccione una categoría';
+                        }
+                    } else {
+                        $result['exception'] = 'Producto inexistente';
+                    } 
+                } else {
+                    $result['exception'] = 'Producto incorrecto';
+                }
+                break;
+            case 'delete':
+                if ($producto->setId($_POST['IdArticulos'])) {
+                    if ($producto->getProducto()) {
+                        if ($producto->deleteProducto()) {
+                            if ($producto->deleteFile($producto->getRuta(), $_POST['Foto'])) {
+                                $result['status'] = 1;
+                            } else {
+                                $result['status'] = 2;
+                                $result['exception'] = 'No se borró el archivo';
+                            }
+                        } else {
+                            $result['exception'] = 'Operación fallida';
+                        }
+                    } else {
+                        $result['exception'] = 'Producto inexistente';
+                    }
+                } else {
+                    $result['exception'] = 'Producto incorrecto';
+                }
+                break;
+            default:
+                exit('Acción no disponible');
+            }
+        } else if ($_GET['site'] == 'publicHelper') {
+            switch ($_GET['action']) {
+                case 'readCategorias':
+                    if ($result['dataset'] = $articulo->readProductosCategoria()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'Contenido no disponible';
+                    }
+                    break;
+                case 'readProductos':
+                    if ($articulo->setCategoria($_POST['IdCategoria'])) {
+                        if ($result['dataset'] = $articulo->readProductosCategoria()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = 'Contenido no disponible';
+                        }
+                    } else {
+                        $result['exception'] = 'Producto incorrecto';
+                    }
+                    break;
+                case 'detailProducto':
+                    if ($articulo->setId($_POST['IdArticulos'])) {
+                        if ($result['dataset'] = $articulo->getProducto()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = 'Contenido no disponible';
+                        }
+                    } else {
+                        $result['exception'] = 'Producto incorrecto';
+                    }
+                    break;
+                default:
+                    exit('Acción no disponible');
+            }
+        } else {
+            exit('Acceso no disponible');
+        }
+        print(json_encode($result));
+    } else {
+        exit('Recurso denegado');
+    }
+?>

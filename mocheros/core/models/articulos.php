@@ -139,7 +139,7 @@ class Articulos extends Validator{
     //Metodos para el manejo del CRUD
 	public function readProductosCategoria()
 	{
-		$sql = 'SELECT NomCategoria, IdArticulos, Foto, NomArticulo, DescripcionArt, Precio FROM articulos INNER JOIN categorias USING(IdCategoria) WHERE IdCategoria = ? AND Estado = 1 ORDER BY NomArticulo';
+		$sql = 'SELECT NomCategoria, IdArticulos, Foto, NomArticulo, DescripcionArt, PrecioUnitario FROM articulos INNER JOIN categorias USING(IdCategoria) WHERE IdCategoria = ? AND Estado = 1 ORDER BY NomArticulo';
 		$params = array($this->categoria);
 		return Database::getRows($sql, $params);
 	}
@@ -193,4 +193,3 @@ class Articulos extends Validator{
 		return Database::executeRow($sql, $params);
 	}
 }
-?>
