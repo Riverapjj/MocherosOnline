@@ -33,7 +33,7 @@ class Database
         self::$statement = self::$connection->prepare($query);
         $state = self::$statement->execute($values);
         self::$id = self::$connection->lastInsertId();
-        self::desconnect();
+        self::disconnect();
         return $state;
     }
 
@@ -42,7 +42,7 @@ class Database
         self::connect();
         self::$statement = self::$connection->prepare($query);
         self::$statement->execute($values);
-        self::desconnect();
+        self::disconnect();
         return self::$statement->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -51,7 +51,7 @@ class Database
         self::connect();
         self::$statement = self::$connection->prepare($query);
         self::$statement->execute($values);
-        self::desconnect();
+        self::disconnect();
         return self::$statement->fetchAll(PDO::FETCH_ASSOC);
     }
 

@@ -193,3 +193,4 @@ class Articulos extends Validator{
 		return Database::executeRow($sql, $params);
 	}
 }
+?>
