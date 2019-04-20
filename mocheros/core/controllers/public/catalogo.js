@@ -1,16 +1,16 @@
 $(document).ready(function()
 {
-    readProductos();
+    readCategorias();
 })
 
 //Constante para establecer la ruta y los parámetros de comunicación con la API
 const apiCatalogo = '../../core/api/articulos.php?site=publicHelper&action=';
 
 //Función para obtener y mostrar las categorías de los productos
-function readProductos()
+function readCategorias()
 {
     $.ajax({
-        url: apiCatalogo + 'readProductos',
+        url: apiCatalogo + 'readCategorias',
         type: 'post',
         data: null,
         datatype: 'json'
@@ -26,21 +26,19 @@ function readProductos()
                     content += `
                     <div class="col s12 m6 l3">
                         <div class="card hoverable">
-                            <div class="card-image">
-                                <img src="../resources/img/articulos/${row.Foto}" class="materialboxed">
-                                <a href="#" onclick="getProducto(${row.IdArticulos})" class="btn-floating halfway-fab waves-effect waves-light orange tooltipped" data-tooltip="Ver más"><i class="material-icons">add</i></a>
-                            </div>
                             <div class="card-content">
-                                <span class="card-title">${row.NomArticulo}</span>
-                                <p>Precio: $ ${row.PrecioUnitario}</p>
+                                <span class="card-title activator">${row.NomCategoria}<i class="material-icons">more_vert</i></span>
+                                <p class="center"><a href="#" onclick="readProductosCategoria(${row.IdCategoria}, '${row.NomCategoria}')" class="tooltipped" data-tooltip="Ver más"><i class="material-icons small">remove_red_eye</i></a></p>
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title">${row.NomCategoria}<i class="material-icons right">close</i></span>
                             </div>
                         </div>
                     </div>
                     `;
                 });
-                $('#title').text(NomArticulo);
+                $('#title').text('Categorías de nuestros productos');
                 $('#catalogo').html(content);
-                $('.materialboxed').materialbox();
                 $('.tooltipped').tooltip();
             } else {
                 $('#title').html('<i class="material-icons small">cloud_off</i><span class="red-text">' + result.exception + '</span>');
@@ -55,6 +53,54 @@ function readProductos()
     });
 }
 
+//Función para obtener y mostrar los productos de acuerdo a la categoría seleccionada
+function readProductosCategoria(id, categoria)
+{
+    $.ajax({
+        url: apiCatalogo + 'readProductos',
+        type: 'post',
+        data:{
+            IdCategoria: id
+        },
+        datatype: 'json'
+    })
+    .done(function(response){
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            if (result.status) {
+                let content = '';
+                result.dataset.forEach(function(row){
+                    content += `
+                    <div class="col s12 m6 l3">
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                <img src="../../resources/img/articulos/${row.Foto}" class="materialboxed">
+                                <a href="#" onclick="getProducto(${row.IdArticulos})" class="btn-floating halfway-fab waves-effect waves-light orange tooltipped" data-tooltip="Ver producto"><i class="material-icons">add</i></a>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">${row.NomArticulo}</span>
+                                <p>$ ${row.PrecioUnitario}</p>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                });
+                $('#title').text(categoria);
+                $('#catalogo').html(content);
+                $('.materialboxed').materialbox();
+                $('.tooltipped').tooltip();
+            } else {
+                $('#title').html('<i class="material-icons small">cloud_off</i><span class="red-text">' + result.exception + '</span>');
+            }
+        } else {
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
+
 //Función para obtener y mostrar los datos del producto seleccionado
 function getProducto(id)
 {
@@ -62,7 +108,7 @@ function getProducto(id)
         url: apiCatalogo + 'detailProducto',
         type: 'post',
         data:{
-            id_producto: id
+            IdArticulos: id
         },
         datatype: 'json'
     })

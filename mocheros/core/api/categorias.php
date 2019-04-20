@@ -43,7 +43,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             case 'get':
-                if ($categoria->setId($_POST['id_categoria'])) {
+                if ($categoria->setId($_POST['IdCategoria'])) {
                     if ($result['dataset'] = $categoria->getCategoria()) {
                         $result['status'] = 1;
                     } else {
@@ -55,7 +55,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'update':
                 $_POST = $categoria->validateForm($_POST);
-                if ($categoria->setId($_POST['id_categoria'])) {
+                if ($categoria->setId($_POST['IdCategoria'])) {
                     if ($categoria->getCategoria()) {
                         if ($categoria->setNombre($_POST['update_nombre'])) {
                             if ($categoria->updateCategoria()) {
@@ -74,7 +74,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             case 'delete':
-                if ($categoria->setId($_POST['id_categoria'])) {
+                if ($categoria->setId($_POST['IdCategoria'])) {
                     if ($categoria->getCategoria()) {
                         if ($categoria->deleteCategoria()) {
                                 $result['status'] = 1;
