@@ -185,7 +185,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     if ($result['dataset'] = $articulo->readProductosCategoria()) {
                         $result['status'] = 1;
                     } else {
-                        $result['exception'] = 'Contenido no disponible';
+                        $result['exception'] = 'Contenido no disponible 1';
                     }
                     break;
                 case 'readProductos':
@@ -193,7 +193,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                         if ($result['dataset'] = $articulo->readProductosCategoria()) {
                             $result['status'] = 1;
                         } else {
-                            $result['exception'] = 'Contenido no disponible';
+                            $result['exception'] = 'Contenido no disponible 2';
                         }
                     } else {
                         $result['exception'] = 'Producto incorrecto';
@@ -204,7 +204,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                         if ($result['dataset'] = $articulo->getProducto()) {
                             $result['status'] = 1;
                         } else {
-                            $result['exception'] = 'Contenido no disponible';
+                            $result['exception'] = 'Contenido no disponible 3';
                         }
                     } else {
                         $result['exception'] = 'Producto incorrecto';

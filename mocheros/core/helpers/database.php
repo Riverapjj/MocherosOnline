@@ -85,7 +85,7 @@ class Database
                 $message = 'Servidor desconocido';
                 break;
             default:
-                $message = 'Ocurrió un problema, pongase en contacto con el administrador.';
+                $message = 'xd'.$code.'';
         }
         return $message;
     }
