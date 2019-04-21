@@ -29,7 +29,7 @@ function readCategorias()
                         <div class="card hoverable">
                             <div class="card-content">
                                 <span class="card-title activator">${row.NomCategoria}<i class="material-icons">more_vert</i></span>
-                                <p class="center"><a href="#" onclick="readProductosCategoria(${row.IdCategoria}, '${row.NomCategoria}')" class="tooltipped" data-tooltip="Ver más"><i class="material-icons small">remove_red_eye</i></a></p>
+                                <p class="center"><a href="../../views/public/${row.NomCategoria}.php" onclick="readProductosCategoria(${row.IdCategoria}, '${row.NomCategoria}')" class="tooltipped" data-tooltip="Ver más"><i class="material-icons small">remove_red_eye</i></a></p>
                             </div>
                             <div class="card-reveal">
                                 <span class="card-title">${row.NomCategoria}<i class="material-icons right">close</i></span>

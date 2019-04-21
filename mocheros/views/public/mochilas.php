@@ -114,9 +114,8 @@
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>
     </div>
 </div>
-<div class="container">
-    <h1 class="center indigo-text" id="title"></h1>
-    <div class="row" id="catalogo"></div>
+<div>
+    class
 </div>
 <div class="container-fluid grey lighten-2">
     <div class="row">

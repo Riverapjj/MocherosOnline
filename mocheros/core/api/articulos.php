@@ -182,7 +182,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
         } else if ($_GET['site'] == 'publicHelper') {
             switch ($_GET['action']) {
                 case 'readCategorias':
-                    if ($result['dataset'] = $articulo->readProductosCategoria()) {
+                    if ($result['dataset'] = $articulo->readCategorias()) {
                         $result['status'] = 1;
                     } else {
                         $result['exception'] = 'Contenido no disponible 1';
