@@ -44,7 +44,7 @@ class Articulos extends Validator
 
 	public function setNombre($value)
 	{
-		if ($this->validateAlphanumeric($value, 1, 50)) {
+		if ($this->validateAlphanumeric($value, 1, 35)) {
 			$this->nombre = $value;
 			return true;
 		} else {
