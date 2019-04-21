@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a href="../dashboard/index_dashboard.php"
+        <a href="../dashboard/index.php"
             class="modal-action modal-close waves-effect waves-cyan btn-flat">Iniciar sesión</a>
     </div>
 </div>

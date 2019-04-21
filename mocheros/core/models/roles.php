@@ -1,7 +1,7 @@
 <?php
 class Roles extends Validator{
-    private $IdRol = null;
-    private $TipoRol = null;
+    private $idrol = null;
+		private $tiporol = null;
 
     //Métodos set y get para cada variable
 

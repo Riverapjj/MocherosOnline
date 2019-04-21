@@ -2,60 +2,60 @@
 class Usuarios extends Validator
 {
     //Declaración de propiedades
-    private $id = null;
-    private $rol = null;
-    private $usuario = null;
+    private $idusuario = null;
+    private $idrol = null;
+    private $nomusuario = null;
     private $nombre = null;
     private $apellido = null;
     private $direccion = null;
     private $telefono = null;
-    private $correo = null;
+    private $email = null;
     private $clave = null;
 
     //Método para sobrecarga de propiedades
-    public function setId($value)
+    public function setIdUsuario($value)
     {
         if ($this->validateId($value)) {
-            $this->id = $value;
+            $this->idusuario = $value;
             return true;
         } else {
             return false;
         }
     }
 
-    public function getId()
+    public function getIdUsuario()
     {
-        return $this->id;
+        return $this->idusuario;
     }
 
     public function setRol($value)
     {
         if ($this->validateId($value)) {
-            $this->rol = $value;
+            $this->idrol = $value;
             return true;
         } else {
             return false;
         }
     }
 
-    public function getRol()
+    public function getIdRol()
     {
-        return $this->rol;
+        return $this->idrol;
     }
 
-    public function setUsuario($value)
+    public function setNomUsuario($value)
     {
         if ($this->validateAlphaNumeric($value, 1, 30)) {
-            $this->usuario = $value;
+            $this->nomusuario = $value;
             return true;
         } else {
             return false;
         }
     }
 
-    public function getUsuario()
+    public function getNomUsuario()
     {
-        return $this->usuario;
+        return $this->nomusuario;
     }
 
     public function setNombre($value)
@@ -118,19 +118,19 @@ class Usuarios extends Validator
         return $this->telefono;
     }
 
-    public function setCorreo($value)
+    public function setEmail($value)
     {
         if ($this->validateEmail($value)) {
-            $this->correo = $value;
+            $this->email = $value;
             return true;
         } else {
             return false;
         }
     }
 
-    public function getCorreo()
+    public function getEmail()
     {
-        return $this->correo;
+        return $this->email;
     }
 
     public function setClave($value)
@@ -182,10 +182,48 @@ class Usuarios extends Validator
         return Database::executeRow($sql, $params);
     }
 
-    //Métodos para el CRUD
-    //Método para leer Usuarios
-    public function readUsuarios()
-    {
-        $sql = 'SELECT IdUsuario, Nombre, Apellido, Correo'
-    }
+    //Metodos para manejar el CRUD
+	public function readUsuarios()
+	{
+		$sql = 'SELECT IdUsuario, NomUsuario, Nombre, Apellido, Email FROM usuarios ORDER BY Apellido';
+		$params = array(null);
+		return Database::getRows($sql, $params);
+	}
+
+	public function searchUsuarios($value)
+	{
+		$sql = 'SELECT IdUsuario, NomUsuario, Nombre, Apellido, Email FROM usuarios WHERE Apellido LIKE ? OR Nombre LIKE ? ORDER BY Apellido';
+		$params = array("%$value%", "%$value%");
+		return Database::getRows($sql, $params);
+	}
+
+	public function createUsuario()
+	{
+		$hash = password_hash($this->clave, PASSWORD_DEFAULT);
+		$sql = 'INSERT INTO usuarios(NomUsuario, Nombre, Apellido, Direccion, Telefono, Email, Clave) VALUES(?, ?, ?, ?, ?, ?, ?)';
+		$params = array($this->nomusuario, $this->nombre, $this->apellido, $this->direccion, $this->telefono, $this->email, $hash);
+		return Database::executeRow($sql, $params);
+	}
+
+	public function getUsuario()
+	{
+		$sql = 'SELECT IdUsuario, NomUsuario, Nombre, Apellido, Email FROM usuarios WHERE IdUsuario = ?';
+		$params = array($this->idusuario);
+		return Database::getRow($sql, $params);
+	}
+
+	public function updateUsuario()
+	{
+		$sql = 'UPDATE usuarios SET NomUsuario = ?, Nombre = ?, Apellido = ?, Email = ? WHERE IdUsuario = ?';
+		$params = array($this->nomusuario, $this->nombre, $this->apellido, $this->email, $this->idusuario);
+		return Database::executeRow($sql, $params);
+	}
+
+	public function deleteUsuario()
+	{
+		$sql = 'DELETE FROM usuarios WHERE IdUsuario = ?';
+		$params = array($this->idusuario);
+		return Database::executeRow($sql, $params);
+	}
 }
+?>

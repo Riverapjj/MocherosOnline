@@ -33,9 +33,9 @@ public static function dashNav(){
                         <div class="nav-wrapper orange darken-2">
                         <a href="" class="brand-logo logok"><img src="../../resources/img/mocheros.jpeg" height="50"></a>
                         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                            <!--<ul id="nav-mobile" class="right hide-on-med-and-down">
                                 <li><a href="#modal1" class="waves-effect waves-orange modal-trigger">Iniciar sesión</a></li>
-                            </ul>
+                            </ul>-->
                         </div>
                     </nav>        
                 </div>
@@ -67,7 +67,7 @@ public static function dashNav(){
 
         }
 
-        public static function footer(){
+        public static function footer($controller){
             print('
             <!--Estructura del footer-->
             <footer class="page-footer orange darken-2">
@@ -113,6 +113,7 @@ public static function dashNav(){
                 <script type="text/javascript" src="../../resources/js/Chart.bundle.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/Chart.js"></script>
                 <script type="text/javascript" src="../../resources/js/Chart.min.js"></script>
+                <script type="text/javascript" src="../../core/controllers/dashboard/'.$controller.'"></script>
             </body>
             </html>
 

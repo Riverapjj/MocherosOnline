@@ -1,13 +1,13 @@
 <?php
 class Categorias extends Validator
 {
-    private $id = null;
-    private $nombre = null;
+    private $idcategoria = null;
+    private $nomcategoria = null;
 
     public function setId($value)
 	{
 		if ($this->validateId($value)) {
-			$this->id = $value;
+			$this->idcategoria = $value;
 			return true;
 		} else {
 			return false;
@@ -16,13 +16,13 @@ class Categorias extends Validator
 
 	public function getId()
 	{
-		return $this->id;
+		return $this->idcategoria;
 	}
 
 	public function setNombre($value)
 	{
 		if($this->validateAlphanumeric($value, 1, 50)) {
-			$this->nombre = $value;
+			$this->nomcategoria = $value;
 			return true;
 		} else {
 			return false;
@@ -31,7 +31,7 @@ class Categorias extends Validator
 
 	public function getNombre()
 	{
-		return $this->nombre;
+		return $this->nomcategoria;
     }
     
     //Metodos para el manejo del CRUD
@@ -44,36 +44,36 @@ class Categorias extends Validator
 
 	public function searchCategorias($value)
 	{
-		$sql = 'SELECT * FROM categorias WHERE NomCategoria LIKE ? ORDER BY NomCategoria';
+		$sql = 'SELECT IdCategoria, NomCategoria FROM categorias WHERE NomCategoria LIKE ? ORDER BY NomCategoria';
 		$params = array("%$value%", "%$value%");
 		return Database::getRows($sql, $params);
 	}
 
-	public function createCategoria()
+/*	public function createCategoria()
 	{
 		$sql = 'INSERT INTO categorias(NomCategoria) VALUES(?)';
-		$params = array($this->nombre, $this->imagen, $this->descripcion);
+		$params = array($this->nomcategoria, $this->imagen, $this->descripcion);
 		return Database::executeRow($sql, $params);
-	}
+	}*/
 
 	public function getCategoria()
 	{
 		$sql = 'SELECT IdCategoria, NomCategoria FROM categorias WHERE IdCategoria = ?';
-		$params = array($this->id);
+		$params = array($this->idcategoria);
 		return Database::getRow($sql, $params);
 	}
 
 	public function updateCategoria()
 	{
 		$sql = 'UPDATE categorias SET NomCategoria = ? WHERE IdCategoria = ?';
-		$params = array($this->nombre, $this->id);
+		$params = array($this->nomcategoria, $this->id);
 		return Database::executeRow($sql, $params);
 	}
 
 	public function deleteCategoria()
 	{
 		$sql = 'DELETE FROM categorias WHERE IdCategoria = ?';
-		$params = array($this->id);
+		$params = array($this->idcategoria);
 		return Database::executeRow($sql, $params);
 	}
 }
