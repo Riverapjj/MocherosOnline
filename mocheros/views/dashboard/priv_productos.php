@@ -562,5 +562,5 @@
 </div>
 </div>
 <?php
-    DashboardHelper::footer();
+    DashboardHelper::footer('productos.js');
 ?>
