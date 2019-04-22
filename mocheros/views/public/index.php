@@ -101,6 +101,10 @@
             publicHelper::slider();
         ?>
 
+<div class="container-fluid">
+    <h1 class="center indigo-text" id="title"></h1>
+    <div class="row" id="catalogo"></div>
+</div>
 <div class="blue lightned-2 container-fluid">
     <div class="row">
         <div class="col s12">
