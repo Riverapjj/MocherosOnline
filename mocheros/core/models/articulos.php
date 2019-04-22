@@ -140,14 +140,14 @@ class Articulos extends Validator
     //Metodos para el manejo del CRUD
 	public function readProductosCategoria()
 	{
-		$sql = 'SELECT NomCategoria, IdArticulos, Foto, NomArticulo, DescripcionArt, PrecioUnitario FROM articulos INNER JOIN categorias USING(IdCategoria) WHERE IdCategoria = ? AND Estado = 1 ORDER BY NomArticulo';
+		$sql = 'SELECT NomCategoria, IdArticulos, Foto, NomArticulo, DescripcionArt, PrecioUnitario FROM articulos WHERE IdCategoria = ? AND Estado = 1 ORDER BY NomArticulo';
 		$params = array($this->categoria);
 		return Database::getRows($sql, $params);
 	}
 
 	public function readProductos()
 	{
-		$sql = 'SELECT IdArticulos, Foto, NomArticulo, DescripcionArt, PrecioUnitario, NomCategoria, Estado FROM articulos INNER JOIN categorias USING(IdCategoria) ORDER BY NomArticulo';
+		$sql = 'SELECT IdArticulos, Foto, NomArticulo, DescripcionArt, PrecioUnitario, NomCategoria, Estado FROM articulos ORDER BY NomArticulo';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}

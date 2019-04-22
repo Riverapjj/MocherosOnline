@@ -89,7 +89,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                         $result['exception'] = 'Producto inexistente';
                     }
                 } else {
-                    $result['exception'] = 'Producto incorrecto';
+                    $result['exception'] = 'Producto incorrecto 3';
                 }
                 break;
             case 'update':
@@ -153,7 +153,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                         $result['exception'] = 'Producto inexistente';
                     } 
                 } else {
-                    $result['exception'] = 'Producto incorrecto';
+                    $result['exception'] = 'Producto incorrecto 4';
                 }
                 break;
             case 'delete':
@@ -173,7 +173,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                         $result['exception'] = 'Producto inexistente';
                     }
                 } else {
-                    $result['exception'] = 'Producto incorrecto';
+                    $result['exception'] = 'Producto incorrecto 5';
                 }
                 break;
             default:
@@ -196,7 +196,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                             $result['exception'] = 'Contenido no disponible 2';
                         }
                     } else {
-                        $result['exception'] = 'Producto incorrecto';
+                        $result['exception'] = 'Producto incorrecto 1';
                     }
                     break;
                 case 'detailProducto':
@@ -207,7 +207,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                             $result['exception'] = 'Contenido no disponible 3';
                         }
                     } else {
-                        $result['exception'] = 'Producto incorrecto';
+                        $result['exception'] = 'Producto incorrecto 2';
                     }
                     break;
                 default:

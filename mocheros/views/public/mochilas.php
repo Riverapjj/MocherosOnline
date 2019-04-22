@@ -114,10 +114,9 @@
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>
     </div>
 </div>
-<div>
-    class
-</div>
 <div class="container-fluid grey lighten-2">
+    <h1 class="caption center-align indigo-text text-darken-3">Mochilas</h1>
+    <div class="row" id="catalogo"></div>
     <div class="row">
         <div class="col s12">
             <h1 class="caption center-align indigo-text text-darken-3">MOCHILAS</h1>

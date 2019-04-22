@@ -40,8 +40,8 @@ class publicHelper{
                             <li><a href="loncheras.php"><i class="material-icons left">work</i>Loncheras</a></li>
                             <li><a href="accesorios.php"><i class="material-icons left">watch</i>Accesorios</a></li>
                             <li><a href="carrito.php"><i class="material-icons left">shopping_cart</i>Carrito</a></li>
-                            <li><a class="modal-trigger" href="#modal1"><i class="material-icons left">person</i>Iniciar sesión</a></li>
-                            <li><a class="modal-trigger" href="#modal2"><i class="material-icons left">person_add</i>Registrarse</a></li>
+                            <li><a class="modal-trigger" href="login.php"><i class="material-icons left">person</i>Iniciar sesión</a></li>
+                            <li><a class="modal-trigger" href="registrarse.php"><i class="material-icons left">person_add</i>Registrarse</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -237,5 +237,22 @@ class publicHelper{
             </ul>
         </div>');
     }
+
+    /*public static function contenedor($controller){
+        print('
+        <div class="col s12 m6 l3">
+            <div class="card hoverable">
+                <div class="card-image">
+                    <img src="../../resources/img/articulos/${row.Foto}." class="materialboxed">
+                    <a href="#" onclick="getProducto(${row.IdArticulos})" class="btn-floating halfway-fab waves-effect waves-light orange tooltipped" data-tooltip="Ver producto"><i class="material-icons">add</i></a>
+                </div>
+                <div class="card-content">
+                    <span class="card-title">${row.NomArticulo}</span>
+                    <p>$ ${row.PrecioUnitario}</p>
+                </div>
+            </div>
+        </div>
+        ');
+    }*/
 }
 ?>
