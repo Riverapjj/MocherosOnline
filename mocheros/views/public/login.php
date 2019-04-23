@@ -2,7 +2,7 @@
     require_once('../../core/helpers/publicHelper.php');
     publicHelper::header('Inicia sesión');
 ?>
-<main>
+<main class="grey lighten-2">
     <div class="container">
         <div class="row">
             <form method="post" id="form-session">

@@ -25,7 +25,7 @@ function readCategorias()
                 let content = '';
                 result.dataset.forEach(function(row){
                     content += `
-                    <div class="col s12 m6 l3">
+                    <div class="col s12 m6 l4">
                         <div class="card hoverable">
                             <div class="card-content">
                                 <span class="card-title activator">${row.NomCategoria}<i class="material-icons">more_vert</i></span>
@@ -80,7 +80,7 @@ function readProductosCategoria(id, categoria)
                             </div>
                             <div class="card-content">
                                 <span class="card-title">${row.NomArticulo}</span>
-                                <p>$ ${row.PrecioUnitario}</p>
+                                <p><b>$${row.PrecioUnitario}</b></p>
                             </div>
                         </div>
                     </div>
@@ -120,34 +120,36 @@ function getProducto(id)
             //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
             if (result.status) {
                 let content = `
-                    <div class="card horizontal">
-                        <div class="card-image">
-                            <img src="../../resources/img/productos/${result.dataset.Foto}">
-                        </div>
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <h3 class="header">${result.dataset.NomArticulo}</h3>
-                                <p>${result.dataset.DescripcionArt}</p>
-                                <p><b>Precio(US$) ${result.dataset.PrecioUnitario}</b></p>
+                    <div class="container">
+                        <div class="card horizontal">
+                            <div class="card-image">
+                                <img src="../../resources/img/productos/${result.dataset.Foto}">
                             </div>
-                            <div class="card-action">
-                                <form method="post" id="form-cantidad">
-                                    <div class="row center">
-                                        <div class="input-field col s12 m6">
-                                            <i class="material-icons prefix">list</i>
-                                            <input id="cantidad" type="number" name="cantidad" min="1" class="validate">
-                                            <label for="cantidad">Cantidad</label>
+                            <div class="card-stacked">
+                                <div class="card-content">
+                                    <h3 class="header">${result.dataset.NomArticulo}</h3>
+                                    <p>${result.dataset.DescripcionArt}</p>
+                                    <p><b>$${result.dataset.PrecioUnitario}</b></p>
+                                </div>
+                                <div class="card-action">
+                                    <form method="post" id="form-cantidad">
+                                        <div class="row center">
+                                            <div class="input-field col s12 m6">
+                                                <i class="material-icons prefix">list</i>
+                                                <input id="cantidad" type="number" name="cantidad" min="1" class="validate">
+                                                <label for="cantidad">Cantidad</label>
+                                            </div>
+                                            <div class="input-field col s12 m6">
+                                                <button type="submit" class="btn waves-effect waves-light orange-darken-3 tooltipped" data-tooltip="Agregar al carrito"><i class="material-icons left">add_shopping_cart</i>Agregar al carrito</button>
+                                            </div>
                                         </div>
-                                        <div class="input-field col s12 m6">
-                                            <button type="submit" class="btn waves-effect waves-light blue tooltipped" data-tooltip="Agregar al carrito"><i class="material-icons">add_shopping_cart</i></button>
-                                        </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 `;
-                $('#title').text(NomArticulo);
+                $('#title').text('Detalle del artículo');
                 $('#catalogo').html(content);
                 $('.tooltipped').tooltip();
             } else {

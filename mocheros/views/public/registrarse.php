@@ -2,9 +2,9 @@
     require_once('../../core/helpers/publicHelper.php');
     publicHelper::header('Inicia sesión');
 ?>
-<main>
+<main class="grey lighten-2">
     <div class="container">
-        <div class="row">
+        <div class="row center-align">
             <h3 class="center-align">Registrate</h3>
             <form method="post" id="form-register">
                 <div class="input-field col s12 m6">
@@ -24,7 +24,7 @@
                 </div>
                 <div class="input-field col s12">
                     <i class="material-icons prefix">person</i>
-                    <input id="direccion" name="direccion" class="materialize-textarea validate" required/>
+                    <textarea id="direccion" name="direccion" class="materialize-textarea validate" required></textarea>
                     <label for="direccion">Dirección</label>
                 </div>
                 <div class="input-field col s12 m6">
@@ -46,6 +46,13 @@
                     <i class="material-icons prefix">person</i>
                     <input id="clave2" type="password" name="clave2" class="validate" required/>
                     <label for="clave2">Confirmar contraseña</label>
+                </div>
+                <label class="center-align col s12">
+					<input id="condicion" type="checkbox" name="condicion" required/>
+					<span class="black-text">Acepto los <a href="#terminos" class="modal-trigger orange-text text-darken-3">términos y condiciones</a></span>
+				</label>
+                <div class="col s12">
+                    <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Registrar"><i class="material-icons left">send</i>Registrarse</button>
                 </div>
             </form>
         </div>
