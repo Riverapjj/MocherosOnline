@@ -62,11 +62,14 @@ class publicHelper{
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
-                        <h5 class="white-text">Contáctanos</h5>
-                        <p class="grey-text text-lighten-4"><b>Técnicos de mantenimiento</b></p>
+                        <h5 class="white-text"><b>Contáctanos</b></h5>
+                        <p class="grey-text text-lighten-4"><b>Correo electrónico</b></p>
                         <blockquote>
-                            <p class="grey-text text-lighten-4">Carlos Ramírez - Correo electrónico: federamirez_outlook.com</p>
-                            <p class="grey-text text-lighten-4">Josué Rivera - Correo electrónico: riverapj@gmail.com</p>
+                            <p class="grey-text text-lighten-4">contacto@mocheros.com</p>
+                        </blockquote>
+                        <p class="grey-text text-lighten-4"><b>Teléfono</b></p>
+                        <blockquote>
+                            <p class="grey-text text-lighten-4">(503) 2245-5455</p>
                         </blockquote>
                     </div>
                     <div class="col l4 offset-l2 s12">
@@ -74,10 +77,6 @@ class publicHelper{
                         <blockquote>
                             <p class="grey-text text-lighten-4">CALLE SIEMENS, URB. INDUSTRIAL SANTA ELENA, #54, ANTIGUO
                                 CUSCATLAN, LA LIBERTAD, Antiguo Cuscatlan CP 1503</p>
-                        </blockquote>
-                        <p class="grey-text text-lighten-4"><b>Correo eléctronico</b></p>
-                        <blockquote>
-                            <p class="grey-text text-lighten-4">contacto@mocheros.com</p>
                         </blockquote>
                     </div>
                 </div>
@@ -184,14 +183,14 @@ class publicHelper{
                 <p>Los siguientes términos y condiciones (los "Términos y Condiciones") rigen el uso que usted le dé a
                     este sitio web y a cualquiera de los contenidos disponibles por o a través de este sitio web,
                     incluyendo
-                    cualquier contenido derivado del mismo (el "Sitio Web"). Time Inc. ("Time Inc." o "nosotros") ha
+                    cualquier contenido derivado del mismo (el "Sitio Web"). Mocheros S.A de C.V ("Mocheros S.A de C.V" o "nosotros") ha
                     puesto a su disposición el Sitio Web. Podemos cambiar los Términos y Condiciones de vez en cuando,
                     en cualquier momento sin ninguna notificación, sólo publicando los cambios en el Sitio Web. <b> AL USAR
-                    EL SITIO WEB, USTED ACEPTA Y ESTÉ DE ACUERDO CON ESTOS TÉRMINOS Y CONDICIONES EN LO QUE SE REFIERE
+                    EL SITIO WEB, USTED ACEPTA Y ESTE DE ACUERDO CON ESTOS TÉRMINOS Y CONDICIONES EN LO QUE SE REFIERE
                     A SU USO DEL SITIO WEB. </b> Si usted no está de acuerdo con estos Términos y Condiciones, no puede tener
                     acceso al mismo ni usar el Sitio Web de ninguna otra manera.
                     <br>
-                    1. Derechos de Propiedad. Entre usted y Time Inc., Time Inc. es dueño único y exclusivo, de todos
+                    1. Derechos de Propiedad. Entre usted y Mocheros S.A de C.V, Mocheros S.A de C.V es dueño único y exclusivo, de todos
                     los derechos, título e intereses en y del Sitio Web, de todo el contenido (incluyendo, por ejemplo,
                     audio, fotografías, ilustraciones, gráficos, otros medios visuales, videos, copias, textos,
                     software, títulos, archivos de Onda de choque, etc.), códigos, datos y materiales del mismo,

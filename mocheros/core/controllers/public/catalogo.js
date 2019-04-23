@@ -129,13 +129,14 @@ function getProducto(id)
                                 <div class="card-content">
                                     <h3 class="header">${result.dataset.NomArticulo}</h3>
                                     <p>${result.dataset.DescripcionArt}</p>
+                                    <p>Existencias disponibles: ${result.dataset.Cantidad}</p>
                                     <p><b>$${result.dataset.PrecioUnitario}</b></p>
                                 </div>
                                 <div class="card-action">
                                     <form method="post" id="form-cantidad">
                                         <div class="row center">
                                             <div class="input-field col s12 m6">
-                                                <i class="material-icons prefix">list</i>
+                                                <i class="material-icons prefix">format_list_numbered</i>
                                                 <input id="cantidad" type="number" name="cantidad" min="1" class="validate">
                                                 <label for="cantidad">Cantidad</label>
                                             </div>

@@ -1,6 +1,6 @@
 <?php
     require_once('../../core/helpers/publicHelper.php');
-    publicHelper::header('Inicia sesión');
+    publicHelper::header('Registrate');
 ?>
 <main class="grey lighten-2">
     <div class="container">
@@ -8,7 +8,7 @@
             <h3 class="center-align">Registrate</h3>
             <form method="post" id="form-register">
                 <div class="input-field col s12 m6">
-                    <i class="material-icons prefix">person</i>
+                    <i class="material-icons prefix">assignment_ind</i>
                     <input id="usuario" type="text" name="usuario" class="validate" required/>
                     <label for="usuario">Nombre de usuario</label>
                 </div>
