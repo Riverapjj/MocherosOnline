@@ -147,7 +147,7 @@ class Articulos extends Validator
 
 	public function readProductos()
 	{
-		$sql = 'SELECT IdArticulos, Foto, NomArticulo, DescripcionArt, PrecioUnitario, NomCategoria, Estado FROM articulos INNER JOIN categorias USING(IdCategoria) ORDER BY NomArticulo';
+		$sql = 'SELECT IdArticulos, Foto, NomArticulo, DescripcionArt, PrecioUnitario, NomCategoria, Estado FROM articulos ORDER BY NomArticulo';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}
