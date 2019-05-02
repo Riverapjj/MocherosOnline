@@ -6,6 +6,7 @@
 <?php
     DashboardHelper::dashNav();
 ?>
+<body>
 <!--Creación de un slider con sus respectivas imagenes responsivas para el inicio del apartado de usuarios-->
 <?php
     DashboardHelper::slider();
@@ -44,7 +45,6 @@
                         <th>Estado</th>
                         <th>Teléfono</th>
                         <th>Correo</th>
-                        <th>Contraseña</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -56,10 +56,9 @@
                         <td>Activo</td>
                         <td>7528-0267</td>
                         <td>fede.h@gmail.com</td>
-                        <td>**********</td>
                         <!--Declarando que al interactuar con el icono "delete" activará un modal que sirve para borrar o uno un registro-->
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal11">border_color</a></i></td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal15">delete</a></i></td>
+                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-update-admin">border_color</a></i></td>
+                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete">delete</a></i></td>
                     </tr>
                     <tr>
                         <td>Josué Alexander</td>
@@ -67,9 +66,8 @@
                         <td>Activo</td>
                         <td>7418-9835</td>
                         <td>josue@gmail.com</td>
-                        <td>**********</td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal11">border_color</a></i></td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal15">delete</a></i></td>
+                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-update-admin">border_color</a></i></td>
+                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete-admin">delete</a></i></td>
                     </tr>
                     <tr>
                         <td>Issela Guadalupe</td>
@@ -77,20 +75,19 @@
                         <td>Inactivo</td>
                         <td>7925-4865</td>
                         <td>iss.159@gmail.com</td>
-                        <td>**********</td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal11">border_color</a></i></td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal15">delete</a></i></td>
+                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-update-admin">border_color</a></i></td>
+                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete-admin">delete</a></i></td>
                     </tr>
                 </tbody>
             </table>
 
             <!-- Creando el efecto modal para cada accion a realizar (agregar, modificar y eliminar) -->
-            <!-- Creando modal10 para opcion agregar -->
-            <div id="modal10" class="modal modal-fixed-footer">
+            <!-- Creando modal-create-admin para opcion agregar -->
+            <div id="modal-create-admin" class="modal modal-fixed-footer">
                 <!--Creando el contenido de nuestro modal-->
                 <div class="modal-content">
                     <h5 class="cyan-text darker-2 center-align"><b>Agregar un nuevo administrador</b></h5>
-                    <form class="col s12">
+                    <form class="col s12" id="form-create">
                         <div class="row">
                             <!--Creando los campos requeridos para agregar un usuario-->
                             <div class="input-field col s12 m6">
@@ -130,8 +127,8 @@
                     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agregar</a>
                 </div>
             </div>
-            <!-- Creando modal11 para opcion modificar -->
-            <div id="modal11" class="modal modal-fixed-footer">
+            <!-- Creando modal-update-admin para opcion modificar -->
+            <div id="modal-update-admin" class="modal modal-fixed-footer">
                 <div class="modal-content">
                     <h5 class="cyan-text darker-2 center-align"><b>Modificar un administrador</b></h5>
                     <form class="col s12">
@@ -172,55 +169,14 @@
                     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Modificar</a>
                 </div>
             </div>
-            <!-- Creando modal12 para opcion agregar -->
-            <div id="modal12" class="modal modal-fixed-footer">
-                <div class="modal-content">
-                    <h5 class="cyan-text darker-2 center-align"><b>Agregar un administrador</b></h5>
-                    <form class="col s12">
-                        <div class="row">
-                            <div class="input-field col s12 m6">
-                                <input id="name" type="text" class="validate">
-                                <label for="name">Nombre</label>
-                            </div>
-                            <div class="input-field col s12 m6">
-                                <input id="last_name" type="text" class="validate">
-                                <label for="last_name">Apellido</label>
-                            </div>
-                            <div class="input-field col s12 m6">
-                                <select>
-                                    <option value="estado">Escoge una opción</option>
-                                    <option value="1">Activo</option>
-                                    <option value="2">Inactivo</option>
-                                </select>
-                                <label>Estado</label>
-                                <input id="state" type="text" class="validate">
-                            </div>
-                            <div class="input-field col s12 m6">
-                                <input id="tel" type="text" class="validate">
-                                <label for="tel">Teléfono</label>
-                            </div>
-                            <div class="input-field col s12 m6">
-                                <input id="email" type="text" class="validate">
-                                <label for="email">Correo eléctronico</label>
-                            </div>
-                            <div class="input-field col s12 m6">
-                                <input id="pass" type="text" class="validate">
-                                <label for="pass">Contraseña</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agregar</a>
-                </div>
-            </div>
+            
             <!-- Declarando que el botón para agregar y modificar esté fijo en una esquina de la página -->
             <div class="fixed-action-btn toolbar">
-                <a class="btn-floating btn-large cyan darken-2 modal-trigger" href="#modal10"><i
+                <a class="btn-floating btn-large cyan darken-2 modal-trigger" href="#modal-create-admin"><i
                         class="large material-icons">add</i></a>
                 <ul>
                     <!-- Declarando los iconos deseados para cada acción, definiendo que modal activará cada botón -->
-                    <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal10"><i
+                    <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal-create-admin"><i
                                 class="material-icons">add_circle</i></a></li>
                 </ul>
             </div>
@@ -243,44 +199,44 @@
                     <tr>
                         <td>1</td>
                         <td>Agregar productos</td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal14">border_color</a></i></td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal15">delete</a></i></td>
+                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-update-perm">border_color</a></i></td>
+                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete">delete</a></i></td>
                     </tr>
                     <tr>
                         <td>2</td>
                         <td>Modificar productos</td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal14">border_color</a></i></td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal15">delete</a></i></td>
+                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-update-perm">border_color</a></i></td>
+                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete">delete</a></i></td>
                     </tr>
                     <tr>
                         <td>3</td>
                         <td>Eliminar productos</td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal14">border_color</a></i></td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal15">delete</a></i></td>
+                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-update-perm">border_color</a></i></td>
+                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete">delete</a></i></td>
                     </tr>
                     <tr>
                         <td>4</td>
                         <td>Agregar administradores</td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal14">border_color</a></i></td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal15">delete</a></i></td>
+                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-update-perm">border_color</a></i></td>
+                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete">delete</a></i></td>
                     </tr>
                     <tr>
                         <td>5</td>
                         <td>Modificar administradores</td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal14">border_color</a></i></td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal15">delete</a></i></td>
+                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-update-perm">border_color</a></i></td>
+                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete">delete</a></i></td>
                     </tr>
                     <tr>
                         <td>6</td>
                         <td>Eliminar administradores</td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal14">border_color</a></i></td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal15">delete</a></i></td>
+                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-update-perm">border_color</a></i></td>
+                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete">delete</a></i></td>
                     </tr>
                 </tbody>
             </table>
             <!-- Creando el efecto modal para cada accion a realizar (agregar, modificar y eliminar) -->
-
-            <div id="modal13" class="modal">
+            <!-- Crendo modal-create-perm para opcion agregar-->
+            <div id="modal-create-perm" class="modal">
                 <div class="modal-content">
                     <h5 class="cyan-text darker-2 center-align"><b>Agregar un nuevo permiso</b></h5>
                     <form class="col s12">
@@ -300,8 +256,8 @@
                     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agregar</a>
                 </div>
             </div>
-            <!-- Creando modal14 para opcion modificar-->
-            <div id="modal14" class="modal">
+            <!-- Creando modal-update-perm para opcion modificar-->
+            <div id="modal-update-perm" class="modal">
                 <div class="modal-content">
                     <h5 class="cyan-text darker-2 center-align"><b>Modificar un permiso</b></h5>
                     <form class="col s12">
@@ -324,11 +280,11 @@
             </div>
             <!-- Declarando el boton siempre fijo para agregar y modificar tipo de usuarios con su respectivo icono y modal a ejecutar -->
             <div class="fixed-action-btn toolbar">
-                <a class="btn-floating btn-large cyan darken-2 modal-trigger" data-target="modal10"><i
+                <a class="btn-floating btn-large cyan darken-2 modal-trigger" href="#modal-create-perm"><i
                         class="large material-icons">add</i></a>
                 <ul>
                     <!-- Declarando los iconos deseados para cada acción, definiendo que modal activará cada botón -->
-                    <li class="waves-effect waves-light"><a class="modal-trigger" href="modal10"><i
+                    <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal-create-perm"><i
                                 class="material-icons">add_circle</i></a></li>
                 </ul>
             </div>
@@ -353,49 +309,49 @@
                     <td>1</td>
                     <td>Josué Rivera</td>
                     <td>Agregar productos</td>
-                    <td><i class="material-icons"><a class="modal-trigger" href="#modal21">border_color</a></i></td>
-                    <td><i class="material-icons"><a class="modal-trigger" href="#modal15">delete</a></i></td>
+                    <td><i class="material-icons"><a class="modal-trigger" href="#modal-update-detperm">border_color</a></i></td>
+                    <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete">delete</a></i></td>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>Josué Rivera</td>
                     <td>Modificar productos</td>
-                    <td><i class="material-icons"><a class="modal-trigger" href="#modal22">border_color</a></i></td>
-                    <td><i class="material-icons"><a class="modal-trigger" href="#modal15">delete</a></i></td>
+                    <td><i class="material-icons"><a class="modal-trigger" href="#modal-update-detperm">border_color</a></i></td>
+                    <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete">delete</a></i></td>
                 </tr>
                 <tr>
                     <td>3</td>
                     <td>Josué Rivera</td>
                     <td>Eliminar productos</td>
-                    <td><i class="material-icons"><a class="modal-trigger" href="#modal22">border_color</a></i></td>
-                    <td><i class="material-icons"><a class="modal-trigger" href="#modal15">delete</a></i></td>
+                    <td><i class="material-icons"><a class="modal-trigger" href="#modal-update-detperm">border_color</a></i></td>
+                    <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete">delete</a></i></td>
                 </tr>
                 <tr>
                     <td>4</td>
                     <td>Carlos Ramírez</td>
                     <td>Agregar administradores</td>
-                    <td><i class="material-icons"><a class="modal-trigger" href="#modal22">border_color</a></i></td>
-                    <td><i class="material-icons"><a class="modal-trigger" href="#modal15">delete</a></i></td>
+                    <td><i class="material-icons"><a class="modal-trigger" href="#modal-update-detperm">border_color</a></i></td>
+                    <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete">delete</a></i></td>
                 </tr>
                 <tr>
                     <td>5</td>
                     <td>Carlos Ramírez</td>
                     <td>Modificar administradores</td>
-                    <td><i class="material-icons"><a class="modal-trigger" href="#modal22">border_color</a></i></td>
-                    <td><i class="material-icons"><a class="modal-trigger" href="#modal15">delete</a></i></td>
+                    <td><i class="material-icons"><a class="modal-trigger" href="#modal-update-detperm">border_color</a></i></td>
+                    <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete">delete</a></i></td>
                 </tr>
                 <tr>
                     <td>6</td>
                     <td>Carlos Ramírez</td>
                     <td>Eliminar administradores</td>
-                    <td><i class="material-icons"><a class="modal-trigger" href="#modal22">border_color</a></i></td>
-                    <td><i class="material-icons"><a class="modal-trigger" href="#modal15">delete</a></i></td>
+                    <td><i class="material-icons"><a class="modal-trigger" href="#modal-update-detperm">border_color</a></i></td>
+                    <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete">delete</a></i></td>
                 </tr>
             </tbody>
         </table>
         <!-- Creando el efecto modal para cada accion a realizar (agregar, modificar y eliminar) -->
-        <!-- Creando modal21 para opcion agregar -->
-        <div id="modal21" class="modal">
+        <!-- Creando modal-create-detperm para opcion agregar -->
+        <div id="modal-create-detperm" class="modal">
             <div class="modal-content">
                 <h5 class="cyan-text darker-2 center-align"><b>Agregar un nuevo detalle de permisos</b></h5>
                 <form class="col s12">
@@ -432,8 +388,8 @@
                 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agregar</a>
             </div>
         </div>
-        <!-- Creando modal22 para opcion modificar -->
-        <div id="modal22" class="modal">
+        <!-- Creando modal-update-detperm para opcion modificar -->
+        <div id="modal-update-detperm" class="modal">
             <div class="modal-content">
                 <h5 class="cyan-text darker-2 center-align"><b>Modificar un detalle de permisos</b></h5>
                 <form class="col s12">
@@ -474,16 +430,16 @@
         </div>
         <!-- Declarando el boton siempre fijo para agregar y modificar tipo de usuarios con su respectivo icono y modal a ejecutar -->
         <div class="fixed-action-btn toolbar">
-            <a href="#modal12" class="btn-floating btn-large cyan darken-2 modal-trigger"><i
+            <a href="#modal-create-detperm" class="btn-floating btn-large cyan darken-2 modal-trigger"><i
                     class="large material-icons">add</i></a>
             <ul>
-                <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal21"><i
+                <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal-create-detperm"><i
                             class="material-icons">add_circle</i></a></li>
             </ul>
         </div>
     </div>
     <!-- Modal creado para ser ejecutado cada vez que se desea eliminar un registro -->
-    <div id="modal15" class="modal">
+    <div id="modal-delete" class="modal">
         <div class="modal-content">
             <h5 class="cyan-text darker-2 center-align"><b>¿Estás seguro que deseas eliminar el registro?</b></h5>
         </div>
@@ -496,5 +452,5 @@
     </div>
 </main>
 <?php
-    DashboardHelper::footer();
+    DashboardHelper::footer('usuarios.js');
 ?>
