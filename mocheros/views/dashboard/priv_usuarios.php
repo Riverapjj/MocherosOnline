@@ -36,48 +36,18 @@
         <!--Creando un div con su id="test1" para que se muestre al momento de elegir la opción previamente construida en el "tab"-->
         <div id="test1" class="col s12">
             <!--Declarando que sea una tabla responsiva-->
-            <table class="striped responsive-table">
+            <table class="stripped responsive-table" id="admin-table">
                 <thead>
                     <!--Agregando los campos fijos a la tabla-->
                     <tr>
                         <th>Nombre</th>
                         <th>Apellido</th>
-                        <th>Estado</th>
                         <th>Teléfono</th>
                         <th>Correo</th>
-                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <!--Agregando registros a la tabla-->
-                <tbody>
-                    <tr>
-                        <td>Carlos Federico</td>
-                        <td>Ramírez Soriano</td>
-                        <td>Activo</td>
-                        <td>7528-0267</td>
-                        <td>fede.h@gmail.com</td>
-                        <!--Declarando que al interactuar con el icono "delete" activará un modal que sirve para borrar o uno un registro-->
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-update-admin">border_color</a></i></td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete">delete</a></i></td>
-                    </tr>
-                    <tr>
-                        <td>Josué Alexander</td>
-                        <td>Rivera Palacios</td>
-                        <td>Activo</td>
-                        <td>7418-9835</td>
-                        <td>josue@gmail.com</td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-update-admin">border_color</a></i></td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete-admin">delete</a></i></td>
-                    </tr>
-                    <tr>
-                        <td>Issela Guadalupe</td>
-                        <td>Mejía Beltrán</td>
-                        <td>Inactivo</td>
-                        <td>7925-4865</td>
-                        <td>iss.159@gmail.com</td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-update-admin">border_color</a></i></td>
-                        <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete-admin">delete</a></i></td>
-                    </tr>
+                <tbody id="tbody-read-admin">
                 </tbody>
             </table>
 

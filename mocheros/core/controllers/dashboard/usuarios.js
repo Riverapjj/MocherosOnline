@@ -1,5 +1,3 @@
-
-
 $(document).ready(function()
 {
     showTable();
@@ -8,54 +6,47 @@ $(document).ready(function()
 //Constante para establecer la ruta y parámetros de comunicación con la API
 const apiUsuarios = '../../core/api/usuarios.php?site=dashboard&action=';
 
+//Función para obtener y mostrar los registros disponibles
+const showTable = async () => {
+    const response = await $.ajax({
+        url: apiUsuarios + 'read',
+        type: 'post',
+        data: null,
+        datatype: 'json'
+    }).fail(function (jqXHR) {
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+    if (isJSONString(response)) {
+        const result = JSON.parse(response);
+        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+        if (!result.status) {
+            console.log(result.exception)
+        }
+        fillTable(result.dataset)
+    } else {
+        console.log(response);
+    }
+}
 //Función para llenar tabla con los datos de los registros
 function fillTable(rows)
 {
     let content = '';
     //Se recorren las filas para armar el cuerpo de la tabla y se utiliza comilla invertida para escapar los caracteres especiales
-    rows.forEach(function(row){
+    rows.forEach(function (row) {
         content += `
-            <tr>
-                <td>${row.apellidos_usuario}</td>
-                <td>${row.nombres_usuario}</td>
-                <td>${row.correo_usuario}</td>
-                <td>${row.alias_usuario}</td>
-                <td>
-                    <a href="#" onclick="modalUpdate(${row.id_usuario})" class="blue-text tooltipped" data-tooltip="Modificar"><i class="material-icons">mode_edit</i></a>
-                    <a href="#" onclick="confirmDelete(${row.id_usuario})" class="red-text tooltipped" data-tooltip="Eliminar"><i class="material-icons">delete</i></a>
-                </td>
-            </tr>
+        <tr>
+        <td>${row.Nombre}</td>
+        <td>${row.Apellido}</td>
+        <td>${row.Telefono}</td>
+        <td>${row.Email}</td>
+        <td><i class="material-icons"><a class="modal-trigger" href="#modal-update-admin(${row.IdUsuario})">border_color</a></i></td>
+        <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete(${row.IdUsuario})">delete</a></i></td>
+    </tr>
         `;
     });
-    $('#tbody-read').html(content);
-    $('.tooltipped').tooltip();
-}
-
-//Función para obtener y mostrar los registros disponibles
-function showTable()
-{
-    $.ajax({
-        url: apiUsuarios + 'read',
-        type: 'post',
-        data: null,
-        datatype: 'json'
-    })
-    .done(function(response){
-        //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
-        if (isJSONString(response)) {
-            const result = JSON.parse(response);
-            //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
-            if (!result.status) {
-                sweetAlert(4, result.exception, null);
-            }
-            fillTable(result.dataset);
-        } else {
-            console.log(response);
-        }
-    })
-    .fail(function(jqXHR){
-        //Se muestran en consola los posibles errores de la solicitud AJAX
-        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    $('#tbody-read-admin').html(content);
+    $('#admin-table').DataTable({
     });
 }
 
@@ -72,7 +63,8 @@ $('#form-search').submit(function()
     .done(function(response){
         //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
         if (isJSONString(response)) {
-            const result = JSON.parse(response);
+            const result = JSON.parse(response);            
+            
             //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
             if (result.status) {
                 sweetAlert(4, 'Coincidencias: ' + result.dataset.length, null);
