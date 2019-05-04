@@ -38,7 +38,7 @@ function readCategorias()
                     </div>
                     `;
                 });
-                $('#title').text('Categorías de nuestros productos');
+                $('#title').text('Nuestros productos');
                 $('#catalogo').html(content);
                 $('.tooltipped').tooltip();
             } else {
@@ -75,12 +75,23 @@ function readProductosCategoria(id, categoria)
                     <div class="col s12 m6 l3">
                         <div class="card hoverable">
                             <div class="card-image">
-                                <img src="../../resources/img/articulos/${row.Foto}" class="materialboxed">
+                                <img src="../../resources/img/articulos/${row.Foto}" class="materialboxed">               
                                 <a href="#" onclick="getProducto(${row.IdArticulos})" class="btn-floating halfway-fab waves-effect waves-light orange tooltipped" data-tooltip="Ver producto"><i class="material-icons">add</i></a>
                             </div>
                             <div class="card-content">
                                 <span class="card-title">${row.NomArticulo}</span>
                                 <p><b>$${row.PrecioUnitario}</b></p>
+                                <!--código para rating con estrellas-->
+                                <div class="ec-stars-wrapper">
+                                        <a href="#" data-value="1" title="Votar con 1 estrella">&#9733;</a>
+                                        <a href="#" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+                                        <a href="#" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+                                        <a href="#" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+                                        <a href="#" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <a class="modal-trigger cyan-text" href="#modal2" >Ver comentarios</a>
                             </div>
                         </div>
                     </div>
