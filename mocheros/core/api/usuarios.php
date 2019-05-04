@@ -158,7 +158,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'update':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setId($_POST['id_usuario'])) {
+                if ($usuario->setId($_POST['IdUsuario'])) {
                     if ($usuario->getUsuario()) {
                         if ($usuario->setNombres($_POST['update_nombres'])) {
                             if ($usuario->setApellidos($_POST['update_apellidos'])) {
@@ -190,7 +190,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'delete':
                 if ($_POST['id_usuario'] != $_SESSION['idUsuario']) {
-                    if ($usuario->setId($_POST['id_usuario'])) {
+                    if ($usuario->setId($_POST['IdUsuario'])) {
                         if ($usuario->getUsuario()) {
                             if ($usuario->deleteUsuario()) {
                                 $result['status'] = 1;
