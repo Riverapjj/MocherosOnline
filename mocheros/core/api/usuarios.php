@@ -15,7 +15,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 if (session_destroy()) {
                     header('location: ../../views/dashboard/');
                 } else {
-                    header('location: ../../views/dashboard/main.php');
+                    header('location: ../../views/dashboard/dashboard.php');
                 }
                 break;
             case 'readProfile':
@@ -63,7 +63,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             case 'password':
-                if ($usuario->setId($_SESSION['idUsuario'])) {
+                if ($usuario->setIdUsuario($_SESSION['idUsuario'])) {
                     $_POST = $usuario->validateForm($_POST);
                     if ($_POST['clave_actual_1'] == $_POST['clave_actual_2']) {
                         if ($usuario->setClave($_POST['clave_actual_1'])) {
@@ -115,10 +115,10 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'create':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setNombres($_POST['create_nombres'])) {
-                    if ($usuario->setApellidos($_POST['create_apellidos'])) {
-                        if ($usuario->setCorreo($_POST['create_correo'])) {
-                            if ($usuario->setAlias($_POST['create_alias'])) {
+                if ($usuario->setNombre($_POST['create_nombres'])) {
+                    if ($usuario->setApellido($_POST['create_apellidos'])) {
+                        if ($usuario->setEmail($_POST['create_correo'])) {
+                            if ($usuario->setNomUsuario($_POST['create_alias'])) {
                                 if ($_POST['create_clave1'] == $_POST['create_clave2']) {
                                     if ($usuario->setClave($_POST['create_clave1'])) {
                                         if ($usuario->createUsuario()) {
@@ -146,7 +146,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             case 'get':
-                if ($usuario->setId($_POST['id_usuario'])) {
+                if ($usuario->setIdUsuario($_POST['id_usuario'])) {
                     if ($result['dataset'] = $usuario->getUsuario()) {
                         $result['status'] = 1;
                     } else {
@@ -158,12 +158,16 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'update':
                 $_POST = $usuario->validateForm($_POST);
+<<<<<<< HEAD
                 if ($usuario->setId($_POST['IdUsuario'])) {
+=======
+                if ($usuario->setIdUsuario($_POST['id_usuario'])) {
+>>>>>>> 136ab95ffbad5f69b6b1ad5534004a305db7279c
                     if ($usuario->getUsuario()) {
-                        if ($usuario->setNombres($_POST['update_nombres'])) {
-                            if ($usuario->setApellidos($_POST['update_apellidos'])) {
-                                if ($usuario->setCorreo($_POST['update_correo'])) {
-                                    if ($usuario->setAlias($_POST['update_alias'])) {
+                        if ($usuario->setNombre($_POST['update_nombres'])) {
+                            if ($usuario->setApellido($_POST['update_apellidos'])) {
+                                if ($usuario->setEmail($_POST['update_correo'])) {
+                                    if ($usuario->setNomUsuario($_POST['update_alias'])) {
                                         if ($usuario->updateUsuario()) {
                                             $result['status'] = 1;
                                         } else {
@@ -190,7 +194,11 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'delete':
                 if ($_POST['id_usuario'] != $_SESSION['idUsuario']) {
+<<<<<<< HEAD
                     if ($usuario->setId($_POST['IdUsuario'])) {
+=======
+                    if ($usuario->setIdUsuario($_POST['id_usuario'])) {
+>>>>>>> 136ab95ffbad5f69b6b1ad5534004a305db7279c
                         if ($usuario->getUsuario()) {
                             if ($usuario->deleteUsuario()) {
                                 $result['status'] = 1;
@@ -223,10 +231,10 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'register':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setNombres($_POST['nombres'])) {
-                    if ($usuario->setApellidos($_POST['apellidos'])) {
-                        if ($usuario->setCorreo($_POST['correo'])) {
-                            if ($usuario->setAlias($_POST['alias'])) {
+                if ($usuario->setNombre($_POST['nombres'])) {
+                    if ($usuario->setApellido($_POST['apellidos'])) {
+                        if ($usuario->setEmail($_POST['correo'])) {
+                            if ($usuario->setNomUsuario($_POST['alias'])) {
                                 if ($_POST['clave1'] == $_POST['clave2']) {
                                     if ($usuario->setClave($_POST['clave1'])) {
                                         if ($usuario->createUsuario()) {
@@ -255,12 +263,12 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'login':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setAlias($_POST['alias'])) {
-                    if ($usuario->checkAlias()) {
+                if ($usuario->setNomUsuario($_POST['alias'])) {
+                    if ($usuario->checkNomUsuario()) {
                         if ($usuario->setClave($_POST['clave'])) {
                             if ($usuario->checkPassword()) {
-                                $_SESSION['idUsuario'] = $usuario->getId();
-                                $_SESSION['aliasUsuario'] = $usuario->getAlias();
+                                $_SESSION['idUsuario'] = $usuario->getIdUsuario();
+                                $_SESSION['nombreUsuario'] = $usuario->getNomUsuario();
                                 $result['status'] = 1;
                             } else {
                                 $result['exception'] = 'Clave inexistente';

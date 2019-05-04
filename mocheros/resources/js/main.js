@@ -5,7 +5,7 @@ $( document ).ready(function(){
     $('.trigger-modal').modal();
     $('.slider').slider();
     $('.slider').slider({indicators: false});
-    $('ul.tabs').tabs();
+    $('.tabs').tabs();
     $('.datepicker').datepicker();
     $('.sidenav').sidenav();
     $('select').formSelect();

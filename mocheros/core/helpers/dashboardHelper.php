@@ -62,7 +62,6 @@ public static function dashNav(){
                       <!--Le hacemos saber al navegador que esté optimizable para moviles-->
                       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
               </head>
-              <body>
             ');
 
         }
@@ -109,10 +108,10 @@ public static function dashNav(){
                 <script type="text/javascript" src="../../resources/js/jquery-3.3.1.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/main.js"></script>
-                <script type="text/javascript" src="../../resources/js/Chart.bundle.js"></script>
                 <script type="text/javascript" src="../../resources/js/Chart.bundle.min.js"></script>
-                <script type="text/javascript" src="../../resources/js/Chart.js"></script>
+                <script type="text/javascript" src="../../resources/js/Chart.bundle.js"></script>
                 <script type="text/javascript" src="../../resources/js/Chart.min.js"></script>
+                <script type="text/javascript" src="../../resources/js/Chart.js"></script>                
                 <script type="text/javascript" src="../../core/controllers/dashboard/'.$controller.'"></script>
             </body>
             </html>

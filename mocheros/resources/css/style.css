@@ -8,8 +8,8 @@ body {
     
 }
 
-.main{
-    background-color: #FAD904;
+main{
+    background-color: #FFFFFF;
 }
 
 .logox {
@@ -109,7 +109,10 @@ margin-left: 35%;
     text-align: center;
     
 }
-
 .waves-effect{
     background-color: #ee8301;
+}
+
+.greeting{
+    text-decoration-color: aquamarine;
 }
