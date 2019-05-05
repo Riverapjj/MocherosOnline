@@ -11,6 +11,7 @@ class Usuarios extends Validator
     private $telefono = null;
     private $email = null;
     private $clave = null;
+    private $idestado = null;
 
     //Método para sobrecarga de propiedades
     public function setIdUsuario($value)
@@ -28,7 +29,7 @@ class Usuarios extends Validator
         return $this->idusuario;
     }
 
-    public function setRol($value)
+    public function setIdRol($value)
     {
         if ($this->validateId($value)) {
             $this->idrol = $value;
@@ -135,7 +136,7 @@ class Usuarios extends Validator
 
     public function setClave($value)
     {
-        if ($this->validatePassword($value)) {
+        if ($this->validateId($value)) {
             $this->clave = $value;
             return true;
         } else {
@@ -146,6 +147,21 @@ class Usuarios extends Validator
     public function getClave()
     {
         return $this->clave;
+    }
+
+    public function setIdEstado($value)
+    {
+        if ($this->validateId($value)) {
+            $this->idusuario = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getIdEstado()
+    {
+        return $this->idestado;
     }
 
     //Métodos para manejar la sesión del usuario
@@ -185,7 +201,7 @@ class Usuarios extends Validator
     //Metodos para manejar el CRUD
 	public function readUsuarios()
 	{
-		$sql = 'SELECT Nombre, Apellido, Telefono, Email, IdUsuario FROM usuarios ORDER BY Apellido';
+		$sql = 'SELECT IdRol, Nombre, Apellido, Telefono, Email, IdEstado, IdUsuario FROM usuarios ORDER BY Apellido';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}
@@ -197,11 +213,11 @@ class Usuarios extends Validator
 		return Database::getRows($sql, $params);
 	}
 
-	public function createCliente()
+	public function createUsuario()
 	{
 		$hash = password_hash($this->clave, PASSWORD_DEFAULT);
-		$sql = 'INSERT INTO usuarios(IdRol, NomUsuario, Nombre, Apellido, Direccion, Telefono, Email, Clave) VALUES(6, ?, ?, ?, ?, ?, ?, ?)';
-		$params = array($this->idrol, $this->nomusuario, $this->nombre, $this->apellido, $this->direccion, $this->telefono, $this->email, $hash);
+		$sql = 'INSERT INTO usuarios(IdRol, IdEstado, NomUsuario, Nombre, Apellido, Direccion, Telefono, Email, Clave) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)';
+		$params = array($this->idrol, $this->idestado, $this->nomusuario, $this->nombre, $this->apellido, $this->direccion, $this->telefono, $this->email, $hash);
 		return Database::executeRow($sql, $params);
 	}
 
@@ -210,12 +226,19 @@ class Usuarios extends Validator
 		$sql = 'SELECT IdUsuario, NomUsuario, Nombre, Apellido, Email FROM usuarios WHERE IdUsuario = ?';
 		$params = array($this->idusuario);
 		return Database::getRow($sql, $params);
-	}
+    }
+    
+    public function readRoles(){
+
+        $sql = 'SELECT IdRol, TipoRol FROM roles ORDER BY IdRol';
+        $params = array(null);
+        return Database::getRows($sql, $params);
+    }
 
 	public function updateUsuario()
 	{
-		$sql = 'UPDATE usuarios SET NomUsuario = ?, Nombre = ?, Apellido = ?, Email = ? WHERE IdUsuario = ?';
-		$params = array($this->nomusuario, $this->nombre, $this->apellido, $this->email, $this->idusuario);
+		$sql = 'UPDATE usuarios SET NomUsuario = ?, Nombre = ?, Apellido = ?, Email = ?, Direccion = ?, Telefono = ?, IdEstado = ?, IdRol = ? WHERE IdUsuario = ?';
+		$params = array($this->nomusuario, $this->nombre, $this->apellido, $this->email, $this->direccion, $this->telefono, $this->idestado, $this->idrol, $this->idusuario);
 		return Database::executeRow($sql, $params);
 	}
 
