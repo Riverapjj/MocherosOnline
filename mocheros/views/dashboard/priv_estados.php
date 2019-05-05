@@ -10,7 +10,7 @@
 <?php
     DashboardHelper::slider();
 ?>
-<main>
+<main class="container">
     <!--Creando una columna para la tabla de estado-->
     <div class="row">
         <div class="col s12">

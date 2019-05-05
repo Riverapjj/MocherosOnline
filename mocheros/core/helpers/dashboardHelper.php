@@ -10,8 +10,10 @@ public static function dashNav(){
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li><a href="priv_usuarios.php" class="waves-effect waves-orange">Gestión de usuarios</a></li>
               <li><a href="priv_productos.php" class="waves-effect waves-orange">Administración productos</a></li>
-              <li><a href="priv_estados.php" class="waves-effect waves-orange">Gestión de pedidos</a></li>
-              <li><a href="../public/index.php" class="waves-effect waves-orange">Cerrar sesión</a></li>
+              <li><a href="priv_estados.php" class="waves-effect waves-orange">Gestión de pedidos</a></li              
+            </ul>
+            <ul>
+            <li><a href="../public/index.php" class="waves-effect waves-orange">Cerrar sesión</a></li>
             </ul>
           </div>
         </nav>        
@@ -20,10 +22,10 @@ public static function dashNav(){
         <ul class="sidenav orange darken-2" id="mobile-demo">
             <li><a class="white-text">Mocheros</a></li>
                     <hr color="white">
-            <li><a href="priv_usuarios.php" class="waves-effect waves-orange white-text">Gestión de usuarios</a></li>
-            <li><a href="priv_productos.php" class="waves-effect waves-orange white-text">Administración productos</a></li>
-            <li><a href="priv_estados.php" class="waves-effect waves-orange white-text">Gestión de pedidos</a></li>
-            <li><a href="../public/index.php" class="waves-effect waves-orange white-text">Cerrar sesión</a></li>
+            <li><a href="priv_usuarios.php" class="waves-effect waves white-text">Gestión de usuarios</a></li>
+            <li><a href="priv_productos.php" class="waves-effect waves white-text">Administración productos</a></li>
+            <li><a href="priv_estados.php" class="waves-effect waves white-text">Gestión de pedidos</a></li>
+            <li><a href="../public/index.php" class="waves-effect waves white-text">Cerrar sesión</a></li>
         </ul>');
       }
 
@@ -108,7 +110,9 @@ public static function dashNav(){
                 <!--Import jQuery before materialize.js-->
                 <script type="text/javascript" src="../../resources/js/jquery-3.3.1.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
-                <script type="text/javascript" src="../../resources/js/jquery.dataTables.min.js"></script>
+                <script type="text/javascript" src="../../resources/js/pagination.min.js"></script>
+                <script type="text/javascript" src="../../resources/js/pagination.js"></script>
+                <script type="text/javascript" src="../../resources/js/jquery.dataTables.min.js"></script>               
                 <script type="text/javascript" src="../../resources/js/main.js"></script>
                 <script type="text/javascript" src="../../resources/js/Chart.bundle.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/Chart.bundle.js"></script>

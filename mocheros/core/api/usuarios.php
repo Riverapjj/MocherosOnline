@@ -7,7 +7,7 @@ require_once('../../core/models/usuarios.php');
 if (isset($_GET['site']) && isset($_GET['action'])) {
     session_start();
     $usuario = new Usuarios;
-    $result = array('status' => 0, 'exception' => '');
+    $result = array('status' => 0, 'exception' => '', 'dataset' => '');
     //Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
     if (isset($_SESSION['idUsuario']) && $_GET['site'] == 'dashboard') {
         switch ($_GET['action']) {
@@ -115,16 +115,23 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'create':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setNombre($_POST['create_nombres'])) {
-                    if ($usuario->setApellido($_POST['create_apellidos'])) {
-                        if ($usuario->setEmail($_POST['create_correo'])) {
-                            if ($usuario->setNomUsuario($_POST['create_alias'])) {
-                                if ($_POST['create_clave1'] == $_POST['create_clave2']) {
-                                    if ($usuario->setClave($_POST['create_clave1'])) {
+                if ($usuario->setNomUsuario($_POST['create-username'])){
+                if ($usuario->setNombre($_POST['create-name'])) {
+                    if ($usuario->setApellido($_POST['create-lastname'])) {
+                        if ($usuario->setIdRol($_POST['create-rol-name'])){
+                        if ($usuario->setEmail($_POST['create-email'])) {
+                            if ($usuario->setTelefono($_POST['create-telf'])) {
+                                if ($usuario->setIdEstado(isset($_POST['create-status-name']) ? 1 : 2)){
+                                if ($_POST['create-pass-name'] == $_POST['create-confirm-pass-name']) {
+                                    if ($usuario->setClave($_POST['create-pass-name'])) {
+                                        if ($usuario->setDireccion($_POST['create-address-name'])){
                                         if ($usuario->createUsuario()) {
                                             $result['status'] = 1;
                                         } else {
                                             $result['exception'] = 'Operación fallida';
+                                        }
+                                     } else{
+                                         $result['exception'] = 'Dirección incorrecta';
                                         }
                                     } else {
                                         $result['exception'] = 'Clave menor a 6 caracteres';
@@ -132,11 +139,17 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                 } else {
                                     $result['exception'] = 'Claves diferentes';
                                 }
+                             } else{
+                                $result['exception'] = 'Estado incorrecto';
+                                }
                             } else {
-                                $result['exception'] = 'Alias incorrecto';
+                                $result['exception'] = 'Telefono incorrecto';
                             }
                         } else {
                             $result['exception'] = 'Correo incorrecto';
+                        }
+                     } else{
+                         $result['exception'] = 'Rol incorrecto';
                         }
                     } else {
                         $result['exception'] = 'Apellidos incorrectos';
@@ -144,9 +157,12 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Nombres incorrectos';
                 }
+            }else{
+                $result['exception'] = 'Nombre de usuario incorrecto';
+            }
                 break;
             case 'get':
-                if ($usuario->setIdUsuario($_POST['id_usuario'])) {
+                if ($usuario->setIdUsuario($_POST['IdUsuario'])) {
                     if ($result['dataset'] = $usuario->getUsuario()) {
                         $result['status'] = 1;
                     } else {
@@ -158,12 +174,16 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'update':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setId($_POST['IdUsuario'])) {
+                if ($usuario->setIdUsuario($_POST['IdUsuario'])) {
                     if ($usuario->getUsuario()) {
-                        if ($usuario->setNombre($_POST['update_nombres'])) {
-                            if ($usuario->setApellido($_POST['update_apellidos'])) {
-                                if ($usuario->setEmail($_POST['update_correo'])) {
-                                    if ($usuario->setNomUsuario($_POST['update_alias'])) {
+                        if ($usuario->setNombre($_POST['update-name-name'])) {
+                            if ($usuario->setApellido($_POST['update-lastname-name'])) {
+                                if ($usuario->setEmail($_POST['update-email-name'])) {
+                                    if ($usuario->setTelefono($_POST['update-telf-name'])){
+                                        if ($usuario->setDireccion($_POST['update-address-name'])){
+                                            if ($usuario->setIdRol($_POST['update-rol-name'])) {
+                                                if ($usuario->setIdEstado(isset($_POST['update-status-name']) ? 1 : 2)){
+                                    if ($usuario->setNomUsuario($_POST['update-username-name'])) {
                                         if ($usuario->updateUsuario()) {
                                             $result['status'] = 1;
                                         } else {
@@ -171,6 +191,18 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                         }
                                     } else {
                                         $result['exception'] = 'Alias incorrecto';
+                                    }
+                                } else{
+                                    $result['exception'] = 'Estado incorrecto';
+                                    }
+                                }  else{
+                                    $result['exception'] = 'Rol incorrecto';
+                                    }
+                                } else{
+                                    $result['exception'] = 'Dirección incorrecto';
+                                    }
+                                  }  else{
+                                    $result['exception'] = 'Teléfono incorrecto';
                                     }
                                 } else {
                                     $result['exception'] = 'Correo incorrecto';
@@ -188,8 +220,15 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 }
                 break;
+            case 'readRoles':
+                if ($result['dataset'] = $usuario->readRoles()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay roles registrados';
+                }
+                break;
             case 'delete':
-                if ($_POST['id_usuario'] != $_SESSION['idUsuario']) {
+                if ($_POST['IdUsuario'] != $_SESSION['idUsuario']) {
                     if ($usuario->setId($_POST['IdUsuario'])) {
                         if ($usuario->getUsuario()) {
                             if ($usuario->deleteUsuario()) {

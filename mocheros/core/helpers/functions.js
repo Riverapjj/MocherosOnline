@@ -46,14 +46,6 @@ function sweetAlert(type, text, url)
             console.log(value);
             location.href = url
         });
-    } else {
-        swal({
-            title: title,
-            text: text,
-            icon: icon,
-            button: 'Aceptar',
-            closeOnClickOutside: false,
-            closeOnEsc: false
-        });
     }
-}
+    }
+
