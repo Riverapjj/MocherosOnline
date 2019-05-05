@@ -3,20 +3,33 @@ require('../../core/helpers/publicHelper.php');
 publicHelper::header('Carrito');
 ?>
 <main class="grey lighten-2">
-    <!--Apartado para el carrito de compras(donde puede visualizar los productos que desea
-                <img class="responsive-img animated pulse" src="../web/images/productos/banner9.png"> -->
-    <!--Tabla para visualizar productos agregados en el carrito-->
     <div class="container">
-        <table class=" highlight">
+        <h1 class="center indigo-text">Carrito de compras (<span id="cart-items-count"><?PHP if(isset($_SESSION["products"])){echo count($_SESSION["products"]); } ?></span>)</h1>
+        <?php
+            if(isset($_SESSION["products"]) && count($_SESSION["products"])>0) {
+        ?>
+        <table class="highlight" id="shopping-cart-results">
             <thead>
                 <tr>
+                    <th>Foto</th>
                     <th>Producto</th>
-                    <th>Nombre</th>
                     <th>Cantidad</th>
                     <th>Precio</th>
                 </tr>
             </thead>
             <tbody>
+            <?php
+                $cart_box = '<ul class="cart-products-loaded">';
+                $total = 0;
+                foreach($_SESSION["products"] as $product){
+                $product_name = $product["product_name"];
+                $product_price = $product["product_price"];
+                $product_code = $product["product_code"];
+                $product_qty = $product["product_qty"];
+                $product_color = $product["product_color"];
+                $subtotal = ($product_price * $product_qty);
+                $total = ($total + $subtotal);
+            ?>
                 <tr>
                     <td><img class="responsive-img" src="../../resources/img/mochila3.jpg"></td>
                     <td>Mochila 1</td>
