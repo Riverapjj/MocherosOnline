@@ -9,13 +9,13 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
     $usuario = new Usuarios;
     $result = array('status' => 0, 'exception' => '');
     //Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
-    if (isset($_SESSION['idUsuario']) && $_GET['site'] == 'dashboard') {
+    if (isset($_SESSION['idUsuario']) && $_GET['site'] == 'index') {
         switch ($_GET['action']) {
             case 'logout':
                 if (session_destroy()) {
-                    header('location: ../../views/dashboard/');
+                    header('location: ../../views/public/');
                 } else {
-                    header('location: ../../views/dashboard/dashboard.php');
+                    header('location: ../../views/public/index.php');
                 }
                 break;
             case 'readProfile':
