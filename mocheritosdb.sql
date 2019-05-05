@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-04-2019 a las 23:28:00
+-- Tiempo de generación: 04-05-2019 a las 04:03:11
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -22,8 +22,11 @@ SET time_zone = "+00:00";
 -- Base de datos: `mocheritosdb`
 --
 
- CREATE DATABASE IF NOT EXISTS `mocheritosdb` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `mocheritosdb`; DELIMITER $$
+CREATE DATABASE IF NOT EXISTS `mocheritosdb`;
+
+USE `mocheritosdb`;
+
+DELIMITER $$
 --
 -- Procedimientos
 --
@@ -49,6 +52,8 @@ CREATE TABLE `articulos` (
   `PrecioUnitario` float NOT NULL,
   `Cantidad` int(11) NOT NULL,
   `Foto` varchar(50) NOT NULL,
+  `Calificacion` int(11) DEFAULT NULL,
+  `Comentario` varchar(200) DEFAULT NULL,
   `Estado` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -56,17 +61,18 @@ CREATE TABLE `articulos` (
 -- Volcado de datos para la tabla `articulos`
 --
 
-INSERT INTO `articulos` (`IdArticulos`, `IdCategoria`, `NomArticulo`, `DescripcionArt`, `PrecioUnitario`, `Cantidad`, `Foto`, `Estado`) VALUES
-(1, 1, 'Mochila con diseño de héroes', '', 35.99, 50, '', 1),
-(2, 1, 'Mochila con diseño de barbies', '', 38.99, 50, '', 1),
-(3, 2, 'Mochila de viaje para acampar', '', 70.99, 50, '', 1),
-(4, 2, 'Mochila de viaje para montaña', '', 74.99, 50, '', 1),
-(5, 3, 'Lonchera color básico', '', 15.99, 50, '', 1),
-(6, 3, 'Lonchera con diseño', '', 19.99, 50, '', 1),
-(7, 4, 'Mochila con diseño predeterminado', '', 45.99, 50, '', 1),
-(8, 4, 'Mochila con diseño perzonalizado', '', 60.99, 50, '', 1),
-(9, 5, 'Monedero', '', 5.99, 50, '', 1),
-(10, 5, 'Billetera', '', 12.99, 50, '', 1);
+INSERT INTO `articulos` (`IdArticulos`, `IdCategoria`, `NomArticulo`, `DescripcionArt`, `PrecioUnitario`, `Cantidad`, `Foto`, `Calificacion`, `Comentario`, `Estado`) VALUES
+(1, 1, 'Mochila con diseño de héroes', '', 35.99, 50, '', NULL, NULL, 1),
+(2, 1, 'Mochila con diseño de Barbies', '', 38.99, 50, '', NULL, NULL, 1),
+(3, 2, 'Mochila de viaje para acampar', '', 70.99, 50, '', NULL, NULL, 1),
+(4, 2, 'Mochila de viaje para montaña', '', 74.99, 50, '', NULL, NULL, 1),
+(5, 3, 'Lonchera color básico', '', 15.99, 50, '', NULL, NULL, 1),
+(6, 3, 'Lonchera con diseño', '', 19.99, 50, '', NULL, NULL, 1),
+(7, 5, 'Mochila con diseño predeterminado', '', 45.99, 50, '', NULL, NULL, 1),
+(8, 5, 'Mochila con diseño perzonalizado', '', 60.99, 50, '', NULL, NULL, 1),
+(9, 4, 'Monedero', '', 5.99, 50, '', NULL, NULL, 1),
+(10, 4, 'Billetera', 'Billetera para hombre', 12.99, 50, '', NULL, NULL, 1),
+(11, 1, 'Mochila escolar', 'Esta es una mochila escolar', 40.99, 100, '', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -108,8 +114,8 @@ INSERT INTO `categorias` (`IdCategoria`, `NomCategoria`) VALUES
 (1, 'Mochilas escolares'),
 (2, 'Mochilas de viaje'),
 (3, 'Loncheras'),
-(4, 'Mochila personalizables'),
-(5, 'Varios');
+(4, 'Accesorios'),
+(5, 'Productos personalizados');
 
 -- --------------------------------------------------------
 
@@ -175,7 +181,10 @@ INSERT INTO `detallepedidos` (`IdDetallePedido`, `IdEncabezado`, `IdArticulo`, `
 (134, 2, 4, 4, 299.96),
 (135, 2, 8, 1, 60.99),
 (136, 1, 4, 1, 74.99),
-(137, 1, 1, 2, 71.98);
+(137, 1, 1, 2, 71.98),
+(138, 1, 1, 5, 0),
+(139, 1, 1, 5, 0),
+(140, 1, 1, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -241,29 +250,30 @@ CREATE TABLE `usuarios` (
   `Apellido` varchar(30) NOT NULL,
   `Direccion` varchar(300) NOT NULL,
   `Telefono` varchar(10) NOT NULL,
-  `Email` varchar(30) NOT NULL
+  `Email` varchar(30) NOT NULL,
+  `Clave` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`IdUsuario`, `IdRol`, `NomUsuario`, `Nombre`, `Apellido`, `Direccion`, `Telefono`, `Email`) VALUES
-(1, 1, 'RJ01', 'Josue Alexander', 'Rivera Palacios', 'Mejicanos', '75413965', 'josue@gmai.com'),
-(2, 2, 'CR07', 'Carlos Federico', 'Ramirez Soriano', 'San Salvador', '75123068', 'carlos@gmail.com'),
-(5, 3, 'NJ11', 'Jefferson Joel', 'Novoa Lopez', 'Cima IV', '77497179', 'joel@gmail.com'),
-(7, 6, 'KF06', 'Francisco Stanley', 'Vasconcelos Zelaya', 'San Salvador', '79203651', 'francisco@gmail.com'),
-(9, 2, 'AB08', 'Bryan Alejandro', 'Amaya Flores', 'San Jacinto', '75321692', 'bryan@gmail.com'),
-(10, 2, 'PJ02', 'Juan Alberto', 'Perez Salguero', 'San Miguel', '76215493', 'juan@gmai.com'),
-(11, 2, 'RC05', 'Carlos Hector', 'Rodriguez Garcia', 'Santa Ana', '79621354', 'hector@gmail.com'),
-(12, 2, 'LP09', 'Pablo Javier', 'Lozano Gomez', 'Sonsonate', '76215936', 'pablo@gmail.com'),
-(13, 6, 'LJ0', 'Jorge Luis', 'Lopez Martinez', 'San Jacinto', '75369212', 'jorge@gmail.com'),
-(14, 6, 'UC08', 'Carlos Jose', 'Urrutia Ramirez', 'Mejicanos', '76215369', 'carlos@gmail.com'),
-(15, 6, 'AF06', 'Felix Alejandro', 'Arias Palacios', 'La Libertad', '72156324', 'felix@gmail.com'),
-(16, 6, 'GO05', 'Oswaldo Narciso', 'Gomez Orellana', 'La Paz', '63215489', 'oswaldo@gmail.com'),
-(17, 6, 'PA08', 'Anuel Manuel', 'Perez Brr', 'Bebesiitaaa', '78541236', 'bbsita@gmail.com'),
-(18, 1, 'PG02', 'Gloria Belén', 'Palacios Beltrán', 'San Salvador', '78521436', 'belen@gmail.com'),
-(19, 1, 'PG02', 'Gloria Belén', 'Palacios Beltrán', 'San Salvador', '78521436', 'belen@gmail.com');
+INSERT INTO `usuarios` (`IdUsuario`, `IdRol`, `NomUsuario`, `Nombre`, `Apellido`, `Direccion`, `Telefono`, `Email`, `Clave`) VALUES
+(1, 1, 'RJ01', 'Josue Alexander', 'Rivera Palacios', 'Mejicanos', '75413965', 'josue@gmai.com', ''),
+(2, 2, 'CR07', 'Carlos Federico', 'Ramirez Soriano', 'San Salvador', '75123068', 'carlos@gmail.com', ''),
+(5, 3, 'NJ11', 'Jefferson Joel', 'Novoa Lopez', 'Cima IV', '77497179', 'joel@gmail.com', ''),
+(7, 6, 'KF06', 'Francisco Stanley', 'Vasconcelos Zelaya', 'San Salvador', '79203651', 'francisco@gmail.com', ''),
+(9, 2, 'AB08', 'Bryan Alejandro', 'Amaya Flores', 'San Jacinto', '75321692', 'bryan@gmail.com', ''),
+(10, 2, 'PJ02', 'Juan Alberto', 'Perez Salguero', 'San Miguel', '76215493', 'juan@gmai.com', ''),
+(11, 2, 'RC05', 'Carlos Hector', 'Rodriguez Garcia', 'Santa Ana', '79621354', 'hector@gmail.com', ''),
+(12, 2, 'LP09', 'Pablo Javier', 'Lozano Gomez', 'Sonsonate', '76215936', 'pablo@gmail.com', ''),
+(13, 6, 'LJ0', 'Jorge Luis', 'Lopez Martinez', 'San Jacinto', '75369212', 'jorge@gmail.com', ''),
+(14, 6, 'UC08', 'Carlos Jose', 'Urrutia Ramirez', 'Mejicanos', '76215369', 'carlos@gmail.com', ''),
+(15, 6, 'AF06', 'Felix Alejandro', 'Arias Palacios', 'La Libertad', '72156324', 'felix@gmail.com', ''),
+(16, 6, 'GO05', 'Oswaldo Narciso', 'Gomez Orellana', 'La Paz', '63215489', 'oswaldo@gmail.com', ''),
+(17, 6, 'PA08', 'Anuel Manuel', 'Perez Brr', 'Bebesiitaaa', '78541236', 'bbsita@gmail.com', ''),
+(18, 1, 'PG02', 'Gloria Belén', 'Palacios Beltrán', 'San Salvador', '78521436', 'belen@gmail.com', ''),
+(19, 1, 'PG02', 'Gloria Belén', 'Palacios Beltrán', 'San Salvador', '78521436', 'belen@gmail.com', '');
 
 --
 -- Disparadores `usuarios`
@@ -333,7 +343,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `articulos`
 --
 ALTER TABLE `articulos`
-  MODIFY `IdArticulos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `IdArticulos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `bitacora`
@@ -351,7 +361,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `detallepedidos`
 --
 ALTER TABLE `detallepedidos`
-  MODIFY `IdDetallePedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
+  MODIFY `IdDetallePedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
 
 --
 -- AUTO_INCREMENT de la tabla `encabezadopedidos`
