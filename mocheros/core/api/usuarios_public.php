@@ -1,7 +1,7 @@
 <?php
-require_once('../../helpers/database.php');
-require_once('../../helpers/validator.php');
-require_once('../../models/usuarios_public.php');
+require_once('../../core/helpers/database.php');
+require_once('../../core/helpers/validator.php');
+require_once('../../core/models/usuarios_public.php');
 
 //Se comprueba si existe una petición del sitio web y la acción a realizar, de lo contrario se muestra una página de error
 if (isset($_GET['site']) && isset($_GET['action'])) {
@@ -228,15 +228,6 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
         }
     } else if ($_GET['site'] == 'publicHelper') {
         switch ($_GET['action']) {
-            /*case 'read':
-                if ($usuario->readUsuarios()) {
-                    $result['status'] = 1;
-                    $result['exception'] = 'Existe al menos un usuario registrado';
-                } else {
-                    $result['status'] = 2;
-                    $result['exception'] = 'No existen usuarios registrados';
-                }
-                break;*/
             case 'register':
                 $_POST = $usuario->validateForm($_POST);
                     if ($usuario->setNomUsuario($_POST['usuario'])) {
@@ -277,6 +268,16 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                         $result['exception'] = 'Nombre de usuario no válido';
                     }
                 break;
+            case 'read':
+                if ($usuario->readUsuarios()) {
+                    $result['status'] = 1;
+                    $result['exception'] = 'Existe al menos un usuario registrado';
+                } else {
+                    $result['status'] = 2;
+                    $result['exception'] = 'No existen usuarios registrados';
+                }
+                break;
+            
             case 'login':
                 $_POST = $usuario->validateForm($_POST);
                 if ($usuario->setNomUsuario($_POST['usuario'])) {

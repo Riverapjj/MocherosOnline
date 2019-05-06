@@ -3,7 +3,7 @@ $(document).ready(function()
     checkUsuarios();
 })
 
-const apiSesion = '../../core/api/public/usuarios.php?site=publicHelper&action=';
+const apiSesion = '../../core/api/usuarios_public.php?site=publicHelper&action=';
 
 function checkUsuarios()
 {

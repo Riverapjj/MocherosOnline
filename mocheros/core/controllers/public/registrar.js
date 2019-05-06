@@ -20,7 +20,7 @@ function checkUsuarios()
                 sweetAlert(3, dataset.exception, 'registrarse.php');
             }
         } else {
-            console.log(response);
+            console.log(response + ' holi');
         }
     })
     .fail(function(jqXHR){
