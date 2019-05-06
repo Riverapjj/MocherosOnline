@@ -3,7 +3,7 @@ $(document).ready(function()
     checkUsuarios();
 })
 
-const apiRegistrar = '../../core/api/public/usuarios.php?site=registrarse&action=';
+const apiRegistrar = '../../core/api/public/usuarios.php?site=index&action=';
 
 function checkUsuarios()
 {

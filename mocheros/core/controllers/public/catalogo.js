@@ -1,6 +1,5 @@
 $(document).ready(function()
 {
-    $('.slider').slider();
     readCategorias();
 })
 
@@ -159,6 +158,41 @@ function getProducto(id)
                                 </div>
                             </div>
                         </div>
+                        <h5 class="indigo-text">Comentarios del producto</h5>
+                        <ul class="collection">
+                            <li class="collection-item avatar">
+                                <img src="images/yuna.jpg" alt="" class="circle">
+                                <span class="title">Title</span>
+                                <p>First Line <br>
+                                    Second Line
+                                </p>
+                                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                            </li>
+                            <li class="collection-item avatar">
+                                <i class="material-icons circle">folder</i>
+                                <span class="title">Title</span>
+                                <p>First Line <br>
+                                    Second Line
+                                </p>
+                                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                            </li>
+                            <li class="collection-item avatar">
+                                <i class="material-icons circle green">insert_chart</i>
+                                <span class="title">Title</span>
+                                <p>First Line <br>
+                                    Second Line
+                                </p>
+                                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                            </li>
+                            <li class="collection-item avatar">
+                                <i class="material-icons circle red">play_arrow</i>
+                                <span class="title">Title</span>
+                                <p>First Line <br>
+                                    Second Line
+                                </p>
+                                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                            </li>
+                        </ul>
                     </div>
                 `;
                 $('#title').text('Detalle del artículo');

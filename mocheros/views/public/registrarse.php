@@ -59,5 +59,5 @@
     </div>
 </main>
 <?php
-    publicHelper::footer('catalogo.js');
+    publicHelper::footer('registrar.js');
 ?>

@@ -210,6 +210,46 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                         $result['exception'] = 'Producto incorrecto 2';
                     }
                     break;
+                case 'rateProducto':
+                    $_POST = $articulo->validateForm($_POST);
+                    if ($articulo->setId($_POST['IdArticulos'])) {
+                        if ($articulo->getProducto()) {
+                            if ($articulo->setCalificacion(isset($_POST['update_calificacion']) ? 5 : 0)) {
+                                if ($articulo->rateProducto()) {
+                                    $result['status'] = 1;
+                                } else {
+                                    $result['exception'] = 'Operación fallida';
+                                }
+                            } else {
+                                $result['exception'] = 'Calificación incorrecta';
+                            }
+                        } else {
+                            $result['exception'] = 'Producto inexistente';
+                        }
+                    } else {
+                        $result['exception'] = 'Producto incorrecto';
+                    }
+                    break;
+                case 'commentProducto':
+                    $_POST = $archivo->validateForm($_POST);
+                    if ($articulo->setId($_POST['IdArticulos'])) {
+                        if ($articulo->getProducto()) {
+                            if ($articulo->setComentario($_POST['update_comentario'])) {
+                                if ($articulo->commentProducto()) {
+                                    $result['status'] = 1;
+                                } else {
+                                    $result['exception'] = 'Operación fallida';
+                                }
+                            } else {
+                                $result['exception'] = 'Comentario erroneo';
+                            }
+                        } else {
+                            $result['exception'] = 'Producto inexistente';
+                        }
+                    } else {
+                        $result['exception'] = 'Producto incorrecto';
+                    }
+                    break;
                 default:
                     exit('Acción no disponible');
             }

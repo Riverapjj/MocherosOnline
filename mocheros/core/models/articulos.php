@@ -1,18 +1,20 @@
 <?php
 class Articulos extends Validator
 {
-    //Declaración de propiedades
-    private $id = null;
-    private $categoria = null;
-    private $nombre = null;
-    private $descripcion = null;
-    private $precio = null;
-    private $cantidad = null;
-    private $foto = null;
-    private $estado = null;
-    private $ruta = '../../resources/img/articulos/';
+	//Declaración de propiedades
+	private $id = null;
+	private $categoria = null;
+	private $nombre = null;
+	private $descripcion = null;
+	private $precio = null;
+	private $cantidad = null;
+	private $foto = null;
+	private $calificacion = null;
+	private $comentario = null;
+	private $estado = null;
+	private $ruta = '../../resources/img/articulos/';
 
-    public function setId($value)
+	public function setId($value)
 	{
 		if ($this->validateId($value)) {
 			$this->id = $value;
@@ -25,9 +27,9 @@ class Articulos extends Validator
 	public function getId()
 	{
 		return $this->id;
-    }
-    
-    public function setCategoria($value)
+	}
+
+	public function setCategoria($value)
 	{
 		if ($this->validateId($value)) {
 			$this->categoria = $value;
@@ -55,9 +57,9 @@ class Articulos extends Validator
 	public function getNombre()
 	{
 		return $this->nombre;
-    }
-    
-    public function setDescripcion($value)
+	}
+
+	public function setDescripcion($value)
 	{
 		if ($this->validateAlphanumeric($value, 1, 200)) {
 			$this->descripcion = $value;
@@ -70,9 +72,9 @@ class Articulos extends Validator
 	public function getDescripcion()
 	{
 		return $this->descripcion;
-    }
-    
-    public function setPrecio($value)
+	}
+
+	public function setPrecio($value)
 	{
 		if ($this->validateMoney($value)) {
 			$this->precio = $value;
@@ -85,9 +87,9 @@ class Articulos extends Validator
 	public function getPrecio()
 	{
 		return $this->precio;
-    }
-    
-    public function setCantidad($value)
+	}
+
+	public function setCantidad($value)
 	{
 		if ($this->validateNumeric($value)) {
 			$this->cantidad = $value;
@@ -100,9 +102,9 @@ class Articulos extends Validator
 	public function getCantidad()
 	{
 		return $this->precio;
-    }
-    
-    public function setFoto($file, $name)
+	}
+
+	public function setFoto($file, $name)
 	{
 		if ($this->validateImageFile($file, $this->ruta, $name, 500, 500)) {
 			$this->foto = $this->getImageName();
@@ -115,9 +117,39 @@ class Articulos extends Validator
 	public function getFoto()
 	{
 		return $this->foto;
-    }
-    
-    public function setEstado($value)
+	}
+
+	public function setCalificacion($value)
+	{
+		if ($value == '1' || $value == '2' || $value == '3' || $value == '4' || $value == '5') {
+			$this->calificacion = $value;
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function getCalificacion()
+	{
+		return $this->calificacion;
+	}
+
+	public function setComentario($value)
+	{
+		if ($this->validateAlphanumeric($value, 1, 200)) {
+			$this->descripcion = $value;
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function getComentario()
+	{
+		return $this->comentario;
+	}
+
+	public function setEstado($value)
 	{
 		if ($value == '1' || $value == '0') {
 			$this->estado = $value;
@@ -130,14 +162,14 @@ class Articulos extends Validator
 	public function getEstado()
 	{
 		return $this->estado;
-    }
-    
-    public function getRuta()
+	}
+
+	public function getRuta()
 	{
 		return $this->ruta;
-    }
-    
-    //Metodos para el manejo del CRUD
+	}
+
+	//Metodos para el manejo del CRUD
 	public function readProductosCategoria()
 	{
 		$sql = 'SELECT NomCategoria, IdArticulos, Foto, NomArticulo, DescripcionArt, PrecioUnitario FROM articulos INNER JOIN categorias USING(IdCategoria) WHERE IdCategoria = ? AND Estado = 1 ORDER BY NomArticulo';
@@ -193,5 +225,18 @@ class Articulos extends Validator
 		$params = array($this->id);
 		return Database::executeRow($sql, $params);
 	}
+
+	public function rateProducto()
+	{
+		$sql = 'UPDATE articulos SET Calificacion = ? WHERE IdArticulos = ?';
+		$params = array($this->calificacion, $this->id);
+		return Database::executeRow($sql, $params);
+	}
+
+	public function commentProducto()
+	{
+		$sql = 'UPDATE articulos SET Comentario = ? WHERE IdArticulos = ?';
+		$params = array($this->comentario, $this->id);
+		return Database::executeRow($sql, $params);
+	}
 }
-?>

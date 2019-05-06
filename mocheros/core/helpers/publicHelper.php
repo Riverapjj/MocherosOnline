@@ -36,11 +36,15 @@ class publicHelper{
                         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                         <ul id="nav-mobile" class="left hide-on-med-and-down">
                             <li><a href="index.php"><i class="material-icons left">home</i>Inicio</a></li>
-                            <li><a href="mochilas.php"><i class="material-icons left">work</i>Productos</a></li>                            
-                            <li><a href="login.php"><i class="material-icons left">person</i>Iniciar sesión</a></li>
+                            <li><a href="mochilas.php"><i class="material-icons left">work</i>Productos</a></li>
+                            <li><a href="#" class="dropdown-trigger" data-target="dropdown"><i class="material-icons left">person</i>Mi cuenta</a></li>
                             <li><a href="registrarse.php"><i class="material-icons left">person_add</i>Registrarse</a></li>
                             <li><a href="carrito.php"><i class="material-icons left">shopping_cart</i>Carrito</a></li>
                         </ul>
+                        <ul id="dropdown" class="dropdown-content">
+							<li><a href="login.php" class="orange-text text-darken-4"><i class="material-icons">person</i>Iniciar sesión</a></li>
+							<li><a href="#" onclick="signOff()" class="orange-text text-darken-4"><i class="material-icons">clear</i>Cerrar sesión</a></li>
+						</ul>
                     </div>
                 </nav>
                 <ul class="sidenav" id="mobile-demo">
@@ -208,4 +212,3 @@ class publicHelper{
         ');
     }
 }
-?>
