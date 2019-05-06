@@ -98,7 +98,7 @@ class publicHelper{
                             </ul>
                             <ul id="dropdown" class="dropdown-content">
                                 <li><a href="login.php" class="orange-text text-darken-4"><i class="material-icons">person</i>Iniciar sesión</a></li>
-                                <li><a href="#" onclick="signOff()" class="orange-text text-darken-4"><i class="material-icons">clear</i>Cerrar sesión</a></li>
+                                <li><a href="#" onclick="s" class="orange-text text-darken-4"><i class="material-icons">clear</i>Cerrar sesión</a></li>
                             </ul>
                         </div>
                     </nav>
@@ -156,7 +156,7 @@ class publicHelper{
         <script type="text/javascript" src="../../resources/js/public.js"></script>
         <script type="text/javascript" src="../../resources/js/Chart.js"></script>
         <script type="text/javascript" src="../../resources/js/functions.js"></script>
-        <script type="text/javascript" src="../../controllers/public/logout.js"></script>
+        <script type="text/javascript" src="../../core/controllers/public/logout.js"></script>
         <script type="text/javascript" src="../../core/controllers/public/'.$controller.'"></script>
         </body>
         

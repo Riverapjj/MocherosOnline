@@ -13,7 +13,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'logout':
                 if (session_destroy()) {
-                    header('location: ../../views/public/registrarse.php');
+                    header('location: ../../views/public/');
                 } else {
                     header('location: ../../views/public/registrarse.php');
                 }
