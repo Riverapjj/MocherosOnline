@@ -3,7 +3,7 @@ $(document).ready(function()
     checkUsuarios();
 })
 
-const apiRegistrar = '../../core/api/public/usuarios.php?site=index&action=';
+const apiRegistrar = '../../core/api/usuarios_public.php?site=publicHelper&action=';
 
 function checkUsuarios()
 {
@@ -17,14 +17,14 @@ function checkUsuarios()
         if (isJSONString(response)) {
             const dataset = JSON.parse(response);
             if (dataset.status == 1) {
-                sweetAlert(3, dataset.exception, 'index.php');
+                sweetAlert(3, dataset.exception, 'registrarse.php');
             }
         } else {
             console.log(response);
         }
     })
     .fail(function(jqXHR){
-        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+        console.log('Error: ' + jqXHR.status + 'e ' + jqXHR.statusText);
     });
 }
 
@@ -41,7 +41,7 @@ $('#form-register').submit(function()
         if (isJSONString(response)) {
             const dataset = JSON.parse(response);
             if (dataset.status) {
-                sweetAlert(1, 'Usuario registrado correctamente', 'index.php');
+                sweetAlert(1, 'Usuario registrado correctamente', 'registrarse.php');
             } else {
                 sweetAlert(2, dataset.exception, null);
             }
@@ -50,6 +50,6 @@ $('#form-register').submit(function()
         }
     })
     .fail(function(jqXHR){
-        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+        console.log('Error: ' + jqXHR.status + 'f ' + jqXHR.statusText);
     });
 })

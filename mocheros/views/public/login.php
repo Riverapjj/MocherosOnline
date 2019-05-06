@@ -28,5 +28,5 @@
     </div>
 </main>
 <?php
-    publicHelper::footer('catalogo.js');
+    publicHelper::footer('login.js');
 ?>

@@ -1,7 +1,7 @@
 <?php
-require_once('../../core/helpers/database.php');
-require_once('../../core/helpers/validator.php');
-require_once('../../core/models/public/usuarios.php');
+require_once('../../helpers/database.php');
+require_once('../../helpers/validator.php');
+require_once('../../models/usuarios_public.php');
 
 //Se comprueba si existe una petición del sitio web y la acción a realizar, de lo contrario se muestra una página de error
 if (isset($_GET['site']) && isset($_GET['action'])) {
@@ -9,13 +9,13 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
     $usuario = new Usuarios;
     $result = array('status' => 0, 'exception' => '');
     //Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
-    if (isset($_SESSION['idUsuario']) && $_GET['site'] == 'index') {
+    if (isset($_SESSION['idUsuario']) && $_GET['site'] == 'publicHelper') {
         switch ($_GET['action']) {
             case 'logout':
                 if (session_destroy()) {
-                    header('location: ../../views/public/');
+                    header('location: ../../views/public/registrarse.php');
                 } else {
-                    header('location: ../../views/public/index.php');
+                    header('location: ../../views/public/registrarse.php');
                 }
                 break;
             case 'readProfile':
@@ -33,8 +33,8 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 if ($usuario->setId($_SESSION['idUsuario'])) {
                     if ($usuario->getUsuario()) {
                         $_POST = $usuario->validateForm($_POST);
-                        if ($usuario->setNombres($_POST['profile_nombres'])) {
-                            if ($usuario->setApellidos($_POST['profile_apellidos'])) {
+                        if ($usuario->setNombres($_POST['profile_nombre'])) {
+                            if ($usuario->setApellidos($_POST['profile_apellido'])) {
                                 if ($usuario->setCorreo($_POST['profile_correo'])) {
                                     if ($usuario->setAlias($_POST['profile_alias'])) {
                                         if ($usuario->updateUsuario()) {
@@ -115,7 +115,6 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'create':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setIdRol($_POST['create_idrol'])) {
                     if ($usuario->setNomUsuario($_POST['create_nomusuario'])) {
                         if ($usuario->setNombre($_POST['create_nombre'])) {
                             if ($usuario->setApellido($_POST['create_apellido'])) {
@@ -124,7 +123,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                         if ($usuario->setEmail($_POST['create_email'])) {
                                             if ($_POST['create_clave1'] == $_POST['create_clave2']) {
                                                 if ($usuario->setClave($_POST['create_clave1'])) {
-                                                    if ($usuario->createUsuario()) {
+                                                    if ($usuario->createCliente()) {
                                                         $result['status'] = 1;
                                                     } else {
                                                         $result['exception'] = 'Operación fallida';
@@ -153,12 +152,9 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     } else {
                         $result['exception'] = 'El nombre de usuario ingresado no es válido';
                     }
-                } else {
-                    $result['exception'] = 'Rol erroneo';
-                }
                 break;
             case 'get':
-                if ($usuario->setIdUsuario($_POST['id_usuario'])) {
+                if ($usuario->setIdUsuario($_POST['IdUsuario'])) {
                     if ($result['dataset'] = $usuario->getUsuario()) {
                         $result['status'] = 1;
                     } else {
@@ -172,36 +168,40 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 $_POST = $usuario->validateForm($_POST);
                 if ($usuario->setId($_POST['IdUsuario'])) {
                     if ($usuario->getUsuario()) {
-                        if ($usuario->setNombre($_POST['update_nombres'])) {
-                            if ($usuario->setApellido($_POST['update_apellidos'])) {
-                                if ($usuario->setDireccion($_POST['update_direccion'])) {
-                                    if ($usuario->setTelefono($_POST['update_telefono'])) {
-                                        if ($usuario->setEmail($_POST['update_correo'])) {
-                                            if ($usuario->updateUsuario()) {
-                                                $result['status'] = 1;
+                        if ($usuario->setNomUsuario($_POST['update_usuario'])) {
+                            if ($usuario->setNombre($_POST['update_nombre'])) {
+                                if ($usuario->setApellido($_POST['update_apellido'])) {
+                                    if ($usuario->setDireccion($_POST['update_direccion'])) {
+                                        if ($usuario->setTelefono($_POST['update_telefono'])) {
+                                            if ($usuario->setEmail($_POST['update_correo'])) {
+                                                if ($usuario->updateUsuario()) {
+                                                    $result['status'] = 1;
+                                                } else {
+                                                    $result['exception'] = 'Operación fallida';
+                                                }
                                             } else {
-                                                $result['exception'] = 'Operación fallida';
+                                                $result['exception'] = 'Correo no válido';
                                             }
                                         } else {
-                                            $result['exception'] = 'Correo no válido';
+                                            $result['exception'] = 'Teléfono no válido';
                                         }
                                     } else {
-                                        $result['exception'] = 'Teléfono no válido';
+                                        $result['exception'] = 'Dirección no válida';
                                     }
                                 } else {
-                                    $result['exception'] = 'Dirección no válida';
+                                    $result['exception'] = 'Apellido no válido';
                                 }
                             } else {
-                                $result['exception'] = 'Apellidos no válidos';
+                                $result['exception'] = 'Nombre no válido';
                             }
                         } else {
-                            $result['exception'] = 'Nombres no válidos';
+                            $result['exception'] = 'Nombre de usuario no válido';
                         }
                     } else {
                         $result['exception'] = 'Usuario inexistente';
                     }
                 } else {
-                    $result['exception'] = 'Usuario incorrecto';
+                    $result['exception'] = 'Usuario no válido';
                 }
                 break;
             case 'delete':
@@ -224,11 +224,11 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             default:
-                exit('Acción no disponible');
+                exit('Acción no disponible 1');
         }
-    } else if ($_GET['site'] == 'dashboard') {
+    } else if ($_GET['site'] == 'publicHelper') {
         switch ($_GET['action']) {
-            case 'read':
+            /*case 'read':
                 if ($usuario->readUsuarios()) {
                     $result['status'] = 1;
                     $result['exception'] = 'Existe al menos un usuario registrado';
@@ -236,42 +236,50 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['status'] = 2;
                     $result['exception'] = 'No existen usuarios registrados';
                 }
-                break;
+                break;*/
             case 'register':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setNombre($_POST['nombres'])) {
-                    if ($usuario->setApellido($_POST['apellidos'])) {
-                        if ($usuario->setEmail($_POST['correo'])) {
-                            if ($usuario->setNomUsuario($_POST['alias'])) {
-                                if ($_POST['clave1'] == $_POST['clave2']) {
-                                    if ($usuario->setClave($_POST['clave1'])) {
-                                        if ($usuario->createUsuario()) {
-                                            $result['status'] = 1;
+                    if ($usuario->setNomUsuario($_POST['usuario'])) {
+                        if ($usuario->setNombre($_POST['nombre'])) {
+                            if ($usuario->setApellido($_POST['apellido'])) {
+                                if ($usuario->setDireccion($_POST['direccion'])) {
+                                    if ($usuario->setTelefono($_POST['telefono'])) {
+                                        if ($usuario->setEmail($_POST['correo'])) {
+                                            if ($_POST['clave1'] == $_POST['clave2']) {
+                                                if ($usuario->setClave($_POST['clave1'])) {
+                                                    if ($usuario->createUsuario()) {
+                                                        $result['status'] = 1;
+                                                    } else {
+                                                        $result['exception'] = 'Operación fallida';
+                                                    }
+                                                } else {
+                                                    $result['exception'] = 'Contraseña menor a 6 caracteres';
+                                                }
+                                            } else {
+                                                $result['exception'] = 'Las contraseñas no coinciden';
+                                            }
                                         } else {
-                                            $result['exception'] = 'Operación fallida';
+                                            $result['exception'] = 'Correo no válido';
                                         }
                                     } else {
-                                        $result['exception'] = 'Clave menor a 6 caracteres';
+                                        $result['exception'] = 'Teléfono no válido';
                                     }
                                 } else {
-                                    $result['exception'] = 'Claves diferentes';
+                                    $result['exception'] = 'Dirección no válida';
                                 }
                             } else {
-                                $result['exception'] = 'Alias incorrecto';
+                                $result['exception'] = 'Apellido no válido';
                             }
-                        } else {
-                            $result['exception'] = 'Correo incorrecto';
+                        } else { 
+                            $result['exception'] = 'Nombre no válido';
                         }
                     } else {
-                        $result['exception'] = 'Apellidos incorrectos';
+                        $result['exception'] = 'Nombre de usuario no válido';
                     }
-                } else {
-                    $result['exception'] = 'Nombres incorrectos';
-                }
                 break;
             case 'login':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setNomUsuario($_POST['alias'])) {
+                if ($usuario->setNomUsuario($_POST['usuario'])) {
                     if ($usuario->checkNomUsuario()) {
                         if ($usuario->setClave($_POST['clave'])) {
                             if ($usuario->checkPassword()) {
@@ -285,17 +293,17 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                             $result['exception'] = 'Clave menor a 6 caracteres';
                         }
                     } else {
-                        $result['exception'] = 'Alias inexistente';
+                        $result['exception'] = 'El usuario no está registrado';
                     }
                 } else {
-                    $result['exception'] = 'Alias incorrecto';
+                    $result['exception'] = 'Usuario incorrecto';
                 }
                 break;
             default:
-                exit('Acción no disponible');
+                exit('Acción no disponible 2');
         }
     } else {
-        exit('Acceso no disponible');
+        exit('Acceso no disponible 1');
     }
 	print(json_encode($result));
 } else {

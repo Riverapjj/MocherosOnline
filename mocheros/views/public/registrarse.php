@@ -12,6 +12,11 @@
                     <input id="usuario" type="text" name="usuario" class="validate" required/>
                     <label for="usuario">Nombre de usuario</label>
                 </div>
+                <!--<div class="input-field col s12 m6">
+                    <i class="material-icons prefix">assignment_ind</i>
+                    <input disabled value="6" id="idrol" type="text" name="idrol" class="validate" required/>
+                    <label for="disabled">Rol</label>
+                </div>-->
                 <div class="input-field col s12">
                     <i class="material-icons prefix">person</i>
                     <input id="nombre" type="text" name="nombre" class="validate" required/>

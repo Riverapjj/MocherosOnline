@@ -318,7 +318,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 exit('Acción no disponible');
         }
     } else {
-        exit('Acceso no disponible');
+        exit('Acceso no disponible 2');
     }
 	print(json_encode($result));
 } else {

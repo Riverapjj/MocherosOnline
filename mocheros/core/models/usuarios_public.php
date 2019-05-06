@@ -201,7 +201,7 @@ class Usuarios extends Validator
     //Metodos para manejar el CRUD
 	public function readUsuarios()
 	{
-		$sql = 'SELECT IdRol, Nombre, Apellido, Telefono, Email, IdEstado, IdUsuario FROM usuarios ORDER BY Apellido';
+		$sql = 'SELECT IdRol, Nombre, Apellido, Telefono, Email, IdUsuario FROM usuarios ORDER BY Apellido';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}
@@ -213,10 +213,10 @@ class Usuarios extends Validator
 		return Database::getRows($sql, $params);
 	}
 
-	public function createUsuario()
+	public function createCliente()
 	{
 		$hash = password_hash($this->clave, PASSWORD_DEFAULT);
-		$sql = 'INSERT INTO usuarios(IdRol, NomUsuario, Nombre, Apellido, Direccion, Telefono, Email, Clave) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO usuarios(NomUsuario, Nombre, Apellido, Direccion, Telefono, Email, Clave) VALUES(?, ?, ?, ?, ?, ?, ?)';
 		$params = array($this->idrol, $this->idestado, $this->nomusuario, $this->nombre, $this->apellido, $this->direccion, $this->telefono, $this->email, $hash);
 		return Database::executeRow($sql, $params);
 	}

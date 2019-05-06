@@ -53,8 +53,8 @@ class publicHelper{
                     <li><a href="index.php">Inicio</a></li>
                     <li><a href="mochilas.php">Productos</a></li>
                     <li><a href="carrito.php">Carrito</a></li>
-                    <li><a class="modal-trigger" href="#modal1">Iniciar sesión</a></li>
-                    <li><a class="modal-trigger" href="#modal2">Registrarse</a></li>
+                    <li><a href="login.php">Iniciar sesión</a></li>
+                    <li><a href="registrarse.php">Registrarse</a></li>
                 </ul>
             ');
             self::modals();
