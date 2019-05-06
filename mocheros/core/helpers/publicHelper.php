@@ -2,6 +2,7 @@
 class publicHelper{
 
     public static function header($title){
+        session_start();
         print('
             <!DOCTYPE html>
 			<html lang="es">
@@ -19,45 +20,100 @@ class publicHelper{
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
             </head>
             <body>
-                <header>
-                    <div class="header">
-                        <div class="row">
-                            <div class="col s12 l12 orange darken-2">
-                                <img class="col s4 l2" src="../../resources/img/marca-mochilas.jpg">
-                                <h1 class="blue-text text-darken-4"> Mocheros </h1>
-                                <h4 class="yellow-text text-accent-2"> Tus compañeros en tus aventuras </h4>
+            ');
+            print_r($_SESSION);
+            if (isset($_SESSION['idUsuario'])) {
+                $filename = basename($_SERVER['PHP_SELF']);
+                if ($filename != 'login.php') {
+                    self::modals();
+                    print('
+                    <header>
+                        <div class="header">
+                            <div class="row">
+                                <div class="col s12 l12 orange darken-2">
+                                    <img class="col s4 l2" src="../../resources/img/marca-mochilas.jpg">
+                                    <h1 class="blue-text text-darken-4"> Mocheros </h1>
+                                    <h4 class="yellow-text text-accent-2"> Tus compañeros en tus aventuras </h4>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </header>
-                <nav class="amber accent-3">
-                    <div class="nav-wrapper">
-                        <a href="#" class="brand-logo"></a>
-                        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                        <ul id="nav-mobile" class="left hide-on-med-and-down">
-                            <li><a href="index.php"><i class="material-icons left">home</i>Inicio</a></li>
-                            <li><a href="mochilas.php"><i class="material-icons left">work</i>Productos</a></li>
-                            <li><a href="#" class="dropdown-trigger" data-target="dropdown"><i class="material-icons left">person</i>Mi cuenta</a></li>
-                            <li><a href="registrarse.php"><i class="material-icons left">person_add</i>Registrarse</a></li>
-                            <li><a href="carrito.php"><i class="material-icons left">shopping_cart</i>Carrito</a></li>
-                        </ul>
-                        <ul id="dropdown" class="dropdown-content">
-							<li><a href="login.php" class="orange-text text-darken-4"><i class="material-icons">person</i>Iniciar sesión</a></li>
-							<li><a href="#" onclick="signOff()" class="orange-text text-darken-4"><i class="material-icons">clear</i>Cerrar sesión</a></li>
-						</ul>
-                    </div>
-                </nav>
-                <ul class="sidenav" id="mobile-demo">
-                    <li><a href="index.php">Mocheros</a></li>
-                    <hr>
-                    <li><a href="index.php">Inicio</a></li>
-                    <li><a href="mochilas.php">Productos</a></li>
-                    <li><a href="carrito.php">Carrito</a></li>
-                    <li><a href="login.php">Iniciar sesión</a></li>
-                    <li><a href="registrarse.php">Registrarse</a></li>
-                </ul>
-            ');
-            self::modals();
+                    </header>
+                    <nav class="amber accent-3">
+                        <div class="nav-wrapper">
+                            <a href="#" class="brand-logo"></a>
+                            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                                <li><a href="index.php"><i class="material-icons left">home</i>Inicio</a></li>
+                                <li><a href="mochilas.php"><i class="material-icons left">work</i>Productos</a></li>
+                                <li><a href="#" class="dropdown-trigger" data-target="dropdown"><i class="material-icons left">person</i>Mi cuenta: '.$_SESSION['nombreUsuario'].'</a></li>
+                                <li><a href="registrarse.php"><i class="material-icons left">person_add</i>Registrarse</a></li>
+                                <li><a href="carrito.php"><i class="material-icons left">shopping_cart</i>Carrito</a></li>
+                            </ul>
+                            <ul id="dropdown" class="dropdown-content">
+                                <li><a href="login.php" class="orange-text text-darken-4"><i class="material-icons">person</i>Iniciar sesión</a></li>
+                                <li><a href="#" onclick="signOff()" class="orange-text text-darken-4"><i class="material-icons">clear</i>Cerrar sesión</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <ul class="sidenav" id="mobile-demo">
+                        <li><a href="index.php">Mocheros</a></li>
+                        <hr>
+                        <li><a href="index.php">Inicio</a></li>
+                        <li><a href="mochilas.php">Productos</a></li>
+                        <li><a href="carrito.php">Carrito</a></li>
+                        <li><a href="login.php">Iniciar sesión</a></li>
+                        <li><a href="registrarse.php">Registrarse</a></li>
+                    </ul>
+                    ');
+                } else {
+                    header('location: mochilas.php');
+                }
+            } else {
+                $filename = basename($_SERVER['PHP_SELF']);
+                if ($filename != 'index.php' && $filename != 'login.php' && $filename != 'registrarse.php') {
+                    header('location: index.php');
+                } else {
+                    print('
+                    <header>
+                        <div class="header">
+                            <div class="row">
+                                <div class="col s12 l12 orange darken-2">
+                                    <img class="col s4 l2" src="../../resources/img/marca-mochilas.jpg">
+                                    <h1 class="blue-text text-darken-4"> Mocheros </h1>
+                                    <h4 class="yellow-text text-accent-2"> Tus compañeros en tus aventuras </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                    <nav class="amber accent-3">
+                        <div class="nav-wrapper">
+                            <a href="#" class="brand-logo"></a>
+                            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                                <li><a href="index.php"><i class="material-icons left">home</i>Inicio</a></li>
+                                <li><a href="mochilas.php"><i class="material-icons left">work</i>Productos</a></li>
+                                <li><a href="#" class="dropdown-trigger" data-target="dropdown"><i class="material-icons left">person</i>Mi cuenta</a></li>
+                                <li><a href="registrarse.php"><i class="material-icons left">person_add</i>Registrarse</a></li>
+                                <li><a href="carrito.php"><i class="material-icons left">shopping_cart</i>Carrito</a></li>
+                            </ul>
+                            <ul id="dropdown" class="dropdown-content">
+                                <li><a href="login.php" class="orange-text text-darken-4"><i class="material-icons">person</i>Iniciar sesión</a></li>
+                                <li><a href="#" onclick="signOff()" class="orange-text text-darken-4"><i class="material-icons">clear</i>Cerrar sesión</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <ul class="sidenav" id="mobile-demo">
+                        <li><a href="index.php">Mocheros</a></li>
+                        <hr>
+                        <li><a href="index.php">Inicio</a></li>
+                        <li><a href="mochilas.php">Productos</a></li>
+                        <li><a href="carrito.php">Carrito</a></li>
+                        <li><a href="login.php">Iniciar sesión</a></li>
+                        <li><a href="registrarse.php">Registrarse</a></li>
+                    </ul>
+                    ');
+                }
+            }
         }
 
     public static function footer($controller){
@@ -100,6 +156,7 @@ class publicHelper{
         <script type="text/javascript" src="../../resources/js/public.js"></script>
         <script type="text/javascript" src="../../resources/js/Chart.js"></script>
         <script type="text/javascript" src="../../resources/js/functions.js"></script>
+        <script type="text/javascript" src="../../controllers/public/logout.js"></script>
         <script type="text/javascript" src="../../core/controllers/public/'.$controller.'"></script>
         </body>
         

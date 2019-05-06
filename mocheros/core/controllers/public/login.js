@@ -28,13 +28,14 @@ function checkUsuarios()
     });
 }
 
-$('#form-sesion').submit(function()
+$('#form-session').submit(function()
 {
+    console.log('Hola');
     event.preventDefault();
     $.ajax({
         url: apiSesion + 'login',
         type: 'post',
-        data: $('#form-sesion').serialize(),
+        data: $('#form-session').serialize(),
         datatype: 'json'
     })
     .done(function(response){

@@ -168,10 +168,10 @@ class Usuarios extends Validator
     public function checkUsuario()
     {
         $sql = 'SELECT IdUsuario FROM usuarios WHERE NomUsuario = ?';
-        $params = array($this->usuario);
+        $params = array($this->nomusuario);
         $data = Database::getRow($sql, $params);
         if ($data) {
-            $this->id = $data['IdUsuario'];
+            $this->idusuario = $data['IdUsuario'];
             return true;
         } else {
             return false;
@@ -181,7 +181,7 @@ class Usuarios extends Validator
     public function checkPassword()
     {
         $sql = 'SELECT Clave FROM usuarios WHERE IdUsuario = ?';
-        $params = array($this->id);
+        $params = array($this->idusuario);
         $data = Database::getRow($sql, $params);
         if (password_verify($this->clave, $data['Clave'])) {
             return true;
@@ -217,7 +217,7 @@ class Usuarios extends Validator
 	{
 		$hash = password_hash($this->clave, PASSWORD_DEFAULT);
 		$sql = 'INSERT INTO usuarios(NomUsuario, Nombre, Apellido, Direccion, Telefono, Email, Clave) VALUES(?, ?, ?, ?, ?, ?, ?)';
-		$params = array($this->idrol, $this->idestado, $this->nomusuario, $this->nombre, $this->apellido, $this->direccion, $this->telefono, $this->email, $hash);
+		$params = array($this->nomusuario, $this->nombre, $this->apellido, $this->direccion, $this->telefono, $this->email, $hash);
 		return Database::executeRow($sql, $params);
 	}
 

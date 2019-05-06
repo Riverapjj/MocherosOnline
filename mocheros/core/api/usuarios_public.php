@@ -238,7 +238,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                         if ($usuario->setEmail($_POST['correo'])) {
                                             if ($_POST['clave1'] == $_POST['clave2']) {
                                                 if ($usuario->setClave($_POST['clave1'])) {
-                                                    if ($usuario->createUsuario()) {
+                                                    if ($usuario->createCliente()()) {
                                                         $result['status'] = 1;
                                                     } else {
                                                         $result['exception'] = 'Operación fallida';
@@ -270,8 +270,8 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'read':
                 if ($usuario->readUsuarios()) {
-                    $result['status'] = 1;
-                    $result['exception'] = 'Existe al menos un usuario registrado';
+                   // $result['status'] = 1;
+                    //$result['exception'] = 'Existe al menos un usuario registrado';
                 } else {
                     $result['status'] = 2;
                     $result['exception'] = 'No existen usuarios registrados';
@@ -281,7 +281,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
             case 'login':
                 $_POST = $usuario->validateForm($_POST);
                 if ($usuario->setNomUsuario($_POST['usuario'])) {
-                    if ($usuario->checkNomUsuario()) {
+                    if ($usuario->checkUsuario()) {
                         if ($usuario->setClave($_POST['clave'])) {
                             if ($usuario->checkPassword()) {
                                 $_SESSION['idUsuario'] = $usuario->getIdUsuario();

@@ -10,7 +10,7 @@
                 <div class="input-field col s12 m6 offset-m3">
                     <i class="material-icons prefix">person</i>
                     <input id="usuario" type="text" name="usuario" class="validate" required />
-                    <label for="usuario">Nombre</label>
+                    <label for="usuario">Nombre de usuario</label>
                 </div>
                 <div class="input-field col s12 m6 offset-m3">
                     <i class="material-icons prefix">vpn_key</i>
