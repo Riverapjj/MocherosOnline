@@ -40,18 +40,19 @@ class publicHelper{
                     <div class="navbar-fixed">
                         <nav class="orange darken-2">
                             <div class="nav-wrapper">
-                                <a href="#" class="brand-logo"><img src="../../resources/img/mocheros-mini.jpg"></a>
+                                <a href="index.php" class="brand-logo"><img src="../../resources/img/mocheros-mini.jpg"></a>
                                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                                     <li><a href="index.php"><i class="material-icons left">home</i>Inicio</a></li>
                                     <li><a href="mochilas.php"><i class="material-icons left">work</i>Productos</a></li>
-                                    <li><a href="#" class="dropdown-trigger" data-target="dropdown"><i class="material-icons left">person</i>Mi cuenta - '.$_SESSION['nombreUsuario'].'</a></li>
+                                    <li><a href="#" class="dropdown-trigger" data-target="dropdown"><i class="material-icons left">person</i>Mi cuenta - '.$_SESSION['nombreUsuario'].'<i class="material-icons right">arrow_drop_down</i></a></li>
                                     <li><a href="registrarse.php"><i class="material-icons left">person_add</i>Registrarse</a></li>
                                     <li><a href="carrito.php"><i class="material-icons left">shopping_cart</i>Carrito</a></li>
                                 </ul>
                                 <ul id="dropdown" class="dropdown-content">
-                                    <li><a href="login.php" class="orange-text text-darken-4"><i class="material-icons">person</i>Iniciar sesión</a></li>
-                                    <li><a href="#" onclick="signOff()" class="orange-text text-darken-4"><i class="material-icons">clear</i>Cerrar sesión</a></li>
+                                    <li><a href="#" onclick="modalProfile()" class="orange-text text-darken-4"><i class="material-icons">person</i>Ver mi cuenta</a></li>
+                                    <li><a href="#modal-password" class="orange-text text-darken-4"><i class="material-icons">lock</i>Cambiar mi contraseña</a></li>
+                                    <li><a href="#" onclick="signOff()" class="orange-text text-darken-4"><i class="material-icons">exit_to_app</i>Cerrar sesión</a></li>
                                 </ul>
                             </div>
                         </nav>
@@ -91,7 +92,7 @@ class publicHelper{
                     <div class="navbar-fixed">
                         <nav class="orange darken-2">
                             <div class="nav-wrapper">
-                                <a href="#" class="brand-logo"><img src="../../resources/img/mocheros-mini.jpg"></a>
+                                <a href="index.php" class="brand-logo"><img src="../../resources/img/mocheros-mini.jpg">Mocheros</a>
                                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                                     <li><a href="index.php"><i class="material-icons left">home</i>Inicio</a></li>
@@ -241,6 +242,46 @@ class publicHelper{
 
     public function modals(){
         print('
+            <div id="modal-profile" class="modal">
+                <div class="modal-content">
+                    <h3 class="center-align">Mi cuenta</h3>
+                    <form method="post" id="form-profile">
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix">assignment_ind</i>
+                            <input id="profile_usuario" type="text" name="profile_usuario" class="validate" required/>
+                            <label for="profile_usuario">Nombre de usuario</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">person</i>
+                            <input id="profile_nombre" type="text" name="profile_nombre" class="validate" required/>
+                            <label for="profile_nombre">Nombres</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">person</i>
+                            <input id="profile_apellido" type="text" name="profile_apellido" class="validate" required/>
+                            <label for="profile_apellido">Apellidos</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">person</i>
+                            <textarea id="profile_direccion" name="profile_direccion" class="materialize-textarea validate" required></textarea>
+                            <label for="profile_direccion">Dirección</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix">person</i>
+                            <input id="profile_telefono" type="text" name="profile_telefono" class="validate" required/>
+                            <label for="profile_telefono">Teléfono</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix">person</i>
+                            <input id="profile_correo" type="text" name="profile_correo" class="validate" required/>
+                            <label for="profile_correo">Correo electrónico</label>
+                        </div>
+                        <div class="col s12">
+                            <button type="submit" class="btn waves-effect orange tooltipped" data-tooltip="Guardar"><i class="material-icons">save</i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         <div id="terminos" class="modal modal-fixed-footer">
             <div class="modal-content">
                 <h4>Términos y condiciones</h4>

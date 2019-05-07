@@ -19,7 +19,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             case 'readProfile':
-                if ($usuario->setId($_SESSION['idUsuario'])) {
+                if ($usuario->setIdUsuario($_SESSION['idUsuario'])) {
                     if ($result['dataset'] = $usuario->getUsuario()) {
                         $result['status'] = 1;
                     } else {
@@ -30,36 +30,44 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             case 'editProfile':
-                if ($usuario->setId($_SESSION['idUsuario'])) {
+                if ($usuario->setIdUsuario($_SESSION['idUsuario'])) {
                     if ($usuario->getUsuario()) {
                         $_POST = $usuario->validateForm($_POST);
-                        if ($usuario->setNombres($_POST['profile_nombre'])) {
-                            if ($usuario->setApellidos($_POST['profile_apellido'])) {
-                                if ($usuario->setCorreo($_POST['profile_correo'])) {
-                                    if ($usuario->setAlias($_POST['profile_alias'])) {
-                                        if ($usuario->updateUsuario()) {
-                                            $_SESSION['aliasUsuario'] = $_POST['profile_alias'];
-                                            $result['status'] = 1;
+                        if ($usuario->setNomUsuario($_POST['profile_usuario'])) {
+                            if ($usuario->setNombre($_POST['profile_nombre'])) {
+                                if ($usuario->setApellido($_POST['profile_apellido'])) {
+                                    if ($usuario->setDireccion($_POST['profile_direccion'])) {
+                                        if ($usuario->setTelefono($_POST['profile_telefono'])) {
+                                            if ($usuario->setEmail($_POST['profile_correo'])) {
+                                                if ($usuario->updateUsuario()) {
+                                                    $_SESSION['nombreUsuario'] = $_POST['profile_usuario'];
+                                                    $result['status'] = 1;
+                                                } else {
+                                                    $result['exception'] = 'Ocurrió un error en la operación';
+                                                }
+                                            } else {
+                                                $result['exception'] = 'Correo electrónico no válido';
+                                            }
                                         } else {
-                                            $result['exception'] = 'Operación fallida';
+                                            $result['exception'] = 'Teléfono no válido';
                                         }
                                     } else {
-                                        $result['exception'] = 'Alias incorrecto';
+                                        $result['exception'] = 'Dirección no válida';
                                     }
                                 } else {
-                                    $result['exception'] = 'Correo incorrecto';
+                                    $result['exception'] = 'Apellidos no válidos';
                                 }
                             } else {
-                                $result['exception'] = 'Apellidos incorrectos';
+                                $result['exception'] = 'Nombres no válidos';
                             }
                         } else {
-                            $result['exception'] = 'Nombres incorrectos';
+                            $result['exception'] = 'Usuario no válido';
                         }
                     } else {
-                        $result['exception'] = 'Usuario inexistente';
+                        $result['exception'] = 'Usuario incorrecto';
                     }
                 } else {
-                    $result['exception'] = 'Usuario incorrecto';
+                    $result['exception'] = 'Usuario inexistente';
                 }
                 break;
             case 'password':

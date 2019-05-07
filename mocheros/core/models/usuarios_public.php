@@ -216,7 +216,7 @@ class Usuarios extends Validator
 	public function createCliente()
 	{
 		$hash = password_hash($this->clave, PASSWORD_DEFAULT);
-		$sql = 'INSERT INTO usuarios(NomUsuario, Nombre, Apellido, Direccion, Telefono, Email, Clave) VALUES(?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO usuarios(IdRol, NomUsuario, Nombre, Apellido, Direccion, Telefono, Email, Clave) VALUES(6, ?, ?, ?, ?, ?, ?, ?)';
 		$params = array($this->nomusuario, $this->nombre, $this->apellido, $this->direccion, $this->telefono, $this->email, $hash);
 		return Database::executeRow($sql, $params);
 	}
@@ -237,8 +237,8 @@ class Usuarios extends Validator
 
 	public function updateUsuario()
 	{
-		$sql = 'UPDATE usuarios SET NomUsuario = ?, Nombre = ?, Apellido = ?, Email = ?, Direccion = ?, Telefono = ?, IdEstado = ?, IdRol = ? WHERE IdUsuario = ?';
-		$params = array($this->nomusuario, $this->nombre, $this->apellido, $this->email, $this->direccion, $this->telefono, $this->idestado, $this->idrol, $this->idusuario);
+		$sql = 'UPDATE usuarios SET NomUsuario = ?, Nombre = ?, Apellido = ?, Direccion = ?, Telefono = ?, Email = ? WHERE IdUsuario = ?';
+		$params = array($this->nomusuario, $this->nombre, $this->apellido, $this->direccion, $this->telefono,  $this->email, $this->idusuario);
 		return Database::executeRow($sql, $params);
 	}
 

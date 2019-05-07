@@ -25,3 +25,62 @@ function signOff()
         }
     });
 }
+
+function modalProfile()
+{
+    $.ajax({
+        url: apiLogout + 'readProfile',
+        type: 'post',
+        data: null,
+        datatype: 'json',
+    })
+    .done(function(response){
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            if (result.status) {
+                $('#profile_usuario').val(result.dataset.NomUsuario);
+                $('#profile_nombre').val(result.dataset.Nombre);
+                $('#profile_apellido').val(result.dataset.Apellido);
+                $('#profile_direccion').val(result.dataset.Direccion);
+                $('#profile_telefono').val(result.dataset.Telefono);
+                $('#profile_correo').val(result.dataset.Email);
+                M.updateTextFields();
+                $('#modal-profile').modal('open');
+            } else {
+                sweetAlert(2, result.exception, null);
+            }
+        } else {
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' +jqXHR.statusText);
+    });
+}
+
+$('#form-profile').submit(function()
+{
+    event.preventDefault();
+    $.ajax({
+        url: apiLogout + 'editProfile',
+        type: 'post',
+        data: $('#form-profile').serialize(),
+        datatype: 'json'
+    })
+    .done(function(response){
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            if (result.status) {
+                $('#modal-profile').modal('close');
+                sweetAlert(1, 'Perfil modificado exitosamente', 'index.php');
+            } else {
+                sweetAlert(2, result.exception, null);
+            }
+        } else {
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+})
