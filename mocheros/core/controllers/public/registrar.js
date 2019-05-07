@@ -20,11 +20,11 @@ function checkUsuarios()
                 sweetAlert(3, dataset.exception, 'registrarse.php');
             }
         } else {
-            console.log(response + ' holi');
+            console.log(response);
         }
     })
     .fail(function(jqXHR){
-        console.log('Error: ' + jqXHR.status + 'e ' + jqXHR.statusText);
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 }
 
@@ -41,7 +41,7 @@ $('#form-register').submit(function()
         if (isJSONString(response)) {
             const dataset = JSON.parse(response);
             if (dataset.status) {
-                sweetAlert(1, 'Usuario registrado correctamente', 'login.php');
+                sweetAlert(1, 'Usuario registrado correctamente', 'index.php');
             } else {
                 sweetAlert(2, dataset.exception, null);
             }
@@ -50,6 +50,6 @@ $('#form-register').submit(function()
         }
     })
     .fail(function(jqXHR){
-        console.log('Error: ' + jqXHR.status + 'f ' + jqXHR.statusText);
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 })

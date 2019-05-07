@@ -193,7 +193,7 @@ class Usuarios extends Validator
     {
         $hash = password_hash($this->clave, PASSWORD_DEFAULT);
         $sql = 'UPDATE usuarios SET Clave = ? WHERE IdUsuario = ?';
-        $params = array($hash, $this->id);
+        $params = array($hash, $this->idusuario);
         return Database::executeRow($sql, $params);
     }
 

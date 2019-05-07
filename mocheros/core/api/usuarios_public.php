@@ -238,7 +238,6 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'register':
                 $_POST = $usuario->validateForm($_POST);
-                    //if ($usuario->setIdRol($_POST['idrol'])) {
                         if ($usuario->setNomUsuario($_POST['usuario'])) {
                             if ($usuario->setNombre($_POST['nombre'])) {
                                 if ($usuario->setApellido($_POST['apellido'])) {
@@ -276,9 +275,6 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                         } else {
                         $result['exception'] = 'Nombre de usuario no válido';
                         }
-                    //} else {
-                        //$result['exception'] = 'Rol incorrecto';
-                    //}
                 break;
             case 'read':
                 if ($usuario->readUsuarios()) {
@@ -289,7 +285,6 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'No existen usuarios registrados';
                 }
                 break;
-            
             case 'login':
                 $_POST = $usuario->validateForm($_POST);
                 if ($usuario->setNomUsuario($_POST['usuario'])) {
