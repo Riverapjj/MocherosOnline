@@ -2,8 +2,6 @@ $(document).ready(function()
 {
     showTable();
     showSelectRoles('create-rol',  null);
-    createPagination();
-
 })
 
 //Constante para establecer la ruta y parámetros de comunicación con la API
@@ -33,29 +31,13 @@ const showTable = async () => {
     }
 }
 
-//Función para paginación de admin-table
-function createPagination(){
-
-    $('#pagination').pagination({
-        dataSource: [1, 2, 3, 4, 5, 6, 7, 50],
-        pageData: 10,
-        showPageNumbers: false,
-        showNavigator: true,
-       /* callback: function(data, pagination) {
-            // template method of yourself
-            var html = template(data);
-            dataContainer.html(html);
-        }*/
-    })
-
-
-}
 
 //Función para llenar tabla con los datos de los registros
 function fillTable(rows)
 {
     let content = '';
-    rows.forEach(function (row) {
+
+    rows.forEach( (row) => {
         if (row.IdRol == 1){
             rol = 'Administrador';
         }else{
@@ -86,17 +68,7 @@ function fillTable(rows)
         `;
     });
     $('#tbody-read-admin').html(content);
-    $('#admin-table').DataTable({
-    });
-    $('#admin-table').pageMe({
-        pagerSelector:'#myPager',
-        activeColor: 'blue',
-        prevText:'Anterior',
-        nextText:'Siguiente',
-        showPrevNext:true,
-        hidePageNumbers:false,
-        perPage:10
-      });
+    $('#admin-table').DataTable();
 }
 
 

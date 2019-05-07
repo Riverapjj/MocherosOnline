@@ -136,7 +136,7 @@ class Usuarios extends Validator
 
     public function setClave($value)
     {
-        if ($this->validateId($value)) {
+        if ($this->validatePassword($value)) {
             $this->clave = $value;
             return true;
         } else {
@@ -152,7 +152,7 @@ class Usuarios extends Validator
     public function setIdEstado($value)
     {
         if ($this->validateId($value)) {
-            $this->idusuario = $value;
+            $this->idestado = $value;
             return true;
         } else {
             return false;
@@ -165,23 +165,23 @@ class Usuarios extends Validator
     }
 
     //Métodos para manejar la sesión del usuario
-    public function checkUsuario()
-    {
-        $sql = 'SELECT IdUsuario FROM usuarios WHERE NomUsuario = ?';
-        $params = array($this->usuario);
-        $data = Database::getRow($sql, $params);
-        if ($data) {
-            $this->id = $data['IdUsuario'];
-            return true;
-        } else {
-            return false;
-        }
-    }
+    public function checkNomUsuario()
+	{
+		$sql = 'SELECT IdUsuario FROM usuarios WHERE NomUsuario = ?';
+		$params = array($this->nomusuario);
+		$data = Database::getRow($sql, $params);
+		if ($data) {
+			$this->idusuario = $data['IdUsuario'];
+			return true;
+		} else {
+			return false;
+		}
+	}
 
     public function checkPassword()
     {
         $sql = 'SELECT Clave FROM usuarios WHERE IdUsuario = ?';
-        $params = array($this->id);
+        $params = array($this->idusuario);
         $data = Database::getRow($sql, $params);
         if (password_verify($this->clave, $data['Clave'])) {
             return true;
@@ -194,7 +194,7 @@ class Usuarios extends Validator
     {
         $hash = password_hash($this->clave, PASSWORD_DEFAULT);
         $sql = 'UPDATE usuarios SET Clave = ? WHERE IdUsuario = ?';
-        $params = array($hash, $this->id);
+        $params = array($hash, $this->idusuario);
         return Database::executeRow($sql, $params);
     }
 
@@ -216,7 +216,7 @@ class Usuarios extends Validator
 	public function createUsuario()
 	{
 		$hash = password_hash($this->clave, PASSWORD_DEFAULT);
-		$sql = 'INSERT INTO usuarios(IdRol, NomUsuario, Nombre, Apellido, Direccion, Telefono, Email, Clave) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO usuarios(IdRol,  IdEstado, NomUsuario, Nombre, Apellido, Direccion, Telefono, Email, Clave) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)';
 		$params = array($this->idrol, $this->idestado, $this->nomusuario, $this->nombre, $this->apellido, $this->direccion, $this->telefono, $this->email, $hash);
 		return Database::executeRow($sql, $params);
 	}

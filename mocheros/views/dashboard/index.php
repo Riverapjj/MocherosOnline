@@ -37,13 +37,13 @@
             <form method="post" id="form-sesion">
                 <div class="input-field col s12 m6 offset-m3">
                     <i class="material-icons prefix">person_pin</i>
-                    <input id="alias" type="text" name="alias" class="validate" required />
-                    <label for="alias">Usuario</label>
+                    <input id="log-username" type="text" name="log-username-name" class="validate" required />
+                    <label for="log-username">Usuario</label>
                 </div>
                 <div class="input-field col s12 m6 offset-m3">
                     <i class="material-icons prefix">security</i>
-                    <input id="clave" type="password" name="clave" class="validate" required />
-                    <label for="clave">Contraseña</label>
+                    <input id="log-pass" type="password" name="log-pass-name" class="validate" required />
+                    <label for="log-pass">Contraseña</label>
                 </div>
                 <div class="col s12 center-align">
                     <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Ingresar"><i

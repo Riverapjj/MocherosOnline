@@ -36,7 +36,7 @@
             <!--Creando un div con su id="test1" para que se muestre al momento de elegir la opción previamente construida en el "tab"-->
             <div id="test1" class="col s12">
                 <!--Declarando que sea una tabla responsiva-->
-                <table class="responsive-table" id="admin-table">
+                <table class="responsive-table display" id="admin-table">
                     <thead>
                         <!--Agregando los campos fijos a la tabla-->
                         <tr>
@@ -564,3 +564,9 @@
     <?php
     DashboardHelper::footer('usuarios.js');
 ?>
+
+<script type="text/javascript"> 
+$(document).ready( function () {
+    $('#admin-table').DataTable();
+} );
+</script>

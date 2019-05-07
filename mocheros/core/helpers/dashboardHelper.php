@@ -5,16 +5,16 @@ public static function dashNav(){
       print('<div class="navbar-fixed">  
         <nav>
           <div class="nav-wrapper orange darken-2">
-          <a href="Dashboard.php" class="brand-logo logok"><img src="../../resources/img/mocheros.jpeg" height="50"></a>
+          <a href="dashboard.php" class="brand-logo logok"><img src="../../resources/img/mocheros.jpeg" height="50"></a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li><a href="priv_usuarios.php" class="waves-effect waves-orange">Gestión de usuarios</a></li>
               <li><a href="priv_productos.php" class="waves-effect waves-orange">Administración productos</a></li>
-              <li><a href="priv_estados.php" class="waves-effect waves-orange">Gestión de pedidos</a></li              
-            </ul>
-            <ul>
+              <li><a href="priv_estados.php" class="waves-effect waves-orange">Gestión de pedidos</a></li>
+              <ul>
             <li><a href="../public/index.php" class="waves-effect waves-orange">Cerrar sesión</a></li>
-            </ul>
+            </ul>               
+            </ul>              
           </div>
         </nav>        
       </div>
@@ -43,8 +43,8 @@ public static function dashNav(){
                 </div>
                 <ul class="sidenav orange darken-2" id="mobile-demo">
                      <li><a class="white-text">Mocheros</a></li>
-                      <hr color="white">
-                        <li><a class="waves-effect waves-orange modal-trigger" href="#modal1">Iniciar sesión</a></li>
+                      <!--<hr color="white">
+                        <li><a class="waves-effect waves-orange modal-trigger" href="#modal1">Iniciar sesión</a></li>-->
                  </ul>');
         }
 
@@ -52,6 +52,8 @@ public static function dashNav(){
             print('<!DOCTYPE html>
             <html lang="en">
               <head>
+              <!--Le hacemos saber al navegador que esté optimizable para moviles-->
+              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                       <title>Dashboard - '.$title.'</title>
                       <!--Importando los iconos de google materialize-->
                       <link href="../../resources/css/material_icons.css" rel="stylesheet">
@@ -60,10 +62,10 @@ public static function dashNav(){
                       <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css" media="screen,projection" />
                       <!-- Importando el style.css -->
                       <link type="text/css" rel="stylesheet" href="../../resources/css/style.css" media="screen,projection" />
-                      <link type="text/css" rel="stylesheet" href="../../resources/css/jquery.dataTables.min.cssview?" media="screen,projection" />
+                      <link type="text/css" rel="stylesheet" href="../../resources/css/dataTables.min.css" />
+                      <link type="text/css" rel="stylesheet" href="../../resources/css/dataTables.materialize.min.css" />
                       <link rel="stylesheet" href="../../resources/css/animate.css">
-                      <!--Le hacemos saber al navegador que esté optimizable para moviles-->
-                      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
               </head>
             ');
 
@@ -110,9 +112,9 @@ public static function dashNav(){
                 <!--Import jQuery before materialize.js-->
                 <script type="text/javascript" src="../../resources/js/jquery-3.3.1.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
-                <script type="text/javascript" src="../../resources/js/pagination.min.js"></script>
-                <script type="text/javascript" src="../../resources/js/pagination.js"></script>
-                <script type="text/javascript" src="../../resources/js/jquery.dataTables.min.js"></script>               
+                <script type="text/javascript" src="../../resources/js/dataTables.min.js"></script>   
+                <script type="text/javascript" src="../../resources/js/dataTables.material.min.js"></script>
+                <script type="text/javascript" src="../../resources/js/dataTables.responsive.min.js"></script>            
                 <script type="text/javascript" src="../../resources/js/main.js"></script>
                 <script type="text/javascript" src="../../resources/js/Chart.bundle.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/Chart.bundle.js"></script>
@@ -126,7 +128,7 @@ public static function dashNav(){
             ');
         }
 
-        public static function indexDashFooter(){
+        public static function indexDashFooter($controller){
             print('
             <!--Estructura del footer-->
             <footer class="page-footer orange darken-2">
@@ -147,6 +149,8 @@ public static function dashNav(){
                 <script type="text/javascript" src="../../resources/js/jquery-3.3.1.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/main.js"></script>
+                <script type="text/javascript" src="../../core/helpers/functions.js"></script>
+                <script type="text/javascript" src="../../core/controllers/dashboard/'.$controller.'"></script>
             </body>
             </html>
             ');

@@ -50,8 +50,10 @@ $('#form-sesion').submit(function()
             //Se comprueba si la respuesta es satisfactoria, sino se muestra la excepción
             if (dataset.status) {
                 sweetAlert(1, 'Autenticación correcta', 'dashboard.php');
+                console.log(dataset);
             } else {
                 sweetAlert(2, dataset.exception, null);
+                console.log(dataset);
             }
         } else {
             console.log(response);
