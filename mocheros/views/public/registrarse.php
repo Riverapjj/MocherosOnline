@@ -5,50 +5,45 @@
 <main class="grey lighten-2">
     <div class="container">
         <div class="row center-align">
-            <h3 class="center-align">Registrate</h3>
+            <h3 class="center-align indigo-text">Registrate</h3>
             <form method="post" id="form-register">
-                <div class="input-field col s12 m6">
+                <div class="input-field col s11 m6">
                     <i class="material-icons prefix">assignment_ind</i>
                     <input id="usuario" type="text" name="usuario" class="validate" required/>
                     <label for="usuario">Nombre de usuario</label>
                 </div>
-                <!--<div class="input-field col s12 m6">
-                    <i class="material-icons prefix">assignment_ind</i>
-                    <input disabled value="6" id="idrol" type="text" name="idrol" class="validate" required/>
-                    <label for="disabled">Rol</label>
-                </div>-->
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">person</i>
+                    <i class="material-icons prefix">account_circle</i>
                     <input id="nombre" type="text" name="nombre" class="validate" required/>
                     <label for="nombre">Nombres</label>
                 </div>
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">person</i>
+                    <i class="material-icons prefix">account_circle</i>
                     <input id="apellido" type="text" name="apellido" class="validate" required/>
                     <label for="apellido">Apellidos</label>
                 </div>
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">person</i>
+                    <i class="material-icons prefix">home</i>
                     <textarea id="direccion" name="direccion" class="materialize-textarea validate" required></textarea>
                     <label for="direccion">Dirección</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <i class="material-icons prefix">person</i>
+                    <i class="material-icons prefix">phone</i>
                     <input id="telefono" type="text" name="telefono" class="validate" required/>
                     <label for="telefono">Teléfono</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <i class="material-icons prefix">person</i>
+                    <i class="material-icons prefix">email</i>
                     <input id="correo" type="text" name="correo" class="validate" required/>
                     <label for="correo">Correo electrónico</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <i class="material-icons prefix">person</i>
+                    <i class="material-icons prefix">lock</i>
                     <input id="clave1" type="password" name="clave1" class="validate" required/>
                     <label for="clave1">Contraseña</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <i class="material-icons prefix">person</i>
+                    <i class="material-icons prefix">lock</i>
                     <input id="clave2" type="password" name="clave2" class="validate" required/>
                     <label for="clave2">Confirmar contraseña</label>
                 </div>

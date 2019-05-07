@@ -46,7 +46,7 @@ class publicHelper{
                                     <li><a href="index.php"><i class="material-icons left">home</i>Inicio</a></li>
                                     <li><a href="mochilas.php"><i class="material-icons left">work</i>Productos</a></li>
                                     <li><a href="#" class="dropdown-trigger" data-target="dropdown"><i class="material-icons left">person</i>Mi cuenta - '.$_SESSION['nombreUsuario'].'<i class="material-icons right">arrow_drop_down</i></a></li>
-                                    <li><a href="registrarse.php"><i class="material-icons left">person_add</i>Registrarse</a></li>
+                                    <!--<li><a href="registrarse.php"><i class="material-icons left">person_add</i>Registrarse</a></li>-->
                                     <li><a href="carrito.php"><i class="material-icons left">shopping_cart</i>Carrito</a></li>
                                 </ul>
                                 <ul id="dropdown" class="dropdown-content">
@@ -74,7 +74,7 @@ class publicHelper{
                 }
             } else {
                 $filename = basename($_SERVER['PHP_SELF']);
-                if ($filename != 'index.php' && $filename != 'login.php' && $filename != 'registrarse.php') {
+                if ($filename != 'index.php' && $filename != 'login.php' && $filename != 'registrarse.php' && $filename != 'mochilas.php') {
                     header('location: index.php');
                 } else {
                     print('
@@ -92,7 +92,7 @@ class publicHelper{
                     <div class="navbar-fixed">
                         <nav class="orange darken-2">
                             <div class="nav-wrapper">
-                                <a href="index.php" class="brand-logo"><img src="../../resources/img/mocheros-mini.jpg">Mocheros</a>
+                                <a href="index.php" class="brand-logo"><img src="../../resources/img/mocheros-mini.jpg"></a>
                                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                                     <li><a href="index.php"><i class="material-icons left">home</i>Inicio</a></li>
@@ -277,7 +277,7 @@ class publicHelper{
                             <label for="profile_correo">Correo electrónico</label>
                         </div>
                         <div class="col s12">
-                            <button type="submit" class="btn waves-effect orange tooltipped" data-tooltip="Guardar"><i class="material-icons">save</i></button>
+                            <button type="submit" class="btn waves-effect orange tooltipped" data-tooltip="Guardar"><i class="material-icons left">edit</i>Editar perfil</button>
                         </div>
                     </form>
                 </div>

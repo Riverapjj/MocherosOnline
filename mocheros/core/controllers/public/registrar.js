@@ -41,7 +41,7 @@ $('#form-register').submit(function()
         if (isJSONString(response)) {
             const dataset = JSON.parse(response);
             if (dataset.status) {
-                sweetAlert(1, 'Usuario registrado correctamente', 'registrarse.php');
+                sweetAlert(1, 'Usuario registrado correctamente', 'login.php');
             } else {
                 sweetAlert(2, dataset.exception, null);
             }

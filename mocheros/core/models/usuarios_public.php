@@ -11,7 +11,6 @@ class Usuarios extends Validator
     private $telefono = null;
     private $email = null;
     private $clave = null;
-    private $idestado = null;
 
     //Método para sobrecarga de propiedades
     public function setIdUsuario($value)
@@ -216,8 +215,8 @@ class Usuarios extends Validator
 	public function createCliente()
 	{
 		$hash = password_hash($this->clave, PASSWORD_DEFAULT);
-		$sql = 'INSERT INTO usuarios(IdRol, NomUsuario, Nombre, Apellido, Direccion, Telefono, Email, Clave) VALUES(6, ?, ?, ?, ?, ?, ?, ?)';
-		$params = array($this->nomusuario, $this->nombre, $this->apellido, $this->direccion, $this->telefono, $this->email, $hash);
+		$sql = 'INSERT INTO usuarios(IdRol, NomUsuario, Nombre, Apellido, Direccion, Telefono, Email, Clave) VALUES(?, ?, ?, ?, ?, ?, ?, ?)';
+		$params = array(6, $this->nomusuario, $this->nombre, $this->apellido, $this->direccion, $this->telefono, $this->email, $hash);
 		return Database::executeRow($sql, $params);
 	}
 
