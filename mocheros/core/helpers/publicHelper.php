@@ -2,6 +2,7 @@
 class publicHelper{
 
     public static function header($title){
+        session_start();
         print('
             <!DOCTYPE html>
 			<html lang="es">
@@ -19,45 +20,104 @@ class publicHelper{
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
             </head>
             <body>
-                <header>
-                    <div class="header">
-                        <div class="row">
-                            <div class="col s12 l12 orange darken-2">
-                                <img class="col s4 l2" src="../../resources/img/marca-mochilas.jpg">
-                                <h1 class="blue-text text-darken-4"> Mocheros </h1>
-                                <h4 class="yellow-text text-accent-2"> Tus compañeros en tus aventuras </h4>
-                            </div>
-                        </div>
-                    </div>
-                </header>
-                <nav class="amber accent-3">
-                    <div class="nav-wrapper">
-                        <a href="#" class="brand-logo"></a>
-                        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                        <ul id="nav-mobile" class="left hide-on-med-and-down">
-                            <li><a href="index.php"><i class="material-icons left">home</i>Inicio</a></li>
-                            <li><a href="mochilas.php"><i class="material-icons left">work</i>Productos</a></li>
-                            <li><a href="#" class="dropdown-trigger" data-target="dropdown"><i class="material-icons left">person</i>Mi cuenta</a></li>
-                            <li><a href="registrarse.php"><i class="material-icons left">person_add</i>Registrarse</a></li>
-                            <li><a href="carrito.php"><i class="material-icons left">shopping_cart</i>Carrito</a></li>
-                        </ul>
-                        <ul id="dropdown" class="dropdown-content">
-							<li><a href="login.php" class="orange-text text-darken-4"><i class="material-icons">person</i>Iniciar sesión</a></li>
-							<li><a href="#" onclick="signOff()" class="orange-text text-darken-4"><i class="material-icons">clear</i>Cerrar sesión</a></li>
-						</ul>
-                    </div>
-                </nav>
-                <ul class="sidenav" id="mobile-demo">
-                    <li><a href="index.php">Mocheros</a></li>
-                    <hr>
-                    <li><a href="index.php">Inicio</a></li>
-                    <li><a href="mochilas.php">Productos</a></li>
-                    <li><a href="carrito.php">Carrito</a></li>
-                    <li><a class="modal-trigger" href="#modal1">Iniciar sesión</a></li>
-                    <li><a class="modal-trigger" href="#modal2">Registrarse</a></li>
-                </ul>
             ');
-            self::modals();
+            if (isset($_SESSION['idUsuario'])) {
+                $filename = basename($_SERVER['PHP_SELF']);
+                if ($filename != 'login.php') {
+                    self::modals();
+                    print('
+                    <header>
+                        <div class="header">
+                            <!--<div class="row">
+                                <div class="col s12 l12 orange darken-2">
+                                    <img class="col s4 l2" src="../../resources/img/marca-mochilas.jpg">
+                                    <h1 class="blue-text text-darken-4"> Mocheros </h1>
+                                    <h4 class="yellow-text text-accent-2"> Tus compañeros en tus aventuras </h4>
+                                </div>
+                            </div>-->
+                        </div>
+                    </header>
+                    <div class="navbar-fixed">
+                        <nav class="orange darken-2">
+                            <div class="nav-wrapper">
+                                <a href="index.php" class="brand-logo"><img src="../../resources/img/mocheros-mini.jpg"></a>
+                                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                                    <li><a href="index.php"><i class="material-icons left">home</i>Inicio</a></li>
+                                    <li><a href="mochilas.php"><i class="material-icons left">work</i>Productos</a></li>
+                                    <li><a href="#" class="dropdown-trigger" data-target="dropdown"><i class="material-icons left">person</i>Mi cuenta - '.$_SESSION['nombreUsuario'].'<i class="material-icons right">arrow_drop_down</i></a></li>
+                                    <!--<li><a href="registrarse.php"><i class="material-icons left">person_add</i>Registrarse</a></li>-->
+                                    <li><a href="carrito.php"><i class="material-icons left">shopping_cart</i>Carrito</a></li>
+                                </ul>
+                                <ul id="dropdown" class="dropdown-content">
+                                    <li><a href="#" onclick="modalProfile()" class="orange-text text-darken-4"><i class="material-icons">person</i>Ver mi cuenta</a></li>
+                                    <li><a href="#modal-password" class="modal-trigger orange-text text-darken-4"><i class="material-icons">lock</i>Cambiar mi contraseña</a></li>
+                                    <li><a href="#" onclick="signOff()" class="orange-text text-darken-4"><i class="material-icons">exit_to_app</i>Cerrar sesión</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <ul class="sidenav" id="mobile-demo">
+                        <li><a href="index.php">Mocheros</a></li>
+                        <hr>
+                        <li><a href="index.php">Inicio</a></li>
+                        <li><a href="mochilas.php">Productos</a></li>
+                        <li><a href="carrito.php">Carrito</a></li>
+                        <li><a href="login.php">Mi cuenta</a></li>
+                        <li><a href="registrarse.php">Registrarse</a></li>
+                        <hr>
+                        <li><a href="#" onclick="signOff()">Cerrar sesión</a></li>
+                    </ul>
+                    ');
+                } else {
+                    header('location: mochilas.php');
+                }
+            } else {
+                $filename = basename($_SERVER['PHP_SELF']);
+                if ($filename != 'index.php' && $filename != 'login.php' && $filename != 'registrarse.php' && $filename != 'mochilas.php') {
+                    header('location: index.php');
+                } else {
+                    print('
+                    <header>
+                        <div class="header">
+                            <!--<div class="row">
+                                <div class="col s12 l12 orange darken-2">
+                                    <img class="col s4 l2" src="../../resources/img/marca-mochilas.jpg">
+                                    <h1 class="blue-text text-darken-4"> Mocheros </h1>
+                                    <h4 class="yellow-text text-accent-2"> Tus compañeros en tus aventuras </h4>
+                                </div>
+                            </div>-->
+                        </div>
+                    </header>
+                    <div class="navbar-fixed">
+                        <nav class="orange darken-2">
+                            <div class="nav-wrapper">
+                                <a href="index.php" class="brand-logo"><img src="../../resources/img/mocheros-mini.jpg"></a>
+                                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                                    <li><a href="index.php"><i class="material-icons left">home</i>Inicio</a></li>
+                                    <li><a href="mochilas.php"><i class="material-icons left">work</i>Productos</a></li>
+                                    <li><a href="login.php"><i class="material-icons left">person</i>Iniciar sesión</a></li>
+                                    <li><a href="registrarse.php"><i class="material-icons left">person_add</i>Registrarse</a></li>
+                                </ul>
+                                <!--<ul id="dropdown" class="dropdown-content">
+                                    <li><a href="login.php" class="orange-text text-darken-4"><i class="material-icons">person</i>Iniciar sesión</a></li>
+                                    <li><a href="#" onclick="s" class="orange-text text-darken-4"><i class="material-icons">clear</i>Cerrar sesión</a></li>
+                                </ul>-->
+                            </div>
+                        </nav>
+                    </div>
+                    <ul class="sidenav" id="mobile-demo">
+                        <li><a href="index.php">Mocheros</a></li>
+                        <hr>
+                        <li><a href="index.php">Inicio</a></li>
+                        <li><a href="mochilas.php">Productos</a></li>
+                        <li><a href="login.php">Iniciar sesión</a></li>
+                        <li><a href="registrarse.php">Registrarse</a></li>
+                    </ul>
+                    ');
+                }
+            }
         }
 
     public static function footer($controller){
@@ -100,6 +160,7 @@ class publicHelper{
         <script type="text/javascript" src="../../resources/js/public.js"></script>
         <script type="text/javascript" src="../../resources/js/Chart.js"></script>
         <script type="text/javascript" src="../../resources/js/functions.js"></script>
+        <script type="text/javascript" src="../../core/controllers/public/logout.js"></script>
         <script type="text/javascript" src="../../core/controllers/public/'.$controller.'"></script>
         </body>
         
@@ -181,6 +242,87 @@ class publicHelper{
 
     public function modals(){
         print('
+            <div id="modal-profile" class="modal">
+                <div class="modal-content">
+                    <h3 class="center-align">Mi cuenta</h3>
+                    <form method="post" id="form-profile">
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix">assignment_ind</i>
+                            <input id="profile_usuario" type="text" name="profile_usuario" class="validate" required/>
+                            <label for="profile_usuario">Nombre de usuario</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">person</i>
+                            <input id="profile_nombre" type="text" name="profile_nombre" class="validate" required/>
+                            <label for="profile_nombre">Nombres</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">person</i>
+                            <input id="profile_apellido" type="text" name="profile_apellido" class="validate" required/>
+                            <label for="profile_apellido">Apellidos</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">person</i>
+                            <textarea id="profile_direccion" name="profile_direccion" class="materialize-textarea validate" required></textarea>
+                            <label for="profile_direccion">Dirección</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix">person</i>
+                            <input id="profile_telefono" type="text" name="profile_telefono" class="validate" required/>
+                            <label for="profile_telefono">Teléfono</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix">person</i>
+                            <input id="profile_correo" type="text" name="profile_correo" class="validate" required/>
+                            <label for="profile_correo">Correo electrónico</label>
+                        </div>
+                        <div class="col s12">
+                            <button type="submit" class="btn waves-effect orange tooltipped" data-tooltip="Guardar"><i class="material-icons left">edit</i>Editar perfil</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="modal-password" class="modal">
+				<div class="modal-content">
+					<h4 class="center-align">Cambiar contraseña</h4>
+					<form method="post" id="form-password">
+						<div class="row center-align">
+							<label>Contraseña actual</label>
+						</div>
+						<div class="row">
+							<div class="input-field col s12 m6">
+								<i class="material-icons prefix">security</i>
+								<input id="clave_actual_1" type="password" name="clave_actual_1" class="validate" required/>
+								<label for="clave_actual_1">Clave</label>
+							</div>
+							<div class="input-field col s12 m6">
+								<i class="material-icons prefix">security</i>
+								<input id="clave_actual_2" type="password" name="clave_actual_2" class="validate" required/>
+								<label for="clave_actual_2">Confirmar clave</label>
+							</div>
+						</div>
+						<div class="row center-align">
+							<label>CLAVE NUEVA</label>
+						</div>
+						<div class="row">
+							<div class="input-field col s12 m6">
+								<i class="material-icons prefix">security</i>
+								<input id="clave_nueva_1" type="password" name="clave_nueva_1" class="validate" required/>
+								<label for="clave_nueva_1">Clave</label>
+							</div>
+							<div class="input-field col s12 m6">
+								<i class="material-icons prefix">security</i>
+								<input id="clave_nueva_2" type="password" name="clave_nueva_2" class="validate" required/>
+								<label for="clave_nueva_2">Confirmar clave</label>
+							</div>
+						</div>
+						<div class="row center-align">
+							<a href="#" class="btn waves-effect grey tooltipped modal-close" data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
+							<button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Cambiar"><i class="material-icons">save</i></button>
+						</div>
+					</form>
+				</div>
+			</div>
         <div id="terminos" class="modal modal-fixed-footer">
             <div class="modal-content">
                 <h4>Términos y condiciones</h4>

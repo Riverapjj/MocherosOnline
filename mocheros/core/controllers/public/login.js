@@ -3,7 +3,7 @@ $(document).ready(function()
     checkUsuarios();
 })
 
-const apiSesion = '../../core/api/public/usuarios.php?site=login&action=';
+const apiSesion = '../../core/api/usuarios_public.php?site=publicHelper&action=';
 
 function checkUsuarios()
 {
@@ -28,13 +28,14 @@ function checkUsuarios()
     });
 }
 
-$('#form-sesion').submit(function()
+$('#form-session').submit(function()
 {
+    console.log('Hola');
     event.preventDefault();
     $.ajax({
         url: apiSesion + 'login',
         type: 'post',
-        data: $('#form-sesion').serialize(),
+        data: $('#form-session').serialize(),
         datatype: 'json'
     })
     .done(function(response){

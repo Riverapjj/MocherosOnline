@@ -3,7 +3,7 @@ $(document).ready(function()
     checkUsuarios();
 })
 
-const apiRegistrar = '../../core/api/public/usuarios.php?site=index&action=';
+const apiRegistrar = '../../core/api/usuarios_public.php?site=publicHelper&action=';
 
 function checkUsuarios()
 {
@@ -17,7 +17,7 @@ function checkUsuarios()
         if (isJSONString(response)) {
             const dataset = JSON.parse(response);
             if (dataset.status == 1) {
-                sweetAlert(3, dataset.exception, 'index.php');
+                sweetAlert(3, dataset.exception, 'registrarse.php');
             }
         } else {
             console.log(response);
