@@ -59,11 +59,11 @@ public static function dashNav(){
                       <link href="../../resources/css/material_icons.css" rel="stylesheet">
                       <meta charset="utf-8">
                       <!--importando el css materialize.css-->
-                      <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css" media="screen,projection" />
+                      <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css" media="screen,projection"/>
                       <!-- Importando el style.css -->
-                      <link type="text/css" rel="stylesheet" href="../../resources/css/style.css" media="screen,projection" />
-                      <link type="text/css" rel="stylesheet" href="../../resources/css/dataTables.min.css" />
-                      <link type="text/css" rel="stylesheet" href="../../resources/css/dataTables.materialize.min.css" />
+                      <link type="text/css" rel="stylesheet" href="../../resources/css/style.css" media="screen,projection"/>
+                      <link type="text/css" rel="stylesheet" href="../../resources/css/dataTables.material.min.css"/>
+                      <link type="text/css" rel="stylesheet" href="../../resources/css/responsive.jqueryui.min.css"/>
                       <link rel="stylesheet" href="../../resources/css/animate.css">
 
               </head>
@@ -112,14 +112,16 @@ public static function dashNav(){
                 <!--Import jQuery before materialize.js-->
                 <script type="text/javascript" src="../../resources/js/jquery-3.3.1.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
-                <script type="text/javascript" src="../../resources/js/dataTables.min.js"></script>   
+                <script type="text/javascript" src="../../resources/js/dataTables.min.js"></script>  
+                <script type="text/javascript" src="../../resources/js/dataTable.js"></script> 
                 <script type="text/javascript" src="../../resources/js/dataTables.material.min.js"></script>
-                <script type="text/javascript" src="../../resources/js/dataTables.responsive.min.js"></script>            
+                <script type="text/javascript" src="../../resources/js/dataTables.responsive.min.js"></script>       
                 <script type="text/javascript" src="../../resources/js/main.js"></script>
                 <script type="text/javascript" src="../../resources/js/Chart.bundle.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/Chart.bundle.js"></script>
                 <script type="text/javascript" src="../../resources/js/Chart.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/Chart.js"></script>
+                <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                 <script type="text/javascript" src="../../core/helpers/functions.js"></script>
                 <script type="text/javascript" src="../../core/controllers/dashboard/'.$controller.'"></script>
             </body>

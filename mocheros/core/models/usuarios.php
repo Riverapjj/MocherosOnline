@@ -223,7 +223,7 @@ class Usuarios extends Validator
 
 	public function getUsuario()
 	{
-		$sql = 'SELECT IdUsuario, NomUsuario, Nombre, Apellido, Email FROM usuarios WHERE IdUsuario = ?';
+		$sql = 'SELECT IdUsuario, IdRol, NomUsuario, Nombre, Apellido, Email, Direccion, Telefono, IdEstado  FROM usuarios WHERE IdUsuario = ?';
 		$params = array($this->idusuario);
 		return Database::getRow($sql, $params);
     }

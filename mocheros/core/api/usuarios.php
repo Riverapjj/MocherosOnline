@@ -9,7 +9,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
     $usuario = new Usuarios;
     $result = array('status' => 0, 'exception' => '', 'dataset' => '');
     //Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
-    if (/* isset($_SESSION['IdUsuario']) && */ $_GET['site'] == 'dashboard') {
+    if (/* isset($_SESSION['idUsuario']) && */ $_GET['site'] == 'dashboard') {
         switch ($_GET['action']) {
             case 'logout':
                 if (session_destroy()) {
@@ -229,7 +229,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'delete':
                 if ($_POST['IdUsuario'] != $_SESSION['idUsuario']) {
-                    if ($usuario->setId($_POST['IdUsuario'])) {
+                    if ($usuario->setIdUsuario($_POST['IdUsuario'])) {
                         if ($usuario->getUsuario()) {
                             if ($usuario->deleteUsuario()) {
                                 $result['status'] = 1;

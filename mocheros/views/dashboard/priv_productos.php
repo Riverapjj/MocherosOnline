@@ -16,11 +16,8 @@
         <div class="col s12">
             <!--Creando un "tab" para elegir entre administrar juguetes, tipo de juguetes y su categorias necesarias-->
             <ul class="tabs">
-                <li class="tab col s3 m6 l6"><a class="cyan-text darken-2" href="#test1">Juguetes</a></li>
-                <li class="tab col s3 m6 l6"><a class="cyan-text darken-2" href="#test4">Categoria</a></li>
-                <li class="tab col s3 disabled"><a href="#test5" class="white-text">Disabled sdsdzssdsdfasdasfTab</a>
-                </li>
-                <li class="tab col s3 disabled"><a href="#test5" class="white-text">Disabled sdsdzssdsdfasdasfTab</a>
+                <li class="tab col s6 m6 l6"><a class="cyan-text darken-2" href="#test1">Juguetes</a></li>
+                <li class="tab col s6 m6 l6"><a class="cyan-text darken-2" href="#test4">Categoria</a></li>
                 </li>
             </ul>
         </div> <br><br><br>
