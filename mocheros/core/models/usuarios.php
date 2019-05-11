@@ -190,6 +190,21 @@ class Usuarios extends Validator
         }
     }
 
+    public function checkPassword2()
+    {
+        $sql = 'SELECT Clave FROM usuarios WHERE IdUsuario = ?';
+        $params = array($this->idusuario);
+        $data = Database::getRow($sql, $params);
+        if (password_verify($this->clave, $data['Clave'])) {
+            print_r($data['Çlave'] + $this->clave);
+         //   return true;
+        } else {
+          //  return false;
+          print_r(var_dump($data['Clave']));
+        }
+    }
+
+
     public function changePassword()
     {
         $hash = password_hash($this->clave, PASSWORD_DEFAULT);

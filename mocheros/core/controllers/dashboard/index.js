@@ -21,7 +21,7 @@ function checkUsuarios()
             const dataset = JSON.parse(response);
             //Se comprueba que no hay usuarios registrados para redireccionar al registro del primer usuario
             if (dataset.status == 2) {
-                sweetAlert(3, dataset.exception, 'register.php');
+                sweetAlert(3, dataset.exception,);
             }
         } else {
             console.log(response);
@@ -41,22 +41,24 @@ $('#form-sesion').submit(function()
         url: apiSesion + 'login',
         type: 'post',
         data: $('#form-sesion').serialize(),
-        datatype: 'json'
+        datatype: 'Content-type:application/json'
     })
     .done(function(response){
         //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+        console.log(isJSONString(response));
+        console.log(JSON.parse(response));
         if (isJSONString(response)) {
             const dataset = JSON.parse(response);
             //Se comprueba si la respuesta es satisfactoria, sino se muestra la excepción
-            if (dataset.status) {
-                sweetAlert(1, 'Autenticación correcta', 'dashboard.php');
-                console.log(dataset);
+            if (dataset.status == 1) {
+                sweetAlert('Autenticación correcta', 'dashboard.php');
+                console.log(dataset.status);
             } else {
                 sweetAlert(2, dataset.exception, null);
                 console.log(dataset);
             }
         } else {
-            console.log(response);
+            console.log('ok');
         }
     })
     .fail(function(jqXHR){

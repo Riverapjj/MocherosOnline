@@ -556,5 +556,5 @@
         </div>
     </main>
     <?php
-    DashboardHelper::footer('usuarios.js');
+    DashboardHelper::footer('usuarios.js', null);
 ?>

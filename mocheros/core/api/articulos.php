@@ -7,9 +7,9 @@ require_once('../../core/models/articulos.php');
 if (isset($_GET['site']) && isset($_GET['action'])) {
     session_start();
     $articulo = new Articulos;
-    $result = array('status' => 0, 'exception' => '');
+    $result = array('status' => 0, 'exception' => '', 'dataset' => '');
     //Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
-	if (isset($_SESSION['idUsuario']) && $_GET['site'] == 'dashboard') {
+	if (/* isset($_SESSION['idUsuario']) && */ $_GET['site'] == 'dashboard') {
         switch ($_GET['action']) {
             case 'readProductos':
                 if ($result['dataset'] = $articulo->readProductos()) {
@@ -39,16 +39,16 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'create':
                 $_POST = $articulo->validateForm($_POST);
-                if ($articulo->setCategoria($_POST['create_categoria'])) {
-                    if ($articulo->setNombre($_POST['create_nombre'])) {
-                        if ($articulo->setDescripcion($_POST['create_descripcion'])) {
-                            if ($articulo->setPrecio($_POST['create_precio'])) {
-                                if ($articulo->setCantidad($_POST['create_cantidad'])) {
-                                    if ($articulo->setEstado(isset($_POST['create_estado']) ? 1 : 0)) {
-                                        if (is_uploaded_file($_FILES['create_archivo']['tmp_name'])) {
-                                            if ($articulo->setFoto($_FILES['create_archivo'], null)) {
+                if ($articulo->setIdCategoria($_POST['create-category-name'])) {
+                    if ($articulo->setNomArticulo($_POST['create-name-name'])) {
+                        if ($articulo->setDescripcionArt($_POST['create-descrip-name'])) {
+                            if ($articulo->setPrecioUnitario($_POST['create-price-name'])) {
+                                if ($articulo->setCantidad($_POST['create-exist-name'])) {
+                                    if ($articulo->setIdEstado(isset($_POST['create-status-name']) ? 1 : 0)) {
+                                        if (is_uploaded_file($_FILES['create-file-name']['tmp_name'])) {
+                                            if ($articulo->setFoto($_FILES['create-file-name'], null)) {
                                                 if ($articulo->createProducto()) {
-                                                    if ($articulo->saveFile($_FILES['create_archivo'], $articulo->getRuta(), $articulo->getFoto())) {
+                                                    if ($articulo->saveFile($_FILES['create-file-name'], $articulo->getRuta(), $articulo->getFoto())) {
                                                         $result['status'] = 1;
                                                     } else {
                                                         $result['status'] = 2;

@@ -73,8 +73,10 @@ function fillTableAdmin(rows)
             <td>${row.Telefono}</td>
             <td>${row.Email}</td>
             <td><i class="material-icons">${icon}</i></td>
-            <td><a class="modal-trigger" href="#" onclick="modalUpdate(${row.IdUsuario})"> <i class="material-icons">border_color</i></a>
-            <a class="modal-trigger" href="#" onclick="confirmDelete(${row.IdUsuario})"><i class="material-icons">delete</i></a></td>
+            <td>
+                    <a href="#" onclick="modalUpdate(${row.IdUsuario})" class="blue-text tooltipped" data-tooltip="Modificar"><i class="material-icons">mode_edit</i></a>
+                    <a href="#" onclick="confirmDelete(${row.IdUsuario})" class="red-text tooltipped" data-tooltip="Eliminar"><i class="material-icons">delete</i></a>
+                </td>
         </tr>
         `;
     });
@@ -139,8 +141,8 @@ function modalUpdate(idusuario)
                 $('#form-update-admin')[0].reset();
                 $('#IdUsuario').val(result.dataset.IdUsuario);
                 $('#update-username').val(result.dataset.NomUsuario);
-                $('#update-name').val(result.dataset.Nombre) +',' + (result.dataset.Apellido);
-                $('#update-name').val(result.dataset.Apellido);
+                $('#update-name').val(result.dataset.Nombre) + (result.dataset.Apellido);
+              //  $('#update-name').val(result.dataset.Apellido);
                 $('#update-telef').val(result.dataset.Telefono);
                 $('#update-email').val(result.dataset.Email);
                 $('#update-address').val(result.dataset.Direccion);

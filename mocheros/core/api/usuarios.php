@@ -9,7 +9,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
     $usuario = new Usuarios;
     $result = array('status' => 0, 'exception' => '', 'dataset' => '');
     //Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
-    if (/* isset($_SESSION['idUsuario']) && */ $_GET['site'] == 'dashboard') {
+    if (/*  isset($_SESSION['idUsuario']) &&  */ $_GET['site'] == 'dashboard') {
         switch ($_GET['action']) {
             case 'logout':
                 if (session_destroy()) {
@@ -294,7 +294,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'login':
                 $_POST = $usuario->validateForm($_POST);
-                print_r($_POST);
+             //   print_r($_POST);
                 if ($usuario->setNomUsuario($_POST['log-username-name'])) {
                     if ($usuario->checkNomUsuario()) {
                         if ($usuario->setClave($_POST['log-pass-name'])) {
@@ -318,10 +318,12 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
             default:
                 exit('Acción no disponible');
         }
+        //echo json_encode($result);
     } else {
         exit('Acceso no disponible 2');
     }
-	print(json_encode($result));
+    echo json_encode($result);
+
 } else {
 	exit('Recurso denegado');
 }

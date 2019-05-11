@@ -71,7 +71,7 @@ public static function dashNav(){
 
         }
 
-        public static function footer($controller){
+        public static function footer($firstcontroller, $secondcontroller){
             print('
             <!--Estructura del footer-->
             <footer class="page-footer orange darken-2">
@@ -122,8 +122,9 @@ public static function dashNav(){
                 <script type="text/javascript" src="../../resources/js/Chart.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/Chart.js"></script>
                 <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
-                <script type="text/javascript" src="../../core/helpers/functions.js"></script>
-                <script type="text/javascript" src="../../core/controllers/dashboard/'.$controller.'"></script>
+                <script type="text/javascript" src="../../core/helpers/functions.js"></script>                
+                <script type="text/javascript" src="../../core/controllers/dashboard/'.$firstcontroller.'"></script>
+                <script type="text/javascript" src="../../core/controllers/dashboard/'.$secondcontroller.'"></script>
             </body>
             </html>
 
@@ -152,6 +153,7 @@ public static function dashNav(){
                 <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/main.js"></script>
                 <script type="text/javascript" src="../../core/helpers/functions.js"></script>
+                <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                 <script type="text/javascript" src="../../core/controllers/dashboard/'.$controller.'"></script>
             </body>
             </html>
