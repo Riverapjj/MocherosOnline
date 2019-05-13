@@ -212,6 +212,13 @@ class Articulos extends Validator
 		return Database::getRow($sql, $params);
 	}
 
+	public function selectArticulo()
+	{
+		$sql = 'SELECT Foto, NomArticulo, PrecioUnitario WHERE IdArticulos = ? LIMIT 1';
+		$params = array($this->id);
+		return Database::getRow($sql, $params);
+	}
+
 	public function updateProducto()
 	{
 		$sql = 'UPDATE articulos SET IdCategoria = ?, NomArticulo = ?, DescripcionArt = ?, PrecioUnitario = ?, Cantidad = ?, Foto = ?, Estado = ? WHERE IdArticulos = ?';

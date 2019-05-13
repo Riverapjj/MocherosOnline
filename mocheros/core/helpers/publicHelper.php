@@ -77,6 +77,7 @@ class publicHelper{
                 if ($filename != 'index.php' && $filename != 'login.php' && $filename != 'registrarse.php' && $filename != 'mochilas.php') {
                     header('location: index.php');
                 } else {
+                    self::modals();
                     print('
                     <header>
                         <div class="header">
@@ -252,32 +253,33 @@ class publicHelper{
                             <label for="profile_usuario">Nombre de usuario</label>
                         </div>
                         <div class="input-field col s12">
-                            <i class="material-icons prefix">person</i>
+                            <i class="material-icons prefix">account_circle</i>
                             <input id="profile_nombre" type="text" name="profile_nombre" class="validate" required/>
                             <label for="profile_nombre">Nombres</label>
                         </div>
                         <div class="input-field col s12">
-                            <i class="material-icons prefix">person</i>
+                            <i class="material-icons prefix">account_circle</i>
                             <input id="profile_apellido" type="text" name="profile_apellido" class="validate" required/>
                             <label for="profile_apellido">Apellidos</label>
                         </div>
                         <div class="input-field col s12">
-                            <i class="material-icons prefix">person</i>
+                            <i class="material-icons prefix">home</i>
                             <textarea id="profile_direccion" name="profile_direccion" class="materialize-textarea validate" required></textarea>
                             <label for="profile_direccion">Dirección</label>
                         </div>
                         <div class="input-field col s12 m6">
-                            <i class="material-icons prefix">person</i>
+                            <i class="material-icons prefix">phone</i>
                             <input id="profile_telefono" type="text" name="profile_telefono" class="validate" required/>
                             <label for="profile_telefono">Teléfono</label>
                         </div>
                         <div class="input-field col s12 m6">
-                            <i class="material-icons prefix">person</i>
+                            <i class="material-icons prefix">email</i>
                             <input id="profile_correo" type="text" name="profile_correo" class="validate" required/>
                             <label for="profile_correo">Correo electrónico</label>
                         </div>
                         <div class="col s12">
                             <button type="submit" class="btn waves-effect orange tooltipped" data-tooltip="Guardar"><i class="material-icons left">edit</i>Editar perfil</button>
+                            <a href="#" class="btn waves-effect red tooltipped modal-close" data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
                         </div>
                     </form>
                 </div>
@@ -291,33 +293,33 @@ class publicHelper{
 						</div>
 						<div class="row">
 							<div class="input-field col s12 m6">
-								<i class="material-icons prefix">security</i>
+								<i class="material-icons prefix">lock_outline</i>
 								<input id="clave_actual_1" type="password" name="clave_actual_1" class="validate" required/>
 								<label for="clave_actual_1">Clave</label>
 							</div>
 							<div class="input-field col s12 m6">
-								<i class="material-icons prefix">security</i>
+								<i class="material-icons prefix">lock_outline</i>
 								<input id="clave_actual_2" type="password" name="clave_actual_2" class="validate" required/>
 								<label for="clave_actual_2">Confirmar clave</label>
 							</div>
 						</div>
 						<div class="row center-align">
-							<label>CLAVE NUEVA</label>
+							<label>Nueva contraseña</label>
 						</div>
 						<div class="row">
 							<div class="input-field col s12 m6">
-								<i class="material-icons prefix">security</i>
+								<i class="material-icons prefix">lock</i>
 								<input id="clave_nueva_1" type="password" name="clave_nueva_1" class="validate" required/>
 								<label for="clave_nueva_1">Clave</label>
 							</div>
 							<div class="input-field col s12 m6">
-								<i class="material-icons prefix">security</i>
+								<i class="material-icons prefix">lock</i>
 								<input id="clave_nueva_2" type="password" name="clave_nueva_2" class="validate" required/>
 								<label for="clave_nueva_2">Confirmar clave</label>
 							</div>
 						</div>
 						<div class="row center-align">
-							<a href="#" class="btn waves-effect grey tooltipped modal-close" data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
+							<a href="#" class="btn waves-effect red tooltipped modal-close" data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
 							<button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Cambiar"><i class="material-icons">save</i></button>
 						</div>
 					</form>

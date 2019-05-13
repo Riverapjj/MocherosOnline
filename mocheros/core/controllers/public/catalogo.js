@@ -80,17 +80,6 @@ function readProductosCategoria(id, categoria)
                             <div class="card-content">
                                 <span class="card-title">${row.NomArticulo}</span>
                                 <p><b>$${row.PrecioUnitario}</b></p>
-                                <!--código para rating con estrellas-->
-                                <div class="ec-stars-wrapper">
-                                    <a href="#" data-value="1" title="Votar con 1 estrella">&#9733;</a>
-                                    <a href="#" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
-                                    <a href="#" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
-                                    <a href="#" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
-                                    <a href="#" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
-                                </div>
-                            </div>
-                            <div class="card-action">
-                                <a class="modal-trigger cyan-text" href="#modal2" >Ver comentarios</a>
                             </div>
                         </div>
                     </div>

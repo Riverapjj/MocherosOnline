@@ -210,6 +210,16 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                         $result['exception'] = 'Producto incorrecto 2';
                     }
                     break;
+                case 'addToCart':
+                    if ($articulo->setId($_POST['IdArticulos'])) {
+                        if ($result['dataset'] = $articulo->selectArticulo()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = 'Carrito no disponible';
+                        }
+                    } else {
+                        $result['exception'] = 'Producto incorrecto';
+                    }
                 case 'rateProducto':
                     $_POST = $articulo->validateForm($_POST);
                     if ($articulo->setId($_POST['IdArticulos'])) {
