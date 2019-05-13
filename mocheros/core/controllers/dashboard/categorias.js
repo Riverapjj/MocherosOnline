@@ -1,46 +1,37 @@
 $(document).ready(function()
 {
     showTable();
-    showSelectCategorias('create-category', null);
 })
 
 //Constante para establecer la ruta y parámetros de comunicación con la API
-const apiProductos = '../../core/api/articulos.php?site=dashboard&action=';
+const apiCategorias = '../../core/api/categorias.php?site=dashboard&action=';
 
 //Función para llenar tabla con los datos de los registros
-function fillTableProducts(rows)
+function fillTableCategory(rows)
 {
     let content = '';
-    //Se recorren las filas para armar el cuerpo de la tabla y se utiliza comilla invertida para escapar los caracteres especiales
-    rows.forEach(function(row){
-        (row.IdEstado == 1) ? icon = 'visibility' : icon = 'visibility_off';
+
+    rows.forEach( (row) => {
         
         content += `
-            <tr class="hoverable">
-                <td><img src="../../resources/img/productos/${row.Foto}" class="materialboxed" height="100"></td>
-                <td>${row.NomArticulo}</td>
-                <td>${row.Cantidad}</td>
-                <td>${row.NomCategoria}</td>
-                <td>${row.PrecioUnitario}</td>
-                <td>${row.DescripcionArt}</td>
-                <td><i class="material-icons">${icon}</i></td>
-                <td>
-                    <a href="#" onclick="modalUpdate(${row.IdArtculos})" class="blue-text tooltipped" data-tooltip="Modificar"><i class="material-icons">mode_edit</i></a>
-                    <a href="#" onclick="confirmDelete(${row.IdArtculos}, ${row.Foto})" class="red-text tooltipped" data-tooltip="Eliminar"><i class="material-icons">delete</i></a>
-                </td>
-            </tr>
+        <tr class="hoverable">
+            <td>${row.NomCategoria}</td>
+            <td>${row.Descripcion}</td>
+            <td><a class="modal-trigger" href="#" onclick="modalUpdate(${row.IdCategoria})"> <i class="material-icons">border_color</i></a>
+            <a class="modal-trigger" href="#" onclick="confirmDelete(${row.IdCategoria})"><i class="material-icons">delete</i></a></td>
+        </tr>
         `;
     });
-    $('#tbody-products').html(content);
-    $('.materialboxed').materialbox();
-    initTable('products-table');
+    $('#tbody-category').html(content);
+   
+    initTable('category-table');
 }
 
 //Función para obtener y mostrar los registros disponibles
 function showTable()
 {
     $.ajax({
-        url: apiProductos + 'readProductos',
+        url: apiCategorias + 'read',
         type: 'post',
         data: null,
         datatype: 'json'
@@ -53,7 +44,7 @@ function showTable()
             if (!result.status) {
                 sweetAlert(4, result.exception, null);
             }
-            fillTableProducts(result.dataset);
+            fillTableCategory(result.dataset);
         } else {
             console.log(response);
         }
@@ -65,11 +56,11 @@ function showTable()
 }
 
 //Función para mostrar los resultados de una búsqueda
-/* $('#form-search').submit(function()
+$('#form-search').submit(function()
 {
     event.preventDefault();
     $.ajax({
-        url: apiProductos + 'search',
+        url: apiCategorias + 'search',
         type: 'post',
         data: $('#form-search').serialize(),
         datatype: 'json'
@@ -93,57 +84,16 @@ function showTable()
         //Se muestran en consola los posibles errores de la solicitud AJAX
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
-}) */
-
-//Función para cargar las categorías en el select del formulario
-function showSelectCategorias(idSelect, value)
-{
-    $.ajax({
-        url: apiProductos + 'readCategorias',
-        type: 'post',
-        data: null,
-        datatype: 'json'
-    })
-    .done(function(response){
-        //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
-        if (isJSONString(response)) {
-            const result = JSON.parse(response);
-            //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
-            if (result.status) {
-                let content = '';
-                if (!value) {
-                    content += '<option value="" disabled selected>Seleccione una opción</option>';
-                }
-                result.dataset.forEach(function(row){
-                    if (row.categoria != value) {
-                        content += `<option value="${row.IdCategoria}">${row.NomCategoria}</option>`;
-                    } else {
-                        content += `<option value="${row.IdCategoria}" selected>${row.NomCategoria}</option>`;
-                    }
-                });
-                $('#' + idSelect).html(content);
-            } else {
-                $('#' + idSelect).html('<option value="">No hay opciones</option>');
-            }
-            $('select').formSelect();
-        } else {
-            console.log(response);
-        }
-    })
-    .fail(function(jqXHR){
-        //Se muestran en consola los posibles errores de la solicitud AJAX
-        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
-    });
-}
+})
 
 //Función para crear un nuevo registro
-$('#form-create-products').submit(function()
+$('#form-create').submit(function()
 {
     event.preventDefault();
     $.ajax({
-        url: apiProductos + 'create',
+        url: apiCategorias + 'create',
         type: 'post',
-        data: new FormData($('#form-create-products')[0]),
+        data: new FormData($('#form-create')[0]),
         datatype: 'json',
         cache: false,
         contentType: false,
@@ -155,13 +105,12 @@ $('#form-create-products').submit(function()
             const result = JSON.parse(response);
             //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
             if (result.status) {
-                $('#form-create-products')[0].reset();
-                $('#modal-create-products').modal('close');
-                console.log(result.status);
+                $('#form-create')[0].reset();
+                $('#modal-create').modal('close');
                 if (result.status == 1) {
-                    sweetAlert(1, 'Producto creado correctamente', null);
+                    sweetAlert(1, 'Categoría creada correctamente', null);
                 } else if (result.status == 2) {
-                    sweetAlert(3, 'Producto creado. ' + result.exception, null);
+                    sweetAlert(3, 'Categoría creada. ' + result.exception, null);
                 }
                 showTable();
             } else {
@@ -181,10 +130,10 @@ $('#form-create-products').submit(function()
 function modalUpdate(id)
 {
     $.ajax({
-        url: apiProductos + 'get',
+        url: apiCategorias + 'get',
         type: 'post',
         data:{
-            id_producto: id
+            id_categoria: id
         },
         datatype: 'json'
     })
@@ -195,13 +144,10 @@ function modalUpdate(id)
             //Se comprueba si el resultado es satisfactorio para mostrar los valores en el formulario, sino se muestra la excepción
             if (result.status) {
                 $('#form-update')[0].reset();
-                $('#id_producto').val(result.dataset.id_producto);
-                $('#imagen_producto').val(result.dataset.imagen_producto);
-                $('#update_nombre').val(result.dataset.nombre_producto);
-                $('#update_precio').val(result.dataset.precio_producto);
-                $('#update_descripcion').val(result.dataset.descripcion_producto);
-                (result.dataset.estado_producto == 1) ? $('#update_estado').prop('checked', true) : $('#update_estado').prop('checked', false);
-                showSelectCategorias('update_categoria', result.dataset.id_categoria);
+                $('#id_categoria').val(result.dataset.id_categoria);
+                $('#imagen_categoria').val(result.dataset.imagen_categoria);
+                $('#update_nombre').val(result.dataset.nombre_categoria);
+                $('#update_descripcion').val(result.dataset.descripcion_categoria);
                 M.updateTextFields();
                 $('#modal-update').modal('open');
             } else {
@@ -222,7 +168,7 @@ $('#form-update').submit(function()
 {
     event.preventDefault();
     $.ajax({
-        url: apiProductos + 'update',
+        url: apiCategorias + 'update',
         type: 'post',
         data: new FormData($('#form-update')[0]),
         datatype: 'json',
@@ -238,11 +184,11 @@ $('#form-update').submit(function()
             if (result.status) {
                 $('#modal-update').modal('close');
                 if (result.status == 1) {
-                    sweetAlert(1, 'Producto modificado correctamente', null);
+                    sweetAlert(1, 'Categoría modificada correctamente', null);
                 } else if(result.status == 2) {
-                    sweetAlert(3, 'Producto modificado. ' + result.exception, null);
+                    sweetAlert(3, 'Categoría modificada. ' + result.exception, null);
                 } else if(result.status == 3) {
-                    sweetAlert(1, 'Producto modificado. ' + result.exception, null);
+                    sweetAlert(1, 'Categoría modificada. ' + result.exception, null);
                 }
                 showTable();
             } else {
@@ -263,7 +209,7 @@ function confirmDelete(id, file)
 {
     swal({
         title: 'Advertencia',
-        text: '¿Quiere eliminar el producto?',
+        text: '¿Quiere eliminar la categoría?',
         icon: 'warning',
         buttons: ['Cancelar', 'Aceptar'],
         closeOnClickOutside: false,
@@ -272,11 +218,11 @@ function confirmDelete(id, file)
     .then(function(value){
         if (value) {
             $.ajax({
-                url: apiProductos + 'delete',
+                url: apiCategorias + 'delete',
                 type: 'post',
                 data:{
-                    id_producto: id,
-                    imagen_producto: file
+                    id_categoria: id,
+                    imagen_categoria: file
                 },
                 datatype: 'json'
             })
@@ -287,9 +233,9 @@ function confirmDelete(id, file)
                     //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
                     if (result.status) {
                         if (result.status == 1) {
-                            sweetAlert(1, 'Producto eliminado correctamente', null);
-                        } else if (result.status == 2) {
-                            sweetAlert(3, 'Producto eliminado. ' + result.exception, null);
+                            sweetAlert(1, 'Categoría eliminada correctamente', null);
+                        } else if(result.status == 2) {
+                            sweetAlert(3, 'Categoría eliminada. ' + result.exception, null);
                         }
                         showTable();
                     } else {
@@ -305,15 +251,4 @@ function confirmDelete(id, file)
             });
         }
     });
-}
-
-function modalTabs(){
-
-    if($('tabs-products') == true){
-        content = `
-        
-            
-        `
-    }
-
 }

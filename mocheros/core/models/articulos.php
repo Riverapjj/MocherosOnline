@@ -2,91 +2,91 @@
 class Articulos extends Validator
 {
 	//Declaración de propiedades
-	private $id = null;
-	private $categoria = null;
-	private $nombre = null;
-	private $descripcion = null;
-	private $precio = null;
+	private $idarticulos = null;
+	private $idcategoria = null;
+	private $idestado = null;
+	private $nomarticulo = null;
+	private $descripcionart = null;
+	private $preciounitario = null;
 	private $cantidad = null;
 	private $foto = null;
 	private $calificacion = null;
 	private $comentario = null;
-	private $estado = null;
-	private $ruta = '../../resources/img/articulos/';
+	private $ruta = '../../resources/img';
 
-	public function setId($value)
+	public function setIdArticulos($value)
 	{
 		if ($this->validateId($value)) {
-			$this->id = $value;
+			$this->idarticulos = $value;
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public function getId()
+	public function getIdArticulos()
 	{
-		return $this->id;
+		return $this->idarticulos;
 	}
 
-	public function setCategoria($value)
+	public function setIdCategoria($value)
 	{
 		if ($this->validateId($value)) {
-			$this->categoria = $value;
+			$this->idcategoria = $value;
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public function getCategoria()
+	public function getIdCategoria()
 	{
-		return $this->categoria;
+		return $this->idcategoria;
 	}
 
-	public function setNombre($value)
+	public function setNomArticulo($value)
 	{
 		if ($this->validateAlphanumeric($value, 1, 35)) {
-			$this->nombre = $value;
+			$this->nomarticulo = $value;
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public function getNombre()
+	public function getNomArticulo()
 	{
-		return $this->nombre;
+		return $this->nomarticulo;
 	}
 
-	public function setDescripcion($value)
+	public function setDescripcionArt($value)
 	{
 		if ($this->validateAlphanumeric($value, 1, 200)) {
-			$this->descripcion = $value;
+			$this->descripcionart = $value;
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public function getDescripcion()
+	public function getDescripcionArt()
 	{
-		return $this->descripcion;
+		return $this->descripcionart;
 	}
 
-	public function setPrecio($value)
+	public function setPrecioUnitario($value)
 	{
 		if ($this->validateMoney($value)) {
-			$this->precio = $value;
+			$this->preciounitario = $value;
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public function getPrecio()
+	public function getPrecioUnitario()
 	{
-		return $this->precio;
+		return $this->preciounitario;
 	}
 
 	public function setCantidad($value)
@@ -101,7 +101,7 @@ class Articulos extends Validator
 
 	public function getCantidad()
 	{
-		return $this->precio;
+		return $this->cantidad;
 	}
 
 	public function setFoto($file, $name)
@@ -149,19 +149,19 @@ class Articulos extends Validator
 		return $this->comentario;
 	}
 
-	public function setEstado($value)
+	public function setIdEstado($value)
 	{
 		if ($value == '1' || $value == '0') {
-			$this->estado = $value;
+			$this->idestado = $value;
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public function getEstado()
+	public function getIdEstado()
 	{
-		return $this->estado;
+		return $this->idestado;
 	}
 
 	public function getRuta()
@@ -173,20 +173,20 @@ class Articulos extends Validator
 	public function readProductosCategoria()
 	{
 		$sql = 'SELECT NomCategoria, IdArticulos, Foto, NomArticulo, DescripcionArt, PrecioUnitario FROM articulos INNER JOIN categorias USING(IdCategoria) WHERE IdCategoria = ? AND Estado = 1 ORDER BY NomArticulo';
-		$params = array($this->categoria);
+		$params = array($this->idcategoria);
 		return Database::getRows($sql, $params);
 	}
 
 	public function readProductos()
 	{
-		$sql = 'SELECT IdArticulos, Foto, NomArticulo, DescripcionArt, PrecioUnitario, NomCategoria, Estado FROM articulos ORDER BY NomArticulo';
+		$sql = 'SELECT IdArticulos, cat.NomCategoria, NomArticulo, DescripcionArt, PrecioUnitario, Cantidad, Foto, IdEstado FROM articulos art INNER JOIN categorias cat ON cat.IdCategoria = art.IdCategoria ORDER BY NomArticulo';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}
 
 	public function searchProductos($value)
 	{
-		$sql = 'SELECT IdArticulos, Foto, NomArticulo, DescripcionArt, PrecioUnitario, NomCategoria, Estado FROM articulos INNER JOIN categorias USING(IdCategoria) WHERE NomArticulo LIKE ? OR DescripcionArt LIKE ? ORDER BY NomArticulo';
+		$sql = 'SELECT IdArticulos, Foto, NomArticulo, DescripcionArt, PrecioUnitario, NomCategoria, IdEstado FROM articulos INNER JOIN categorias USING(IdCategoria) WHERE NomArticulo LIKE ? OR DescripcionArt LIKE ? ORDER BY NomArticulo';
 		$params = array("%$value%", "%$value%");
 		return Database::getRows($sql, $params);
 	}
@@ -200,15 +200,15 @@ class Articulos extends Validator
 
 	public function createProducto()
 	{
-		$sql = 'INSERT INTO articulos(IdCategoria, NomArticulo, DescripcionArt, PrecioUnitario, Cantidad, Foto, Estado) VALUES(?, ?, ?, ?, ?, ?, ?)';
-		$params = array($this->categoria, $this->nombre, $this->descripcion, $this->precio, $this->cantidad, $this->foto, $this->estado);
+		$sql = 'INSERT INTO articulos(IdCategoria, NomArticulo, DescripcionArt, PrecioUnitario, Cantidad, Foto, IdEstado) VALUES(?, ?, ?, ?, ?, ?, ?)';
+		$params = array($this->idcategoria, $this->nomarticulo, $this->descripcionart, $this->preciounitario, $this->cantidad, $this->foto, $this->idestado);
 		return Database::executeRow($sql, $params);
 	}
 
 	public function getProducto()
 	{
-		$sql = 'SELECT IdArticulos, NomArticulo, DescripcionArt, PrecioUnitario, Cantidad, Foto, Estado, IdCategoria FROM articulos WHERE IdArticulos = ?';
-		$params = array($this->id);
+		$sql = 'SELECT IdArticulos, NomArticulo, DescripcionArt, PrecioUnitario, Cantidad, Foto, Estado, IdCategoria, IdEstado FROM articulos WHERE IdArticulos = ?';
+		$params = array($this->idarticulos);
 		return Database::getRow($sql, $params);
 	}
 
@@ -221,29 +221,29 @@ class Articulos extends Validator
 
 	public function updateProducto()
 	{
-		$sql = 'UPDATE articulos SET IdCategoria = ?, NomArticulo = ?, DescripcionArt = ?, PrecioUnitario = ?, Cantidad = ?, Foto = ?, Estado = ? WHERE IdArticulos = ?';
-		$params = array($this->categoria, $this->nombre, $this->descripcion, $this->precio, $this->cantidad, $this->foto, $this->estado, $this->id);
+		$sql = 'UPDATE articulos SET IdCategoria = ?, NomArticulo = ?, DescripcionArt = ?, PrecioUnitario = ?, Cantidad = ?, Foto = ?, IdEstado = ? WHERE IdArticulos = ?';
+		$params = array($this->idcategoria, $this->nomarticulo, $this->descripcionart, $this->preciounitario, $this->cantidad, $this->foto, $this->idestado, $this->idarticulos);
 		return Database::executeRow($sql, $params);
 	}
 
 	public function deleteProducto()
 	{
 		$sql = 'DELETE FROM articulos WHERE IdArticulos = ?';
-		$params = array($this->id);
+		$params = array($this->idarticulos);
 		return Database::executeRow($sql, $params);
 	}
 
 	public function rateProducto()
 	{
 		$sql = 'UPDATE articulos SET Calificacion = ? WHERE IdArticulos = ?';
-		$params = array($this->calificacion, $this->id);
+		$params = array($this->calificacion, $this->idarticulos);
 		return Database::executeRow($sql, $params);
 	}
 
 	public function commentProducto()
 	{
 		$sql = 'UPDATE articulos SET Comentario = ? WHERE IdArticulos = ?';
-		$params = array($this->comentario, $this->id);
+		$params = array($this->comentario, $this->idarticulos);
 		return Database::executeRow($sql, $params);
 	}
 }

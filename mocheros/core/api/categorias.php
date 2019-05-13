@@ -7,9 +7,9 @@ require_once('../../core/models/categorias.php');
 if (isset($_GET['site']) && isset($_GET['action'])) {
 	session_start();
 	$categoria = new Categorias;
-	$result = array('status' => 0, 'exception' => '');
+	$result = array('status' => 0, 'exception' => '', 'dataset' => '');
 	//Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
-	if (isset($_SESSION['idUsuario']) && $_GET['site'] == 'dashboard') {
+	if (/* isset($_SESSION['idUsuario']) && */ $_GET['site'] == 'dashboard'){
 		switch ($_GET['action']) {
 			case 'read':
 				if ($result['dataset'] = $categoria->readCategorias()) {
@@ -32,7 +32,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'create':
                 $_POST = $categoria->validateForm($_POST);
-                if ($categoria->setNombre($_POST['create_nombre'])) {
+                if ($categoria->setNomCategoria($_POST['create_nombre'])) {
                     if ($categoria->createCategoria()) {
                         $result['status'] = 1;
                     } else {
@@ -43,7 +43,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             case 'get':
-                if ($categoria->setId($_POST['IdCategoria'])) {
+                if ($categoria->setIdCategoria($_POST['IdCategoria'])) {
                     if ($result['dataset'] = $categoria->getCategoria()) {
                         $result['status'] = 1;
                     } else {
@@ -55,9 +55,9 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'update':
                 $_POST = $categoria->validateForm($_POST);
-                if ($categoria->setId($_POST['IdCategoria'])) {
+                if ($categoria->setIdCategoria($_POST['IdCategoria'])) {
                     if ($categoria->getCategoria()) {
-                        if ($categoria->setNombre($_POST['update_nombre'])) {
+                        if ($categoria->setNomCategoria($_POST['update_nombre'])) {
                             if ($categoria->updateCategoria()) {
                                 $result['status'] = 1;
                             } else {
@@ -74,7 +74,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             case 'delete':
-                if ($categoria->setId($_POST['IdCategoria'])) {
+                if ($categoria->setIdCategoria($_POST['IdCategoria'])) {
                     if ($categoria->getCategoria()) {
                         if ($categoria->deleteCategoria()) {
                                 $result['status'] = 1;

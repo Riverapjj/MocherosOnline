@@ -18,9 +18,7 @@
             <div class="col s12">
                 <!--Creando un "tab" para elegir entre gestionar admins o los detalles de permisos necesarios-->
                 <ul class="tabs">
-                    <li class="tab col s4"><a class="active cyan-text darken-2" href="#test1">Administradores</a></li>
-                    <li class="tab col s4"><a class="cyan-text darken-2" href="#test2">Permisos </a></li>
-                    <li class="tab col s4"><a href="#test3" class="cyan-text darken-2">Detalles del permiso</a></li>
+                    <li class="tab col s12"><a class="active cyan-text darken-2" href="#test1">Administradores</a></li>
 
                     </li>
                 </ul>
@@ -36,16 +34,16 @@
             <!--Creando un div con su id="test1" para que se muestre al momento de elegir la opción previamente construida en el "tab"-->
             <div id="test1" class="col s12">
                 <!--Declarando que sea una tabla responsiva-->
-                <table class="responsive-table" id="admin-table">
+                <table  id="admin-table">
                     <thead>
                         <!--Agregando los campos fijos a la tabla-->
                         <tr>
                             <th>Nombre</th>
-                            <th>Apellido</th>
                             <th>Rol</th>
                             <th>Teléfono</th>
                             <th>Correo</th>
                             <th>Estado</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <!--Agregando registros a la tabla-->
@@ -210,13 +208,9 @@
                                 </div>
                                 <div class="input-field col s12 m6">
                                     <input id="update-name" type="text" name="update-name-name" class="validate" required>
-                                    <label for="update-name">Nombres</label>
+                                    <label for="update-name">Nombre</label>
                                 </div>
-                                <div class="input-field col s12 m6">
-                                    <input id="update-lastname" type="text" name="update-lastname-name" class="validate"
-                                        required>
-                                    <label for="update-lastname">Apellidos</label>
-                                </div>
+                                
                                 <div class="input-field col s12 m6">
                                     <select id="update-rol" name="update-rol-name">
                                     </select>
@@ -271,12 +265,12 @@
                     </ul>
                 </div>
             </div>
-            <!-- creando un segundo div con id "test2" para la sección a elegir en el tab -->
-            <div id="test2" class="col s12">
-                <!-- declarando que sea responsiva -->
+            <!-- creando un segundo div con id "test2" para la sección a elegir en el tab 
+            <div id="test2" class="col s12">-->
+                <!-- declarando que sea responsiva
                 <table class="striped responsive-table">
-                    <thead>
-                        <!-- declarando que sea responsiva -->
+                    <thead> -->
+                        <!-- declarando que sea responsiva 
                         <tr>
                             <th>Código</th>
                             <th>Permiso</th>
@@ -284,8 +278,8 @@
                         </tr>
                     </thead>
 
-                    <tbody>
-                        <!-- Agregando registros  -->
+                    <tbody>-->
+                        <!-- Agregando registros  
                         <tr>
                             <td>1</td>
                             <td>Agregar productos</td>
@@ -335,9 +329,9 @@
                             </td>
                         </tr>
                     </tbody>
-                </table>
+                </table>-->
                 <!-- Creando el efecto modal para cada accion a realizar (agregar, modificar y eliminar) -->
-                <!-- Crendo modal-create-perm para opcion agregar-->
+                <!-- Crendo modal-create-perm para opcion agregar
                 <div id="modal-create-perm" class="modal">
                     <div class="modal-content">
                         <h5 class="cyan-text darker-2 center-align"><b>Agregar un nuevo permiso</b></h5>
@@ -358,8 +352,8 @@
                     <div class="modal-footer">
                         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agregar</a>
                     </div>
-                </div>
-                <!-- Creando modal-update-perm para opcion modificar-->
+                </div>-->
+                <!-- Creando modal-update-perm para opcion modificar
                 <div id="modal-update-perm" class="modal">
                     <div class="modal-content">
                         <h5 class="cyan-text darker-2 center-align"><b>Modificar un permiso</b></h5>
@@ -376,29 +370,29 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
-                    <!-- Declarando como es el estilo del footer del modal -->
+                    </div>-->
+                    <!-- Declarando como es el estilo del footer del modal 
                     <div class="modal-footer">
                         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Modificar</a>
                     </div>
-                </div>
-                <!-- Declarando el boton siempre fijo para agregar y modificar tipo de usuarios con su respectivo icono y modal a ejecutar -->
+                </div>-->
+                <!-- Declarando el boton siempre fijo para agregar y modificar tipo de usuarios con su respectivo icono y modal a ejecutar
                 <div class="fixed-action-btn toolbar">
                     <a class="btn-floating btn-large cyan darken-2 modal-trigger" href="#modal-create-perm"><i
                             class="large material-icons">add</i></a>
-                    <ul>
-                        <!-- Declarando los iconos deseados para cada acción, definiendo que modal activará cada botón -->
+                    <ul> -->
+                        <!-- Declarando los iconos deseados para cada acción, definiendo que modal activará cada botón 
                         <li class="waves-effect waves-light"><a class="modal-trigger" href="#modal-create-perm"><i
                                     class="material-icons">add_circle</i></a></li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div id="test3" class="col s12">
-            <!-- declarando que sea responsiva -->
+        <div id="test3" class="col s12">-->
+            <!-- declarando que sea responsiva 
             <table class="striped responsive-table">
-                <thead>
-                    <!-- declarando que sea responsiva -->
+                <thead>-->
+                    <!-- declarando que sea responsiva 
                     <tr>
                         <th>Código</th>
                         <th>Administrador</th>
@@ -407,8 +401,8 @@
                     </tr>
                 </thead>
 
-                <tbody>
-                    <!-- Agregando registros  -->
+                <tbody>-->
+                    <!-- Agregando registros  
                     <tr>
                         <td>1</td>
                         <td>Josué Rivera</td>
@@ -458,9 +452,9 @@
                         <td><i class="material-icons"><a class="modal-trigger" href="#modal-delete">delete</a></i></td>
                     </tr>
                 </tbody>
-            </table>
+            </table>-->
             <!-- Creando el efecto modal para cada accion a realizar (agregar, modificar y eliminar) -->
-            <!-- Creando modal-create-detperm para opcion agregar -->
+            <!-- Creando modal-create-detperm para opcion agregar 
             <div id="modal-create-detperm" class="modal">
                 <div class="modal-content">
                     <h5 class="cyan-text darker-2 center-align"><b>Agregar un nuevo detalle de permisos</b></h5>
@@ -497,8 +491,8 @@
                 <div class="modal-footer">
                     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agregar</a>
                 </div>
-            </div>
-            <!-- Creando modal-update-detperm para opcion modificar -->
+            </div>-->
+            <!-- Creando modal-update-detperm para opcion modificar 
             <div id="modal-update-detperm" class="modal">
                 <div class="modal-content">
                     <h5 class="cyan-text darker-2 center-align"><b>Modificar un detalle de permisos</b></h5>
@@ -532,13 +526,13 @@
                             </div>
                         </div>
                     </form>
-                </div>
-                <!-- Declarando como es el estilo del footer del modal -->
+                </div>-->
+                <!-- Declarando como es el estilo del footer del modal 
                 <div class="modal-footer">
                     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Modificar</a>
                 </div>
-            </div>
-            <!-- Declarando el boton siempre fijo para agregar y modificar tipo de usuarios con su respectivo icono y modal a ejecutar -->
+            </div>-->
+            <!-- Declarando el boton siempre fijo para agregar y modificar tipo de usuarios con su respectivo icono y modal a ejecutar 
             <div class="fixed-action-btn toolbar">
                 <a href="#modal-create-detperm" class="btn-floating btn-large cyan darken-2 modal-trigger"><i
                         class="large material-icons">add</i></a>
@@ -547,7 +541,7 @@
                                 class="material-icons">add_circle</i></a></li>
                 </ul>
             </div>
-        </div>
+        </div>-->
         <!-- Modal creado para ser ejecutado cada vez que se desea eliminar un registro -->
         <div id="modal-delete" class="modal">
             <div class="modal-content">
@@ -562,5 +556,5 @@
         </div>
     </main>
     <?php
-    DashboardHelper::footer('usuarios.js');
+    DashboardHelper::footer('usuarios.js', null);
 ?>
