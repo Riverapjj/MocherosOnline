@@ -5,6 +5,7 @@ $(document).ready(function()
 
 const apiSesion = '../../core/api/usuarios_public.php?site=publicHelper&action=';
 
+//Función para verificar usuarios para el login
 function checkUsuarios()
 {
     $.ajax({
@@ -28,9 +29,9 @@ function checkUsuarios()
     });
 }
 
+//Función para el login
 $('#form-session').submit(function()
 {
-    console.log('Hola');
     event.preventDefault();
     $.ajax({
         url: apiSesion + 'login',

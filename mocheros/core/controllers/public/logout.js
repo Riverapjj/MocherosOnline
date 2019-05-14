@@ -1,5 +1,6 @@
 const apiLogout = '../../core/api/usuarios_public.php?site=publicHelper&action=';
 
+//Función para cerrar sesión
 function signOff()
 {
     swal({
@@ -26,6 +27,7 @@ function signOff()
     });
 }
 
+//Función para mostrar datos del usuario en el modal
 function modalProfile()
 {
     $.ajax({
@@ -58,6 +60,7 @@ function modalProfile()
     });
 }
 
+//Función para modificar el perfil de usuario
 $('#form-profile').submit(function()
 {
     event.preventDefault();
@@ -85,6 +88,7 @@ $('#form-profile').submit(function()
     });
 })
 
+//Función para modificar la contraseña
 $('#form-password').submit(function()
 {
     event.preventDefault();

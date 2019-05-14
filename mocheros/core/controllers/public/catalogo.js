@@ -207,6 +207,7 @@ function getProducto(id) {
         });
 }
 
+//Función para el buscador
 $('#form-search').submit(function()
 {
     event.preventDefault();
@@ -244,7 +245,6 @@ $('#form-search').submit(function()
                 $('#resultado').html(content);
                 $('.materialboxed').materialbox();
                 $('.tooltipped').tooltip();
-                //fillTable(result.dataset);
             } else {
                 sweetAlert(3, result.exception, null);
             }
@@ -257,49 +257,3 @@ $('#form-search').submit(function()
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 })
-
-/*function searchProducto(value) {
-    $.ajax({
-        url: apiCatalogo + 'searchProducto',
-        type: 'post',
-        data: {
-            value
-        },
-        datatype: 'json'
-    })
-    .done(function (response) {
-        if (isJSONString(response)) {
-            const result = JSON.parse(response);
-            if (result.status) {
-                let content = '';
-                result.dataset.forEach(function (row) {
-                    content += `
-                <div class="col s12 m6 l3">
-                    <div class="card hoverable">
-                        <div class="card-image">
-                            <img src="../../resources/img/articulos/${row.Foto}" class="materialboxed">               
-                            <a href="#" onclick="getProducto(${row.IdArticulos})" class="btn-floating halfway-fab waves-effect waves-light orange tooltipped" data-tooltip="Ver producto"><i class="material-icons">add</i></a>
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title">${row.NomArticulo}</span>
-                            <p><b>$${row.PrecioUnitario}</b></p>
-                        </div>
-                    </div>
-                </div>
-                `;
-                });
-                $('#title').text('Resultado de la busqueda');
-                $('#busqueda').html(content);
-                $('.materialboxed').materialbox();
-                $('.tooltipped').tooltip();
-            } else {
-                $('#title').html('<i class="material-icons small">cloud_off</i><span class="red-text">' + result.exception + '</span>');
-            }
-        } else {
-            console.log(response);
-        }
-    })
-    .fail(function (jqXHR) {
-        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
-    });
-}*/

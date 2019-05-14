@@ -5,6 +5,7 @@ $(document).ready(function()
 
 const apiRegistrar = '../../core/api/usuarios_public.php?site=publicHelper&action=';
 
+//Función para verificar usuarios
 function checkUsuarios()
 {
     $.ajax({
@@ -28,6 +29,7 @@ function checkUsuarios()
     });
 }
 
+//Función para registrarse
 $('#form-register').submit(function()
 {
     event.preventDefault();
