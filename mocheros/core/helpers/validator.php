@@ -4,11 +4,13 @@ class Validator
     private $imageError = null;
     private $imageName = null;
 
+    //función para obtener el nombre de la imagen
     public function getImageName()
     {
         return $this->imageName;
     }
 
+    //función para imprimir diferentes errores referentes a la imagen
     public function getImageError()
     {
         switch ($this->imageError) {
@@ -34,6 +36,7 @@ class Validator
         return $error;
     }
 
+    
     public function validateForm($fields)
     {
         foreach ($fields as $index => $value) {
@@ -52,6 +55,7 @@ class Validator
         }
     }
 
+    //función para validar el archivo de imagen
     public function validateImageFile($file, $path, $name, $maxWidth, $maxHeight)
     {
         if ($file) {
@@ -95,6 +99,7 @@ class Validator
         }
     }
 
+    //función para validar correo electrónico
     public function validateEmail($email)
     {
         if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -104,6 +109,7 @@ class Validator
         }
     }
 
+    //función para validar texto, recibe un valor mínimo y un máximo
     public function validateAlphabetic($value, $minimum, $maximum)
     {
         if (preg_match('/^[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{'.$minimum.','.$maximum.'}$/', $value)) {
@@ -113,6 +119,7 @@ class Validator
         }
     }
 
+    //función para validar texto con números, recibe un valor mínimo y un máximo
     public function validateAlphaNumeric($value, $minimum, $maximum)
     {
         if (preg_match('/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{'.$minimum.','.$maximum.'}$/', $value)) {
@@ -122,6 +129,7 @@ class Validator
         }
     }
 
+    //función para validar números
     public function validateNumeric($value)
 	{
 		if (preg_match('/^[1-9][0-9]{0,15}$/', $value)) {
@@ -131,6 +139,7 @@ class Validator
 		}
 	}
 
+    //función para validar dinero
     public function validateMoney($value)
 	{
 		if (preg_match('/^[0-9]+(?:\.[0-9]{1,2})?$/', $value)) {
@@ -140,6 +149,7 @@ class Validator
 		}
 	}
 
+    //función para validar contraseña
 	public function validatePassword($value)
 	{
 		if (strlen($value) > 5) {
@@ -149,6 +159,7 @@ class Validator
 		}
 	}
 
+    //función para guardar el archivo
 	public function saveFile($file, $path, $name)
     {
 		if (file_exists($path)) {
@@ -162,6 +173,7 @@ class Validator
 		}
   	}
 
+    //función para borrar el archivo
 	public function deleteFile($path, $name)
     {
 		if (file_exists($path)) {
