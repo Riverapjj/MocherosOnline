@@ -210,6 +210,28 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                         $result['exception'] = 'Producto incorrecto 2';
                     }
                     break;
+                case 'searchProducto':
+                    $_POST = $articulo->validateForm($_POST);
+                    if ($_POST['busqueda'] != '') {
+                        if ($result['dataset'] = $articulo->searchArticulos($_POST['busqueda'])) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = 'No hay coincidencias';
+                        }
+                    } else {
+                        $result['exception'] = 'Ingrese un valor para buscar';
+                    }
+                    break;
+                case 'addToCart':
+                    if ($articulo->setId($_POST['IdArticulos'])) {
+                        if ($result['dataset'] = $articulo->selectArticulo()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = 'Carrito no disponible';
+                        }
+                    } else {
+                        $result['exception'] = 'Producto incorrecto';
+                    }
                 case 'rateProducto':
                     $_POST = $articulo->validateForm($_POST);
                     if ($articulo->setId($_POST['IdArticulos'])) {
