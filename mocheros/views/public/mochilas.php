@@ -4,6 +4,7 @@
 ?>
 <!--buscador-->
 <div class="container-fluid grey lighten-2">
+    <h1 class="center indigo-text" id="title"></h1>
     <form class="col s12" method="post" id="form-search">
       <div class="row">
         <div class="input-field col s6 m4">
@@ -16,7 +17,6 @@
         </div>
       </div>
     </form>
-    <h1 class="center indigo-text" id="title"></h1>
     <!--apartado para mostrar los resultados de la busqueda a partir de catalogo.js-->
     <h4 class="center indigo-text" id="titulo"></h4>
     <div class="row" id="resultado"></div>
