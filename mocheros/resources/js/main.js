@@ -1,6 +1,5 @@
 $( document ).ready(function(){
     $(".button-collapse").sidenav();
-    $('.parallax').parallax();
     $('.modal').modal();
     $('.trigger-modal').modal();
     $('.slider').slider();
@@ -10,4 +9,5 @@ $( document ).ready(function(){
     $('.sidenav').sidenav();
     $('select').formSelect();
     $('input#input_text, textarea#textarea1').characterCounter();  
+    $('.dropdown-trigger').dropdown();
 })

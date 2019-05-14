@@ -1,6 +1,6 @@
 $(document).ready(function()
 {
-    showTable();
+    showTableCategory();
 })
 
 //Constante para establecer la ruta y parámetros de comunicación con la API
@@ -22,13 +22,14 @@ function fillTableCategory(rows)
         </tr>
         `;
     });
+    //Se envia el parámetro al id del cuerpo de la tabla que queremos llenar
     $('#tbody-category').html(content);
-   
+   //Método para crear paginación, búsqueda y que las títulos sean en español
     initTable('category-table');
 }
 
 //Función para obtener y mostrar los registros disponibles
-function showTable()
+function showTableCategory()
 {
     $.ajax({
         url: apiCategorias + 'read',
@@ -44,6 +45,7 @@ function showTable()
             if (!result.status) {
                 sweetAlert(4, result.exception, null);
             }
+            //Se envía el parámetro para ejecutar el llenado de la tabla
             fillTableCategory(result.dataset);
         } else {
             console.log(response);
@@ -55,7 +57,7 @@ function showTable()
     });
 }
 
-//Función para mostrar los resultados de una búsqueda
+/* //Función para mostrar los resultados de una búsqueda
 $('#form-search').submit(function()
 {
     event.preventDefault();
@@ -84,16 +86,16 @@ $('#form-search').submit(function()
         //Se muestran en consola los posibles errores de la solicitud AJAX
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
-})
+}) */
 
 //Función para crear un nuevo registro
-$('#form-create').submit(function()
+$('#form-create-category').submit(function()
 {
     event.preventDefault();
     $.ajax({
         url: apiCategorias + 'create',
         type: 'post',
-        data: new FormData($('#form-create')[0]),
+        data: new FormData($('#form-create-category')[0]),
         datatype: 'json',
         cache: false,
         contentType: false,
@@ -102,11 +104,12 @@ $('#form-create').submit(function()
     .done(function(response){
         //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
         if (isJSONString(response)) {
+            console.log('ok');
             const result = JSON.parse(response);
             //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
             if (result.status) {
-                $('#form-create')[0].reset();
-                $('#modal-create').modal('close');
+                $('#form-create-category')[0].reset();
+                $('#modal-create-category').modal('close');
                 if (result.status == 1) {
                     sweetAlert(1, 'Categoría creada correctamente', null);
                 } else if (result.status == 2) {

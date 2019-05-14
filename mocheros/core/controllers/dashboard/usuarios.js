@@ -23,7 +23,7 @@ const showTableAdmin = async () => {
             
             //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
             if(result.status){
-                
+                //Se envía el parámetro para ejecutar el llenado de la tabla
                 fillTableAdmin(result.dataset)
             }
             else {
@@ -80,14 +80,21 @@ function fillTableAdmin(rows)
         </tr>
         `;
     });
+    //Se envia el parámetro al id del cuerpo de la tabla que queremos llenar
     $('#tbody-read-admin').html(content);
-   
+   //Método para crear paginación, búsqueda y que las títulos sean en español
     initTable('admin-table');
 }
 
-
-
-6969+
+//Función para recargar manualmente el datatable
+$('#reload').click(async () => {
+    //Destruimos la tabla anterior
+    $('#admin-table').DataTable().destroy();
+    //Se llena de nuevo el cuerpo de la tabla
+    $('#tbody-read-admin').html(content);
+    //Método para crear paginación, búsqueda y que las títulos sean en español
+    initTable('admin-table');
+})
 
 //Función para crear un nuevo registro
 $('#form-create-admin').submit(async () => {
@@ -141,9 +148,9 @@ function modalUpdate(idusuario)
                 $('#form-update-admin')[0].reset();
                 $('#IdUsuario').val(result.dataset.IdUsuario);
                 $('#update-username').val(result.dataset.NomUsuario);
-                $('#update-name').val(result.dataset.Nombre) + (result.dataset.Apellido);
-              //  $('#update-name').val(result.dataset.Apellido);
-                $('#update-telef').val(result.dataset.Telefono);
+                $('#update-name').val(result.dataset.Nombre);
+                $('#update-lastname').val(result.dataset.Apellido);
+                $('#update-telf').val(result.dataset.Telefono);
                 $('#update-email').val(result.dataset.Email);
                 $('#update-address').val(result.dataset.Direccion);
                 (result.dataset.IdEstado == 1) ? $('#update-status').prop('checked', true) : $('#update-status').prop('checked', false);
@@ -180,25 +187,18 @@ $('#form-update-admin').submit(function()
     .done(function(response){
         //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
         if (isJSONString(response)) {
+            
             const result = JSON.parse(response);
             //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+                           
             if (result.status) {
-                $('#modal-update-admin').modal('close');
-                if (result.status == 1) {
-                    sweetAlert(1, 'Usuario modificado correctamente', null);
-                    console.log(result.exception);
-                } else if(result.status == 2) {
-                    sweetAlert(3, 'Usuario modificado. ' + result.exception, null);
-                    console.log(result.exception);
-                } else if(result.status == 3) {
-                    sweetAlert(1, 'Usuario modificado. ' + result.exception, null);
-                    console.log(result.exception);
-                }
+                $('#modal-update-admin').close();
+                sweetAlert(1, 'Usuario modificado correctamente', null);
                 showTable();
             } else {
                 sweetAlert(2, result.exception, null);
-                console.log(result.exception);
             }
+
         } else {
             console.log(response);
         }

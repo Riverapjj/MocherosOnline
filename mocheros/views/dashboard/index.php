@@ -1,9 +1,7 @@
-﻿<?php
-    require('../../core/helpers/dashboardHelper.php');
-    DashboardHelper::header('Iniciar sesión');
-?>
+﻿<!-- Función de encabezado  -->
 <?php
-    DashboardHelper::indexDashNav();
+    require('../../core/helpers/dashboardHelper.php');
+    DashboardHelper::headerTemplate('Iniciar sesión');
 ?>
 <!--Creanción del modal para ejecutarse al momento de querer iniciar sesión-->
 <!--<div id="modal1" class="modal">
@@ -53,6 +51,7 @@
         </div>
     </div>
 </main>
+<!-- Función de pie de página -->
 <?php
     DashboardHelper::indexDashFooter('index.js');
 ?>

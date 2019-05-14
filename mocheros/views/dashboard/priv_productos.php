@@ -1,14 +1,7 @@
-﻿<?php
+﻿<!-- Función de encabezado  -->
+<?php
     require('../../core/helpers/dashboardHelper.php');
-    DashboardHelper::header('Productos');
-?>
-<!--Creación de nuestra barra de navegación-->
-<?php
-    DashboardHelper::dashNav();
-?>
-<!--Creación de un slider con sus respectivas imagenes responsivas para el inicio del apartado de usuarios-->
-<?php
-    DashboardHelper::slider();
+    DashboardHelper::headerTemplate('Productos');
 ?>
 <main class="container">
     <!--Creando una columna para la tabla de juguetes-->
@@ -48,23 +41,15 @@
             <div id="modal-update-products" class="modal modal-fixed-footer">
                 <div class="modal-content">
                     <h5 class="cyan-text darker-2 center-align"><b>Modificar un producto</b></h5>
-                    <form class="col s12">
+                    <form class="col s12" id="form-update-products">
+                    <input type="hidden" id="id-product" name="id_product"/>
+                    <input type="hidden" id="image-product" name="image-product-name"/>
                         <div class="row">
                             </div>
                             <div class="input-field col s12 m6">
                                 <input id="update-name" name="update-name-name" type="text" class="validate">
                                 <label for="update-name">Nombre del producto</label>
                             </div>
-                            <!--<div class="input-field col s12 m6">
-                                <select>
-                                    <option value="" disabled selected>Escoge una opción</option>
-                                    <option value="1">Acción</option>
-                                    <option value="2">Construcción</option>
-                                    <option value="3">Baño</option>
-                                </select>
-                                <label>Tipo de juguete</label>
-                                <input id="type" type="text" class="validate">
-                            </div>-->
                             <div class="input-field col s12 m6">
                                 <select id="update-category" name="update-category-name">
                                 </select>
@@ -187,7 +172,7 @@
         <!-- creando un segundo div con id "test4" para la sección a elegir en el tab -->
         <div id="test4" class="col s12">
             <!-- declarando que sea responsiva -->
-            <table class="responsive-table" id="category-table">
+            <table class="" id="category-table">
                 <thead class="col s12 m12 l12">
                     <!-- declarando que sea responsiva -->
                     <tr>
@@ -205,15 +190,15 @@
             <div id="modal-create-category" class="modal">
                 <div class="modal-content">
                     <h5 class="cyan-text darker-2 center-align"><b>Agregar una nueva categoria</b></h5>
-                    <form class="col s12">
+                    <form class="col s12" id="form-create-category">
                         <div class="row">
                             <div class="input-field col s12 m6">
-                                <input disabled value="Codigo autonúmerico" id="disabled" type="text" class="validate">
-                                <label for="disabled">Código de la categoria</label>
+                                <input id="name" type="text" name="create-name-name" class="validate" require>
+                                <label for="name">Nombre de la categoria</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="name" type="text" class="validate">
-                                <label for="name">Nombre de la categoria</label>
+                                <input id="descrip" type="text" name="create-descrip-name" class="validate" require>
+                                <label for="descrip">Descripción</label>
                             </div>
                         </div>
                     </form>
@@ -270,6 +255,7 @@
     </div>
     </div>
 </main>
+<!-- Función de pie de página -->
 <?php
     DashboardHelper::footer('categorias.js', 'productos.js');
 ?>
