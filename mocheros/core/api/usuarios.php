@@ -9,7 +9,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
     $usuario = new Usuarios;
     $result = array('status' => 0, 'exception' => '', 'dataset' => '');
     //Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
-    if (/*  isset($_SESSION['idUsuario']) &&  */ $_GET['site'] == 'dashboard') {
+    if (  isset($_SESSION['idUsuario']) &&   $_GET['site'] == 'dashboard') {
         switch ($_GET['action']) {
             case 'logout':
                 if (session_destroy()) {
@@ -19,7 +19,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             case 'readProfile':
-                if ($usuario->setId($_SESSION['idUsuario'])) {
+                if ($usuario->setIdUsuario($_SESSION['idUsuario'])) {
                     if ($result['dataset'] = $usuario->getUsuario()) {
                         $result['status'] = 1;
                     } else {
@@ -29,37 +29,45 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 }
                 break;
-            case 'editProfile':
-                if ($usuario->setId($_SESSION['idUsuario'])) {
+                case 'editProfile':
+                if ($usuario->setIdUsuario($_SESSION['idUsuario'])) {
                     if ($usuario->getUsuario()) {
                         $_POST = $usuario->validateForm($_POST);
-                        if ($usuario->setNombres($_POST['profile_nombres'])) {
-                            if ($usuario->setApellidos($_POST['profile_apellidos'])) {
-                                if ($usuario->setCorreo($_POST['profile_correo'])) {
-                                    if ($usuario->setAlias($_POST['profile_alias'])) {
-                                        if ($usuario->updateUsuario()) {
-                                            $_SESSION['aliasUsuario'] = $_POST['profile_alias'];
-                                            $result['status'] = 1;
+                        if ($usuario->setNomUsuario($_POST['profile_usuario'])) {
+                            if ($usuario->setNombre($_POST['profile_nombre'])) {
+                                if ($usuario->setApellido($_POST['profile_apellido'])) {
+                                    if ($usuario->setDireccion($_POST['profile_direccion'])) {
+                                        if ($usuario->setTelefono($_POST['profile_telefono'])) {
+                                            if ($usuario->setEmail($_POST['profile_correo'])) {
+                                                if ($usuario->updateUsuario()) {
+                                                    $_SESSION['nombreUsuario'] = $_POST['profile_usuario'];
+                                                    $result['status'] = 1;
+                                                } else {
+                                                    $result['exception'] = 'Ocurrió un error en la operación';
+                                                }
+                                            } else {
+                                                $result['exception'] = 'Correo electrónico no válido';
+                                            }
                                         } else {
-                                            $result['exception'] = 'Operación fallida';
+                                            $result['exception'] = 'Teléfono no válido';
                                         }
                                     } else {
-                                        $result['exception'] = 'Alias incorrecto';
+                                        $result['exception'] = 'Dirección no válida';
                                     }
                                 } else {
-                                    $result['exception'] = 'Correo incorrecto';
+                                    $result['exception'] = 'Apellidos no válidos';
                                 }
                             } else {
-                                $result['exception'] = 'Apellidos incorrectos';
+                                $result['exception'] = 'Nombres no válidos';
                             }
                         } else {
-                            $result['exception'] = 'Nombres incorrectos';
+                            $result['exception'] = 'Usuario no válido';
                         }
                     } else {
-                        $result['exception'] = 'Usuario inexistente';
+                        $result['exception'] = 'Usuario incorrecto';
                     }
                 } else {
-                    $result['exception'] = 'Usuario incorrecto';
+                    $result['exception'] = 'Usuario inexistente';
                 }
                 break;
             case 'password':
@@ -174,7 +182,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'update':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setIdUsuario($_POST['IdUsuario'])) {
+                if ($usuario->setIdUsuario($_POST['id-user-name'])) {                    
                     if ($usuario->getUsuario()) {
                         if ($usuario->setNombre($_POST['update-name-name'])) {
                             if ($usuario->setApellido($_POST['update-lastname-name'])) {
@@ -246,8 +254,9 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'No se puede eliminar a sí mismo';
                 }
                 break;
+                
             default:
-                exit('Acción no disponible');
+                exit('Acción no disponible 1');
         }
     } else if ($_GET['site'] == 'dashboard') {
         switch ($_GET['action']) {
@@ -292,14 +301,14 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Nombres incorrectos';
                 }
                 break;
-            case 'login':
+                case 'login':
                 $_POST = $usuario->validateForm($_POST);
-             //   print_r($_POST);
+             //  print_r($_POST);
                 if ($usuario->setNomUsuario($_POST['log-username-name'])) {
                     if ($usuario->checkNomUsuario()) {
                         if ($usuario->setClave($_POST['log-pass-name'])) {
                             if ($usuario->checkPassword()) {
-                                $_SESSION['IdUsuario'] = $usuario->getIdUsuario();
+                                $_SESSION['idUsuario'] = $usuario->getIdUsuario();
                                 $_SESSION['NomUsuario'] = $usuario->getNomUsuario();
                                 $result['status'] = 1;
                             } else {
@@ -315,8 +324,9 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Alias incorrecto';
                 }
                 break;
+            
             default:
-                exit('Acción no disponible');
+                exit('Acción no disponible 2');
         }
         //echo json_encode($result);
     } else {

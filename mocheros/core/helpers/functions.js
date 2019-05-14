@@ -40,9 +40,9 @@ function sweetAlert(type, text, url)
     }
     if (url) {
         swal({
-            title: "",
-            text: '',
-            icon: '',
+            title: title,
+            text: text,
+            icon: icon,
             button: 'Aceptar',
             closeOnClickOutside: false,
             closeOnEsc: false

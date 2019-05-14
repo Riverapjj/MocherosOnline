@@ -9,7 +9,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
     $articulo = new Articulos;
     $result = array('status' => 0, 'exception' => '', 'dataset' => '');
     //Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
-	if (/* isset($_SESSION['idUsuario']) && */ $_GET['site'] == 'dashboard') {
+	if (isset($_SESSION['idUsuario']) && $_GET['site'] == 'dashboard') {
         switch ($_GET['action']) {
             case 'readProductos':
                 if ($result['dataset'] = $articulo->readProductos()) {
@@ -82,7 +82,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Seleccione una categoría';
                 }
             case 'get':
-                if ($articulo->setId($_POST['IdArticulos'])) {
+                if ($articulo->setIdArticulos($_POST['id_product'])) {
                     if ($result['dataset'] = $articulo->getProducto()) {
                         $result['status'] = 1;
                     } else {
@@ -94,23 +94,23 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'update':
                 $_POST = $articulo->validateForm($_POST);
-                if ($articulo->setId($_POST['IdArticulos'])) {
+                if ($articulo->setIdArticulos($_POST['id_product'])) {
                     if ($articulo->getProducto()) {
-                        if ($articulo->setCategoria($_POST['update_categoria'])) {
-                            if ($articulo->setNombre($_POST['update_nombre'])) {
-                                if ($articulo->setDescripcion($_POST['update_descripcion'])) {
-                                    if ($articulo->setPrecio($_POST['update_precio'])) {
-                                        if ($articulo->setCantidad($_POST['update_cantidad'])) {
-                                            if ($articulo->setEstado(isset($_POST['update_estado']) ? 1 : 0)) {
-                                                if (is_uploaded_file($_FILES['update_archivo']['tmp_name'])) {
-                                                    if ($articulo->setFoto($_FILES['update_archivo'], $_POST['Foto'])) {
+                        if ($articulo->setIdCategoria($_POST['update-category-name'])) {
+                            if ($articulo->setNomArticulo($_POST['update-name-name'])) {
+                                if ($articulo->setDescripcionArt($_POST['update-descrip-name'])) {
+                                    if ($articulo->setPrecioUnitario($_POST['update-price-name'])) {
+                                        if ($articulo->setCantidad($_POST['update-exist-name'])) {
+                                            if ($articulo->setIdEstado(isset($_POST['update-status-name']) ? 1 : 0)) {
+                                                if (is_uploaded_file($_FILES['update-file-name']['tmp_name'])) {
+                                                    if ($articulo->setFoto($_FILES['update-file-name'], $_POST['image-product-name'])) {
                                                         $archivo = true;
                                                     } else {
                                                         $result['exception'] = $articulo->getImageError();
                                                         $archivo = false;
                                                     }
                                                 } else {
-                                                    if ($articulo->setFoto(null, $_POST['Foto'])) {
+                                                    if ($articulo->setFoto(null, $_POST['image-product-name'])) {
                                                         $result['exception'] = 'No se subió ningún archivo';
                                                     } else {
                                                         $result['exception'] = $articulo->getImageError();
@@ -157,7 +157,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             case 'delete':
-                if ($producto->setId($_POST['IdArticulos'])) {
+                if ($producto->setIdArticulos($_POST['id-product-name'])) {
                     if ($producto->getProducto()) {
                         if ($producto->deleteProducto()) {
                             if ($producto->deleteFile($producto->getRuta(), $_POST['Foto'])) {
@@ -189,7 +189,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     }
                     break;
                 case 'readProductos':
-                    if ($articulo->setCategoria($_POST['IdCategoria'])) {
+                    if ($articulo->setIdCategoria($_POST['IdCategoria'])) {
                         if ($result['dataset'] = $articulo->readProductosCategoria()) {
                             $result['status'] = 1;
                         } else {
@@ -200,7 +200,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     }
                     break;
                 case 'detailProducto':
-                    if ($articulo->setId($_POST['IdArticulos'])) {
+                    if ($articulo->setIdArticulos($_POST['IdArticulos'])) {
                         if ($result['dataset'] = $articulo->getProducto()) {
                             $result['status'] = 1;
                         } else {

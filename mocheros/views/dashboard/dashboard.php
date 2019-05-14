@@ -1,9 +1,7 @@
+<!-- Función de encabezado  -->
 <?php
     require('../../core/helpers/dashboardHelper.php');
-    DashboardHelper::header('Inicio');
-?>
-<?php
-     DashboardHelper::dashNav();
+    DashboardHelper::headerTemplate('Inicio');
 ?>
 <main>
     <div class="container">
@@ -24,6 +22,7 @@
         </div>
     </div>
 </main>
+<!-- Función de pie de página -->
 <?php
-    DashboardHelper::footer('dashboard.js');
+    DashboardHelper::footer('dashboard.js',null);
 ?>

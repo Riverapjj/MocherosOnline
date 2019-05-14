@@ -1,6 +1,6 @@
 $(document).ready(function()
 {
-    showTable();
+    showTableProducts();
     showSelectCategorias('create-category', null);
 })
 
@@ -17,7 +17,7 @@ function fillTableProducts(rows)
         
         content += `
             <tr class="hoverable">
-                <td><img src="../../resources/img/productos/${row.Foto}" class="materialboxed" height="100"></td>
+                <td><img src="../../resources/img/${row.Foto}" class="materialboxed" height="100"></td>
                 <td>${row.NomArticulo}</td>
                 <td>${row.Cantidad}</td>
                 <td>${row.NomCategoria}</td>
@@ -25,19 +25,22 @@ function fillTableProducts(rows)
                 <td>${row.DescripcionArt}</td>
                 <td><i class="material-icons">${icon}</i></td>
                 <td>
-                    <a href="#" onclick="modalUpdate(${row.IdArtculos})" class="blue-text tooltipped" data-tooltip="Modificar"><i class="material-icons">mode_edit</i></a>
-                    <a href="#" onclick="confirmDelete(${row.IdArtculos}, ${row.Foto})" class="red-text tooltipped" data-tooltip="Eliminar"><i class="material-icons">delete</i></a>
+                    <a href="#" onclick="modalUpdate(${row.IdArticulos})" class="blue-text tooltipped" data-tooltip="Modificar"><i class="material-icons">mode_edit</i></a>
+                    <a href="#" onclick="confirmDelete(${row.IdArticulos}, ${row.Foto})" class="red-text tooltipped" data-tooltip="Eliminar"><i class="material-icons">delete</i></a>
                 </td>
             </tr>
         `;
     });
+    //Se envía el parámetro al cuerpo de la tabla que queremos llenar 
     $('#tbody-products').html(content);
+    //Método para visualizar imágenes de los registros
     $('.materialboxed').materialbox();
+    //Método para crear paginación, búsqueda y que las títulos sean en español
     initTable('products-table');
 }
 
 //Función para obtener y mostrar los registros disponibles
-function showTable()
+function showTableProducts()
 {
     $.ajax({
         url: apiProductos + 'readProductos',
@@ -53,6 +56,7 @@ function showTable()
             if (!result.status) {
                 sweetAlert(4, result.exception, null);
             }
+            //Se envía el parámetro para ejecutar el llenado de la tabla
             fillTableProducts(result.dataset);
         } else {
             console.log(response);
@@ -64,36 +68,6 @@ function showTable()
     });
 }
 
-//Función para mostrar los resultados de una búsqueda
-/* $('#form-search').submit(function()
-{
-    event.preventDefault();
-    $.ajax({
-        url: apiProductos + 'search',
-        type: 'post',
-        data: $('#form-search').serialize(),
-        datatype: 'json'
-    })
-    .done(function(response){
-        //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
-        if (isJSONString(response)) {
-            const result = JSON.parse(response);
-            //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
-            if (result.status) {
-                sweetAlert(4, 'Coincidencias: ' + result.dataset.length, null);
-                fillTable(result.dataset);
-            } else {
-                sweetAlert(3, result.exception, null);
-            }
-        } else {
-            console.log(response);
-        }
-    })
-    .fail(function(jqXHR){
-        //Se muestran en consola los posibles errores de la solicitud AJAX
-        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
-    });
-}) */
 
 //Función para cargar las categorías en el select del formulario
 function showSelectCategorias(idSelect, value)
@@ -184,7 +158,7 @@ function modalUpdate(id)
         url: apiProductos + 'get',
         type: 'post',
         data:{
-            id_producto: id
+            IdArticulos: id
         },
         datatype: 'json'
     })
@@ -194,16 +168,16 @@ function modalUpdate(id)
             const result = JSON.parse(response);
             //Se comprueba si el resultado es satisfactorio para mostrar los valores en el formulario, sino se muestra la excepción
             if (result.status) {
-                $('#form-update')[0].reset();
-                $('#id_producto').val(result.dataset.id_producto);
-                $('#imagen_producto').val(result.dataset.imagen_producto);
-                $('#update_nombre').val(result.dataset.nombre_producto);
-                $('#update_precio').val(result.dataset.precio_producto);
-                $('#update_descripcion').val(result.dataset.descripcion_producto);
-                (result.dataset.estado_producto == 1) ? $('#update_estado').prop('checked', true) : $('#update_estado').prop('checked', false);
-                showSelectCategorias('update_categoria', result.dataset.id_categoria);
+                $('#form-update-products')[0].reset();
+                $('#id-product').val(result.dataset.IdArticulos);
+                $('#update-file').val(result.dataset.Foto);
+                $('#update-name').val(result.dataset.NomArticulo);
+                $('#update-price').val(result.dataset.PrecioUnitario);
+                $('#update-descrip').val(result.dataset.DescripcionArt);
+                (result.dataset.IdEstado == 1) ? $('#update-status').prop('checked', true) : $('#update-status').prop('checked', false);
+                showSelectCategorias('update-category', result.dataset.IdCategoria);
                 M.updateTextFields();
-                $('#modal-update').modal('open');
+                $('#modal-update-products').modal('open');
             } else {
                 sweetAlert(2, result.exception, null);
             }
@@ -218,13 +192,13 @@ function modalUpdate(id)
 }
 
 //Función para modificar un registro seleccionado previamente
-$('#form-update').submit(function()
+$('#form-update-products').submit(function()
 {
     event.preventDefault();
     $.ajax({
         url: apiProductos + 'update',
         type: 'post',
-        data: new FormData($('#form-update')[0]),
+        data: new FormData($('#form-update-products')[0]),
         datatype: 'json',
         cache: false,
         contentType: false,
@@ -236,7 +210,7 @@ $('#form-update').submit(function()
             const result = JSON.parse(response);
             //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
             if (result.status) {
-                $('#modal-update').modal('close');
+                $('#modal-update-products').modal('close');
                 if (result.status == 1) {
                     sweetAlert(1, 'Producto modificado correctamente', null);
                 } else if(result.status == 2) {
@@ -275,8 +249,8 @@ function confirmDelete(id, file)
                 url: apiProductos + 'delete',
                 type: 'post',
                 data:{
-                    id_producto: id,
-                    imagen_producto: file
+                    IdArticulos: id,
+                    Foto: file
                 },
                 datatype: 'json'
             })

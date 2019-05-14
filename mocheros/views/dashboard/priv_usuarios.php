@@ -1,16 +1,7 @@
-﻿<?php
-    require('../../core/helpers/dashboardHelper.php');
-    DashboardHelper::header('Usuarios');
-?>
-<!--Creación de nuestra barra de navegación-->
+﻿<!-- Función de encabezado  -->
 <?php
-    DashboardHelper::dashNav();
-?>
-
-<body>
-    <!--Creación de un slider con sus respectivas imagenes responsivas para el inicio del apartado de usuarios-->
-    <?php
-    DashboardHelper::slider();
+    require('../../core/helpers/dashboardHelper.php');
+    DashboardHelper::headerTemplate('Usuarios');
 ?>
     <main class="container">
         <!--Creando una columna para la tabla de usuarios-->
@@ -23,14 +14,6 @@
                     </li>
                 </ul>
             </div> <br><br><br>
-            <!--Creando una barra de búsqueda para facilitar el acceso a los registros-->
-            <form>
-                <div class="input-field">
-                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                    <input id="search" type="search" required>
-                    <i class="material-icons">close</i>
-                </div>
-            </form>
             <!--Creando un div con su id="test1" para que se muestre al momento de elegir la opción previamente construida en el "tab"-->
             <div id="test1" class="col s12">
                 <!--Declarando que sea una tabla responsiva-->
@@ -88,12 +71,12 @@
                                     <label for="create-email">Correo eléctronico</label>
                                 </div>
                                 <div class="input-field col s12 m6">
-                                    <input id="create-pass" type="text" name="create-pass-name" class="validate"
+                                    <input id="create-pass" type="password" name="create-pass-name" class="validate"
                                         required>
                                     <label for="create-pass">Contraseña</label>
                                 </div>
                                 <div class="input-field col s12 m6">
-                                    <input id="create-confirm-pass" type="text" name="create-confirm-pass-name"
+                                    <input id="create-confirm-pass" type="password" name="create-confirm-pass-name"
                                         class="validate" required>
                                     <label for="create-confirm-pass">Confirmar contraseña</label>
                                 </div>
@@ -121,7 +104,7 @@
                             <div class="row center-align">
                                 <a href="#" class="btn waves-effect grey tooltipped modal-close"
                                     data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
-                                <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Crear"><i
+                                <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Crear"  id="reload"><i
                                         class="material-icons">save</i></button>
                             </div>
                         </form>
@@ -198,7 +181,7 @@
                     <div class="modal-content">
                         <h5 class="cyan-text darker-2 center-align"><b>Modificar un administrador</b></h5>
                         <form class="col s12" id="form-update-admin" method="post">
-                        <input type="hidden" id="IdUsuario" name="id_producto"/>
+                        <input type="hidden" id="IdUsuario" name="id-user-name"/>
                             <div class="row">
                                 <!--Creando los campos requeridos para modificar un usuario-->
                                 <div class="input-field col s12 m6">
@@ -210,7 +193,10 @@
                                     <input id="update-name" type="text" name="update-name-name" class="validate" required>
                                     <label for="update-name">Nombre</label>
                                 </div>
-                                
+                                <div class="input-field col s12 m6">
+                                    <input id="update-lastname" type="text" name="update-lastname-name" class="validate" required>
+                                    <label for="update-lastname">Apellido</label>
+                                </div>                                
                                 <div class="input-field col s12 m6">
                                     <select id="update-rol" name="update-rol-name">
                                     </select>
@@ -220,7 +206,7 @@
                                     <label for="update-telf">Teléfono</label>
                                 </div>
                                 <div class="input-field col s12 m6">
-                                    <input id="update-email" type="text" name="update-mail-name" class="validate" required>
+                                    <input id="update-email" type="text" name="update-email-name" class="validate" required>
                                     <label for="update-email">Correo eléctronico</label>
                                 </div>
                                 <div class="input-field col s12 m6">
@@ -555,6 +541,7 @@
         </div>
         </div>
     </main>
-    <?php
+<!-- Función de pie de página -->
+<?php
     DashboardHelper::footer('usuarios.js', null);
 ?>

@@ -9,7 +9,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
 	$categoria = new Categorias;
 	$result = array('status' => 0, 'exception' => '', 'dataset' => '');
 	//Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
-	if (/* isset($_SESSION['idUsuario']) && */ $_GET['site'] == 'dashboard'){
+	if (isset($_SESSION['idUsuario']) && $_GET['site'] == 'dashboard'){
 		switch ($_GET['action']) {
 			case 'read':
 				if ($result['dataset'] = $categoria->readCategorias()) {
@@ -32,13 +32,17 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'create':
                 $_POST = $categoria->validateForm($_POST);
-                if ($categoria->setNomCategoria($_POST['create_nombre'])) {
+                if ($categoria->setNomCategoria($_POST['create-name-name'])) {
+                    if ($categoria->setDescripcion($_POST['create-descrip-name'])){
                     if ($categoria->createCategoria()) {
                         $result['status'] = 1;
                     } else {
                         $result['exception'] = 'Operación fallida';
                     }
-                } else {
+                }else{
+                    $result['exception'] = 'Descripción incorrecta';
+                }
+                    } else {
                     $result['exception'] = 'Nombre incorrecto';
                 }
                 break;

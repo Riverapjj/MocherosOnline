@@ -1,14 +1,7 @@
+<!-- Función de encabezado  -->
 <?php
     require('../../core/helpers/dashboardHelper.php');
-    DashboardHelper::header('Estados');
-?>
-<!--Creación de nuestra barra de navegación-->
-<?php
-    DashboardHelper::dashNav();
-?>
-<!--Creación de un slider con sus respectivas imagenes responsivas para el inicio del apartado de usuarios-->
-<?php
-    DashboardHelper::slider();
+    DashboardHelper::headerTemplate('Estados');
 ?>
 <main class="container">
     <!--Creando una columna para la tabla de estado-->
@@ -311,6 +304,7 @@
     </div>
     </div>
 </main>
+<!-- Función de pie de página -->
 <?php
-    DashboardHelper::footer();
+    DashboardHelper::footer(null, null);
 ?>
