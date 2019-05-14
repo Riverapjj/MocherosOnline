@@ -16,11 +16,11 @@
         </div>
       </div>
     </form>
+    <h1 class="center indigo-text" id="title"></h1>
     <!--apartado para mostrar los resultados de la busqueda a partir de catalogo.js-->
     <h4 class="center indigo-text" id="titulo"></h4>
     <div class="row" id="resultado"></div>
     <!--apartado para mostrar los productos a partir de catalogo.js-->
-    <h1 class="center indigo-text" id="title"></h1>
     <div class="row" id="catalogo"></div>
 </div>
 <?php
