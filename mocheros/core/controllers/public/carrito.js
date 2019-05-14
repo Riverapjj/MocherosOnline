@@ -14,7 +14,6 @@ $("#form-cantidad").submit(function(e){
     e.preventDefault();
 });
 
-
 /*$(document).ready(function() 
 {
     showCarrito();

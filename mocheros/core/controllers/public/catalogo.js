@@ -1,5 +1,4 @@
-$(document).ready(function()
-{
+$(document).ready(function () {
     readCategorias();
 })
 
@@ -7,23 +6,22 @@ $(document).ready(function()
 const apiCatalogo = '../../core/api/articulos.php?site=publicHelper&action=';
 
 //Función para obtener y mostrar las categorías de los productos
-function readCategorias()
-{
+function readCategorias() {
     $.ajax({
         url: apiCatalogo + 'readCategorias',
         type: 'post',
         data: null,
         datatype: 'json'
     })
-    .done(function(response){
-        //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
-        if (isJSONString(response)) {
-            const result = JSON.parse(response);
-            //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
-            if (result.status) {
-                let content = '';
-                result.dataset.forEach(function(row){
-                    content += `
+        .done(function (response) {
+            //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+            if (isJSONString(response)) {
+                const result = JSON.parse(response);
+                //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+                if (result.status) {
+                    let content = '';
+                    result.dataset.forEach(function (row) {
+                        content += `
                     <div class="col s12 m6 l4">
                         <div class="card hoverable">
                             <div class="card-content">
@@ -36,41 +34,40 @@ function readCategorias()
                         </div>
                     </div>
                     `;
-                });
-                $('#title').text('Nuestros productos');
-                $('#catalogo').html(content);
-                $('.tooltipped').tooltip();
+                    });
+                    $('#title').text('Nuestros productos');
+                    $('#catalogo').html(content);
+                    $('.tooltipped').tooltip();
+                } else {
+                    $('#title').html('<i class="material-icons small">cloud_off</i><span class="red-text">' + result.exception + '</span>');
+                }
             } else {
-                $('#title').html('<i class="material-icons small">cloud_off</i><span class="red-text">' + result.exception + '</span>');
+                console.log(response);
             }
-        } else {
-            console.log(response);
-        }
-    })
-    .fail(function(jqXHR){
-        //Se muestran en consola los posibles errores de la solicitud AJAX
-        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
-    });
+        })
+        .fail(function (jqXHR) {
+            //Se muestran en consola los posibles errores de la solicitud AJAX
+            console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+        });
 }
 
 //Función para obtener y mostrar los productos de acuerdo a la categoría seleccionada
-function readProductosCategoria(id, categoria)
-{
+function readProductosCategoria(id, categoria) {
     $.ajax({
         url: apiCatalogo + 'readProductos',
         type: 'post',
-        data:{
+        data: {
             IdCategoria: id
         },
         datatype: 'json'
     })
-    .done(function(response){
-        if (isJSONString(response)) {
-            const result = JSON.parse(response);
-            if (result.status) {
-                let content = '';
-                result.dataset.forEach(function(row){
-                    content += `
+        .done(function (response) {
+            if (isJSONString(response)) {
+                const result = JSON.parse(response);
+                if (result.status) {
+                    let content = '';
+                    result.dataset.forEach(function (row) {
+                        content += `
                     <div class="col s12 m6 l3">
                         <div class="card hoverable">
                             <div class="card-image">
@@ -84,41 +81,40 @@ function readProductosCategoria(id, categoria)
                         </div>
                     </div>
                     `;
-                });
-                $('#title').text(categoria);
-                $('#catalogo').html(content);
-                $('.materialboxed').materialbox();
-                $('.tooltipped').tooltip();
+                    });
+                    $('#title').text(categoria);
+                    $('#catalogo').html(content);
+                    $('.materialboxed').materialbox();
+                    $('.tooltipped').tooltip();
+                } else {
+                    $('#title').html('<i class="material-icons small">cloud_off</i><span class="red-text">' + result.exception + '</span>');
+                }
             } else {
-                $('#title').html('<i class="material-icons small">cloud_off</i><span class="red-text">' + result.exception + '</span>');
+                console.log(response);
             }
-        } else {
-            console.log(response);
-        }
-    })
-    .fail(function(jqXHR){
-        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
-    });
+        })
+        .fail(function (jqXHR) {
+            console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+        });
 }
 
 //Función para obtener y mostrar los datos del producto seleccionado
-function getProducto(id)
-{
+function getProducto(id) {
     $.ajax({
         url: apiCatalogo + 'detailProducto',
         type: 'post',
-        data:{
+        data: {
             IdArticulos: id
         },
         datatype: 'json'
     })
-    .done(function(response){
-        //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
-        if (isJSONString(response)) {
-            const result = JSON.parse(response);
-            //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
-            if (result.status) {
-                let content = `
+        .done(function (response) {
+            //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+            if (isJSONString(response)) {
+                const result = JSON.parse(response);
+                //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+                if (result.status) {
+                    let content = `
                     <div class="container">
                         <div class="card horizontal">
                             <div class="card-image">
@@ -195,11 +191,62 @@ function getProducto(id)
                         </div>
                     </div>
                 `;
-                $('#title').text('Detalle del artículo');
-                $('#catalogo').html(content);
-                $('.tooltipped').tooltip();
+                    $('#title').text('Detalle del artículo');
+                    $('#catalogo').html(content);
+                    $('.tooltipped').tooltip();
+                } else {
+                    $('#title').html('<i class="material-icons small">cloud_off</i><span class="red-text">' + result.exception + '</span>');
+                }
             } else {
-                $('#title').html('<i class="material-icons small">cloud_off</i><span class="red-text">' + result.exception + '</span>');
+                console.log(response);
+            }
+        })
+        .fail(function (jqXHR) {
+            //Se muestran en consola los posibles errores de la solicitud AJAX
+            console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+        });
+}
+
+$('#form-search').submit(function()
+{
+    event.preventDefault();
+    $.ajax({
+        url: apiCatalogo + 'searchProducto',
+        type: 'post',
+        data: $('#form-search').serialize(),
+        datatype: 'json'
+    })
+    .done(function(response){
+        //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+            if (result.status) {
+                sweetAlert(4, 'Coincidencias: ' + result.dataset.length, null);
+                let content = '';
+                result.dataset.forEach(function (row) {
+                    content += `
+                <div class="col s12 m6 l3">
+                    <div class="card hoverable">
+                        <div class="card-image">
+                            <img src="../../resources/img/articulos/${row.Foto}" class="materialboxed">               
+                            <a href="#" onclick="getProducto(${row.IdArticulos})" class="btn-floating halfway-fab waves-effect waves-light orange tooltipped" data-tooltip="Ver producto"><i class="material-icons">add</i></a>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title">${row.NomArticulo}</span>
+                            <p><b>$${row.PrecioUnitario}</b></p>
+                        </div>
+                    </div>
+                </div>
+                `;
+                });
+                $('#titulo').text('Resultado de la busqueda');
+                $('#resultado').html(content);
+                $('.materialboxed').materialbox();
+                $('.tooltipped').tooltip();
+                //fillTable(result.dataset);
+            } else {
+                sweetAlert(3, result.exception, null);
             }
         } else {
             console.log(response);
@@ -209,4 +256,50 @@ function getProducto(id)
         //Se muestran en consola los posibles errores de la solicitud AJAX
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
-}
+})
+
+/*function searchProducto(value) {
+    $.ajax({
+        url: apiCatalogo + 'searchProducto',
+        type: 'post',
+        data: {
+            value
+        },
+        datatype: 'json'
+    })
+    .done(function (response) {
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            if (result.status) {
+                let content = '';
+                result.dataset.forEach(function (row) {
+                    content += `
+                <div class="col s12 m6 l3">
+                    <div class="card hoverable">
+                        <div class="card-image">
+                            <img src="../../resources/img/articulos/${row.Foto}" class="materialboxed">               
+                            <a href="#" onclick="getProducto(${row.IdArticulos})" class="btn-floating halfway-fab waves-effect waves-light orange tooltipped" data-tooltip="Ver producto"><i class="material-icons">add</i></a>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title">${row.NomArticulo}</span>
+                            <p><b>$${row.PrecioUnitario}</b></p>
+                        </div>
+                    </div>
+                </div>
+                `;
+                });
+                $('#title').text('Resultado de la busqueda');
+                $('#busqueda').html(content);
+                $('.materialboxed').materialbox();
+                $('.tooltipped').tooltip();
+            } else {
+                $('#title').html('<i class="material-icons small">cloud_off</i><span class="red-text">' + result.exception + '</span>');
+            }
+        } else {
+            console.log(response);
+        }
+    })
+    .fail(function (jqXHR) {
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}*/

@@ -191,6 +191,13 @@ class Articulos extends Validator
 		return Database::getRows($sql, $params);
 	}
 
+	public function searchArticulos($value)
+	{
+		$sql = 'SELECT IdArticulos, Foto, NomArticulo, DescripcionArt, PrecioUnitario, NomCategoria, Estado FROM articulos INNER JOIN categorias USING(IdCategoria) WHERE NomArticulo LIKE ? OR DescripcionArt LIKE ? ORDER BY NomArticulo';
+		$params = array("%$value%", "%$value%");
+		return Database::getRows($sql, $params);
+	}
+
 	public function readCategorias()
 	{
 		$sql = 'SELECT IdCategoria, NomCategoria FROM categorias';
@@ -207,7 +214,7 @@ class Articulos extends Validator
 
 	public function getProducto()
 	{
-		$sql = 'SELECT IdArticulos, NomArticulo, DescripcionArt, PrecioUnitario, Cantidad, Foto, Estado, IdCategoria, IdEstado FROM articulos WHERE IdArticulos = ?';
+		$sql = 'SELECT IdArticulos, NomArticulo, DescripcionArt, PrecioUnitario, Cantidad, Foto, IdCategoria, IdEstado FROM articulos WHERE IdArticulos = ?';
 		$params = array($this->idarticulos);
 		return Database::getRow($sql, $params);
 	}
