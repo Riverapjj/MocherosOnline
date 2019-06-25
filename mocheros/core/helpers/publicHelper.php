@@ -16,6 +16,7 @@ class publicHelper{
                 <link type="text/css" rel="stylesheet" href="../../resources/css/style.css" media="screen,projection" />
                 <link rel="stylesheet" href="../../resources/css/animate.css">
                 <link rel="shortcut icon" href="../../resources/img/mocheros-logo.jpg">
+                <link type="text/css" rel="stylesheet" href="../../lib/fpdf181/fpdf.css" media="screen,projection" />
                 <!--Le hacemos saber al navegador que esté optimizable para moviles-->
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
             </head>
