@@ -16,8 +16,6 @@ function isJSONString(string)
 //Función para manejar los mensajes de notificación al usuario
 function sweetAlert(type, text, url)
 {
-
-    
     switch (type) {
         case 1:
             title = "Éxito";
@@ -34,9 +32,6 @@ function sweetAlert(type, text, url)
         case 4:
             title = "Aviso";
             icon = "info";
-            break;
-            default:
-            break;
     }
     if (url) {
         swal({
@@ -49,8 +44,17 @@ function sweetAlert(type, text, url)
         })
         .then(function(value){
             console.log(value);
-            location.href = url;
+            location.href = url
+        });
+    } else {
+        swal({
+            title: title,
+            text: text,
+            icon: icon,
+            button: 'Aceptar',
+            closeOnClickOutside: false,
+            closeOnEsc: false
         });
     }
-    }
+}
 

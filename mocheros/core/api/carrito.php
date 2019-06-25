@@ -1,33 +1,77 @@
 <?php
 require_once('../../core/helpers/database.php');
 require_once('../../core/helpers/validator.php');
-require_once('../../core/models/articulos.php');
+require_once('../../core/models/carrito.php');
 
-/*if (isset($_GET['site']) && isset($_GET['action']) {
+if(isset($_GET['site']) && isset($_GET['action'])){
     session_start();
-})*/
-
-if (isset($_POST['IdArticulos'])) {
-    foreach ($_POST as $key => $value) {
-        $product[$key] = filter_var($value, FILTER_SANITIZE_STRING);
-    }
-    $statement = $conn->prepare('SELECT Foto, NomArticulo, PrecioUnitario FROM articulos WHERE IdArticulos = ? LIMIT 1');
-    $statement->bind_param('s', $product['IdArticulos']);
-    $statement->execute();
-    $statement->bind_result($product_name, $product_price);
-    while ($statement->fetch()) {
-        $product['NomArticulo'] = $product_name;
-        $product['PrecioUnitario'] = $product_price;
-        if (isset($_SESSION["products"])) {
-            if (isset($_SESSION["products"][$product['IdArticulos']])) {
-                $_SESSION["products"][$product['IdArticulos']]["product_qty"] = $_SESSION["products"][$product['IdArticulos']]["product_qty"] + $_POST["product_qty"];
-            } else {
-                $_SESSION["products"][$product['IdArticulos']] = $product;
-            }
-        } else {
-            $_SESSION["products"][$product['IdArticulos']] = $product;
+    $sales= new Sales();
+    $result=array('status'=>0, 'exception'=>'');
+    //Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
+    if(isset($_SESSION['idAdmin']) && $_GET['site']=='dashboard'){
+        switch ($_GET['action']){
+            case 'read':
+                if($result['dataset']=$sales->readVentas()){
+                    $result['status']=1;
+                }else{
+                    $result['exception']='No hay ventas realizadas';
+                }
+            break;
+            case 'detalle':
+                if($sales->setId($_POST['idVenta'])){
+                    if($result['dataset']=$sales->obtenerDetalle()){
+                        $result['status']=1; 
+                    }else{
+                        $result['exception']='error';
+                    }    
+                }else{
+                    $result['exception']='Venta incorrecta';
+                }
+            break;
+            case 'search':
+                $_POST = $sales->validateForm($_POST);
+                if ($_POST['fecha'] != '') {
+                    if ($result['dataset'] = $sales->searchVenta($_POST['fecha'])) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'No hay coincidencias';
+                    }
+                } else {
+                    $result['exception'] = 'Ingrese un valor para buscar';
+                }
+            break;    
         }
+    }else if(isset($_SESSION['idCliente']) && $_GET['site']=='public'){
+        switch ($_GET['action']){
+            case 'readVentasCliente':            
+                if($sales->setIdCliente($_SESSION['idCliente'])){
+                    if($result['dataset']=$sales->ventaCliente()){
+                        $result['status']=1;
+                    }else{
+                        $result['exception']='No se han encontrado compras';
+                    }
+                }else{
+                    $result['exception']='Cliente incorrecto';
+                }
+            break;
+            case 'detalle':
+            if($sales->setId($_POST['idVenta'])){
+                if($result['dataset']=$sales->obtenerDetalle()){
+                    $result['status']=1; 
+                }else{
+                    $result['exception']='error';
+                }    
+            }else{
+                $result['exception']='Venta incorrecta';
+            }
+        break;
+        }
+      
+    }else{
+        exit('Acceso no disponible');
     }
-    $total_product = count($_SESSION["products"]);
-    die(json_encode(array('products' => $total_product)));
+    print(json_encode($result));
+}else{
+    exit('Recurso denegado');
 }
+?>

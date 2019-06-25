@@ -47,17 +47,15 @@ $('#form-sesion').submit(function()
         //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
 
         if (isJSONString(response)) {
-            const dataset = JSON.parse(response);
+            const result = JSON.parse(response);
             //Se comprueba si la respuesta es satisfactoria, sino se muestra la excepción
-            if (dataset.status == 1) {
+            if (result.status) {
                 sweetAlert(1, 'Autenticación correcta', 'dashboard.php');
-                console.log(dataset.status);
             } else {
                 sweetAlert(2, result.exception, null);
-                console.log(dataset);
             }
         } else {
-            console.log(isJSONString(response));
+            console.log(response);
         }
     })
     .fail(function(jqXHR){
