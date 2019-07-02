@@ -81,7 +81,12 @@ class Sales extends Validator{
         $sql='SELECT IdDetallePedido, nombre, encabezadopedidos.Fecha, estadoventa.estado FROM encabezadopedidos, estadoventa, cliente WHERE cliente.idCliente= venta.idCliente AND estadoventa.idEstado= venta.idEstado AND venta.idCliente = ?';
         $params=array($this->idCliente);
         return Database::getRows($sql, $params);
+    }
 
+    public function insertPreDetalle(){
+        $sql='INSERT INTO predetalle (idCliente, idProducto, cantidad) VALUES (?, ?, ?)';
+        $params=array($this->cliente, $this->id, $this->cantidad);
+        return Database::executeRow($sql, $params);
     }
 }
 ?>

@@ -9,6 +9,7 @@ class Articulos extends Validator
 	private $descripcionart = null;
 	private $preciounitario = null;
 	private $cantidad = null;
+	private $cliente = null;
 	private $foto = null;
 	private $calificacion = null;
 	private $comentario = null;
@@ -104,6 +105,19 @@ class Articulos extends Validator
 		return $this->cantidad;
 	}
 
+	public function setCliente($value){
+        if($this->validateId($value)){
+            $this->cliente=$value;
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function getCliente(){
+        return $this->cliente;
+    }
+
 	public function setFoto($file, $name)
 	{
 		if ($this->validateImageFile($file, $this->ruta, $name, 500, 500)) {
@@ -172,28 +186,28 @@ class Articulos extends Validator
 	//Metodos para el manejo del CRUD
 	public function readProductosCategoria()
 	{
-		$sql = 'SELECT NomCategoria, IdArticulos, Foto, NomArticulo, DescripcionArt, PrecioUnitario FROM articulos INNER JOIN categorias USING(IdCategoria) WHERE IdCategoria = ? AND IdEstado = 1 ORDER BY NomArticulo';
+		$sql = 'SELECT NomCategoria, IdArticulos, Foto, NomArticulo, DescripcionArt, PrecioUnitario FROM articulos INNER JOIN categorias USING(IdCategoria) WHERE IdCategoria = ? AND Estado = 1 ORDER BY NomArticulo';
 		$params = array($this->idcategoria);
 		return Database::getRows($sql, $params);
 	}
 
 	public function readProductos()
 	{
-		$sql = 'SELECT IdArticulos, cat.NomCategoria, NomArticulo, DescripcionArt, PrecioUnitario, Cantidad, Foto, IdEstado FROM articulos art INNER JOIN categorias cat ON cat.IdCategoria = art.IdCategoria ORDER BY NomArticulo';
+		$sql = 'SELECT IdArticulos, cat.NomCategoria, NomArticulo, DescripcionArt, PrecioUnitario, Cantidad, Foto, Estado FROM articulos art INNER JOIN categorias cat ON cat.IdCategoria = art.IdCategoria ORDER BY NomArticulo';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}
 
 	public function searchProductos($value)
 	{
-		$sql = 'SELECT IdArticulos, Foto, NomArticulo, DescripcionArt, PrecioUnitario, NomCategoria, IdEstado FROM articulos INNER JOIN categorias USING(IdCategoria) WHERE NomArticulo LIKE ? OR DescripcionArt LIKE ? ORDER BY NomArticulo';
+		$sql = 'SELECT IdArticulos, Foto, NomArticulo, DescripcionArt, PrecioUnitario, NomCategoria, Estado FROM articulos INNER JOIN categorias USING(IdCategoria) WHERE NomArticulo LIKE ? OR DescripcionArt LIKE ? ORDER BY NomArticulo';
 		$params = array("%$value%", "%$value%");
 		return Database::getRows($sql, $params);
 	}
 
 	public function searchArticulos($value)
 	{
-		$sql = 'SELECT IdArticulos, Foto, NomArticulo, DescripcionArt, PrecioUnitario, NomCategoria, IdEstado FROM articulos INNER JOIN categorias USING(IdCategoria) WHERE NomArticulo LIKE ? OR DescripcionArt LIKE ? ORDER BY NomArticulo';
+		$sql = 'SELECT IdArticulos, Foto, NomArticulo, DescripcionArt, PrecioUnitario, NomCategoria, Estado FROM articulos INNER JOIN categorias USING(IdCategoria) WHERE NomArticulo LIKE ? OR DescripcionArt LIKE ? ORDER BY NomArticulo';
 		$params = array("%$value%", "%$value%");
 		return Database::getRows($sql, $params);
 	}
@@ -214,7 +228,7 @@ class Articulos extends Validator
 
 	public function getProducto()
 	{
-		$sql = 'SELECT IdArticulos, NomArticulo, DescripcionArt, PrecioUnitario, Cantidad, Foto, IdCategoria, IdEstado FROM articulos WHERE IdArticulos = ?';
+		$sql = 'SELECT IdArticulos, NomArticulo, DescripcionArt, PrecioUnitario, Cantidad, Foto, IdCategoria, Estado FROM articulos WHERE IdArticulos = ?';
 		$params = array($this->idarticulos);
 		return Database::getRow($sql, $params);
 	}
@@ -253,4 +267,38 @@ class Articulos extends Validator
 		$params = array($this->comentario, $this->idarticulos);
 		return Database::executeRow($sql, $params);
 	}
+
+	//Metodo para obtener preDetalle del cliente
+    public function readPreDetalle(){
+		$sql='SELECT IdPre, articulos.NomArticulo as articulos, prepedido.Cantidad as Cantidad, articulos.PrecioUnitario as PrecioUnitario, articulos.Foto as Foto,(articulos.PrecioUnitario * prepedido.Cantidad) as total , articulos.Cantidad as cantidadA FROM articulos, prepedido WHERE articulos.IdArticulos = prepedido.IdArticulo AND IdCliente = ?';
+        $params=array($this->cliente);
+        return Database::getRows($sql, $params);
+    }
+
+    public function getPreDetalle(){
+        $sql='SELECT IdPre, articulos.NomArticulo as articulos, prepedido.Cantidad as Cantidad, articulos.PrecioUnitario as PrecioUnitario, articulos.Foto as Foto,(articulos.PrecioUnitario * prepedido.Cantidad) as total , articulos.Cantidad as cantidadA FROM artiuclos, prepedido WHERE articulos.IdArticulos = prepedido.IdArticulo AND IdCliente = ?';
+        $params=array($this->cliente);
+        return Database::getRow($sql, $params);
+	}
+	
+	//Metodo para insertar datos en tabla preDetalle
+    public function insertPreDetalle(){
+        $sql='INSERT INTO prepedido (IdCliente, IdArticulo, Cantidad) VALUES (?, ?, ?)';
+        $params=array($this->cliente, $this->idarticulos, $this->cantidad);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Metodo para actualizar cantidad en preDetalle
+    public function updateCantidadPreDetalle(){
+        $sql='UPDATE prepedido set Cantidad = (prepedido.Cantidad + ?) WHERE IdPre = ?';
+        $params=array($this->cantidad, $this->idPre);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Metodo para eliminar un preDetalle
+    function deletePreDetalle(){
+        $sql='DELETE FROM prepedido WHERE IdCliente = ?';
+        $params=array($this->cliente);
+        return Database::executeRow($sql, $params);
+    }
 }
