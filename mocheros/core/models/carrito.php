@@ -66,7 +66,7 @@ class Sales extends Validator{
     }
 
     public function obtenerDetalle(){
-        $sql='SELECT idDetalle,nombre, detalle_venta.cantidad, producto.precio,  (producto.precio * detalle_venta.cantidad) AS Total FROM detalle_venta, producto WHERE producto.idProducto= detalle_venta.idProducto AND idVenta = ?';
+        $sql='SELECT IdDetallePedido, IdEncabezado, detallepedidos.CantidadArticulo, articulos.PrecioUnitario,  (articulos.PrecioUnitario * detallepedidos.CantidadArticulo) AS PrecioDetalle FROM detallepedidos, articulos WHERE articulos.IdArticulos = detallepedidos.IdArticulo AND IdDetallePedido = ?';
         $params=array($this->id);
         return Database::getRows($sql,$params);
     }
@@ -78,7 +78,7 @@ class Sales extends Validator{
     }
 
     public function ventaCliente(){
-        $sql='SELECT idVenta, nombre, fecha_hora, estadoventa.estado FROM venta, estadoventa, cliente WHERE cliente.idCliente= venta.idCliente AND estadoventa.idEstado= venta.idEstado AND venta.idCliente = ?';
+        $sql='SELECT IdDetallePedido, nombre, encabezadopedidos.Fecha, estadoventa.estado FROM encabezadopedidos, estadoventa, cliente WHERE cliente.idCliente= venta.idCliente AND estadoventa.idEstado= venta.idEstado AND venta.idCliente = ?';
         $params=array($this->idCliente);
         return Database::getRows($sql, $params);
 
