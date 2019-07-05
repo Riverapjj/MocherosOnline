@@ -135,61 +135,21 @@ function getProducto(id) {
                                     </div>
                                 </div>
                                 <div class="card-action">
-                                    <form method="post" id="form-cantidad">
-                                        <div class="row center">
+                                    <form method="post" id="form-preDetalle">
+                                        <div class="row center">                                    
                                             <div class="input-field col s12 m6">
-                                                <i class="material-icons prefix">format_list_numbered</i>
-                                                <input id="cantidad" type="number" name="cantidad" min="1" class="validate">
+                                            <input id="cantidadBD" type="hidden" name="cantidadBD" value="${result.dataset.Cantidad}">
+                                            <input id="idProducto3" type="hidden" name="idProducto3" value="${result.dataset.IdArticulos}">
+                                                <i class="material-icons prefix">list</i>
+                                                <input id="cantidad" type="number" name="cantidad" min="1" class="validate" required>
                                                 <label for="cantidad">Cantidad</label>
-                                            </div>
-                                            <div class="input-field col s12 m6">
-                                                <button type="submit" class="btn waves-effect waves-light orange-darken-3 tooltipped" data-tooltip="Agregar al carrito"><i class="material-icons left">add_shopping_cart</i>Agregar al carrito</button>
-                                            </div>
-                                        </div>
+                                            </div> 
+                                            <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Crear"  onclick="agregarCarrito()"><i class="material-icons">add_shopping_cart</i></button>
+                                        </div>                                    
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        <div class="col s12">
-                            <form id="ratingForm" method="post">
-                                <h5 class="indigo-text">Califica este producto</h5>
-                                <ul class="collection">
-                                    <li class="collection-item avatar">
-                                        <img src="images/yuna.jpg" alt="" class="circle">
-                                        <span class="title">Title</span>
-                                        <p>First Line <br>
-                                            Second Line
-                                        </p>
-                                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                                    </li>
-                                    <li class="collection-item avatar">
-                                        <i class="material-icons circle">folder</i>
-                                        <span class="title">Title</span>
-                                        <p>First Line <br>
-                                            Second Line
-                                        </p>
-                                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                                    </li>
-                                    <li class="collection-item avatar">
-                                        <i class="material-icons circle green">insert_chart</i>
-                                        <span class="title">Title</span>
-                                        <p>First Line <br>
-                                            Second Line
-                                        </p>
-                                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                                    </li>
-                                    <li class="collection-item avatar">
-                                        <i class="material-icons circle red">play_arrow</i>
-                                        <span class="title">Title</span>
-                                        <p>First Line <br>
-                                            Second Line
-                                        </p>
-                                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                                    </li>
-                                </ul>
-                            </form>
-                        </div>
-                    </div>
                 `;
                     $('#title').text('Detalle del artículo');
                     $('#catalogo').html(content);
@@ -257,3 +217,41 @@ $('#form-search').submit(function()
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 })
+
+//funcion para agregar al preDetalle
+function agregarCarrito(){
+    
+    event.preventDefault();
+    $.ajax({
+        url: apiCatalogo + 'preDetalle',
+        type: 'post',
+        data: new FormData($('#form-preDetalle')[0]),
+        datatype: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+    })
+    .done(function(response){
+        //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+        if(isJSONString(response)){
+            const result= JSON.parse(response);
+            //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+            if(result.status){
+                $('#form-preDetalle')[0].reset();                
+                if(result.status==1){
+                    sweetAlert(1, 'Articulo añadido correctamente', null);
+                }else{
+                    sweetAlert(3,'Articulo añadido. ' +result.exception, null);
+                }              
+            }else{
+                sweetAlert(4, result.exception, null);
+            }
+        }else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' +jqXHR.status+ ' ' +jqXHR.statusText);
+    })
+} 

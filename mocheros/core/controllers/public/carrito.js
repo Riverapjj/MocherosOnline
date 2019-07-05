@@ -1,6 +1,5 @@
 $(document).ready(function()
-{
-    $('.slider').slider();    
+{   
     readPreDetalle();
 })
 
@@ -28,29 +27,29 @@ function readPreDetalle()
                     content += `
                     <div class="row">
                     <div class="card horizontal hoverable">                   
-                    <input id="idPDetalle" type="hidden" name="idPDetalle" value="${row.idPreDetalle}"/>                
+                    <input id="idPDetalle" type="hidden" name="idPDetalle" value="${row.IdDetallePedido}"/>                
                         <!--Definicion de la tajeta horizontal-->
                         <div class="card-image">
-                            <img src="../../resource/img/productos/${row.foto}">
+                            <img src="../../resources/img/productos/${row.Foto}">
                             <!--Imagen de la tarjeta-->
                         </div>
                         <div class="card-stacked">
                             <div class="card-content">
                                 <!--Contenido de la tarjeta-->
                                 <strong>
-                                    <h5>${row.producto}
+                                    <h5>${row.NomArticulo}
                                         <strong>
                                     </h5>
                                     <strong>
-                                        <h5>Cantidad: ${row.cantidad}
+                                        <h5>Cantidad: ${row.Cantidad}
                                             <strong>
                                         </h5>
                                         <strong>
-                                            <h5>Precio Unitario($): ${row.precio}
+                                            <h5>Precio Unitario($): ${row.PrecioUnitario}
                                                 <strong>
                                             </h5>
                                             <strong>
-                                                <h5>Precio Total($): ${row.total}
+                                                <h5>Precio Total($): ${row.PrecioDetalle}
                                                     <strong>
                                                 </h5>
                                                              
@@ -60,7 +59,7 @@ function readPreDetalle()
                                     </button>                                    
                                 </div>
                             </div>
-                        </div>                
+                        </div>  
                     </div>                
                     `;
                     totalVenta= parseFloat(subtotal)+ parseFloat(totalVenta);
@@ -73,8 +72,7 @@ function readPreDetalle()
                         <!--Definicion de la tajeta para pagar-->
                         <div class="card-content white-text">
                             <!--Contenido de la tarjeta-->
-                            <span class="card-title">MakaStore</span>
-                            
+                            <span class="card-title">Mocheros</span>
                             <h5>Total a pagar($): ${lblTotal}</h5>
                         </div>
                         <div class="card-action center">
@@ -113,7 +111,7 @@ function modalCantidad(id)
         url: apiCatalogo + 'getPre',
         type: 'post',
         data:{
-            idPreDetalle: id,                        
+            IdDetallePedido: id,                        
         },
         datatype: 'json'
     })
@@ -199,7 +197,7 @@ function confirmDelete(id)
                 url: apiCatalogo + 'deletePre',
                 type: 'post',
                 data:{
-                    idPreDetalle: id,                    
+                    IdDetallePedido: id,                    
                 },
                 datatype: 'json'
             })

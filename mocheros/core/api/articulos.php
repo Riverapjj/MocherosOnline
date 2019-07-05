@@ -223,16 +223,35 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                         $result['exception'] = 'Ingrese un valor para buscar';
                     }
                     break;
-                case 'addToCart':
-                    if ($articulo->setId($_POST['IdArticulos'])) {
-                        if ($result['dataset'] = $articulo->selectArticulo()) {
-                            $result['status'] = 1;
-                        } else {
-                            $result['exception'] = 'Carrito no disponible';
+                case 'preDetalle':                
+                    $_POST=$articulo->validateForm($_POST);
+                    if(isset($_SESSION['idUsuario'])){
+                        if($articulo->setCantidad($_POST['cantidad'])){
+                            if($articulo->setIdArticulos($_POST['idProducto3'])){
+                                if($articulo->setCliente($_SESSION['idUsuario'])){
+                                    if($_POST['cantidadBD']>= $_POST['cantidad']){
+                                        if($articulo->insertPreDetalle()){                                        
+                                            $result['status'] = 1;
+                                        }else{
+                                            $result['status'] = 2;
+                                            $result['exception'] = 'Proceso fallido';
+                                        }   
+                                    }else{
+                                        $result['exception'] = 'Cantidad de producto insuficiente';
+                                    }                                                                                                                  
+                                }else{
+                                    $result['exception'] = 'Usuario incorrecto';
+                                }
+                            }else{
+                                $result['exception'] = 'Producto incorrecto';
+                            }
+                        }else{
+                            $result['exception'] = 'Cantidad incorrecta';
                         }
-                    } else {
-                        $result['exception'] = 'Producto incorrecto';
+                    }else{
+                        $result['exception'] = 'Debe de iniciar sesion para poder agregar al carrito';
                     }
+                break;
                 case 'rateProducto':
                     $_POST = $articulo->validateForm($_POST);
                     if ($articulo->setId($_POST['IdArticulos'])) {
@@ -283,4 +302,3 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
     } else {
         exit('Recurso denegado');
     }
-?>

@@ -1,6 +1,6 @@
 <?php
-    require('../../core/helpers/publicHelper.php');
-    publicHelper::header('Inicio');
+require('../../core/helpers/publicHelper.php');
+publicHelper::header('Inicio');
 ?>
 <!--Estructura de modal para registrarse-->
 <div id="modal2" class="modal  modal-fixed-footer">
@@ -46,8 +46,8 @@
 </div>
 
 <?php
-            publicHelper::slider();
-        ?>
+publicHelper::slider();
+?>
 
 <div class="container-fluid">
 </div>
@@ -100,5 +100,5 @@
     </div>
 </div>
 <?php
-    publicHelper::footer('catalogo.js');
+publicHelper::footer('catalogo.js');
 ?>

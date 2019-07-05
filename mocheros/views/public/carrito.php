@@ -1,63 +1,33 @@
 <?php
 require('../../core/helpers/publicHelper.php');
-publicHelper::header('Carrito');
+publicHelper::header('Carrito de compras');
 ?>
 <main class="grey lighten-2">
     <div class="container">
-        <table class="responsive-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Item Name</th>
-                    <th>Cantidad</th>
-                    <th>Item Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><img class="responsive-img" src="../../resources/img/mochila3.jpg"></td>
-                    <td>Mochila 1</td>
-                    <td>
-                        <div class="row">
-                            <div class="input-field col s6 m4 l4">
-                                <input type="number" id="stepper1" min="1" max="10 " value="1">
-                            </div>
-                        </div>
-                    </td>
-                    <td>$45.00</td>
-                </tr>
-                <tr>
-                    <td><img class="responsive-img" src="../../resources/img/accesorios1.jpg"></td>
-                    <td>Accesorio 1</td>
-                    <td>
-                        <div class="row">
-                            <div class="input-field col s6 m4 l4">
-                                <!--Se agrega un numeric steppper para seleccionar la catidad del producto que desea-->
-                                <input type="number" id="stepper1" min="1" max="10 " value="1">
-                            </div>
-                        </div>
-                    </td>
-                    <td>$22.50</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <!--Apartado donde aparece el total a apagar y la opción para pagar-->
-    <div class="container monto">
         <div class="row">
-            <div class="col s12 m6 l12">
-                <div class="card  grey lighten-3 ">
-                    <div class="card-content black-text">
-                        <p><b>SUBTOTAL</b> $67.50 </p>
-                        <br><b>TOTAL </b> $67.50
-                    </div>
+            <div class="col s12 m12 l9">
+                <div class="container-fluid">
+                    <div id="detalle-venta"></div>
                 </div>
-                <a href="#modal1" class="modal-trigger waves-effect waves-light btn-large amber darken-2">Realizar
-                    compra</a>
+            </div>
+            <div id="total"></div>
+        </div>
+    </div>
+    <div id="modal-comprobante" class="modal">
+        <div class="modal-content">
+            <h4 class="center">Aviso</h4>
+            <div class="container">
+                <form class="col s12" method="post" id="form-create" enctype="multipart/form-data">
+                    <h6>La venta ha sido realizada con éxito. El comprobante de compra será realizado en un momento.</h6>                    
+                    <div class="row center">                     
+                    <a class="waves-effect waves-light btn green" href='../../core/reports/public/comprobante.php'><i class="material-icons">check</i></a>           
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </main>
+<script src="../../core/controllers/public/carrito.js"></script>
 <?php
 publicHelper::footer('carrito.js');
 ?>
