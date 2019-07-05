@@ -1,4 +1,4 @@
-<?php
+    <?php
 require_once('../../core/helpers/database.php');
 require_once('../../core/helpers/validator.php');
 require_once('../../core/models/articulos.php');
@@ -44,7 +44,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                         if ($articulo->setDescripcionArt($_POST['create-descrip-name'])) {
                             if ($articulo->setPrecioUnitario($_POST['create-price-name'])) {
                                 if ($articulo->setCantidad($_POST['create-exist-name'])) {
-                                    if ($articulo->setIdEstado(isset($_POST['create-status-name']) ? 1 : 0)) {
+                                    if ($articulo->setIdEstado(isset($_POST['create-status-name']) ? 1 : 2)) {
                                         if (is_uploaded_file($_FILES['create-file-name']['tmp_name'])) {
                                             if ($articulo->setFoto($_FILES['create-file-name'], null)) {
                                                 if ($articulo->createProducto()) {
@@ -81,27 +81,28 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Seleccione una categoría';
                 }
+                break;
             case 'get':
-                if ($articulo->setIdArticulos($_POST['id_product'])) {
+                if ($articulo->setIdArticulos($_POST['IdArticulos'])) {
                     if ($result['dataset'] = $articulo->getProducto()) {
                         $result['status'] = 1;
                     } else {
                         $result['exception'] = 'Producto inexistente';
                     }
                 } else {
-                    $result['exception'] = 'Producto incorrecto 3';
+                    $result['exception'] = 'Producto incorrecto';
                 }
                 break;
             case 'update':
                 $_POST = $articulo->validateForm($_POST);
-                if ($articulo->setIdArticulos($_POST['id_product'])) {
+                if ($articulo->setIdArticulos($_POST['IdArticulos'])){
                     if ($articulo->getProducto()) {
                         if ($articulo->setIdCategoria($_POST['update-category-name'])) {
                             if ($articulo->setNomArticulo($_POST['update-name-name'])) {
                                 if ($articulo->setDescripcionArt($_POST['update-descrip-name'])) {
                                     if ($articulo->setPrecioUnitario($_POST['update-price-name'])) {
                                         if ($articulo->setCantidad($_POST['update-exist-name'])) {
-                                            if ($articulo->setIdEstado(isset($_POST['update-status-name']) ? 1 : 0)) {
+                                            if ($articulo->setIdEstado(isset($_POST['update-status-name']) ? 1 : 2)){
                                                 if (is_uploaded_file($_FILES['update-file-name']['tmp_name'])) {
                                                     if ($articulo->setFoto($_FILES['update-file-name'], $_POST['image-product-name'])) {
                                                         $archivo = true;
@@ -119,7 +120,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                                 }
                                                 if ($articulo->updateProducto()) {
                                                     if ($archivo) {
-                                                        if ($articulo->saveFile($_FILES['update_archivo'], $articulo->getRuta(), $articulo->getFoto())) {
+                                                        if ($articulo->saveFile($_FILES['update-file-name'], $articulo->getRuta(), $articulo->getFoto())) {
                                                             $result['status'] = 1;
                                                         } else {
                                                             $result['status'] = 2;
@@ -157,7 +158,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             case 'delete':
-                if ($producto->setIdArticulos($_POST['id-product-name'])) {
+                if ($producto->setIdArticulos($_POST['IdArticulos'])) {
                     if ($producto->getProducto()) {
                         if ($producto->deleteProducto()) {
                             if ($producto->deleteFile($producto->getRuta(), $_POST['Foto'])) {

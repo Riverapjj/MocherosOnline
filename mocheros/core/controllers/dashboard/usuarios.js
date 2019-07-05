@@ -74,9 +74,8 @@ function fillTableAdmin(rows)
             <td>${row.Email}</td>
             <td><i class="material-icons">${icon}</i></td>
             <td>
-                    <a href="#" onclick="modalUpdate(${row.IdUsuario})" class="blue-text tooltipped" data-tooltip="Modificar"><i class="material-icons">mode_edit</i></a>
-                    <a href="#" onclick="confirmDelete(${row.IdUsuario})" class="red-text tooltipped" data-tooltip="Eliminar"><i class="material-icons">delete</i></a>
-                </td>
+                <a href="#" onclick="modalUpdate(${row.IdUsuario})" class="blue-text tooltipped" data-tooltip="Modificar"><i class="material-icons">mode_edit</i></a>
+            </td>
         </tr>
         `;
     });
@@ -86,15 +85,7 @@ function fillTableAdmin(rows)
     initTable('admin-table');
 }
 
-//Función para recargar manualmente el datatable
-$('#reload').click(async () => {
-    //Destruimos la tabla anterior
-    $('#admin-table').DataTable().destroy();
-    //Se llena de nuevo el cuerpo de la tabla
-    $('#tbody-read-admin').html(content);
-    //Método para crear paginación, búsqueda y que las títulos sean en español
-    initTable('admin-table');
-})
+
 
 //Función para crear un nuevo registro
 $('#form-create-admin').submit(async () => {
@@ -119,7 +110,7 @@ $('#form-create-admin').submit(async () => {
             $('#form-create-admin')[0].reset();
             $('#modal-create-admin').modal('close');
             sweetAlert(1, 'Usuario creado correctamente', null);
-                showTable();
+            showTableAdmin();
             } else {
                 sweetAlert(2, result.exception, null);
         }
@@ -192,9 +183,9 @@ $('#form-update-admin').submit(function()
             //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
                            
             if (result.status) {
-                $('#modal-update-admin').close();
+                $('#modal-update-admin').modal('close');
                 sweetAlert(1, 'Usuario modificado correctamente', null);
-                showTable();
+                showTableAdmin();
             } else {
                 sweetAlert(2, result.exception, null);
             }

@@ -31,18 +31,23 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
 				}
                 break;
             case 'create':
-                $_POST = $categoria->validateForm($_POST);
+            $_POST = $categoria->validateForm($_POST);
                 if ($categoria->setNomCategoria($_POST['create-name-name'])) {
-                    if ($categoria->setDescripcion($_POST['create-descrip-name'])){
-                    if ($categoria->createCategoria()) {
-                        $result['status'] = 1;
+                    if ($categoria->setDescripcion($_POST['create-descrip-name'])) {
+                                if ($categoria->setIdEstado(isset($_POST['create-status-name']) ? 1 : 2)) {
+                                            if ($categoria->createCategoria()) {
+                                                    $result['status'] = 1;
+                                                } else {
+                                                    $result['status'] = 2;
+                                                    $result['exception'] = 'No se pudo realizar la operación';
+                                                }
+                                } else {
+                                    $result['exception'] = 'Estado incorrecto';
+                                }
                     } else {
-                        $result['exception'] = 'Operación fallida';
+                        $result['exception'] = 'Descripcioón incorrecta';
                     }
-                }else{
-                    $result['exception'] = 'Descripción incorrecta';
-                }
-                    } else {
+                } else {
                     $result['exception'] = 'Nombre incorrecto';
                 }
                 break;
@@ -61,7 +66,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 $_POST = $categoria->validateForm($_POST);
                 if ($categoria->setIdCategoria($_POST['IdCategoria'])) {
                     if ($categoria->getCategoria()) {
-                        if ($categoria->setNomCategoria($_POST['update_nombre'])) {
+                        if ($categoria->setNomCategoria($_POST['name-category-update'])) {
                             if ($categoria->updateCategoria()) {
                                 $result['status'] = 1;
                             } else {

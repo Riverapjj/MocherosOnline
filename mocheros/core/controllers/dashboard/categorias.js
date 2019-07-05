@@ -10,15 +10,19 @@ const apiCategorias = '../../core/api/categorias.php?site=dashboard&action=';
 function fillTableCategory(rows)
 {
     let content = '';
+    
 
     rows.forEach( (row) => {
-        
+
+        (row.IdEstado == 1) ? icon = 'visibility' : icon = 'visibility_off';
         content += `
         <tr class="hoverable">
             <td>${row.NomCategoria}</td>
             <td>${row.Descripcion}</td>
-            <td><a class="modal-trigger" href="#" onclick="modalUpdate(${row.IdCategoria})"> <i class="material-icons">border_color</i></a>
-            <a class="modal-trigger" href="#" onclick="confirmDelete(${row.IdCategoria})"><i class="material-icons">delete</i></a></td>
+            <td><i class="material-icons">${icon}</i></td>
+            <td>
+            <a href="#" onclick="modalUpdate(${row.IdCategoria})" class="blue-text tooltipped" data-tooltip="Modificar"><i class="material-icons">mode_edit</i></a>
+            </td>
         </tr>
         `;
     });
@@ -104,7 +108,6 @@ $('#form-create-category').submit(function()
     .done(function(response){
         //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
         if (isJSONString(response)) {
-            console.log('ok');
             const result = JSON.parse(response);
             //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
             if (result.status) {
@@ -115,7 +118,7 @@ $('#form-create-category').submit(function()
                 } else if (result.status == 2) {
                     sweetAlert(3, 'Categoría creada. ' + result.exception, null);
                 }
-                showTable();
+                showTableCategory();
             } else {
                 sweetAlert(2, result.exception, null);
             }
@@ -132,11 +135,12 @@ $('#form-create-category').submit(function()
 //Función para mostrar formulario con registro a modificar
 function modalUpdate(id)
 {
+    event.preventDefault();
     $.ajax({
         url: apiCategorias + 'get',
         type: 'post',
         data:{
-            id_categoria: id
+            IdCategoria: id
         },
         datatype: 'json'
     })
@@ -145,16 +149,17 @@ function modalUpdate(id)
         if (isJSONString(response)) {
             const result = JSON.parse(response);
             //Se comprueba si el resultado es satisfactorio para mostrar los valores en el formulario, sino se muestra la excepción
-            if (result.status) {
-                $('#form-update')[0].reset();
-                $('#id_categoria').val(result.dataset.id_categoria);
-                $('#imagen_categoria').val(result.dataset.imagen_categoria);
-                $('#update_nombre').val(result.dataset.nombre_categoria);
-                $('#update_descripcion').val(result.dataset.descripcion_categoria);
-                M.updateTextFields();
-                $('#modal-update').modal('open');
+            if (result.status) {                
+                $('#form-update-category')[0].reset();
+                $('#modal-update-category').modal('open');
+                $('#IdCategoria').val(result.dataset.IdCategoria);
+                $('#name-category-update').val(result.dataset.NomCategoria);
+                $('#update-descrip-category').val(result.dataset.Descripcion);
+                (result.dataset.IdEstado == 1) ? $('#update-status').prop('checked', true) : $('#update-status').prop('checked', false);
+                
             } else {
                 sweetAlert(2, result.exception, null);
+                console.log(result.exception);
             }
         } else {
             console.log(response);
@@ -167,7 +172,7 @@ function modalUpdate(id)
 }
 
 //Función para modificar un registro seleccionado previamente
-$('#form-update').submit(function()
+$('#form-update-category').submit(function()
 {
     event.preventDefault();
     $.ajax({

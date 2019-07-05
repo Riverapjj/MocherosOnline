@@ -26,7 +26,7 @@ function fillTableProducts(rows)
                 <td><i class="material-icons">${icon}</i></td>
                 <td>
                     <a href="#" onclick="modalUpdate(${row.IdArticulos})" class="blue-text tooltipped" data-tooltip="Modificar"><i class="material-icons">mode_edit</i></a>
-                    <a href="#" onclick="confirmDelete(${row.IdArticulos}, ${row.Foto})" class="red-text tooltipped" data-tooltip="Eliminar"><i class="material-icons">delete</i></a>
+                    <a href="#" onclick="confirmDelete(${row.IdArticulos}, '${row.Foto}')" class="red-text tooltipped" data-tooltip="Eliminar"><i class="material-icons">delete</i></a>
                 </td>
             </tr>
         `;
@@ -131,15 +131,10 @@ $('#form-create-products').submit(function()
             if (result.status) {
                 $('#form-create-products')[0].reset();
                 $('#modal-create-products').modal('close');
-                console.log(result.status);
-                if (result.status == 1) {
-                    sweetAlert(1, 'Producto creado correctamente', null);
-                } else if (result.status == 2) {
-                    sweetAlert(3, 'Producto creado. ' + result.exception, null);
-                }
-                showTable();
-            } else {
-                sweetAlert(2, result.exception, null);
+                sweetAlert(1, 'Producto creado correctamente', null);
+                showTableProducts();
+                } else {
+                    sweetAlert(2, result.exception, null);
             }
         } else {
             console.log(response);
@@ -169,8 +164,9 @@ function modalUpdate(id)
             //Se comprueba si el resultado es satisfactorio para mostrar los valores en el formulario, sino se muestra la excepción
             if (result.status) {
                 $('#form-update-products')[0].reset();
-                $('#id-product').val(result.dataset.IdArticulos);
-                $('#update-file').val(result.dataset.Foto);
+                $('#IdArticulos').val(result.dataset.IdArticulos);
+                $('#image-product').val(result.dataset.Foto);
+                $('#update-exist').val(result.dataset.Cantidad);
                 $('#update-name').val(result.dataset.NomArticulo);
                 $('#update-price').val(result.dataset.PrecioUnitario);
                 $('#update-descrip').val(result.dataset.DescripcionArt);
@@ -211,6 +207,7 @@ $('#form-update-products').submit(function()
             //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
             if (result.status) {
                 $('#modal-update-products').modal('close');
+                alert(result.status)
                 if (result.status == 1) {
                     sweetAlert(1, 'Producto modificado correctamente', null);
                 } else if(result.status == 2) {
@@ -218,7 +215,7 @@ $('#form-update-products').submit(function()
                 } else if(result.status == 3) {
                     sweetAlert(1, 'Producto modificado. ' + result.exception, null);
                 }
-                showTable();
+                showTableProducts();
             } else {
                 sweetAlert(2, result.exception, null);
             }
@@ -265,7 +262,7 @@ function confirmDelete(id, file)
                         } else if (result.status == 2) {
                             sweetAlert(3, 'Producto eliminado. ' + result.exception, null);
                         }
-                        showTable();
+                        showTableProducts();
                     } else {
                         sweetAlert(2, result.exception, null);
                     }

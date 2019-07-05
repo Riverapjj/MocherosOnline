@@ -4,6 +4,7 @@ class Categorias extends Validator
     private $idcategoria = null;
 	private $nomcategoria = null;
 	private $descripcion = null;
+	private $idestado = null;
 
     public function setIdCategoria($value)
 	{
@@ -54,11 +55,26 @@ class Categorias extends Validator
 	{
 		return $this->descripcion;
 	}
+
+	public function setIdEstado($value)
+    {
+        if ($this->validateId($value)) {
+            $this->idestado = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getIdEstado()
+    {
+        return $this->idestado;
+    }
     
     //Metodos para el manejo del CRUD
 	public function readCategorias()
 	{
-		$sql = 'SELECT IdCategoria, NomCategoria, Descripcion FROM categorias ORDER BY NomCategoria';
+		$sql = 'SELECT IdCategoria, NomCategoria, Descripcion, IdEstado FROM categorias ORDER BY NomCategoria';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}
@@ -72,22 +88,22 @@ class Categorias extends Validator
 
 	public function createCategoria()
 	{
-		$sql = 'INSERT INTO categorias(NomCategoria, Descripcion) VALUES(?, ?)';
-		$params = array($this->nomcategoria, $this->descripcion);
+		$sql = 'INSERT INTO categorias(NomCategoria, Descripcion, IdEstado) VALUES(?, ?, ?)';
+		$params = array($this->nomcategoria, $this->descripcion, $this->idestado);
 		return Database::executeRow($sql, $params);
 	}
 
 	public function getCategoria()
 	{
-		$sql = 'SELECT IdCategoria, NomCategoria, Descripcion FROM categorias WHERE IdCategoria = ?';
+		$sql = 'SELECT IdCategoria, NomCategoria, Descripcion, IdEstado FROM categorias WHERE IdCategoria = ?';
 		$params = array($this->idcategoria);
 		return Database::getRow($sql, $params);
 	}
 
 	public function updateCategoria()
 	{
-		$sql = 'UPDATE categorias SET NomCategoria = ?, Descripcion = ? WHERE IdCategoria = ?';
-		$params = array($this->nomcategoria, $this->descripcion, $this->idcategoria);
+		$sql = 'UPDATE categorias SET NomCategoria = ?, Descripcion = ?, IdEstado = ? WHERE IdCategoria = ?';
+		$params = array($this->nomcategoria, $this->descripcion, $this->idestado, $this->idcategoria);
 		return Database::executeRow($sql, $params);
 	}
 

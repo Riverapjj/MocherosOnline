@@ -190,20 +190,6 @@ class Usuarios extends Validator
         }
     }
 
-    public function checkPassword2()
-    {
-        $sql = 'SELECT Clave FROM usuarios WHERE IdUsuario = ?';
-        $params = array($this->idusuario);
-        $data = Database::getRow($sql, $params);
-        if (password_verify($this->clave, $data['Clave'])) {
-            print_r($data['Çlave'] + $this->clave);
-         //   return true;
-        } else {
-          //  return false;
-          print_r(var_dump($data['Clave']));
-        }
-    }
-
 
     public function changePassword()
     {
@@ -216,7 +202,7 @@ class Usuarios extends Validator
     //Metodos para manejar el CRUD
 	public function readUsuarios()
 	{
-		$sql = 'SELECT IdRol, Nombre, Apellido, Telefono, Email, IdEstado, IdUsuario FROM usuarios ORDER BY Apellido';
+		$sql = 'SELECT IdRol, Nombre, Apellido, Telefono, Email, u.IdEstado, IdUsuario FROM usuarios u ORDER BY Apellido';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}
@@ -245,7 +231,7 @@ class Usuarios extends Validator
     
     public function readRoles(){
 
-        $sql = 'SELECT IdRol, TipoRol FROM roles ORDER BY IdRol';
+        $sql = 'SELECT IdRol, TipoRol FROM roles  WHERE IdEstado = 1 ORDER BY IdRol';
         $params = array(null);
         return Database::getRows($sql, $params);
     }

@@ -2,6 +2,7 @@ $( document ).ready(function(){
     $(".button-collapse").sidenav();
     $('.modal').modal();
     $('.trigger-modal').modal();
+    $('.tooltipped').tooltip();
     $('.slider').slider();
     $('.slider').slider({indicators: false});
     $('.tabs').tabs();

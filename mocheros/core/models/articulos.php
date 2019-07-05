@@ -150,19 +150,19 @@ class Articulos extends Validator
 	}
 
 	public function setIdEstado($value)
-	{
-		if ($value == '1' || $value == '0') {
-			$this->idestado = $value;
-			return true;
-		} else {
-			return false;
-		}
-	}
+    {
+        if ($this->validateId($value)) {
+            $this->idestado = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-	public function getIdEstado()
-	{
-		return $this->idestado;
-	}
+    public function getIdEstado()
+    {
+        return $this->idestado;
+    }
 
 	public function getRuta()
 	{
@@ -179,7 +179,7 @@ class Articulos extends Validator
 
 	public function readProductos()
 	{
-		$sql = 'SELECT IdArticulos, cat.NomCategoria, NomArticulo, DescripcionArt, PrecioUnitario, Cantidad, Foto, IdEstado FROM articulos art INNER JOIN categorias cat ON cat.IdCategoria = art.IdCategoria ORDER BY NomArticulo';
+		$sql = 'SELECT IdArticulos, cat.NomCategoria, NomArticulo, DescripcionArt, PrecioUnitario, Cantidad, Foto, art.IdEstado FROM articulos art INNER JOIN categorias cat ON cat.IdCategoria = art.IdCategoria ORDER BY NomArticulo';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}
@@ -200,7 +200,7 @@ class Articulos extends Validator
 
 	public function readCategorias()
 	{
-		$sql = 'SELECT IdCategoria, NomCategoria FROM categorias';
+		$sql = 'SELECT IdCategoria, NomCategoria FROM categorias WHERE IdEstado = 1';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}

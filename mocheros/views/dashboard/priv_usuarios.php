@@ -230,11 +230,13 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="row center-align">
-                                <a href="#" class="btn waves-effect grey tooltipped modal-close"
-                                    data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
-                                <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Crear"><i
-                                        class="material-icons">save</i></button>
+                            <div>
+                                <div class="row center-align">
+                                    <a href="#" class="btn waves-effect grey tooltipped modal-close"
+                                        data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
+                                    <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Crear"><i
+                                            class="material-icons">save</i></button>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -529,15 +531,15 @@
             </div>
         </div>-->
         <!-- Modal creado para ser ejecutado cada vez que se desea eliminar un registro -->
-        <div id="modal-delete" class="modal">
+        <!-- <div id="modal-delete" class="modal">
             <div class="modal-content">
                 <h5 class="cyan-text darker-2 center-align"><b>¿Estás seguro que deseas eliminar el registro?</b></h5>
-            </div>
+            </div> -->
             <!-- Creando las opciones para el modal -->
-            <div class="modal-footer">
+            <!-- <div class="modal-footer">
                 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Sí</a>
                 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
-            </div>
+            </div> -->
         </div>
         </div>
     </main>

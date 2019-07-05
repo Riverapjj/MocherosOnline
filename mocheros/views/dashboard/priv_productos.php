@@ -1,4 +1,4 @@
-﻿<!-- Función de encabezado  -->
+﻿
 <?php
     require('../../core/helpers/dashboardHelper.php');
     DashboardHelper::headerTemplate('Productos');
@@ -42,39 +42,39 @@
                 <div class="modal-content">
                     <h5 class="cyan-text darker-2 center-align"><b>Modificar un producto</b></h5>
                     <form class="col s12" id="form-update-products">
-                    <input type="hidden" id="id-product" name="id_product"/>
-                    <input type="hidden" id="image-product" name="image-product-name"/>
+                    <input type="hidden" id="IdArticulos" name="IdArticulos"/>
+                    <input type="hidden" id="image-product" name="image-product-name"/> 
                         <div class="row">
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="update-name" name="update-name-name" type="text" class="validate">
+                                <input id="update-name" name="update-name-name" type="text" class="validate" required>
                                 <label for="update-name">Nombre del producto</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                <select id="update-category" name="update-category-name">
+                                <select id="update-category" name="update-category-name" required>
                                 </select>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="update-exist" name="update-exist-name" type="text" class="validate">
+                                <input id="update-exist" name="update-exist-name" type="number" class="validate" required>
                                 <label for="update-exist">Existencias</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="update-price" name="update-price-name" type="text" class="validate">
+                                <input id="update-price" name="update-price-name" type="number" class="validate" required>
                                 <label for="update-price">Precio</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="update-descrip" name="update-descrip-name" type="text" class="validate">
+                                <input id="update-descrip" name="update-descrip-name" type="text" class="validate" required>
                                 <label for="update-descrip">Descripción</label>
                             </div>
                             <br>
                             <div class="file-field input-field col s12 m6">
                                 <div class="btn-large waves-effect waves-orange">
                                     <span><i class="material-icons">image</i></span>
-                                    <input id="update-file" type="file" name="update-file-name" />
+                                    <input id="update-file" type="file" name="update-file-name"/>
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text"
-                                        placeholder="Seleccione una imagen de 500x500" />
+                                        placeholder="Seleccione una imagen de 500x500" required/>
                                 </div>
                             </div>
                             <div class="input-field col s12 m6">
@@ -94,7 +94,12 @@
                                 </div>
                         </div>
                         <div class="modal-footer">
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Modificar</a>
+                            <div class="row center-align">
+                                <a href="#" class="btn waves-effect grey tooltipped modal-close"
+                                    data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
+                                <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Crear"><i
+                                        class="material-icons">save</i></button>
+                        </div>
                 </div>
                     </form>
                 </div>
@@ -106,7 +111,7 @@
                     <form class="col s12" id="form-create-products">
                         <div class="row">
                             <div class="input-field col s12 m6">
-                                <input id="create-name" name="create-name-name" type="text" class="validate">
+                                <input id="create-name" name="create-name-name" type="text" class="validate" required>
                                 <label for="create-name">Nombre del producto</label>
                             </div>
                             <div class="input-field col s12 m6">
@@ -114,15 +119,15 @@
                                 </select>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="create-exist" name="create-exist-name" type="text" class="validate">
+                                <input id="create-exist" name="create-exist-name" type="number" class="validate" required>
                                 <label for="create-exist">Existencias</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="create-price" name="create-price-name" type="text" class="validate">
+                                <input id="create-price" name="create-price-name" type="number" class="validate" required>
                                 <label for="create-price">Precio</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="create-descrip" name="create-descrip-name" type="text" class="validate">
+                                <input id="create-descrip" name="create-descrip-name" type="text" class="validate" required>
                                 <label for="create-descrip">Descripción</label>
                             </div>
                             <br>
@@ -133,7 +138,7 @@
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text"
-                                        placeholder="Seleccione una imagen de 500x500" />
+                                        placeholder="Seleccione una imagen de 500x500" required/>
                                 </div>
                             </div>
                             <div class="input-field col s12 m6">
@@ -152,10 +157,15 @@
                                     </p>
                                 </div>
                         </div>
-                    </form>
                 </div>
                 <div class="modal-footer">
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agregar</a>
+                    <div class="row center-align">
+                        <a href="#" class="btn waves-effect grey tooltipped modal-close"
+                            data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
+                        <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Crear"><i
+                                class="material-icons">save</i></button>
+                    </div>
+                    </form>
                 </div>
             </div>
             <!-- Declarando que el botón para agregar y modificar esté fijo en una esquina de la página -->
@@ -172,12 +182,13 @@
         <!-- creando un segundo div con id "test4" para la sección a elegir en el tab -->
         <div id="test4" class="col s12">
             <!-- declarando que sea responsiva -->
-            <table class="" id="category-table">
+            <table id="category-table">
                 <thead class="col s12 m12 l12">
                     <!-- declarando que sea responsiva -->
                     <tr>
                         <th>Categoria</th>
                         <th>Descripción</th>
+                        <th>Estado</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -200,34 +211,75 @@
                                 <input id="descrip" type="text" name="create-descrip-name" class="validate" require>
                                 <label for="descrip">Descripción</label>
                             </div>
+                            <div class="input-field col s12 m6">
+                                    <!--Creación de un select para definir las opciones predeterminadas para cada tipo de usuario-->
+                                    <p>
+                                        <div class="switch">
+                                            <span>Estado:</span>
+                                            <label>
+                                                <i class="material-icons">visibility_off</i>
+                                                <input id="create-status" type="checkbox" name="create-status-name"
+                                                    checked />
+                                                <span class="lever"></span>
+                                                <i class="material-icons">visibility</i>
+                                            </label>
+                                        </div>
+                                    </p>
+                                </div>
                         </div>
-                    </form>
                 </div>
                 <!-- Declarando como es el estilo del footer del modal -->
                 <div class="modal-footer">
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agregar</a>
+                    <div class="row center-align">
+                            <a href="#" class="btn waves-effect grey tooltipped modal-close"
+                                data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
+                            <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Crear"><i
+                                    class="material-icons">save</i></button>
+                    </div>
                 </div>
+                    </form>
             </div>
             <!-- Creando modal-update-category para opcion modificar -->
             <div id="modal-update-category" class="modal">
                 <div class="modal-content">
                     <h5 class="cyan-text darker-2 center-align"><b>Modificar una categoria</b></h5>
-                    <form class="col s12">
+                    <form class="col s12" id="form-update-category">
+                            <input type="hidden" id="IdCategoria" name="IdCategoria"/>
                         <div class="row">
                             <div class="input-field col s12 m6">
-                                <input disabled value="Codigo autonúmerico" id="disabled" type="text" class="validate">
-                                <label for="disabled">Código de la categoria</label>
-                            </div>
-                            <div class="input-field col s12 m6">
-                                <input id="name" type="text" class="validate">
+                                <input id="name-category-update" name="name-category-update" type="text" class="validate">
                                 <label for="name">Nombre de la categoria</label>
                             </div>
+                            <div class="input-field col s12 m6">
+                                <input id="update-descrip-category" type="text" name="update-descrip-category" class="validate" require>
+                                <label for="descrip">Descripción</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                    <!--Creación de un select para definir las opciones predeterminadas para cada tipo de usuario-->
+                                    <p>
+                                        <div class="switch">
+                                            <span>Estado:</span>
+                                            <label>
+                                                <i class="material-icons">visibility_off</i>
+                                                <input id="c" type="checkbox" name="update-status-name"
+                                                    checked />
+                                                <span class="lever"></span>
+                                                <i class="material-icons">visibility</i>
+                                            </label>
+                                        </div>
+                                    </p>
+                                </div>
                         </div>
                     </form>
                 </div>
                 <!-- Declarando como es el estilo del footer del modal -->
                 <div class="modal-footer">
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Modificar</a>
+                <div class="row center-align">
+                            <a href="#" class="btn waves-effect grey tooltipped modal-close"
+                                data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
+                            <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Crear"><i
+                                    class="material-icons">save</i></button>
+                    </div>
                 </div>
             </div>
             <!-- Declarando el boton siempre fijo para agregar y modificar tipo de usuarios con su respectivo icono y modal a ejecutar -->
