@@ -70,7 +70,7 @@ function readPreDetalle()
 
                 divTotal += `
                 <div class="col s12 m12 l3">
-                    <div class="card light-blue darken-2 hoverable">
+                    <div class="card orange darken-2 hoverable">
                         <!--Definicion de la tajeta para pagar-->
                         <div class="card-content white-text">
                             <!--Contenido de la tarjeta-->
