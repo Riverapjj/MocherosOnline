@@ -3,6 +3,8 @@ $(document).ready(function()
     readPreDetalle();
 })
 
+const apiCatalogo = '../../core/api/articulos.php?site=publicHelper&action=';
+
 //Función para obtener y mostrar los preDetalles
 function readPreDetalle()
 {
@@ -37,7 +39,7 @@ function readPreDetalle()
                             <div class="card-content">
                                 <!--Contenido de la tarjeta-->
                                 <strong>
-                                    <h5>${row.NomArticulo}
+                                    <h5>${row.articulos}
                                         <strong>
                                     </h5>
                                     <strong>
@@ -45,11 +47,11 @@ function readPreDetalle()
                                             <strong>
                                         </h5>
                                         <strong>
-                                            <h5>Precio Unitario($): ${row.PrecioUnitario}
+                                            <h5>Precio Unitario: $${row.PrecioUnitario}
                                                 <strong>
                                             </h5>
                                             <strong>
-                                                <h5>Precio Total($): ${row.PrecioDetalle}
+                                                <h5>Precio Total: $${row.total}
                                                     <strong>
                                                 </h5>
                                                              
@@ -73,7 +75,7 @@ function readPreDetalle()
                         <div class="card-content white-text">
                             <!--Contenido de la tarjeta-->
                             <span class="card-title">Mocheros</span>
-                            <h5>Total a pagar($): ${lblTotal}</h5>
+                            <h5>Total a pagar: $${lblTotal}</h5>
                         </div>
                         <div class="card-action center">
                             <!--Boton para pagar-->
@@ -197,7 +199,7 @@ function confirmDelete(id)
                 url: apiCatalogo + 'deletePre',
                 type: 'post',
                 data:{
-                    IdDetallePedido: id,                    
+                    IdPreDetalle: id,                    
                 },
                 datatype: 'json'
             })

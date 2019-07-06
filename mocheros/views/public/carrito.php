@@ -7,7 +7,7 @@ publicHelper::header('Carrito de compras');
         <div class="row">
             <div class="col s12 m12 l9">
                 <div class="container-fluid">
-                    <div id="detalle-venta"></div>
+                    <div id="detalleVenta"></div>
                 </div>
             </div>
             <div id="total"></div>
@@ -27,7 +27,6 @@ publicHelper::header('Carrito de compras');
         </div>
     </div>
 </main>
-<script src="../../core/controllers/public/carrito.js"></script>
 <?php
 publicHelper::footer('carrito.js');
 ?>
