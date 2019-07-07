@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-07-2019 a las 20:12:31
--- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.3.0
+-- Tiempo de generación: 07-07-2019 a las 04:26:43
+-- Versión del servidor: 10.1.25-MariaDB
+-- Versión de PHP: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,8 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `mocheritosdb`
 --
-
-CREATE DATABASE IF NOT EXISTS `mocheritosdb`;
+CREATE DATABASE IF NOT EXISTS `mocheritosdb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `mocheritosdb`;
 
 DELIMITER $$
@@ -236,17 +235,18 @@ INSERT INTO `detallepedidos` (`IdDetallePedido`, `IdEncabezado`, `IdArticulo`, `
 CREATE TABLE `encabezadopedidos` (
   `IdEncabezado` int(11) NOT NULL,
   `IdUsuario` int(11) NOT NULL,
-  `Fecha` date NOT NULL
+  `Fecha` date NOT NULL,
+  `IdEstadoPedido` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `encabezadopedidos`
 --
 
-INSERT INTO `encabezadopedidos` (`IdEncabezado`, `IdUsuario`, `Fecha`) VALUES
-(1, 15, '2019-03-02'),
-(2, 15, '2019-03-02'),
-(3, 14, '2019-03-03');
+INSERT INTO `encabezadopedidos` (`IdEncabezado`, `IdUsuario`, `Fecha`, `IdEstadoPedido`) VALUES
+(1, 15, '2019-03-02', NULL),
+(2, 15, '2019-03-02', NULL),
+(3, 14, '2019-03-03', NULL);
 
 --
 -- Disparadores `encabezadopedidos`
@@ -255,6 +255,29 @@ DELIMITER $$
 CREATE TRIGGER `insertEncabezado` BEFORE INSERT ON `encabezadopedidos` FOR EACH ROW INSERT INTO bitacora VALUES(null, NEW.IdUsuario, 'Insert', NOW())
 $$
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estadopedidos`
+--
+
+CREATE TABLE `estadopedidos` (
+  `IdEstadoPedido` int(11) NOT NULL,
+  `TipoEstado` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `estadopedidos`
+--
+
+INSERT INTO `estadopedidos` (`IdEstadoPedido`, `TipoEstado`) VALUES
+(1, 'Pendiente'),
+(2, 'Entregado'),
+(3, 'Anulado'),
+(4, 'Pendiente'),
+(5, 'Entregado'),
+(6, 'Anulado');
 
 -- --------------------------------------------------------
 
@@ -429,7 +452,15 @@ ALTER TABLE `detallepedidos`
 --
 ALTER TABLE `encabezadopedidos`
   ADD PRIMARY KEY (`IdEncabezado`),
-  ADD KEY `IdUsuario` (`IdUsuario`);
+  ADD KEY `IdUsuario` (`IdUsuario`),
+  ADD KEY `IdEstadoPedido` (`IdEstadoPedido`);
+
+--
+-- Indices de la tabla `estadopedidos`
+--
+ALTER TABLE `estadopedidos`
+  ADD PRIMARY KEY (`IdEstadoPedido`),
+  ADD KEY `IdEstadoPedido` (`IdEstadoPedido`);
 
 --
 -- Indices de la tabla `estados`
@@ -469,61 +500,56 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `articulos`
   MODIFY `IdArticulos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
 --
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
   MODIFY `IdBitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
 --
 -- AUTO_INCREMENT de la tabla `calificaciones`
 --
 ALTER TABLE `calificaciones`
   MODIFY `IdCalificacion` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
   MODIFY `IdCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
 --
 -- AUTO_INCREMENT de la tabla `detallepedidos`
 --
 ALTER TABLE `detallepedidos`
   MODIFY `IdDetallePedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
-
 --
 -- AUTO_INCREMENT de la tabla `encabezadopedidos`
 --
 ALTER TABLE `encabezadopedidos`
   MODIFY `IdEncabezado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+--
+-- AUTO_INCREMENT de la tabla `estadopedidos`
+--
+ALTER TABLE `estadopedidos`
+  MODIFY `IdEstadoPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `estados`
 --
 ALTER TABLE `estados`
   MODIFY `IdEstado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT de la tabla `prepedidos`
 --
 ALTER TABLE `prepedidos`
   MODIFY `IdPrePedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
   MODIFY `IdRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
-
 --
 -- Restricciones para tablas volcadas
 --
@@ -565,7 +591,8 @@ ALTER TABLE `detallepedidos`
 -- Filtros para la tabla `encabezadopedidos`
 --
 ALTER TABLE `encabezadopedidos`
-  ADD CONSTRAINT `encabezadopedidos_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`);
+  ADD CONSTRAINT `encabezadopedidos_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`),
+  ADD CONSTRAINT `encabezadopedidos_ibfk_2` FOREIGN KEY (`IdEstadoPedido`) REFERENCES `estadopedidos` (`IdEstadoPedido`);
 
 --
 -- Filtros para la tabla `prepedidos`
