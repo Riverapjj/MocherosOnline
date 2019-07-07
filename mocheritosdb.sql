@@ -274,10 +274,7 @@ CREATE TABLE `estadopedidos` (
 INSERT INTO `estadopedidos` (`IdEstadoPedido`, `TipoEstado`) VALUES
 (1, 'Pendiente'),
 (2, 'Entregado'),
-(3, 'Anulado'),
-(4, 'Pendiente'),
-(5, 'Entregado'),
-(6, 'Anulado');
+(3, 'Anulado');
 
 -- --------------------------------------------------------
 
