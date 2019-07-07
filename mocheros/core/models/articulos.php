@@ -318,13 +318,13 @@ class Articulos extends Validator
 	}
 
 	public function createSale(){
-        $sql = 'INSERT INTO encabezadopedidos(IdUsuario, Fecha, IdEstado) VALUES (?, (SELECT NOW()), 2)';
+        $sql = 'INSERT INTO encabezadopedidos(IdUsuario, Fecha, IdEstadoPedido) VALUES (?, (SELECT NOW()), 2)';
         $params = array($this->cliente);
         return Database::executeRow($sql,$params);
     }
 	
 	public function createDetailsSale(){
-        $sql = 'INSERT INTO detallepedidos(IdArticulo, CantidadArticulo, idVenta) VALUES(?, ? ,?)';
+        $sql = 'INSERT INTO detallepedidos(IdEncabezado, IdArticulo, CantidadArticulo, PrecioDetalle) VALUES(?, ? ,?, ?, ?)';
         $params = array($this->id,$this->cantidad,$this->cliente);
         Database::executeRow($sql,$params);
     }
