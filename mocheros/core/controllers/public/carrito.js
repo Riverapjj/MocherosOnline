@@ -112,7 +112,7 @@ function modalCantidad(id)
         url: apiCatalogo + 'getPre',
         type: 'post',
         data:{
-            IdDetallePedido: id,                        
+            IdPrePedido: id,                        
         },
         datatype: 'json'
     })
