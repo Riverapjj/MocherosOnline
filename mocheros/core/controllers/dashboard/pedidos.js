@@ -1,36 +1,37 @@
 $(document).ready(function()
 {
     //inicializacion de la funcion para mostrar datos en la tabla
-    showTable(); 
+    showTablePedidos(); 
 })
 
 //Constante para establecer la ruta y parámetros de comunicación con la API
-const apiVentas = '../../core/api/sales.php?site=public&action=';
+const apiPedidos = '../../core/api/pedidos.php?site=public&action=';
 
 //Función para llenar tabla con los datos de los registros
-function fillTable(rows)
+function fillTablePedidos(rows)
 {    
     let content= '';
-    rows.forEach(function(row){        
+    rows.forEach(function(row){
+
         content +=`
             <tr>
-                <td>${row.idVenta}</td>
-                <td>${row.fecha_hora}</td>      
-                <td>${row.estado}</td>                                                                  
-                <td><a href="#" onclick="modalDetalles(${row.idVenta})" class="waves-effect waves-light btn grey tooltipped" data-tooltip="Detalle"><i class="material-icons">list</i></a></td>                
+                <td>${row.Nombre}, ${row.Apellido}</td>
+                <td>${row.Fecha}</td>                
+                <td>${row.TipoEstado}</td>                                                                  
+                <td><a href="#" onclick="modalDetalles(${row.IdEncabezado})" class="waves-effect waves-light btn grey tooltipped" data-tooltip="Detalle"><i class="material-icons">list</i></a></td>                
             </tr>
         `;
     });
-
-    $('#tbody-read').html(content);
-    initTable('admin-table');
-    $('select').formSelect();
-    $('.tooltipped').tooltip();
+    //Se envía el parámetro al cuerpo de la tabla que queremos llenar 
+    $('#tbody-read-pedidos').html(content);
+    //Método para crear paginación, búsqueda y que las títulos sean en español
+    initTable('pedidos-table');
 }
 
-function showTable(){
+function showSelectEstados(idSelect, value)
+{
     $.ajax({
-        url: apiVentas + 'readVentasCliente',
+        url: apiProductos + 'readEstadoPedidos',
         type: 'post',
         data: null,
         datatype: 'json'
@@ -41,9 +42,50 @@ function showTable(){
             const result = JSON.parse(response);
             //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
             if (result.status) {
-                fillTable(result.dataset);
+                let content = '';
+                if (!value) {
+                    content += '<option value="" disabled selected>Seleccione una opción</option>';
+                }
+                result.dataset.forEach(function(row){
+                    if (row.categoria != value) {
+                        content += `<option value="${row.IdEstadoPedido}">${row.TipoEstado}</option>`;
+                    } else {
+                        content += `<option value="${row.IdEstadoPedido}" selected>${row.TipoEstado}</option>`;
+                    }
+                });
+                $('#' + idSelect).html(content);
             } else {
-                sweetAlert(4, result.exception, null);
+                $('#' + idSelect).html('<option value="">No hay opciones</option>');
+            }
+            $('select').formSelect();
+        } else {
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
+
+function showTablePedidos(){
+    $.ajax({
+        url: apiPedidos + 'readPedidosTable',
+        type: 'post',
+        data: null,
+        datatype: 'json'
+    })
+    .done(function(response){
+        //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            console.log(result);
+            //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+            if (result.status) {
+                fillTablePedidos(result.dataset);
+            } else {
+                alert(result.dataset)
+                sweetAlert(2, 'Error al llenar la tabla', result.exception);
             }
         } else {
             console.log(response);
@@ -86,7 +128,7 @@ function fillTableDetalle(rows)
 function modalDetalles(id)
 {
     $.ajax({
-        url: apiVentas + 'detalle',
+        url: apiPedidos + 'detalle',
         type: 'post',
         data:{
             idVenta: id

@@ -26,7 +26,6 @@ function fillTableProducts(rows)
                 <td><i class="material-icons">${icon}</i></td>
                 <td>
                     <a href="#" onclick="modalUpdate(${row.IdArticulos})" class="blue-text tooltipped" data-tooltip="Modificar"><i class="material-icons">mode_edit</i></a>
-                    <a href="#" onclick="confirmDelete(${row.IdArticulos}, '${row.Foto}')" class="red-text tooltipped" data-tooltip="Eliminar"><i class="material-icons">delete</i></a>
                 </td>
             </tr>
         `;

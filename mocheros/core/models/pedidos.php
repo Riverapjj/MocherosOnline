@@ -1,10 +1,10 @@
 <?php
-class Sales extends Validator{
+class Pedidos extends Validator{
     //Atributos de la clase
     private $id=null;
-    private $idCliente=null;
+    private $idcliente=null;
     private $fecha=null;
-    private $idEstado=null;
+    private $idestado=null;
 
     public function setId($value){
         if($this->validateId($value)){
@@ -21,7 +21,7 @@ class Sales extends Validator{
 
     public function setIdCliente($value){
         if($this->validateId($value)){
-            $this->idCliente=$value;
+            $this->idcliente=$value;
             return true;
         }else{
             return false;
@@ -29,7 +29,7 @@ class Sales extends Validator{
     }
 
     public function getIdCliente(){
-        return $this->idCliente;
+        return $this->idcliente;
     }
 
     public function setFecha($value){
@@ -47,7 +47,7 @@ class Sales extends Validator{
 
     public function setIdEstado(){
         if($this->validateId($value)){
-            $this->idEstado=$value;
+            $this->idestado=$value;
             return true;
         }else{
             return false;
@@ -55,12 +55,14 @@ class Sales extends Validator{
     }
 
     public function getIdEstado(){
-        return $this->idEstado;
+        return $this->idestado;
     }
 
     //Metodos para el manejo de SCRUD
-    public function readVentas(){
-        $sql='SELECT idVenta, nombre, fecha_hora, estadoventa.estado FROM cliente, estadoventa, venta WHERE cliente.idCliente=venta.idCliente AND estadoventa.idEstado=venta.idEstado ORDER by idVenta ASC';
+    public function readPedidos(){
+        $sql='SELECT IdEncabezado, u.Nombre, u.Apellido, Fecha, en.IdEstadoPedido 
+        FROM encabezadopedidos en, usuarios u, estadopedidos es 
+        WHERE u.IdUsuario = en.IdUsuario AND en.IdEstadoPedido = es.IdEstadoPedido ORDER by IdEncabezado ASC ';
         $params=array(null);
         return Database::getRows($sql, $params);
     }
@@ -81,7 +83,7 @@ class Sales extends Validator{
     public function ventaCliente()
     {
         $sql='SELECT idVenta, nombre, fecha_hora, estadoventa.estado FROM venta, estadoventa, cliente WHERE cliente.idCliente= venta.idCliente AND estadoventa.idEstado= venta.idEstado AND venta.idCliente = ?';
-        $params=array($this->idCliente);
+        $params=array($this->idcliente);
         return Database::getRows($sql, $params);
 
     }
@@ -117,7 +119,7 @@ class Sales extends Validator{
     public function getLastSale()
     {
         $sql = 'SELECT MAX(idVenta) as idV, fecha_hora as fecha, cliente.nombre as CN, cliente.apellido as CA, cliente.telefono as telefono, cliente.direccion, cliente.correo as correo FROM venta, cliente WHERE venta.idCliente = cliente.idCliente and venta.idCliente = ? and venta.idEstado = 2';
-        $params = array($this->idCliente);
+        $params = array($this->idcliente);
         return Database::getRow($sql,$params);
     }
 
