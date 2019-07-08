@@ -90,7 +90,7 @@
                             $result['exception'] = 'Producto inexistente';
                         }
                     } else {
-                        $result['exception'] = 'Producto incorrecto';
+                        $result['exception'] = 'Producto incorrecto 1';
                     }
                     break;
                 case 'update':
@@ -243,7 +243,7 @@
                                     $result['exception'] = 'Usuario incorrecto';
                                 }
                             } else {
-                                $result['exception'] = 'Producto incorrecto';
+                                $result['exception'] = 'Producto incorrecto 88';
                             }
                         } else {
                             $result['exception'] = 'Cantidad incorrecta';
@@ -290,7 +290,7 @@
                             $result['exception'] = 'Cantidad incorrecta';
                         }
                     } else {
-                        $result['exception'] = 'Producto incorrecto';
+                        $result['exception'] = 'Producto incorrecto 89';
                     }
                     break;
                 case 'deletePre': //Caso para eliminar un producto
@@ -306,7 +306,7 @@
                             $result['exception'] = 'Producto inexistente';
                         }
                     } else {
-                        $result['exception'] = 'Producto incorrecto';
+                        $result['exception'] = 'Producto incorrecto 90';
                     }
                     break;
                 case 'createSale':
@@ -318,7 +318,7 @@
                                 if ($data) {
                                     if ($articulo->getLastSale()) {
                                         for ($x = 0; $x < count($data); $x++) {
-                                            if ($articulo->setId($data[$x]['idProducto'])) {
+                                            if ($articulo->setIdArticulos($data[$x]['IdArticulos'])) {
                                                 if ($articulo->setCantidad($data[$x]['cantidad'])) {
                                                     if ($articulo->createDetailsSale()) { }
                                                 } else {
@@ -335,16 +335,16 @@
                                         }
                                     }
                                 } else {
-                                    $result['exception'] = 'Comuniquese con la tienda';
+                                    $result['exception'] = 'Pongase en contacto con la tienda';
                                 }
                             } else {
-                                $result['exception'] = 'Venta no creada';
+                                $result['exception'] = 'No se pudo realizar la venta';
                             }
                         } else {
                             $result['exception'] = 'Cliente incorrecto';
                         }
                     } else {
-                        $result['exception'] = 'Debe de iniciar sesion';
+                        $result['exception'] = 'Debe de iniciar sesión para poder realizar esta acción';
                     }
                     break;
                 case 'rateProducto':
@@ -364,7 +364,7 @@
                             $result['exception'] = 'Producto inexistente';
                         }
                     } else {
-                        $result['exception'] = 'Producto incorrecto';
+                        $result['exception'] = 'Producto incorrecto 91';
                     }
                     break;
                 case 'commentProducto':
@@ -384,7 +384,7 @@
                             $result['exception'] = 'Producto inexistente';
                         }
                     } else {
-                        $result['exception'] = 'Producto incorrecto';
+                        $result['exception'] = 'Producto incorrecto 92';
                     }
                     break;
                 default:

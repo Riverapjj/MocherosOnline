@@ -29,7 +29,7 @@ function readPreDetalle()
                     content += `
                     <div class="row">
                     <div class="card horizontal hoverable">                   
-                    <input id="idPDetalle" type="hidden" name="idPDetalle" value="${row.IdDetallePedido}"/>                
+                    <input id="IdPrePedido" type="hidden" name="IdPrePedido" value="${row.IdPrePedido}"/>                
                         <!--Definicion de la tajeta horizontal-->
                         <div class="card-image">
                             <img src="../../resources/img/productos/${row.Foto}">
@@ -40,7 +40,7 @@ function readPreDetalle()
                                 <!--Contenido de la tarjeta-->
                                 <strong>
                                     <h5>${row.articulos}
-                                        <strong>
+                                        </strong>
                                     </h5>
                                     <strong>
                                         <h5>Cantidad: ${row.Cantidad}
@@ -52,12 +52,12 @@ function readPreDetalle()
                                             </h5>
                                             <strong>
                                                 <h5>Precio Total: $${row.total}
-                                                    <strong>
+                                                    </strong>
                                                 </h5>
                                                              
                                     <button  class="btn waves-effect waves-light btn red" 
-                                        name="action" onclick="confirmDelete(${row.idPreDetalle})">Eliminar
-                                        <i class="material-icons right">delete</i>
+                                        name="action" onclick="confirmDelete(${row.IdPreDetalle})">Eliminar del carrito
+                                        <i class="material-icons right">remove_shopping_cart</i>
                                     </button>                                    
                                 </div>
                             </div>
@@ -80,8 +80,7 @@ function readPreDetalle()
                         <div class="card-action center">
                             <!--Boton para pagar-->
                             <button onclick="pagar()" class="btn waves-effect green tooltipped" data-tooltip="Pagar" id="realizarVenta">
-                            <i class="material-icons">check</i>
-                        </button>
+                            <i class="material-icons">attach_money</i> Pagar</button>
                         </div>
                     </div>
                 </div>
@@ -199,7 +198,7 @@ function confirmDelete(id)
                 url: apiCatalogo + 'deletePre',
                 type: 'post',
                 data:{
-                    IdPreDetalle: id,                    
+                    IdPrePedido: id,                    
                 },
                 datatype: 'json'
             })

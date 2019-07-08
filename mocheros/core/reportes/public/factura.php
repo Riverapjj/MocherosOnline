@@ -1,22 +1,22 @@
 <?php
-require('plantillaComp.php');
+require('plantilla-factura.php');
 require_once('../../helpers/database.php');
 require_once('../../helpers/validator.php');
-require_once('../../models/sales.php');
+require_once('../../models/ventas.php');
     session_start();
     ini_set('date.timezone', 'America/El_Salvador');
     $pdf = new PDF();
     $ventas = new Sales();
-    $pdf->head('Comprobante de compra');
+    $pdf->head('Factura');
     $pdf->SetFont('Times','',12);
     $pdf->setTextColor(255,255,255);
-    $pdf->setFillColor(91,143,247);
+    $pdf->setFillColor(249,138,79);
     $pdf->SetFont('Arial','I',12);
     $pdf->Ln(0);
     $suma = 0;    
             
-    if(isset($_SESSION['idCliente'])){
-        if($ventas->setIdCliente($_SESSION['idCliente'])){
+    if(isset($_SESSION['idUsuario'])){
+        if($ventas->setIdCliente($_SESSION['idUsuario'])){
             $idVenta = $ventas->getLastSale();
             if($ventas->setId($idVenta['idV'])){
                 $data = $ventas->getSaleDetailReport();
@@ -24,22 +24,22 @@ require_once('../../models/sales.php');
                 $pdf->SetFont('Arial','I',14);
                 $pdf->Cell(100,8, utf8_decode('Cliente: '. $idVenta['CN'].' '.$idVenta['CA']),0, 0, 'L', false);            
                 $pdf->Ln();
-                $pdf->Cell(100,8, utf8_decode('Teléfono: '. $idVenta['telefono']),0 , 0, 'L', false);
+                /*$pdf->Cell(100,8, utf8_decode('Teléfono: '. $idVenta['telefono']),0 , 0, 'L', false);
                 $pdf->Ln();
                 $pdf->Cell(100,8, utf8_decode('Dirección: '. $idVenta['direccion']),0 , 0, 'L', false);
                 $pdf->Ln();
                 $pdf->Cell(100,8, utf8_decode('Correo: '. $idVenta['correo']),0 , 0, 'L', false);
-                $pdf->Ln();
+                $pdf->Ln();*/
                 $pdf->Cell(100,8, utf8_decode('Fecha de compra: '. $idVenta['fecha']),0 , 0, 'L', false);
                 $pdf->Ln(16);
                 
                 $pdf->setTextColor(255,255,255);
                 $pdf->setFillColor(91,143,247);
                 $pdf->SetFont('Arial','I',13);
-                $pdf->Cell(100,10, utf8_decode('Producto'),1 , 0, 'C',true);
-                $pdf->Cell(30,10, utf8_decode('Precio($)'),1 , 0, 'C',true);
+                $pdf->Cell(100,10, utf8_decode('Artículo'),1 , 0, 'C',true);
+                $pdf->Cell(30,10, utf8_decode('Precio $'),1 , 0, 'C',true);
                 $pdf->Cell(30,10, utf8_decode('Cantidad'),1 , 0, 'C',true);
-                $pdf->Cell(30,10, utf8_decode('Total($)'),1 , 0, 'C',true);
+                $pdf->Cell(30,10, utf8_decode('Total $'),1 , 0, 'C',true);
                 $pdf->Ln();
                 foreach($data as $index){
                     $pdf->setTextColor(0,0,0);

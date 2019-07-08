@@ -14,6 +14,8 @@ class Articulos extends Validator
 	private $calificacion = null;
 	private $comentario = null;
 	private $idPre = null;
+	private $idencabezado = null;
+	private $preciodetalle = null;
 	private $ruta = '../../resources/img';
 
 	public function setIdArticulos($value)
@@ -191,7 +193,37 @@ class Articulos extends Validator
     
     public function getidPre(){
         return $this->idPre;
-    }
+	}
+	
+	public function setIdEncabezado($value)
+	{
+		if ($this->validateId($value)) {
+            $this->idencabezado = $value;
+            return true;
+        } else {
+            return false;
+        }
+	}
+
+	public function getIdEncabezado()
+	{
+		return $this->idencabezado;
+	}
+
+	public function setPrecioDetalle($value)
+	{
+		if ($this->validateMoney($value)) {
+			$this->preciodetalle = $value;
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function getPrecioDetalle()
+	{
+		return $this->preciodetalle;
+	}
 
 	public function getRuta()
 	{
@@ -251,7 +283,7 @@ class Articulos extends Validator
 	public function selectArticulo()
 	{
 		$sql = 'SELECT Foto, NomArticulo, PrecioUnitario WHERE IdArticulos = ? LIMIT 1';
-		$params = array($this->id);
+		$params = array($this->idarticulos);
 		return Database::getRow($sql, $params);
 	}
 
@@ -285,20 +317,24 @@ class Articulos extends Validator
 
 	//Metodo para obtener preDetalle del cliente
     public function readPreDetalle(){
-		$sql='SELECT IdPrePedido, articulos.NomArticulo as articulos, prepedidos.Cantidad as Cantidad, articulos.PrecioUnitario as PrecioUnitario, articulos.Foto as Foto, ROUND(articulos.PrecioUnitario * prepedidos.Cantidad, 2) as total , articulos.Cantidad as cantidadA FROM articulos, prepedidos WHERE articulos.IdArticulos = prepedidos.IdArticulo AND IdCliente = ?';
+		$sql='SELECT IdPrePedido, articulos.NomArticulo as articulos, prepedidos.Cantidad as Cantidad, articulos.PrecioUnitario as PrecioUnitario, articulos.Foto as Foto, ROUND(articulos.PrecioUnitario * prepedidos.Cantidad, 2) as total , articulos.Cantidad as cantidadA 
+		FROM articulos, prepedidos 
+		WHERE articulos.IdArticulos = prepedidos.IdArticulos AND IdCliente = ?';
         $params=array($this->cliente);
         return Database::getRows($sql, $params);
     }
 
     public function getPreDetalle(){
-        $sql='SELECT IdPrePedido, articulos.NomArticulo as articulos, prepedidos.Cantidad as Cantidad, articulos.PrecioUnitario as PrecioUnitario, articulos.Foto as Foto,(articulos.PrecioUnitario * prepedidos.Cantidad) as total , articulos.Cantidad as cantidadA FROM artiuclos, prepedidos WHERE articulos.IdArticulos = prepedidos.IdArticulo AND IdCliente = ?';
+        $sql='SELECT IdPrePedido, articulos.NomArticulo as articulos, prepedidos.Cantidad as Cantidad, articulos.PrecioUnitario as PrecioUnitario, articulos.Foto as Foto,(articulos.PrecioUnitario * prepedidos.Cantidad) as total , articulos.Cantidad as cantidadA 
+		FROM articulos, prepedidos 
+		WHERE articulos.IdArticulos = prepedidos.IdArticulos AND IdCliente = ?';
         $params=array($this->cliente);
         return Database::getRow($sql, $params);
 	}
 	
 	//Metodo para insertar datos en tabla preDetalle
     public function insertPreDetalle(){
-        $sql='INSERT INTO prepedidos (IdCliente, IdArticulo, Cantidad) VALUES (?, ?, ?)';
+        $sql='INSERT INTO prepedidos (IdCliente, IdArticulos, Cantidad) VALUES (?, ?, ?)';
         $params=array($this->cliente, $this->idarticulos, $this->cantidad);
         return Database::executeRow($sql, $params);
     }
@@ -306,7 +342,7 @@ class Articulos extends Validator
     //Metodo para actualizar cantidad en preDetalle
     public function updateCantidadPreDetalle(){
         $sql='UPDATE prepedidos set Cantidad = (prepedidos.Cantidad + ?) WHERE IdPrePedido = ?';
-        $params=array($this->cantidad, $this->IdPrePedido);
+        $params=array($this->cantidad, $this->idPre);
         return Database::executeRow($sql, $params);
     }
 
@@ -317,15 +353,52 @@ class Articulos extends Validator
         return Database::executeRow($sql, $params);
 	}
 
+	public function getPreDetalle2(){
+        $sql='SELECT IdPrePedido, articulos.NomArticulo as articulos, prepedidos.Cantidad as Cantidad, articulos.PrecioUnitario as precio, articulos.Foto as foto, ROUND(articulos.PrecioUnitario * prepedidos.Cantidad, 2) as total , articulos.Cantidad as cantidadA 
+		FROM articulos, prepedidos 
+		WHERE articulos.IdArticulos = prepedidos.IdArticulos AND IdPrePedido = ?';
+        $params=array($this->idPre);
+        return Database::getRow($sql, $params);
+    }
+
+    //Metodo para eliminar un preDetalle
+    function deletePreDetalle2(){
+        $sql='DELETE FROM prepedidos WHERE IdPrePedido = ?';
+        $params=array($this->idPre);
+        return Database::executeRow($sql, $params);
+    }
+
 	public function createSale(){
         $sql = 'INSERT INTO encabezadopedidos(IdUsuario, Fecha, IdEstadoPedido) VALUES (?, (SELECT NOW()), 2)';
         $params = array($this->cliente);
         return Database::executeRow($sql,$params);
+	}
+	
+	public function getLastSale(){
+        $sql = 'SELECT IdEncabezado FROM encabezadopedidos WHERE IdUsuario = ? ORDER BY IdEncabezado DESC LIMIT 1';
+        $params = array($this->cliente);
+        $data = Database::getRow($sql, $params);
+		if ($data) {
+            $this->cliente = $data['IdEncabezado'];
+            return true;
+        } else{
+            return false;
+        }
     }
 	
 	public function createDetailsSale(){
-        $sql = 'INSERT INTO detallepedidos(IdEncabezado, IdArticulo, CantidadArticulo, PrecioDetalle) VALUES(?, ? ,?, ?, ?)';
-        $params = array($this->id,$this->cantidad,$this->cliente);
+		//esta hace el insert en la tabla detalle pedidos
+        $sql = 'INSERT INTO detallepedidos(IdEncabezado, IdArticulos, CantidadArticulo, PrecioDetalle) VALUES(?, ?, ? ,?)';
+        $params = array($this->idencabezado, $this->idarticulos, $this->cantidad, $this->preciodetalle);
         Database::executeRow($sql,$params);
+	}
+	
+	//aquí está lok
+	public function getPre(){
+        $sql='SELECT art.IdArticulos, NomArticulo, DescripcionArt, PrecioUnitario, Foto, prepedidos.Cantidad as cantidad
+		 FROM prepedidos 
+		 INNER JOIN articulos art USING(IdArticulos) WHERE IdCliente = ?';
+        $params = array($this->cliente);
+        return Database::getRows($sql,$params);
     }
 }
