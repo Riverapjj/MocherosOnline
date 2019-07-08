@@ -20,7 +20,7 @@ publicHelper::header('Carrito de compras');
                 <form class="col s12" method="post" id="form-create" enctype="multipart/form-data">
                     <h6>La venta ha sido realizada con éxito. El comprobante de compra será realizado en un momento.</h6>                    
                     <div class="row center">                     
-                    <a class="waves-effect waves-light btn green" href='../../core/reports/public/comprobante.php'><i class="material-icons">check</i></a>           
+                    <a class="waves-effect waves-light btn green" href='../../core/reports/public/factura.php'><i class="material-icons">check</i></a>           
                     </div>
                 </form>
             </div>

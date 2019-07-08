@@ -301,6 +301,18 @@ class Articulos extends Validator
 		return Database::executeRow($sql, $params);
 	}
 
+	public function getStock(){
+        $sql='SELECT IdArticulos, Cantidad from Articulos where IdArticulos = ?';
+        $params=array($this->idarticulos);
+        return Database::getRow($sql, $params);
+    }
+    //Metodo para actualizar cantidad de producto
+    public function updateStock(){
+        $sql='UPDATE articulos SET Cantidad = (? +articulos.Cantidad)  WHERE IdArticulos = ?';
+        $params=array($this->cantidad, $this->idarticulos);
+        return Database::executeRow($sql,$params);
+    }
+
 	public function rateProducto()
 	{
 		$sql = 'UPDATE articulos SET Calificacion = ? WHERE IdArticulos = ?';
@@ -366,6 +378,12 @@ class Articulos extends Validator
         $sql='DELETE FROM prepedidos WHERE IdPrePedido = ?';
         $params=array($this->idPre);
         return Database::executeRow($sql, $params);
+	}
+	
+	public function validateStock(){
+        $sql='SELECT Cantidad FROM articulos WHERE IdArticulos = ?';
+        $params=array($this->idarticulos);
+        return Database::getRow($sql, $params);
     }
 
 	public function createSale(){

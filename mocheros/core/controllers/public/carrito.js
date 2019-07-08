@@ -56,7 +56,7 @@ function readPreDetalle()
                                                 </h5>
                                                              
                                     <button  class="btn waves-effect waves-light btn red" 
-                                        name="action" onclick="confirmDelete(${row.IdPreDetalle})">Eliminar del carrito
+                                        name="action" onclick="confirmDelete(${row.IdPrePedido})">Eliminar del carrito
                                         <i class="material-icons right">remove_shopping_cart</i>
                                     </button>                                    
                                 </div>
