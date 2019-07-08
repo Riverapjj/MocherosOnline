@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-07-2019 a las 04:26:43
--- Versión del servidor: 10.1.25-MariaDB
--- Versión de PHP: 5.6.31
+-- Tiempo de generación: 08-07-2019 a las 06:51:44
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,7 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `mocheritosdb`
 --
-CREATE DATABASE IF NOT EXISTS `mocheritosdb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+
+CREATE DATABASE IF NOT EXISTS `mocheritosdb`;
 USE `mocheritosdb`;
 
 DELIMITER $$
@@ -109,7 +110,61 @@ INSERT INTO `bitacora` (`IdBitacora`, `IdUsuario`, `Accion`, `Fecha`) VALUES
 (19, 37, 'Insert', '2019-07-01'),
 (20, 38, 'Insert', '2019-07-02'),
 (21, 39, 'Insert', '2019-07-02'),
-(22, 40, 'Insert', '2019-07-02');
+(22, 40, 'Insert', '2019-07-02'),
+(23, 27, 'Insert', '2019-07-07'),
+(24, 27, 'Insert', '2019-07-07'),
+(25, 27, 'Insert', '2019-07-07'),
+(26, 27, 'Insert', '2019-07-07'),
+(27, 27, 'Insert', '2019-07-07'),
+(28, 27, 'Insert', '2019-07-07'),
+(29, 27, 'Insert', '2019-07-07'),
+(30, 27, 'Insert', '2019-07-07'),
+(31, 27, 'Insert', '2019-07-07'),
+(32, 27, 'Insert', '2019-07-07'),
+(33, 27, 'Insert', '2019-07-07'),
+(34, 27, 'Insert', '2019-07-07'),
+(35, 27, 'Insert', '2019-07-07'),
+(36, 27, 'Insert', '2019-07-07'),
+(37, 27, 'Insert', '2019-07-07'),
+(38, 27, 'Insert', '2019-07-07'),
+(39, 27, 'Insert', '2019-07-07'),
+(40, 27, 'Insert', '2019-07-07'),
+(41, 27, 'Insert', '2019-07-07'),
+(42, 27, 'Insert', '2019-07-07'),
+(43, 27, 'Insert', '2019-07-07'),
+(44, 27, 'Insert', '2019-07-07'),
+(45, 27, 'Insert', '2019-07-07'),
+(46, 27, 'Insert', '2019-07-07'),
+(47, 27, 'Insert', '2019-07-07'),
+(48, 27, 'Insert', '2019-07-07'),
+(49, 27, 'Insert', '2019-07-07'),
+(50, 27, 'Insert', '2019-07-07'),
+(51, 27, 'Insert', '2019-07-07'),
+(52, 27, 'Insert', '2019-07-07'),
+(53, 27, 'Insert', '2019-07-07'),
+(54, 27, 'Insert', '2019-07-07'),
+(55, 27, 'Insert', '2019-07-07'),
+(56, 27, 'Insert', '2019-07-07'),
+(57, 27, 'Insert', '2019-07-07'),
+(58, 27, 'Insert', '2019-07-07'),
+(59, 27, 'Insert', '2019-07-07'),
+(60, 27, 'Insert', '2019-07-07'),
+(61, 27, 'Insert', '2019-07-07'),
+(62, 27, 'Insert', '2019-07-07'),
+(63, 27, 'Insert', '2019-07-07'),
+(64, 27, 'Insert', '2019-07-07'),
+(65, 27, 'Insert', '2019-07-07'),
+(66, 27, 'Insert', '2019-07-07'),
+(67, 27, 'Insert', '2019-07-07'),
+(68, 27, 'Insert', '2019-07-07'),
+(69, 27, 'Insert', '2019-07-07'),
+(70, 27, 'Insert', '2019-07-07'),
+(71, 27, 'Insert', '2019-07-07'),
+(72, 27, 'Insert', '2019-07-07'),
+(73, 27, 'Insert', '2019-07-07'),
+(74, 27, 'Insert', '2019-07-07'),
+(75, 27, 'Insert', '2019-07-07'),
+(76, 27, 'Insert', '2019-07-07');
 
 -- --------------------------------------------------------
 
@@ -166,7 +221,7 @@ INSERT INTO `categorias` (`IdCategoria`, `NomCategoria`, `Descripcion`, `IdEstad
 CREATE TABLE `detallepedidos` (
   `IdDetallePedido` int(11) NOT NULL,
   `IdEncabezado` int(11) DEFAULT NULL,
-  `IdArticulo` int(11) NOT NULL,
+  `IdArticulos` int(11) DEFAULT NULL,
   `CantidadArticulo` int(11) NOT NULL,
   `PrecioDetalle` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -175,56 +230,64 @@ CREATE TABLE `detallepedidos` (
 -- Volcado de datos para la tabla `detallepedidos`
 --
 
-INSERT INTO `detallepedidos` (`IdDetallePedido`, `IdEncabezado`, `IdArticulo`, `CantidadArticulo`, `PrecioDetalle`) VALUES
-(2, 1, 1, 5, 179.95),
-(3, 1, 2, 3, 116.97),
-(4, 1, 3, 2, 141.98),
-(5, 1, 4, 3, 299.96),
-(6, 2, 1, 5, 179.95),
-(7, 2, 2, 3, 116.97),
-(8, 2, 3, 2, 141.98),
-(9, 1, 3, 2, 141.98),
-(10, 2, 4, 3, 224.97),
-(11, 2, 6, 5, 119.94),
-(12, 2, 9, 7, 41.93),
-(13, 2, 10, 13, 168.87),
-(14, 2, 4, 1, 74.99),
-(15, 2, 5, 5, 79.95),
-(16, 2, 8, 3, 182.97),
-(17, 2, 1, 2, 71.98),
-(108, 2, 4, 6, 425.94),
-(109, 2, 2, 5, 194.95),
-(110, 2, 3, 3, 212.97),
-(111, 2, 7, 2, 91.98),
-(112, 2, 8, 1, 60.99),
-(113, 2, 6, 3, 59.97),
-(114, 2, 9, 4, 23.96),
-(115, 1, 7, 4, 183.96),
-(116, 1, 4, 1, 74.99),
-(117, 1, 6, 2, 39.98),
-(118, 1, 1, 5, 179.95),
-(119, 1, 2, 4, 155.96),
-(120, 1, 3, 1, 70.99),
-(121, 1, 4, 3, 224.97),
-(122, 1, 5, 1, 15.99),
-(123, 1, 6, 3, 59.97),
-(124, 1, 7, 3, 137.97),
-(125, 1, 8, 2, 121.98),
-(126, 1, 9, 2, 11.98),
-(127, 1, 10, 6, 77.94),
-(128, 1, 5, 3, 47.97),
-(129, 1, 7, 4, 183.96),
-(130, 1, 9, 2, 11.98),
-(131, 2, 10, 5, 64.95),
-(132, 2, 1, 5, 179.95),
-(133, 1, 6, 5, 99.95),
-(134, 2, 4, 4, 299.96),
-(135, 2, 8, 1, 60.99),
-(136, 1, 4, 1, 74.99),
-(137, 1, 1, 2, 71.98),
-(138, 1, 1, 5, 0),
-(139, 1, 1, 5, 0),
-(140, 1, 1, 5, 0);
+INSERT INTO `detallepedidos` (`IdDetallePedido`, `IdEncabezado`, `IdArticulos`, `CantidadArticulo`, `PrecioDetalle`) VALUES
+(2, 1, NULL, 5, 179.95),
+(3, 1, NULL, 3, 116.97),
+(4, 1, NULL, 2, 141.98),
+(5, 1, NULL, 3, 299.96),
+(6, 2, NULL, 5, 179.95),
+(7, 2, NULL, 3, 116.97),
+(8, 2, NULL, 2, 141.98),
+(9, 1, NULL, 2, 141.98),
+(10, 2, NULL, 3, 224.97),
+(11, 2, NULL, 5, 119.94),
+(12, 2, NULL, 7, 41.93),
+(13, 2, NULL, 13, 168.87),
+(14, 2, NULL, 1, 74.99),
+(15, 2, NULL, 5, 79.95),
+(16, 2, NULL, 3, 182.97),
+(17, 2, NULL, 2, 71.98),
+(108, 2, NULL, 6, 425.94),
+(109, 2, NULL, 5, 194.95),
+(110, 2, NULL, 3, 212.97),
+(111, 2, NULL, 2, 91.98),
+(112, 2, NULL, 1, 60.99),
+(113, 2, NULL, 3, 59.97),
+(114, 2, NULL, 4, 23.96),
+(115, 1, NULL, 4, 183.96),
+(116, 1, NULL, 1, 74.99),
+(117, 1, NULL, 2, 39.98),
+(118, 1, NULL, 5, 179.95),
+(119, 1, NULL, 4, 155.96),
+(120, 1, NULL, 1, 70.99),
+(121, 1, NULL, 3, 224.97),
+(122, 1, NULL, 1, 15.99),
+(123, 1, NULL, 3, 59.97),
+(124, 1, NULL, 3, 137.97),
+(125, 1, NULL, 2, 121.98),
+(126, 1, NULL, 2, 11.98),
+(127, 1, NULL, 6, 77.94),
+(128, 1, NULL, 3, 47.97),
+(129, 1, NULL, 4, 183.96),
+(130, 1, NULL, 2, 11.98),
+(131, 2, NULL, 5, 64.95),
+(132, 2, NULL, 5, 179.95),
+(133, 1, NULL, 5, 99.95),
+(134, 2, NULL, 4, 299.96),
+(135, 2, NULL, 1, 60.99),
+(136, 1, NULL, 1, 74.99),
+(137, 1, NULL, 2, 71.98),
+(138, 1, NULL, 5, 0),
+(139, 1, NULL, 5, 0),
+(140, 1, NULL, 5, 0),
+(141, NULL, NULL, 2, 20),
+(142, NULL, NULL, 2, 21),
+(143, NULL, NULL, 1, 22),
+(144, NULL, NULL, 2, 23),
+(145, NULL, NULL, 1, 24),
+(146, NULL, NULL, 3, 25),
+(147, NULL, NULL, 2, 26),
+(148, 5, 5, 3, 19.9);
 
 -- --------------------------------------------------------
 
@@ -235,7 +298,7 @@ INSERT INTO `detallepedidos` (`IdDetallePedido`, `IdEncabezado`, `IdArticulo`, `
 CREATE TABLE `encabezadopedidos` (
   `IdEncabezado` int(11) NOT NULL,
   `IdUsuario` int(11) NOT NULL,
-  `Fecha` date NOT NULL,
+  `Fecha` datetime NOT NULL,
   `IdEstadoPedido` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -244,9 +307,63 @@ CREATE TABLE `encabezadopedidos` (
 --
 
 INSERT INTO `encabezadopedidos` (`IdEncabezado`, `IdUsuario`, `Fecha`, `IdEstadoPedido`) VALUES
-(1, 15, '2019-03-02', NULL),
-(2, 15, '2019-03-02', NULL),
-(3, 14, '2019-03-03', NULL);
+(1, 15, '2019-03-02 00:00:00', NULL),
+(2, 15, '2019-03-02 00:00:00', NULL),
+(3, 14, '2019-03-03 00:00:00', NULL),
+(4, 27, '2019-07-07 00:00:00', 2),
+(5, 27, '2019-07-07 00:00:00', 2),
+(6, 27, '2019-07-07 00:00:00', 2),
+(7, 27, '2019-07-07 00:00:00', 2),
+(8, 27, '2019-07-07 00:00:00', 2),
+(9, 27, '2019-07-07 00:00:00', 2),
+(10, 27, '2019-07-07 00:00:00', 2),
+(11, 27, '2019-07-07 00:00:00', 2),
+(12, 27, '2019-07-07 00:00:00', 2),
+(13, 27, '2019-07-07 00:00:00', 2),
+(14, 27, '2019-07-07 17:33:53', 2),
+(15, 27, '2019-07-07 19:48:55', 2),
+(16, 27, '2019-07-07 20:14:24', 2),
+(17, 27, '2019-07-07 20:19:56', 2),
+(18, 27, '2019-07-07 20:20:35', 2),
+(19, 27, '2019-07-07 20:21:13', 2),
+(20, 27, '2019-07-07 20:35:02', 2),
+(21, 27, '2019-07-07 20:36:46', 2),
+(22, 27, '2019-07-07 20:44:40', 2),
+(23, 27, '2019-07-07 20:47:00', 2),
+(24, 27, '2019-07-07 20:48:50', 2),
+(25, 27, '2019-07-07 20:51:43', 2),
+(26, 27, '2019-07-07 20:55:24', 2),
+(27, 27, '2019-07-07 21:06:18', 2),
+(28, 27, '2019-07-07 21:16:34', 2),
+(29, 27, '2019-07-07 21:17:06', 2),
+(30, 27, '2019-07-07 21:30:21', 2),
+(31, 27, '2019-07-07 21:31:05', 2),
+(32, 27, '2019-07-07 21:31:39', 2),
+(33, 27, '2019-07-07 21:55:28', 2),
+(34, 27, '2019-07-07 22:03:44', 2),
+(35, 27, '2019-07-07 22:25:42', 2),
+(36, 27, '2019-07-07 22:25:43', 2),
+(37, 27, '2019-07-07 22:25:44', 2),
+(38, 27, '2019-07-07 22:25:44', 2),
+(39, 27, '2019-07-07 22:25:44', 2),
+(40, 27, '2019-07-07 22:25:44', 2),
+(41, 27, '2019-07-07 22:25:45', 2),
+(42, 27, '2019-07-07 22:25:45', 2),
+(43, 27, '2019-07-07 22:25:45', 2),
+(44, 27, '2019-07-07 22:25:45', 2),
+(45, 27, '2019-07-07 22:25:45', 2),
+(46, 27, '2019-07-07 22:25:45', 2),
+(47, 27, '2019-07-07 22:25:45', 2),
+(48, 27, '2019-07-07 22:25:45', 2),
+(49, 27, '2019-07-07 22:25:45', 2),
+(50, 27, '2019-07-07 22:25:45', 2),
+(51, 27, '2019-07-07 22:25:45', 2),
+(52, 27, '2019-07-07 22:25:45', 2),
+(53, 27, '2019-07-07 22:25:46', 2),
+(54, 27, '2019-07-07 22:26:13', 2),
+(55, 27, '2019-07-07 22:39:47', 2),
+(56, 27, '2019-07-07 22:47:28', 2),
+(57, 27, '2019-07-07 22:48:59', 2);
 
 --
 -- Disparadores `encabezadopedidos`
@@ -304,7 +421,7 @@ INSERT INTO `estados` (`IdEstado`, `Estado`) VALUES
 CREATE TABLE `prepedidos` (
   `IdPrePedido` int(11) NOT NULL,
   `IdCliente` int(11) NOT NULL,
-  `IdArticulo` int(11) NOT NULL,
+  `IdArticulos` int(11) DEFAULT NULL,
   `Cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -312,10 +429,9 @@ CREATE TABLE `prepedidos` (
 -- Volcado de datos para la tabla `prepedidos`
 --
 
-INSERT INTO `prepedidos` (`IdPrePedido`, `IdCliente`, `IdArticulo`, `Cantidad`) VALUES
-(1, 27, 5, 2),
-(2, 27, 5, 3),
-(3, 27, 3, 1);
+INSERT INTO `prepedidos` (`IdPrePedido`, `IdCliente`, `IdArticulos`, `Cantidad`) VALUES
+(16, 27, 16, 3),
+(17, 27, 3, 5);
 
 -- --------------------------------------------------------
 
@@ -376,7 +492,7 @@ INSERT INTO `usuarios` (`IdUsuario`, `IdRol`, `IdEstado`, `NomUsuario`, `Nombre`
 (16, 6, 1, 'GO05', 'Oswaldo Narciso', 'Gomez Orellana', 'La Paz', '63215489', 'oswaldo@gmail.com', ''),
 (18, 1, 2, 'PG02', 'Gloria Belén', 'Palacios Beltrán', 'San Salvador', '78521436', 'belen@gmail.com', ''),
 (19, 1, 1, 'PG02', 'Gloria Belén', 'Palacios Beltrán', 'San Salvador', '78521436', 'belen@gmail.com', ''),
-(21, 6, 2, 'RF01', 'Fede', 'Ramírez', 'San Salvador', '12345678', 'fede@gmail.com', '$2y$10$T0Kn8bUyBNOOWex55EVdm.OuN3JlCrldFWlESumNksj.FTGYtJjLW'),
+(21, 6, 1, 'RF01', 'Fede', 'Ramírez', 'San Salvador', '12345678', 'fede@gmail.com', '$2y$10$T0Kn8bUyBNOOWex55EVdm.OuN3JlCrldFWlESumNksj.FTGYtJjLW'),
 (25, 6, 1, 'RJ01', 'Josué', 'Rivera', 'San Salvador', '22455465', 'josue@gmail.com', '$2y$10$1tS9ZEOVR8ebQnD9cQGs0eIy0WoY93s6aoRyQHHXjNEdG5jlGVmtW'),
 (26, 6, 2, 'RJ01', 'Josué', 'Rivera', 'San Salvador', '22455465', 'josue@gmail.com', '$2y$10$04mjtAuAWYlYtVfIz2jgWuPTlLQepEC13MCGxx9Hhf7wKmnQ/HNzC'),
 (27, 6, 1, 'federamirez', 'Federico', 'Ramírez', 'San Salvador', '22455465', 'fede@gmail.com', '$2y$10$/tRIkhUUMzAfFsNL/ECkOuINBgIAVq5pZVb0vMvYv/bkI2KP6P8ES'),
@@ -441,8 +557,8 @@ ALTER TABLE `categorias`
 --
 ALTER TABLE `detallepedidos`
   ADD PRIMARY KEY (`IdDetallePedido`),
-  ADD KEY `IdArticulo` (`IdArticulo`),
-  ADD KEY `IdEncabezado` (`IdEncabezado`);
+  ADD KEY `IdEncabezado` (`IdEncabezado`),
+  ADD KEY `IdArticulos` (`IdArticulos`);
 
 --
 -- Indices de la tabla `encabezadopedidos`
@@ -470,8 +586,8 @@ ALTER TABLE `estados`
 --
 ALTER TABLE `prepedidos`
   ADD PRIMARY KEY (`IdPrePedido`),
-  ADD KEY `IdArticulo` (`IdArticulo`),
-  ADD KEY `IdCliente` (`IdCliente`);
+  ADD KEY `IdCliente` (`IdCliente`),
+  ADD KEY `IdArticulos` (`IdArticulos`);
 
 --
 -- Indices de la tabla `roles`
@@ -497,56 +613,67 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `articulos`
   MODIFY `IdArticulos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
 --
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `IdBitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `IdBitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+
 --
 -- AUTO_INCREMENT de la tabla `calificaciones`
 --
 ALTER TABLE `calificaciones`
   MODIFY `IdCalificacion` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
   MODIFY `IdCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT de la tabla `detallepedidos`
 --
 ALTER TABLE `detallepedidos`
-  MODIFY `IdDetallePedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `IdDetallePedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
+
 --
 -- AUTO_INCREMENT de la tabla `encabezadopedidos`
 --
 ALTER TABLE `encabezadopedidos`
-  MODIFY `IdEncabezado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `IdEncabezado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
 --
 -- AUTO_INCREMENT de la tabla `estadopedidos`
 --
 ALTER TABLE `estadopedidos`
-  MODIFY `IdEstadoPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `IdEstadoPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `estados`
 --
 ALTER TABLE `estados`
   MODIFY `IdEstado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `prepedidos`
 --
 ALTER TABLE `prepedidos`
-  MODIFY `IdPrePedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `IdPrePedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
   MODIFY `IdRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -581,8 +708,8 @@ ALTER TABLE `categorias`
 -- Filtros para la tabla `detallepedidos`
 --
 ALTER TABLE `detallepedidos`
-  ADD CONSTRAINT `detallepedidos_ibfk_1` FOREIGN KEY (`IdArticulo`) REFERENCES `articulos` (`IdArticulos`),
-  ADD CONSTRAINT `detallepedidos_ibfk_2` FOREIGN KEY (`IdEncabezado`) REFERENCES `encabezadopedidos` (`IdEncabezado`);
+  ADD CONSTRAINT `detallepedidos_ibfk_2` FOREIGN KEY (`IdEncabezado`) REFERENCES `encabezadopedidos` (`IdEncabezado`),
+  ADD CONSTRAINT `detallepedidos_ibfk_3` FOREIGN KEY (`IdArticulos`) REFERENCES `articulos` (`IdArticulos`);
 
 --
 -- Filtros para la tabla `encabezadopedidos`
@@ -595,8 +722,8 @@ ALTER TABLE `encabezadopedidos`
 -- Filtros para la tabla `prepedidos`
 --
 ALTER TABLE `prepedidos`
-  ADD CONSTRAINT `prepedidos_ibfk_1` FOREIGN KEY (`IdArticulo`) REFERENCES `articulos` (`IdArticulos`),
-  ADD CONSTRAINT `prepedidos_ibfk_2` FOREIGN KEY (`IdCliente`) REFERENCES `usuarios` (`IdUsuario`);
+  ADD CONSTRAINT `prepedidos_ibfk_2` FOREIGN KEY (`IdCliente`) REFERENCES `usuarios` (`IdUsuario`),
+  ADD CONSTRAINT `prepedidos_ibfk_3` FOREIGN KEY (`IdArticulos`) REFERENCES `articulos` (`IdArticulos`);
 
 --
 -- Filtros para la tabla `roles`
