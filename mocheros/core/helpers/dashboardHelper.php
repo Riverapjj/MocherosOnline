@@ -248,7 +248,8 @@ class dashboardHelper{
                 <script type="text/javascript" src="../../resources/js/Chart.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/Chart.js"></script>
                 <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
-                <script type="text/javascript" src="../../core/helpers/functions.js"></script>  
+                <script type="text/javascript" src="../../core/helpers/functions.js"></script>
+                <script type="text/javascript" src="../../core/helpers/componentes.js"></script>
                 <script type="text/javascript" src="../../core/controllers/dashboard/account.js"></script>              
                 <script type="text/javascript" src="../../core/controllers/dashboard/'.$firstcontroller.'"></script>
                 <script type="text/javascript" src="../../core/controllers/dashboard/'.$secondcontroller.'"></script>

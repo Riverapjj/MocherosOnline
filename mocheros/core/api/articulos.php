@@ -258,7 +258,7 @@
                             if ($result['dataset'] = $articulo->readPreDetalle()) {
                                 $result['status'] = 1;
                             } else {
-                                $result['exception'] = 'Contenido no disponible';
+                                $result['exception'] = 'Contenido no disponible xdxd';
                             }
                         }
                     } else {
@@ -311,22 +311,20 @@
                     break;
                 case 'createSale':
                     $_POST = $articulo->validateForm($_POST);
+                    print_r('hola ');
                     if (isset($_SESSION['idUsuario'])) {
                         if ($articulo->setCliente($_SESSION['idUsuario'])) {
                             if ($articulo->createSale()) {
                                 $data = $articulo->getPre();
                                 if ($data) {
+                                    print_r(' algo');
                                     if ($articulo->getLastSale()) {
-                                        for ($x = 0; $x < count($data); $x++) {
-                                            if ($articulo->setIdArticulos($data[$x]['IdArticulos'])) {
-                                                if ($articulo->setCantidad($data[$x]['cantidad'])) {
-                                                    if ($articulo->createDetailsSale()) { }
-                                                } else {
-                                                    $result['exception'] = 'Comuniquese con la tienda 2';
-                                                }
-                                            } else {
-                                                $result['exception'] = 'Comuniquese con la tienda';
-                                            }
+                                        print_r(' será que sirve?');
+                                        if ($articulo->createDetailsSale()) {
+                                            print_r(' será que si sirve?!');
+                                            $result['status'] = 1;
+                                        } else {
+                                            $result['exception'] = 'Ayuda por favor';
                                         }
                                         if ($articulo->setCliente($_SESSION['idUsuario'])) {
                                             if ($articulo->deletePreDetalle()) {

@@ -397,7 +397,7 @@ class Articulos extends Validator
         $params = array($this->cliente);
         $data = Database::getRow($sql, $params);
 		if ($data) {
-            $this->cliente = $data['IdEncabezado'];
+            $this->idencabezado = $data['IdEncabezado'];
             return true;
         } else{
             return false;
@@ -413,10 +413,27 @@ class Articulos extends Validator
 	
 	//aquí está lok
 	public function getPre(){
-        $sql='SELECT art.IdArticulos, NomArticulo, DescripcionArt, PrecioUnitario, Foto, prepedidos.Cantidad as cantidad
+        $sql='SELECT art.IdArticulos AS Id, NomArticulo AS Nombre, DescripcionArt AS Descripcion, PrecioUnitario AS Precio, Foto AS Imagen, prepedidos.Cantidad AS cantidad
 		 FROM prepedidos 
 		 INNER JOIN articulos art USING(IdArticulos) WHERE IdCliente = ?';
         $params = array($this->cliente);
-        return Database::getRows($sql,$params);
+		$data = Database::getRow($sql,$params);
+		if ($data) {
+			$this->idarticulos = $data['Id'];
+			$this->nomarticulo = $data['Nombre'];
+			$this->descripcionart = $data['Descripcion'];
+			$this->preciounitario = $data['Precio'];
+			$this->foto = $data['Imagen'];
+			$this->cantidad = $data['cantidad'];
+            return true;
+        } else{
+            return false;
+        }
+	}
+	
+	function getProductosCategoria(){
+        $sql = 'SELECT NomArticulo, PrecioUnitario, cantidad, nombreProveedor, nomCategoria as categoria FROM producto INNER JOIN proveedor USING(idProveedor) INNER JOIN categoria USING (idCategoria) WHERE producto.estadoEliminacion = 1 ORDER BY categoria asc';
+        $params = array(null);
+        return Database::getRows($sql, $params);
     }
 }

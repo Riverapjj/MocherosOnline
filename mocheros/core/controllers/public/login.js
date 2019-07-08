@@ -43,7 +43,7 @@ $('#form-session').submit(function()
         if (isJSONString(response)) {
             const dataset = JSON.parse(response);
             if (dataset.status) {
-                sweetAlert(1, 'Autentificación correcta', 'index.php');
+                sweetAlert(1, 'Inicio de sesión correcto', 'index.php');
             } else {
                 sweetAlert(2, dataset.exception, null);
             }
