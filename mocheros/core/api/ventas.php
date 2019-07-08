@@ -82,7 +82,6 @@ if(isset($_GET['site']) && isset($_GET['action'])){
             }
         break;
         }
-      
     }else{
         exit('Acceso no disponible');
     }
