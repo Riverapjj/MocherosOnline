@@ -25,6 +25,10 @@
             <div class="col s12 m6 l12 card hoverable">
                 <canvas id="chartProductosVendidos"></canvas>
             </div>
+<br><br><br><br><br><br>
+            <div class="col s12 m6 l12 card hoverable">
+                <canvas id="chartProductosCalificaciones"></canvas>
+            </div>
         </div>
     </div>
 </main>
