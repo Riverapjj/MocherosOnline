@@ -52,11 +52,11 @@ if(isset($_GET['site']) && isset($_GET['action'])){
                     }
                 }
             break; 
-            case 'readSalesChart':
-                if($result['dataset']=$pedidos->salesForDate()){
-                    $result['status']=1;
-                }else{
-                    $result['exception']='No hay ventas realizadas';
+            case 'readCountEstadosChart':
+                if ($result['dataset'] = $pedidos->estadosChart()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay datos';
                 }
             break;
         }

@@ -185,7 +185,124 @@ function barGraph(canvas, xAxis, yAxis, legend, title)
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
+                        stepSize: 100
+                    }
+                }]
+            }
+        }
+    });
+}
+
+function doughnutGraph(canvas, xAxis, yAxis, legend, title)
+{
+    let colors = [];
+    for (i = 0; i < xAxis.length; i++) {
+        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
+    }
+    const context = $('#' + canvas);
+    const chart = new Chart(context, {
+        type: 'doughnut',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: legend,
+                data: yAxis,
+                backgroundColor: colors,
+                borderColor: '#000000',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: true
+            },
+            title: {
+                display: true,
+                text: title
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
                         stepSize: 1
+                    }
+                }]
+            }
+        }
+    });
+}
+
+function pieGraph(canvas, xAxis, yAxis, legend, title)
+{
+    let colors = [];
+    for (i = 0; i < xAxis.length; i++) {
+        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
+    }
+    const context = $('#' + canvas);
+    const chart = new Chart(context, {
+        type: 'pie',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: legend,
+                data: yAxis,
+                backgroundColor: colors,
+                borderColor: '#000000',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: true
+            },
+            title: {
+                display: true,
+                text: title
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                }]
+            }
+        }
+    });
+}
+
+function polarAreaGraph(canvas, xAxis, yAxis, legend, title)
+{
+    let colors = [];
+    for (i = 0; i < xAxis.length; i++) {
+        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
+    }
+    const context = $('#' + canvas);
+    const chart = new Chart(context, {
+        type: 'polarArea',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: legend,
+                data: yAxis,
+                backgroundColor: colors,
+                borderColor: '#000000',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: title
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 10
                     }
                 }]
             }

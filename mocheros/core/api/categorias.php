@@ -97,6 +97,20 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Categoría incorrecta';
                 }
                 break;
+            case 'productosCategorias':
+                if ($result['dataset'] = $categoria->productosCategorias()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay datos';
+                }
+            break;
+            case 'categoriasCantidad':
+                if ($result['dataset'] = $categoria->categoriasCantidad()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay datos';
+                }
+            break;
             default:
                 exit('Acción no disponible');
         }

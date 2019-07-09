@@ -10,14 +10,20 @@
         <h3 id="geeting" class="cyan-text center"></h3>
         <!-- Inicio de Grafico -->
         <div class="row center">
-            <div class="col s12 m6 l4 offset-l1">
-                <canvas id="myChart" class="r" width="100" height="40"></canvas>
-                <h5 id="chart2" class="center"> Pedidos mensuales </h5>
+            <div class="col s12 m6 l12 card hoverable">
+                <canvas id="chartProductosCat"></canvas>
             </div>
-
-            <div class="col s12 m6 l4 offset-l2">
-                <canvas id="myChart2" class="r" width="100" height="40"></canvas>
-                <h5 id="chart2" class="center"> Productos más vendidos </h5>
+<br><br><br><br><br><br>
+            <div class="col s12 m6 l12 card hoverable">
+                <canvas id="chartCategoriasCantidad"></canvas>
+            </div>
+<br><br><br><br><br><br>
+            <div class="col s12 m6 l12 card hoverable">
+                <canvas id="chartEstadosPedidos"></canvas>
+            </div>
+<br><br><br><br><br><br>
+            <div class="col s12 m6 l12 card hoverable">
+                <canvas id="chartProductosVendidos"></canvas>
             </div>
         </div>
     </div>

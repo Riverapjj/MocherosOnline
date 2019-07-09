@@ -417,7 +417,6 @@ class Articulos extends Validator
         Database::executeRow($sql,$params);
 	}
 	
-	//aquí está lok
 	public function getPre(){
         $sql='SELECT art.IdArticulos AS Id, NomArticulo AS Nombre, DescripcionArt AS Descripcion, PrecioUnitario AS Precio, Foto AS Imagen, prepedidos.Cantidad AS cantidad
 		 FROM prepedidos 
@@ -441,5 +440,13 @@ class Articulos extends Validator
         $sql = 'SELECT NomArticulo, PrecioUnitario, Cantidad, NomCategoria as categoria FROM articulos INNER JOIN categorias USING (IdCategoria) WHERE articulos.IdEstado = 1 ORDER BY categoria ASC';
         $params = array(null);
         return Database::getRows($sql, $params);
-    }
+	}
+
+	public function productosMaxVendidos(){
+        $sql = 'SELECT COUNT(d.IdArticulos) AS CantidadArticulos, NomArticulo FROM articulos a INNER JOIN detallepedidos d USING(IdArticulos) GROUP BY NomArticulo LIMIT 5 ';
+        $params = array(null);
+        return Database::getRows($sql, $params);
+	}
+	
+	
 }
