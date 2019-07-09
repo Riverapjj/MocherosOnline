@@ -301,6 +301,26 @@ class Articulos extends Validator
 		return Database::executeRow($sql, $params);
 	}
 
+	//Metodo para observar las valoraciones de los productos
+    public function readRatings(){
+        $sql='SELECT Calificacion, articulos.NomArticulo as articulo, usuarios.NomUsuario as cliente FROM usuarios, articulos, calificaciones WHERE articulos.IdArticulos=calificaciones.IdArticulo AND usuarios.IdUsuario=calificaciones.IdUsuario and articulos.IdArticulos = ?';
+        $params=array($this->idarticulos);
+        return Database::getRows($sql, $params);
+    }
+
+	//Metodo para asignar puntuacion a un producto
+    public function createRating(){
+        $sql='INSERT INTO calificaciones (IdArticulo, IdUsuario, Calificacion) VALUES (?, ?, ?)';
+        $params=array($this->idarticulos, $this->cliente, $this->calificacion);
+        return Database::executeRow($sql, $params);
+    }   
+    //Metodo para validar que un usuario coloque solamente un comentario en un producto
+    public function validateRatings(){
+        $sql='SELECT * from calificaciones WHERE IdUsuario = ? and IdArticulo = ?';
+        $params=array($this->cliente, $this->idarticulos);
+        return Database::getRow($sql, $params);
+    }
+
 	public function getStock(){
         $sql='SELECT IdArticulos, Cantidad from Articulos where IdArticulos = ?';
         $params=array($this->idarticulos);
@@ -312,20 +332,6 @@ class Articulos extends Validator
         $params=array($this->cantidad, $this->idarticulos);
         return Database::executeRow($sql,$params);
     }
-
-	public function rateProducto()
-	{
-		$sql = 'UPDATE articulos SET Calificacion = ? WHERE IdArticulos = ?';
-		$params = array($this->calificacion, $this->idarticulos);
-		return Database::executeRow($sql, $params);
-	}
-
-	public function commentProducto()
-	{
-		$sql = 'UPDATE articulos SET Comentario = ? WHERE IdArticulos = ?';
-		$params = array($this->comentario, $this->idarticulos);
-		return Database::executeRow($sql, $params);
-	}
 
 	//Metodo para obtener preDetalle del cliente
     public function readPreDetalle(){
@@ -407,7 +413,7 @@ class Articulos extends Validator
 	public function createDetailsSale(){
 		//esta hace el insert en la tabla detalle pedidos
         $sql = 'INSERT INTO detallepedidos(IdEncabezado, IdArticulos, CantidadArticulo, PrecioDetalle) VALUES(?, ?, ? ,?)';
-        $params = array($this->idencabezado, $this->idarticulos, $this->cantidad, $this->preciodetalle);
+        $params = array($this->idencabezado, $this->idarticulos, $this->cantidad, $this->preciounitario);
         Database::executeRow($sql,$params);
 	}
 	

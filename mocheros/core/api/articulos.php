@@ -230,6 +230,57 @@
                         $result['exception'] = 'Ingrese un valor para buscar';
                     }
                     break;
+                case 'rating': //Caso para realizar una puntuacion de algun producto
+                    $_POST = $articulo->validateForm($_POST);
+                    if (isset($_SESSION['idUsuario'])) {
+                        if ($articulo->setCalificacion($_POST['puntuacion'])) {
+                            if ($articulo->setIdArticulos($_POST['IdArticulos'])) {
+                                if ($articulo->setCliente($_SESSION['idUsuario'])) {
+                                    if ($articulo->validateRatings()) { //Validacion para que solo exista un comentario de un cliente en cada producto
+                                        $result['exception'] = 'Ya has realizado una     calificación';
+                                    } else {
+                                        if ($articulo->createRating()) {
+                                            $result['status'] = 1;
+                                        } else {
+                                            $result['status'] = 2;
+                                            $result['exception'] = 'No se guardó la califiación';
+                                        }
+                                    }
+                                } else {
+                                    $result['exception'] = 'Usuario incorrecto';
+                                }
+                            } else {
+                                $result['exception'] = 'Articulo incorrecto';
+                            }
+                        } else {
+                            $result['exception'] = 'Articulo incorrecta';
+                        }
+                    } else {
+                        $result['exception'] = 'Debe de iniciar sesión para poder calificar';
+                    }
+                    break;
+                case 'getRatings': //Caso para obtener las valoraciones de los productos
+                    if ($articulo->setIdArticulos($_POST['IdArticulos'])) {
+                        if ($result['dataset'] = $articulo->readRatings()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = 'error';
+                        }
+                    } else {
+                        $result['exception'] = 'Producto incorrecto';
+                    }
+                    break;
+                case 'get':
+                    if ($articulo->setIdArticulos($_POST['IdArticulos'])) {
+                        if ($result['dataset'] = $articulo->getProducto()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = 'Producto inexistente';
+                        }
+                    } else {
+                        $result['exception'] = 'Producto incorrecto';
+                    }
+                    break;
                 case 'preDetalle':
                     $_POST = $articulo->validateForm($_POST);
                     if (isset($_SESSION['idUsuario'])) {
@@ -326,7 +377,11 @@
                                 if ($data) {
                                     print_r(' algo');
                                     if ($articulo->getLastSale()) {
-                                        print_r(' será que sirve?');
+                                        print_r(' será que sirve? \n');
+                                        print_r('IdEncabezado ' . $articulo->getIdEncabezado());
+                                        print_r('Articulo ' . $articulo->getIdArticulos());
+                                        print_r('Cantidad articulo' . $articulo->getCantidad());
+                                        print_r('Precio ' . $articulo->getPrecioUnitario());
                                         if ($articulo->createDetailsSale()) {
                                             print_r(' será que si sirve?!');
                                             $result['status'] = 1;
@@ -393,7 +448,7 @@
                     }
                     break;
                 default:
-                    exit('Acción no disponible');
+                    exit('Acción no disponible 2');
             }
         } else {
             exit('Acceso no disponible');

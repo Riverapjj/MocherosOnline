@@ -180,7 +180,6 @@ $('#form-cantidadC').submit(function()
     });
 })
 
-
 //Función para eliminar un registro seleccionado
 function confirmDelete(id)
 {
