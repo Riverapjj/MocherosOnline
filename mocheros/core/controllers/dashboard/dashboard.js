@@ -1,8 +1,16 @@
 $(document).ready(function()
 {
     showGreeting();
-    createChart();
+    chartProductosCategorias();
+    chartCategorias();
+    chartEstadoPedidos();
+    chartProductosVendidos();
 })
+
+//Constante para establecer la ruta y parámetros de comunicación con la API
+const apiCat = '../../core/api/categorias.php?site=dashboard&action=';
+const apiPedidos = '../../core/api/pedidos.php?site=dashboard&action=';
+const apiArticulos = '../../core/api/articulos.php?site=dashboard&action=';
 
 //Función para mostrar un saludo dependiendo de la hora del cliente
 function showGreeting()
@@ -20,51 +28,164 @@ function showGreeting()
 }
 
 //Función para crear gráficos en página de inicio
-function createChart(){
+function chartProductosCategorias(){
 
-    var ctx = $('#myChart');
-    var ctx2 = $('#myChart2');
+    $.ajax({
+        url: apiCat + 'productosCategorias',
+        type: 'post',
+        data: null,
+        datatype: 'json'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            console.log(result);
 
-    makeChart(ctx);
-    makeChart(ctx2);
+            if(result.status){
+                let categorias = [];
+                let cantidad = [];
+                
 
-    function makeChart(context) {
+                result.dataset.forEach(function(row){
+                    categorias.push(row.NomCategoria);
+                    cantidad.push(row.Cantidad);
 
-        var myChart = new Chart(context, {
-            type: 'bar',
-            data: {
-                labels: ["", "", "", "", "", ""],
-                datasets: [{
-                    //label: 'Productos más vendidos',
-                    data: [3, 2, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
+                });
+
+                barGraph('chartProductosCat', categorias, cantidad, 'Existencias', 'Existencias de productos por categorias')
+                
+            }else{
+                $('#chartProductosCat').remove();
             }
-        });
-    }
+        }else{
+            console.log(response);
+        }
+
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+
+    });
 }
+
+function chartCategorias(){
+
+    $.ajax({
+        url: apiCat + 'categoriasCantidad',
+        type: 'post',
+        data: null,
+        datatype: 'json'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            console.log(result);
+
+            if(result.status){
+                let nombre = [];
+                let encabezados = [];
+                
+
+                result.dataset.forEach(function(row){
+                    nombre.push(row.Nombre);
+                    encabezados.push(row.Encabezados);
+
+                });
+
+                doughnutGraph('chartCategoriasCantidad', nombre, encabezados, 'Cantidad ventas', 'Clientes con más compras')
+                
+            }else{
+                $('#chartCategoriasCantidad').remove();
+            }
+        }else{
+            console.log(response);
+        }
+
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+
+    });
+}
+
+
+function chartEstadoPedidos(){
+
+    $.ajax({
+        url: apiPedidos + 'readCountEstadosChart',
+        type: 'post',
+        data: null,
+        datatype: 'json'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            console.log(result);
+
+            if(result.status){
+                let tipoestado = [];
+                let cantidad = [];
+                
+
+                result.dataset.forEach(function(row){
+                    tipoestado.push(row.TipoEstado);
+                    cantidad.push(row.Estado);
+
+                });
+
+                pieGraph('chartEstadosPedidos', tipoestado, cantidad, 'Cantidad', 'Cantidad de estados de facturas')
+                
+            }else{
+                $('#chartEstadosPedidos').remove();
+            }
+        }else{
+            console.log(response);
+        }
+
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+
+    });
+}
+
+function chartProductosVendidos(){
+
+    $.ajax({
+        url: apiArticulos + 'productosVendidos',
+        type: 'post',
+        data: null,
+        datatype: 'json'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            console.log(result);
+
+            if(result.status){
+                let nomarticulo = [];
+                let cantidadarticulos = [];
+                
+
+                result.dataset.forEach(function(row){
+                    nomarticulo.push(row.NomArticulo);
+                    cantidadarticulos.push(row.CantidadArticulos);
+
+                });
+
+                polarAreaGraph('chartProductosVendidos', nomarticulo, cantidadarticulos, 'Cantidad', 'Producto más vendido')
+                
+            }else{
+                $('#chartProductosVendidos').remove();
+            }
+        }else{
+            console.log(response);
+        }
+
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+
+    });
+}
+

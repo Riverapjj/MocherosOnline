@@ -144,6 +144,16 @@ class Pedidos extends Validator{
         return Database::getRows($sql, $params); 
     }
 
+    public function estadosChart()
+    {
+        $sql = 'SELECT COUNT(en.IdEstadoPedido) AS Estado, TipoEstado FROM encabezadopedidos en, estadopedidos es WHERE en.IdEstadoPedido = es.IdEstadoPedido GROUP BY TipoEstado';
+        $params = array(null);
+        return Database::getRows($sql, $params); 
+    }
+
+    
+    
+
 
 }
 ?>

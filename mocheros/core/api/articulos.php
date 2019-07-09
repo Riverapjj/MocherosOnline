@@ -25,6 +25,13 @@
                         $result['exception'] = 'No hay categorías registradas';
                     }
                     break;
+                case 'productosVendidos':
+                if ($result['dataset'] = $articulo->productosMaxVendidos()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay datos';
+                }
+                    break;
                 case 'search':
                     $_POST = $articulo->validateForm($_POST);
                     if ($_POST['busqueda'] != '') {
