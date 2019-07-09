@@ -438,7 +438,7 @@ class Articulos extends Validator
 	}
 	
 	function getProductosCategoria(){
-        $sql = 'SELECT NomArticulo, PrecioUnitario, cantidad, nombreProveedor, nomCategoria as categoria FROM producto INNER JOIN proveedor USING(idProveedor) INNER JOIN categoria USING (idCategoria) WHERE producto.estadoEliminacion = 1 ORDER BY categoria asc';
+        $sql = 'SELECT NomArticulo, PrecioUnitario, Cantidad, NomCategoria as categoria FROM articulos INNER JOIN categorias USING (IdCategoria) WHERE articulos.IdEstado = 1 ORDER BY categoria ASC';
         $params = array(null);
         return Database::getRows($sql, $params);
     }

@@ -15,7 +15,7 @@ publicHelper::header('Mochilas');
             <div class="input-field col s6 m4">
                 <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Buscar producto"><i class="material-icons">check_circle</i></button>
             </div>
-            <a href="../../core/reportes/public/factura.php"> Hola </a>
+            <a href="../../core/reportes/dashboard/reporteProductos.php"> Hola </a>
         </div>
     </form>
     <!--apartado para mostrar los resultados de la busqueda a partir de catalogo.js-->
