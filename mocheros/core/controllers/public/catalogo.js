@@ -126,13 +126,11 @@ function getProducto(id) {
                                     <p>${result.dataset.DescripcionArt}</p>
                                     <p>Existencias disponibles: ${result.dataset.Cantidad}</p>
                                     <p><b>$${result.dataset.PrecioUnitario}</b></p>
-                                    <div class="ec-stars-wrapper">
-                                        <a href="#" data-value="1" title="Votar con 1 estrella">&#9733;</a>
-                                        <a href="#" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
-                                        <a href="#" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
-                                        <a href="#" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
-                                        <a href="#" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
-                                    </div>
+                                    <p><!--<a href="#" onclick="readComments(${result.dataset.IdArticulos})" class="waves-effect waves-grey btn blue tooltipped" data-tooltip="Comentarios"><i class="material-icons">list</i></a>-->
+                                    <a href="#" onclick="readRatings(${result.dataset.IdArticulos})" class="waves-effect waves-grey btn orange tooltipped" data-tooltip="Puntuaciones"><i class="material-icons">star</i></a>
+                                    <!--<a href="#" onclick="modalCommentary(${result.dataset.IdArticulos})" class="waves-effect waves-grey btn blue tooltipped" data-tooltip="Agregar comentario"><i class="material-icons">add</i></a>-->
+                                    <a href="#" onclick="modalPunctuation(${result.dataset.IdArticulos})" class="waves-effect waves-grey btn orange tooltipped" data-tooltip="Agregar puntuacion"><i class="material-icons">add_star</i></a>
+                                    </p>
                                 </div>
                                 <div class="card-action">
                                     <form method="post" id="form-preDetalle">
@@ -217,6 +215,138 @@ $('#form-search').submit(function()
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 })
+
+//funcion para abrir modal de agregar comentario 
+function modalPunctuation(id)
+{
+    $.ajax({
+        url: apiCatalogo + 'get',
+        type: 'post',
+        data:{
+            IdArticulos: id
+        },
+        datatype: 'json'
+    })
+    .done(function(response){
+        //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            //Se comprueba si el resultado es satisfactorio para mostrar los valores en el formulario, sino se muestra la excepción
+            if (result.status) {
+                $('#form-valoracion')[0].reset();
+                $('#IdArticulos').val(result.dataset.IdArticulos);                           
+                M.updateTextFields();
+                $('#modalPuntuacion').modal('open');
+            } else {
+                sweetAlert(2, result.exception, null);
+            }
+        } else {
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
+
+//Función para realizar puntuacion
+$('#form-valoracion').submit(function()
+{
+    event.preventDefault();
+    $.ajax({
+        url: apiCatalogo + 'rating',
+        type: 'post',
+        data: new FormData($('#form-valoracion')[0]),
+        datatype: 'json',
+        cache: false,
+        contentType: false,
+        processData: false
+    })
+    .done(function(response){
+        //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+            if (result.status) {
+                $('#form-valoracion')[0].reset();
+                $('#modalPuntuacion').modal('close');
+                if (result.status == 1) {
+                    sweetAlert(1, 'Calificación registrada con exito', null);
+                } else {
+                    sweetAlert(3, 'Calificación registrada. ' + result.exception, null);
+                }             
+            } else {
+                sweetAlert(2, result.exception, null);
+            }
+        } else {
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+})
+
+function fillCardsValuations(rows)
+{
+    let content = '';
+    //Se recorren las filas para armar el cuerpo de la tabla y se utiliza comilla invertida para escapar los caracteres especiales
+    rows.forEach(function(row){       
+        content += `
+        <div class="col s12 m6 l4">
+            <div class="card white">              
+                <div class="card-content white-text hoverable">
+                    <p class="black-text">
+                        <strong class="blue-text">Producto:</strong> ${row.articulo}</p>
+                    <p class="black-text">
+                        <strong class="blue-text">Cliente:</strong> ${row.cliente}</p>                   
+                    <p class="black-text">                   
+                        <strong class="blue-text">Puntuacion:</strong> ${row.Calificacion}</p>
+                        <p class="black-text">                                  
+                </div>
+            </div>
+        </div>    
+        `;
+    });
+    $('#modal-content').html(content);
+    $('select').formSelect();
+    $('.tooltipped').tooltip();   
+    $('.materialboxed').materialbox();
+}
+
+//funcion para leer los comentarios
+function readRatings(id)
+{
+    $.ajax({
+        url: apiCatalogo + 'getRatings',
+        type: 'post',
+        data:{
+            IdArticulos: id
+        },
+        datatype: 'json'
+    })
+    .done(function(response){
+        //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            //Se comprueba si el resultado es satisfactorio para mostrar los valores en el formulario, sino se muestra la excepción
+            if (result.status) {       
+                fillCardsValuations(result.dataset);         
+                $('#modalP').modal('open');                        
+            } else {
+                sweetAlert(2, 'Este producto no tiene calificaciones', null);
+            }
+        } else {
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
 
 //funcion para agregar al preDetalle
 function agregarCarrito(){
