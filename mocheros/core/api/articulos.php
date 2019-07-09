@@ -32,6 +32,13 @@
                     $result['exception'] = 'No hay datos';
                 }
                     break;
+                case 'productoCalificacion':
+                if ($result['dataset'] = $articulo->productoCalificacion()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay datos';
+                }
+                    break;
                 case 'search':
                     $_POST = $articulo->validateForm($_POST);
                     if ($_POST['busqueda'] != '') {

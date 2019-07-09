@@ -447,6 +447,12 @@ class Articulos extends Validator
         $params = array(null);
         return Database::getRows($sql, $params);
 	}
+
+	public function productoCalificacion(){
+        $sql = 'SELECT SUM(c.Calificacion) AS Calificacion, ROUND(AVG(calificacion), 2) AS Promedio, NomArticulo FROM calificaciones c INNER JOIN articulos a USING(IdArticulos) GROUP BY NomArticulo LIMIT 5 ';
+        $params = array(null);
+        return Database::getRows($sql, $params);
+	}
 	
 	
 }

@@ -5,6 +5,8 @@ $(document).ready(function()
     chartCategorias();
     chartEstadoPedidos();
     chartProductosVendidos();
+    chartProductosCalificacion();
+    
 })
 
 //Constante para establecer la ruta y parámetros de comunicación con la API
@@ -173,7 +175,7 @@ function chartProductosVendidos(){
 
                 });
 
-                polarAreaGraph('chartProductosVendidos', nomarticulo, cantidadarticulos, 'Cantidad', 'Producto más vendido')
+                horizontalGraph('chartProductosVendidos', nomarticulo, cantidadarticulos, 'Cantidad', 'Producto más vendido')
                 
             }else{
                 $('#chartProductosVendidos').remove();
@@ -189,3 +191,42 @@ function chartProductosVendidos(){
     });
 }
 
+function chartProductosCalificacion(){
+
+    $.ajax({
+        url: apiArticulos + 'productoCalificacion',
+        type: 'post',
+        data: null,
+        datatype: 'json'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            console.log(result);
+
+            if(result.status){
+                let nomarticulo = [];
+                let calificacion = [];
+                
+
+                result.dataset.forEach(function(row){
+                    nomarticulo.push(row.NomArticulo);
+                    calificacion.push(row.Promedio);
+
+                });
+
+                polarAreaGraph('chartProductosCalificaciones', nomarticulo, calificacion, 'Cantidad', 'Producto mejor calificado')
+                
+            }else{
+                $('#chartProductosCalificaciones').remove();
+            }
+        }else{
+            console.log(response);
+        }
+
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+
+    });
+}
