@@ -1,25 +1,28 @@
 <?php
 require_once('../../core/helpers/database.php');
 require_once('../../core/helpers/validator.php');
-require_once('../../core/models/sales.php');
+require_once('../../core/models/pedidos.php');
 
 if(isset($_GET['site']) && isset($_GET['action'])){
     session_start();
-    $sales= new Sales();
-    $result=array('status'=>0, 'exception'=>'');
+    $pedidos = new Pedidos();
+    $result = array('status'=> 0, 'exception'=>'');
     //Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
-    if(isset($_SESSION['idAdmin']) && $_GET['site']=='dashboard'){
-        switch ($_GET['action']){
-            case 'read':
-                if($result['dataset']=$sales->readVentas()){
-                    $result['status']=1;
+    if(isset($_SESSION['idUsuario']) && $_GET['site']=='dashboard'){
+        switch ($_GET['action']){  
+            
+            case 'readPedidosTable':
+            print_r('ok');
+                if($result['dataset'] = $pedidos->readPedidos()){
+                    $result['status'] = 1;
                 }else{
                     $result['exception']='No hay ventas realizadas';
                 }
             break;
+
             case 'detalle':
-                if($sales->setId($_POST['idVenta'])){
-                    if($result['dataset']=$sales->obtenerDetalle()){
+                if($pedidos->setId($_POST['idVenta'])){
+                    if($result['dataset']=$pedidos->obtenerDetalle()){
                         $result['status']=1; 
                     }else{
                         $result['exception']='error';
@@ -29,9 +32,9 @@ if(isset($_GET['site']) && isset($_GET['action'])){
                 }
             break;
             case 'search':
-                $_POST = $sales->validateForm($_POST);
+                $_POST = $pedidos->validateForm($_POST);
                 if ($_POST['fecha'] != '') {
-                    if ($result['dataset'] = $sales->searchVenta($_POST['fecha'])) {
+                    if ($result['dataset'] = $pedidos->searchVenta($_POST['fecha'])) {
                         $result['status'] = 1;
                     } else {
                         $result['exception'] = 'No hay coincidencias';
@@ -41,8 +44,8 @@ if(isset($_GET['site']) && isset($_GET['action'])){
                 }
             break;   
             case 'updateState':
-                if($sales->setId($_POST['idVenta'])){
-                    if($sales->updateStateSale()){
+                if($pedidos->setId($_POST['idVenta'])){
+                    if($pedidos->updateStateSale()){
                         $result['status'] = 1;                        
                     }else{
                         $result['exception'] = 'Error al actulizar estado de venta';
@@ -50,18 +53,18 @@ if(isset($_GET['site']) && isset($_GET['action'])){
                 }
             break; 
             case 'readSalesChart':
-                if($result['dataset']=$sales->salesForDate()){
+                if($result['dataset']=$pedidos->salesForDate()){
                     $result['status']=1;
                 }else{
                     $result['exception']='No hay ventas realizadas';
                 }
             break;
         }
-    }else if(isset($_SESSION['idCliente']) && $_GET['site']=='public'){
+    }else if(isset($_SESSION['idUsuario']) && $_GET['site']=='public'){
         switch ($_GET['action']){
             case 'readVentasCliente':            
-                if($sales->setIdCliente($_SESSION['idCliente'])){
-                    if($result['dataset']=$sales->ventaCliente()){
+                if($pedidos->setIdCliente($_SESSION['idUsuario'])){
+                    if($result['dataset']=$pedidos->ventaCliente()){
                         $result['status']=1;
                     }else{
                         $result['exception']='No se han encontrado compras';
@@ -71,8 +74,8 @@ if(isset($_GET['site']) && isset($_GET['action'])){
                 }
             break;
             case 'detalle':
-            if($sales->setId($_POST['idVenta'])){
-                if($result['dataset']=$sales->obtenerDetalle()){
+            if($pedidos->setId($_POST['idVenta'])){
+                if($result['dataset']=$pedidos->obtenerDetalle()){
                     $result['status']=1; 
                 }else{
                     $result['exception']='error';
