@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-07-2019 a las 06:51:44
+-- Tiempo de generación: 09-07-2019 a las 07:40:08
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -164,7 +164,31 @@ INSERT INTO `bitacora` (`IdBitacora`, `IdUsuario`, `Accion`, `Fecha`) VALUES
 (73, 27, 'Insert', '2019-07-07'),
 (74, 27, 'Insert', '2019-07-07'),
 (75, 27, 'Insert', '2019-07-07'),
-(76, 27, 'Insert', '2019-07-07');
+(76, 27, 'Insert', '2019-07-07'),
+(77, 27, 'Insert', '2019-07-08'),
+(78, 27, 'Insert', '2019-07-08'),
+(79, 27, 'Insert', '2019-07-08'),
+(80, 27, 'Insert', '2019-07-08'),
+(81, 27, 'Insert', '2019-07-08'),
+(82, 27, 'Insert', '2019-07-08'),
+(83, 27, 'Insert', '2019-07-08'),
+(84, 27, 'Insert', '2019-07-08'),
+(85, 27, 'Insert', '2019-07-08'),
+(86, 27, 'Insert', '2019-07-08'),
+(87, 27, 'Insert', '2019-07-08'),
+(88, 27, 'Insert', '2019-07-08'),
+(89, 27, 'Insert', '2019-07-08'),
+(90, 27, 'Insert', '2019-07-08'),
+(91, 27, 'Insert', '2019-07-08'),
+(92, 27, 'Insert', '2019-07-08'),
+(93, 27, 'Insert', '2019-07-08'),
+(94, 27, 'Insert', '2019-07-08'),
+(95, 27, 'Insert', '2019-07-08'),
+(96, 27, 'Insert', '2019-07-08'),
+(97, 27, 'Insert', '2019-07-08'),
+(98, 27, 'Insert', '2019-07-08'),
+(99, 27, 'Insert', '2019-07-08'),
+(100, 27, 'Insert', '2019-07-08');
 
 -- --------------------------------------------------------
 
@@ -176,13 +200,17 @@ CREATE TABLE `calificaciones` (
   `IdCalificacion` int(11) NOT NULL,
   `IdArticulo` int(11) NOT NULL,
   `IdUsuario` int(11) NOT NULL,
-  `Calificacion` int(11) NOT NULL,
-  `TituloComentario` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `Comentario` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `FechaCreacion` date NOT NULL,
-  `FechaModificado` date NOT NULL,
-  `Estado` int(11) NOT NULL COMMENT '1 = Bloqueado, 0 = Desbloqueado'
+  `Calificacion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `calificaciones`
+--
+
+INSERT INTO `calificaciones` (`IdCalificacion`, `IdArticulo`, `IdUsuario`, `Calificacion`) VALUES
+(1, 1, 27, 5),
+(2, 11, 27, 5),
+(3, 3, 27, 4);
 
 -- --------------------------------------------------------
 
@@ -287,7 +315,9 @@ INSERT INTO `detallepedidos` (`IdDetallePedido`, `IdEncabezado`, `IdArticulos`, 
 (145, NULL, NULL, 1, 24),
 (146, NULL, NULL, 3, 25),
 (147, NULL, NULL, 2, 26),
-(148, 5, 5, 3, 19.9);
+(148, 5, 5, 3, 19.9),
+(149, 70, 7, 1, 45.99),
+(150, 81, 7, 1, 45.99);
 
 -- --------------------------------------------------------
 
@@ -363,7 +393,31 @@ INSERT INTO `encabezadopedidos` (`IdEncabezado`, `IdUsuario`, `Fecha`, `IdEstado
 (54, 27, '2019-07-07 22:26:13', 2),
 (55, 27, '2019-07-07 22:39:47', 2),
 (56, 27, '2019-07-07 22:47:28', 2),
-(57, 27, '2019-07-07 22:48:59', 2);
+(57, 27, '2019-07-07 22:48:59', 2),
+(58, 27, '2019-07-08 08:38:58', 2),
+(59, 27, '2019-07-08 09:05:46', 2),
+(60, 27, '2019-07-08 09:21:54', 2),
+(61, 27, '2019-07-08 09:22:11', 2),
+(62, 27, '2019-07-08 09:35:17', 2),
+(63, 27, '2019-07-08 09:40:23', 2),
+(64, 27, '2019-07-08 09:42:23', 2),
+(65, 27, '2019-07-08 09:43:19', 2),
+(66, 27, '2019-07-08 09:47:10', 2),
+(67, 27, '2019-07-08 09:49:00', 2),
+(68, 27, '2019-07-08 09:49:27', 2),
+(69, 27, '2019-07-08 09:54:13', 2),
+(70, 27, '2019-07-08 09:54:49', 2),
+(71, 27, '2019-07-08 10:05:19', 2),
+(72, 27, '2019-07-08 10:13:31', 2),
+(73, 27, '2019-07-08 10:13:32', 2),
+(74, 27, '2019-07-08 10:13:34', 2),
+(75, 27, '2019-07-08 10:16:32', 2),
+(76, 27, '2019-07-08 10:17:22', 2),
+(77, 27, '2019-07-08 10:19:01', 2),
+(78, 27, '2019-07-08 10:21:04', 2),
+(79, 27, '2019-07-08 10:22:07', 2),
+(80, 27, '2019-07-08 10:23:02', 2),
+(81, 27, '2019-07-08 10:23:31', 2);
 
 --
 -- Disparadores `encabezadopedidos`
@@ -424,14 +478,6 @@ CREATE TABLE `prepedidos` (
   `IdArticulos` int(11) DEFAULT NULL,
   `Cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `prepedidos`
---
-
-INSERT INTO `prepedidos` (`IdPrePedido`, `IdCliente`, `IdArticulos`, `Cantidad`) VALUES
-(16, 27, 16, 3),
-(17, 27, 3, 5);
 
 -- --------------------------------------------------------
 
@@ -618,13 +664,13 @@ ALTER TABLE `articulos`
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `IdBitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `IdBitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT de la tabla `calificaciones`
 --
 ALTER TABLE `calificaciones`
-  MODIFY `IdCalificacion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdCalificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -636,13 +682,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `detallepedidos`
 --
 ALTER TABLE `detallepedidos`
-  MODIFY `IdDetallePedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
+  MODIFY `IdDetallePedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
 -- AUTO_INCREMENT de la tabla `encabezadopedidos`
 --
 ALTER TABLE `encabezadopedidos`
-  MODIFY `IdEncabezado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `IdEncabezado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT de la tabla `estadopedidos`
@@ -660,7 +706,7 @@ ALTER TABLE `estados`
 -- AUTO_INCREMENT de la tabla `prepedidos`
 --
 ALTER TABLE `prepedidos`
-  MODIFY `IdPrePedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `IdPrePedido` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
