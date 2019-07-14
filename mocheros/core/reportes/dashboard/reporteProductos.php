@@ -6,13 +6,14 @@ require_once('../../models/articulos.php');
 
     session_start();
     ini_set('date.timezone', 'America/El_Salvador');
-    $pdf = new PDF();
+    $pdf = new PDF('P','mm','Letter');
     $articulo = new Articulos();
     $pdf->head('Mocheros - Reporte de productos por categoría');
     $pdf->SetFont('Arial','',12);
     $pdf->setTextColor(255,255,255);
     $pdf->setFillColor(249,138,79);
     $pdf->SetFont('Arial','B',12);
+    $pdf->SetLeftMargin(15);
     
     $categoria = '';    
     $pdf->Ln(0);
