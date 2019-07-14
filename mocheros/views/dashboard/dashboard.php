@@ -34,5 +34,5 @@
 </main>
 <!-- Función de pie de página -->
 <?php
-    DashboardHelper::footer('dashboard.js',null);
+    DashboardHelper::footer('dashboard.js', null);
 ?>

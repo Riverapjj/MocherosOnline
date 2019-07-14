@@ -21,7 +21,7 @@ function fillTableCategory(rows)
             <td>${row.Descripcion}</td>
             <td><i class="material-icons">${icon}</i></td>
             <td>
-            <a href="#" onclick="modalUpdate(${row.IdCategoria})" class="blue-text tooltipped" data-tooltip="Modificar"><i class="material-icons">mode_edit</i></a>
+            <a href="#" onclick="modalUpdateCategory(${row.IdCategoria})" class="blue-text tooltipped" data-tooltip="Modificar"><i class="material-icons">mode_edit</i></a>
             </td>
         </tr>
         `;
@@ -133,7 +133,7 @@ $('#form-create-category').submit(function()
 })
 
 //Función para mostrar formulario con registro a modificar
-function modalUpdate(id)
+function modalUpdateCategory(id)
 {
     event.preventDefault();
     $.ajax({
@@ -178,7 +178,7 @@ $('#form-update-category').submit(function()
     $.ajax({
         url: apiCategorias + 'update',
         type: 'post',
-        data: new FormData($('#form-update')[0]),
+        data: new FormData($('#form-update-category')[0]),
         datatype: 'json',
         cache: false,
         contentType: false,
@@ -190,7 +190,7 @@ $('#form-update-category').submit(function()
             const result = JSON.parse(response);
             //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
             if (result.status) {
-                $('#modal-update').modal('close');
+                $('#modal-update-category').modal('close');
                 if (result.status == 1) {
                     sweetAlert(1, 'Categoría modificada correctamente', null);
                 } else if(result.status == 2) {
@@ -198,7 +198,7 @@ $('#form-update-category').submit(function()
                 } else if(result.status == 3) {
                     sweetAlert(1, 'Categoría modificada. ' + result.exception, null);
                 }
-                showTable();
+                showTableCategory();
             } else {
                 sweetAlert(2, result.exception, null);
             }

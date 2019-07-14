@@ -348,3 +348,10 @@ function polarAreaGraph(canvas, xAxis, yAxis, legend, title)
         }
     });
 }
+
+
+const enviarReporte = () => {
+    let fecha1 = $('#fecha1').val()
+    let fecha2 = $('#fecha2').val()
+    location.href = `../../core/reportes/dashboard/pedidosFecha.php?fecha1=${fecha1}&fecha2=${fecha2}`;
+}

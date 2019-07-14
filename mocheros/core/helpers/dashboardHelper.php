@@ -95,6 +95,7 @@ class dashboardHelper{
                         <a href="dashboard.php" class="brand-logo logok"><img src="../../resources/img/mocheros.jpeg" height="50"></a>
                             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
+                                <li><a href="#modal-reports" class="modal-trigger"><i class="material-icons left"></i>Reportes</a></li>
                                 <li><a href="priv_usuarios.php"><i class="material-icons left"></i>Gestión de usuarios</a></li>
                                 <li><a href="priv_productos.php"><i class="material-icons left"></i>Gestión de productos</a></li>
                                 <li><a href="priv_estados.php"><i class="material-icons left"></i>Gestión de pedidos</a></li>
@@ -137,7 +138,132 @@ class dashboardHelper{
                         </li>
                     </ul>
                 </div>
-					</header>
+                    </header>
+
+                    
+                    <!-- Modal para visualizar reportes disponibles --!>
+                    <div id="modal-reports" class="modal"> 
+                        <div class="modal-content">               
+                            <ul class="collapsible">
+                                <li>
+                                    <div class="collapsible-header">
+                                        <i class="material-icons">filter_drama</i>Gestión de usuarios
+                                    </div>
+                                    <div class="collapsible-body">
+                                        <span>
+                                            <table class="centered">
+                                                <thead>
+                                                    <tr>                                                        
+                                                        <th>Mayor consumidor<br>
+                                                            <a href="../../core/reportes/dashboard/reporteMaximoConsumidor.php" class="btn-floating pulse">
+                                                            <i class="material-icons">menu</i>
+                                                            </a>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="collapsible-header">
+                                        <i class="material-icons">place</i>Gestión de productos
+                                    </div>
+                                    <div class="collapsible-body">
+                                        <span>
+                                            <table class="centered">
+                                                <thead>
+                                                    <tr>                                                        
+                                                        <th>Productos por categorías<br>
+                                                            <a href="../../core/reportes/dashboard/reporteProductos.php" class="btn-floating pulse">
+                                                            <i class="material-icons">menu</i>
+                                                            </a>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="collapsible-header">
+                                        <i class="material-icons">place</i>Gestión de pedidos
+                                    </div>
+                                    <div class="collapsible-body">
+                                        <span>
+                                            <table class="centered">
+                                                <thead>
+                                                    <tr>                                                        
+                                                        <th>Mayor venta<br>
+                                                            <a href="../../core/reportes/dashboard/reporteVentaMax.php" class="btn-floating pulse">
+                                                            <i class="material-icons">menu</i>
+                                                            </a>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>                                                        
+                                                        <th>Pedidos por fechas<br>
+                                                            <a href="#modal-parametros-fecha" class="btn-floating pulse modal-trigger">
+                                                            <i class="material-icons">menu</i>
+                                                            </a>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>                                                        
+                                                        <th>Pedidos por estado<br>
+                                                            <a href="#modal-parametros-estado" class="btn-floating pulse modal-trigger">
+                                                            <i class="material-icons">menu</i>
+                                                            </a>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>   
+                        </div>     
+                    </div>
+
+                    <!-- Modal para visualizar parametros de fechas --!>
+                    <div id="modal-parametros-fecha" class="modal">
+                        <div class="modal-content">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="fecha1">Fecha inicio</label>
+                                    <input type="date" class="form-control" id="fecha1" placeholder="Fecha Inicio">
+                                    <small class="form-text text-muted">Ej. 19/05/2019</small>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="fecha2">Fecha final</label>
+                                    <input type="date" class="form-control" id="fecha2" placeholder="Fecha Inicio">
+                                    <small class="form-text text-muted">Ej. 19/05/2019</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center my-4 ml-5">
+                            <button type="button" onclick="enviarReporte()" class="btn btn-success py-3">Generar Reporte
+                                <i class="material-icons">insert_drive_file</i>
+                            </button>   
+                        </div>
+                    </div>
+
+                    <!-- Modal para visualizar parametro por estado --!>
+                    <div id="modal-parametros-estado" class="modal">
+                        <div class="modal-content">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="fecha1">Estados</label>
+                                    <select>
+                                        <option value="" disabled selected>Seleccione un estado</option>
+                                        <option value="1">Entregado</option>
+                                        <option value="2">Pendiente</option>
+                                        <option value="3">Anulado</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 				');
 			} else {
 				header('location: dashboard.php');
@@ -249,7 +375,7 @@ class dashboardHelper{
                 <script type="text/javascript" src="../../resources/js/Chart.js"></script>
                 <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                 <script type="text/javascript" src="../../core/helpers/functions.js"></script>
-                <script type="text/javascript" src="../../core/helpers/componentes.js"></script>
+                <script type="text/javascript" src="../../core/helpers/componentes.js"></script>                
                 <script type="text/javascript" src="../../core/controllers/dashboard/account.js"></script>              
                 <script type="text/javascript" src="../../core/controllers/dashboard/'.$firstcontroller.'"></script>
                 <script type="text/javascript" src="../../core/controllers/dashboard/'.$secondcontroller.'"></script>
@@ -394,6 +520,7 @@ class dashboardHelper{
             </div>
         </div>
     ');
-	}
+    }
+    
 }
 ?>

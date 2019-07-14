@@ -1,5 +1,6 @@
 $( document ).ready(function(){
     $(".button-collapse").sidenav();
+    $('.collapsible').collapsible();
     $('.modal').modal();
     $('.trigger-modal').modal();
     $('.tooltipped').tooltip();
