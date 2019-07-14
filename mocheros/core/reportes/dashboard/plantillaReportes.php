@@ -3,6 +3,7 @@ require('../../lib/fpdf181/fpdf.php');
 
 class PDF extends FPDF
 {
+    //variable para almacenar el título del reporte
     private $title;      
     function head($title){
         $this->title = $title;
@@ -10,7 +11,7 @@ class PDF extends FPDF
         $this->AddPage();
     }
 
-
+    //función para establecer la plantilla del encabezado del reporte
     function Header()
     {
         $this->Image('../../../resources/img/mocheros-logo.jpg',5,5, 30);
@@ -29,6 +30,7 @@ class PDF extends FPDF
         $this->Ln();                
     }
 
+    //función para establecer el pie de página del reporte
     function Footer()
     {
         // Posición: a 1,5 cm del final
@@ -38,7 +40,7 @@ class PDF extends FPDF
         $this->SetTextColor(0,0,0);
         // Número de página
         $this->Cell(0,10,'Pagina '.$this->PageNo().'/{nb}',0,0,'C');
-        //$this->Cell(0,10,utf8_decode('Realizado por: '.$_SESSION['Nombre'].' '.$_SESSION['Aapellido']),0,'L','R');
+        $this->Cell(0,10,utf8_decode('Realizado por: '.$_SESSION['nombreUsuario']),0,'L','R');
         
     }
    
