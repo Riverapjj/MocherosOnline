@@ -50,7 +50,7 @@ require_once('../../models/pedidos.php');
         $pdf->setFillColor(239,108,0);
         $pdf->SetFont('Arial','B',13);
         $pdf->Cell(100,10, utf8_decode('Artículo'),1 , 0, 'C',true);
-        $pdf->Cell(30,10, utf8_decode('Precio unitario'),1 , 0, 'C',true);
+        $pdf->Cell(35,10, utf8_decode('Precio unitario'),1 , 0, 'C',true);
         $pdf->Cell(30,10, utf8_decode('Cantidad'),1 , 0, 'C',true);
         $pdf->Cell(30,10, utf8_decode('Total'),1 , 0, 'C',true);
         $pdf->Ln();
@@ -60,8 +60,8 @@ require_once('../../models/pedidos.php');
 
         foreach($data as $index){
             $pdf->setTextColor(255,255,255);
-            $pdf->Cell(100,10, utf8_decode($index['producto']),1 , 0, 'C');
-            $pdf->Cell(30,10, utf8_decode('$'.$index['precio']),1 , 0, 'C');
+            $pdf->Cell(100,10, utf8_decode($index['articulo']),1 , 0, 'C');
+            $pdf->Cell(35,10, utf8_decode('$'.$index['precio']),1 , 0, 'C');
             $pdf->Cell(30,10, utf8_decode($index['cantidad']),1 , 0, 'C');
             $pdf->Cell(30,10, utf8_decode('$'.$index['Total']),1 , 0, 'C');
             $pdf->Ln();
