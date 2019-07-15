@@ -123,10 +123,12 @@ class Pedidos extends Validator{
         return Database::getRow($sql,$params);
     }
 
-    public function getSaleDetailReport()
+    public function getSaleDetailReport($id)
     {
-        $sql = 'SELECT IdDetallePedido, NomArticulo as articulo, detallepedidos.CantidadArticulo as cantidad, articulos.PrecioUnitario as precio, (articulos.PrecioUnitario * detallepedidos.CantidadArticulo) AS Total FROM detallepedidos, articulos WHERE articulos.IdArticulos = detallepedidos.IdArticulos AND IdDetallePedido = ?';
-        $params = array($this->id);
+        $sql = 'SELECT IdDetallePedido, en.IdEncabezado,NomArticulo, CantidadArticulo, PrecioUnitario, ROUND((PrecioUnitario * CantidadArticulo), 2) AS Subtotal 
+        FROM detallepedidos d INNER JOIN articulos a USING(IdArticulos) 
+        INNER JOIN encabezadopedidos en USING(IdEncabezado) WHERE IdEncabezado = '.$id;
+        $params = array(null);
         return Database::getRows($sql, $params);
     }
 

@@ -17,41 +17,57 @@ require_once('../../models/pedidos.php');
             
     if(isset($_SESSION['idUsuario'])){
         if($ventas->setIdCliente($_SESSION['idUsuario'])){
+            //método para obtener el último pre detalle o última venta
             $idDetalle = $ventas->getLastSale();
+            //con 'idE' obtenés el id del encabezado
             if($ventas->setId($idDetalle['idE'])){
-                $data = $ventas->getSaleDetailReport();
-                $pdf->setTextColor(0,0,0);               
-                $pdf->SetFont('Arial','B',14);
-                $pdf->Cell(100,8, utf8_decode('Cliente: '. $idDetalle['CN'].' '.$idDetalle['CA']),0, 0, 'L', false);            
-                $pdf->Ln();
-                $pdf->Cell(100,8, utf8_decode('Teléfono: '. $idDetalle['telefono']),0 , 0, 'L', false);
-                $pdf->Ln();
-                $pdf->Cell(100,8, utf8_decode('Dirección: '. $idDetalle['direccion']),0 , 0, 'L', false);
-                $pdf->Ln();
-                $pdf->Cell(100,8, utf8_decode('Correo electrónico: '. $idDetalle['correo']),0 , 0, 'L', false);
-                $pdf->Ln();
-                $pdf->Cell(100,8, utf8_decode('Fecha de compra: '. $idDetalle['fecha']),0 , 0, 'L', false);
-                $pdf->Ln(16);
-                
-                $pdf->setTextColor(255,255,255);
-                $pdf->setFillColor(239,108,0);
-                $pdf->SetFont('Arial','B',13);
-                $pdf->Cell(100,10, utf8_decode('Artículo'),1 , 0, 'C',true);
-                $pdf->Cell(30,10, utf8_decode('Precio unitario'),1 , 0, 'C',true);
-                $pdf->Cell(30,10, utf8_decode('Cantidad'),1 , 0, 'C',true);
-                $pdf->Cell(30,10, utf8_decode('Total'),1 , 0, 'C',true);
-                $pdf->Ln();
-                foreach($data as $index){
-                    $pdf->setTextColor(0,0,0);
-                    $pdf->Cell(100,10, utf8_decode($index['producto']),1 , 0, 'C');
-                    $pdf->Cell(30,10, utf8_decode('$'.$index['precio']),1 , 0, 'C');
-                    $pdf->Cell(30,10, utf8_decode($index['cantidad']),1 , 0, 'C');
-                    $pdf->Cell(30,10, utf8_decode('$'.$index['Total']),1 , 0, 'C');
-                    $pdf->Ln();
-                    $suma += $index['Total'];
-                }
+                //método que llena la tabla de la factura
+                $data = $ventas->getSaleDetailReport("'".$_GET['estado']);
+                imprimirMembrete($pdf, $idDetalle);
+                imprimirColumnas($pdf);
+                imprimirBody($data, $pdf, $suma);
             }
         }
+    }
+
+    function imprimirMembrete($pdf, $idDetalle){
+        $pdf->setTextColor(0,0,0);               
+        $pdf->SetFont('Arial','B',14);
+        $pdf->Cell(100,8, utf8_decode('Cliente: '. $idDetalle['CN'].' '.$idDetalle['CA']),0, 0, 'L', false);            
+        $pdf->Ln();
+        $pdf->Cell(100,8, utf8_decode('Teléfono: '. $idDetalle['telefono']),0 , 0, 'L', false);
+        $pdf->Ln();
+        $pdf->Cell(100,8, utf8_decode('Dirección: '. $idDetalle['direccion']),0 , 0, 'L', false);
+        $pdf->Ln();
+        $pdf->Cell(100,8, utf8_decode('Correo electrónico: '. $idDetalle['correo']),0 , 0, 'L', false);
+        $pdf->Ln();
+        $pdf->Cell(100,8, utf8_decode('Fecha de compra: '. $idDetalle['fecha']),0 , 0, 'L', false);
+                $pdf->Ln(16);
+    }
+
+    function imprimirColumnas($pdf){
+        $pdf->setTextColor(255,255,255);
+        $pdf->setFillColor(239,108,0);
+        $pdf->SetFont('Arial','B',13);
+        $pdf->Cell(100,10, utf8_decode('Artículo'),1 , 0, 'C',true);
+        $pdf->Cell(30,10, utf8_decode('Precio unitario'),1 , 0, 'C',true);
+        $pdf->Cell(30,10, utf8_decode('Cantidad'),1 , 0, 'C',true);
+        $pdf->Cell(30,10, utf8_decode('Total'),1 , 0, 'C',true);
+        $pdf->Ln();
+    }
+
+    function imprimirBody($data, $pdf, $suma){
+
+        foreach($data as $index){
+            $pdf->setTextColor(255,255,255);
+            $pdf->Cell(100,10, utf8_decode($index['producto']),1 , 0, 'C');
+            $pdf->Cell(30,10, utf8_decode('$'.$index['precio']),1 , 0, 'C');
+            $pdf->Cell(30,10, utf8_decode($index['cantidad']),1 , 0, 'C');
+            $pdf->Cell(30,10, utf8_decode('$'.$index['Total']),1 , 0, 'C');
+            $pdf->Ln();
+            $suma += $index['Total'];
+        }
+        
     }
     $pdf->Ln(1);
     $pdf->setFont('Arial', 'B',15);
