@@ -375,18 +375,18 @@
                     break;
                 case 'createSale':
                     $_POST = $articulo->validateForm($_POST);
-                    print_r('hola ');
+                    //print_r('hola ');
                     if (isset($_SESSION['idUsuario'])) {
                         if ($articulo->setCliente($_SESSION['idUsuario'])) {
                             if ($articulo->createSale()) {
                                 $data = $articulo->getPre();
                                 if ($data) {
-                                    print_r(' algo');
+                                   // print_r(' algo');
                                     if ($articulo->getLastSale()) {
-                                        print_r(' xd');
-                                        print_r($data);
+                                        /* print_r(' xd');
+                                        print_r($data); */
                                         if ($articulo->createDetailsSale()) {
-                                            print_r(' será que si sirve?!');
+                                            //print_r(' será que si sirve?!');
                                             $result['status'] = 1;
                                         } else {
                                             $result['exception'] = 'Ayuda por favor';

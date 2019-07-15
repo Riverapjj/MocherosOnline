@@ -22,7 +22,7 @@ require_once('../../models/pedidos.php');
             //con 'idE' obtenés el id del encabezado
             if($ventas->setId($idDetalle['idE'])){
                 //método que llena la tabla de la factura
-                $data = $ventas->getSaleDetailReport("'".$_GET['estado']);
+                $data = $ventas->getSaleDetailReport();
                 imprimirMembrete($pdf, $idDetalle);
                 imprimirColumnas($pdf);
                 imprimirBody($data, $pdf, $suma);
@@ -41,7 +41,7 @@ require_once('../../models/pedidos.php');
         $pdf->Ln();
         $pdf->Cell(100,8, utf8_decode('Correo electrónico: '. $idDetalle['correo']),0 , 0, 'L', false);
         $pdf->Ln();
-        $pdf->Cell(100,8, utf8_decode('Fecha de compra: '. $idDetalle['fecha']),0 , 0, 'L', false);
+        //$pdf->Cell(100,8, utf8_decode('Fecha de compra: '. $idDetalle['fecha']),0 , 0, 'L', false);
                 $pdf->Ln(16);
     }
 

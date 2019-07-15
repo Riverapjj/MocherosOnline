@@ -11,7 +11,7 @@ publicHelper::header('Carrito de compras');
                 </div>
             </div>
             <div id="total"></div>
-            <div><a class="waves-effect waves-light btn green" href='../../core/reportes/public/factura.php'><i class="material-icons">check</i></a></div>
+            <!--<div><a class="waves-effect waves-light btn green" href='../../core/reportes/public/factura.php'><i class="material-icons">check</i></a></div>-->
         </div>
     </div>
     <div id="modal-factura" class="modal">

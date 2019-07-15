@@ -24,9 +24,9 @@ class PDF extends FPDF
         $this->setTextColor(0,0,0);
         $this->SetFont('Arial','B',12);
         $this->Ln(20);
-        $this->Cell(190,20, ('Fecha de compra: '. date('d/m/Y')),0 , 0, 'R', false);
+        $this->Cell(190,20, ('Fecha de compra: '. date('d/m/Y')),0 , 0, 'L', false);
         $this->Ln(5);
-        $this->Cell(190,20, (' Hora de compra: '.date('G:i:s')),0 , 0, 'R', false);
+        $this->Cell(190,20, ('Hora de compra: '.date('G:i:s')),0 , 0, 'L', false);
         $this->Ln();                
     }
 
