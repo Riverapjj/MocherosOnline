@@ -1,6 +1,6 @@
 $(document).ready(function()
 {
-    showSelectEstados('estado-pedidos', null);
+    showSelectEstadosReport('estado-pedidosreport', null);
 })
 /*
 *   Función para manejar los mensajes de notificación al usuario.
@@ -355,10 +355,10 @@ function polarAreaGraph(canvas, xAxis, yAxis, legend, title)
 
 const apiEstados = '../../core/api/dashboard.php?site=dashboard&action=';
 
-function showSelectEstados(idSelect, value)
+function showSelectEstadosReport(idSelect, value)
 {
     $.ajax({
-        url: apiEstados + 'selectEstadoPedidos',
+        url: apiEstados + 'selectEstadoPedidosReport',
         type: 'post',
         data: null,
         datatype: 'json'
@@ -374,7 +374,7 @@ function showSelectEstados(idSelect, value)
                     content += '<option value="" disabled selected>Seleccione una opción</option>';
                 }
                 result.dataset.forEach(function(row){
-                    if (row.categoria != value) {
+                    if (row.IdEstadoPedido != value) {
                         content += `<option value="${row.IdEstadoPedido}" id="estado-pedidos">${row.TipoEstado}</option>`;
                     } else {
                         content += `<option value="${row.IdEstadoPedido}" id="estado-pedidos" selected>${row.TipoEstado}</option>`;
@@ -403,7 +403,7 @@ const enviarReporteFechas = () => {
 }
 
 const enviarReporteEstados = () => {
-    let estado = $('#estado-pedidos').val()
+    let estado = $('#estado-pedidosreport').val()
     location.href = `../../core/reportes/dashboard/reportePedidosEstados.php?estado=${estado}`;
 }
 

@@ -67,8 +67,8 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 if ($categoria->setIdCategoria($_POST['IdCategoria'])) {
                     if ($categoria->getCategoria()) {
                         if ($categoria->setNomCategoria($_POST['name-category-update'])) {
-                            if ($categoria->setNomCategoria($_POST['update-descrip-category'])) {
-                                if ($articulo->setIdEstado(isset($_POST['update-statuscat-name']) ? 1 : 2)) {
+                            if ($categoria->setDescripcion($_POST['update-descrip-category-name'])) {
+                                if ($categoria->setIdEstado(isset($_POST['update-statuscat-name']) ? 1 : 2)) {
                             if ($categoria->updateCategoria()) {
                                 $result['status'] = 1;
                             } else {

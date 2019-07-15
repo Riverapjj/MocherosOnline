@@ -5,7 +5,7 @@ $(document).ready(function()
 })
 
 //Constante para establecer la ruta y parámetros de comunicación con la API
-const apiPedidos = '../../core/api/pedidos.php?site=public&action=';
+const apiPedidos = '../../core/api/pedidos.php?site=dashboard&action=';
 
 //Función para llenar tabla con los datos de los registros
 function fillTablePedidos(rows)
@@ -31,7 +31,7 @@ function fillTablePedidos(rows)
 function showSelectEstados(idSelect, value)
 {
     $.ajax({
-        url: apiProductos + 'readEstadoPedidos',
+        url: apiPedidos + 'readEstadoPedidos',
         type: 'post',
         data: null,
         datatype: 'json'

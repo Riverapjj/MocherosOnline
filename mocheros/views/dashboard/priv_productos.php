@@ -248,11 +248,11 @@
                             <input type="hidden" id="IdCategoria" name="IdCategoria"/>
                         <div class="row">
                             <div class="input-field col s12 m6">
-                                <input id="name-category-update" name="name-category-update" type="text" class="validate">
+                                <input id="name-category-update" name="name-category-update" type="text" class="validate" require>
                                 <label for="name">Nombre de la categoria</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="update-descrip-category" type="text" name="update-descrip-category" class="validate" require>
+                                <input id="update-descrip-category" type="text" name="update-descrip-category-name" class="validate" require>
                                 <label for="descrip">Descripción</label>
                             </div>
                             <div class="input-field col s12 m6">
@@ -262,7 +262,7 @@
                                         <span>Estado:</span>
                                         <label>
                                             <i class="material-icons">visibility_off</i>
-                                            <input id="c" type="checkbox" name="update-statuscat-name"
+                                            <input id="update-status" type="checkbox" name="update-statuscat-name"
                                                 checked />
                                             <span class="lever"></span>
                                             <i class="material-icons">visibility</i>

@@ -116,7 +116,7 @@ class dashboardHelper{
                     <li><a href="dashboard.php" class="waves-effect waves white-text">Inicio</a></li>
                     <li><a href="#" onclick="modalprofile()" class="waves-effect waves white-text" data-target="dropdown" data-activates="menu_escrow_accounts" data-beloworigin="true">Mi cuenta</a></li>
                     
-                    <li><a href="#modal-reports" class="waves-effect waves white-text modal-trigger">Reportes</a></li>
+                    
                     <li><a href="priv_usuarios.php" class="waves-effect waves white-text">Gestión de usuarios</a></li>
                     <li><a href="priv_productos.php" class="waves-effect waves white-text">Administración de productos</a></li>                        
                     <li><a href="priv_estados.php" class="waves-effect waves white-text">Gestión de pedidos</a></li>
@@ -255,9 +255,10 @@ class dashboardHelper{
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="fecha1">Estados</label>
-                                    <select id="estado-pedidos">
+                                    <select id="estado-pedidosreport">
                                         <option value="" disabled selected>Seleccione un estado</option>
                                     </select>
+                                    <br><br>
                                     <div class="col-12 d-flex justify-content-center my-4 ml-5">
                                         <button type="button" onclick="enviarReporteEstados()" class="btn waves-effect blue">Generar Reporte
                                             <i class="material-icons">insert_drive_file</i>

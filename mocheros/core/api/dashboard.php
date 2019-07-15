@@ -11,8 +11,8 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
 	//Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
 	if (isset($_SESSION['idUsuario']) && $_GET['site'] == 'dashboard'){
 		switch ($_GET['action']) {
-			case 'selectEstadoPedidos':
-				if ($result['dataset'] = $pedidos->selectEstadoPedidos()) {
+			case 'selectEstadoPedidosReport':
+				if ($result['dataset'] = $pedidos->selectEstadoPedidosReport()) {
 					$result['status'] = 1;
 				} else {
 					$result['exception'] = 'No hay estados registrados';

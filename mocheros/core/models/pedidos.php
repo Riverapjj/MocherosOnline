@@ -60,9 +60,9 @@ class Pedidos extends Validator{
 
     //Metodos para el manejo de SCRUD
     public function readPedidos(){
-        $sql='SELECT IdEncabezado, u.Nombre, u.Apellido, Fecha, en.IdEstadoPedido 
-        FROM encabezadopedidos en, usuarios u, estadopedidos es 
-        WHERE u.IdUsuario = en.IdUsuario AND en.IdEstadoPedido = es.IdEstadoPedido ORDER by IdEncabezado ASC ';
+        $sql='SELECT IdEncabezado, u.Nombre, u.Apellido, Fecha, TipoEstado 
+        FROM encabezadopedidos en INNER JOIN usuarios u USING (IdUsuario) 
+        INNER JOIN estadopedidos es USING(IdEstadoPedido) ORDER by IdEncabezado ASC ';
         $params=array(null);
         return Database::getRows($sql, $params);
     }
@@ -161,9 +161,9 @@ class Pedidos extends Validator{
         return Database::getRows($sql, $params); 
     }
 
-    public function selectEstadoPedidos()
+    public function selectEstadoPedidosReport()
     {
-        $sql = 'SELECT IdEstadoPedido ,TipoEstado FROM estadopedidos';
+        $sql = 'SELECT IdEstadoPedido, TipoEstado FROM estadopedidos';
         $params = array(null);
         return Database::getRows($sql, $params);
     }
