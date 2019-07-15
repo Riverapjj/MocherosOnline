@@ -457,10 +457,10 @@ class Articulos extends Validator
         return Database::getRows($sql, $params);
 	}
 
-	public function maximoConsumidor(){
-        $sql = 'SELECT Nombre, Apellido, Fecha, ROUND(SUM(d.PrecioDetalle), 2) AS Total 
+	public function maximosConsumidores(){
+        $sql = 'SELECT IdUsuario, Nombre, Apellido, Email, ROUND(SUM(d.PrecioDetalle), 2) AS Total 
 		FROM detallepedidos d INNER JOIN encabezadopedidos en USING(IdEncabezado) 
-		INNER JOIN usuarios USING(IdUsuario) GROUP BY Nombre ORDER BY Total DESC';
+		INNER JOIN usuarios USING(IdUsuario) WHERE en.IdEstadoPedido = 2 GROUP BY Nombre ORDER BY Total DESC';
         $params = array(null);
         return Database::getRows($sql, $params);
 	}

@@ -79,10 +79,10 @@ require_once('../../models/articulos.php');
             
             }  
         }
-        
-        $pdf->Cell(145,10,'Total',1 , 0,'C');
+        $pdf->SetFont('Arial','b',12);
+        $pdf->Cell(145,10,'Total',1 , 0,'C', true);
         $totalformato = number_format($total, 2, '.', ',');
-        $pdf->Cell(40,10,'$'.$totalformato,1 , 0, 'C');
+        $pdf->Cell(40,10,'$'.$totalformato,1 , 0, 'C', true);
         $pdf->Ln();                 
       
     } 
