@@ -1,7 +1,7 @@
 <?php
 class Pedidos extends Validator{
     //Atributos de la clase
-    private $id=null;
+    private  $id=null;
     private $idcliente=null;
     private $fecha=null;
     private $idestado=null;
@@ -125,7 +125,7 @@ class Pedidos extends Validator{
 
     public function getSaleDetailReport()
     {
-        $sql = 'SELECT IdDetallePedido, NomArticulo as articulo, detallepedidos.CantidadArticulo as cantidad, articulos.PrecioUnitario as precio, ROUND(articulos.PrecioUnitario * detallepedidos.CantidadArticulo, 2) AS Total FROM detallepedidos, articulos WHERE articulos.IdArticulos = detallepedidos.IdArticulos AND IdDetallePedido = ?';
+        $sql = 'SELECT IdDetallePedido, NomArticulo as articulo, detallepedidos.CantidadArticulo as cantidad, articulos.PrecioUnitario as precio, ROUND(articulos.PrecioUnitario * detallepedidos.CantidadArticulo, 2) AS Total FROM detallepedidos, articulos WHERE articulos.IdArticulos = detallepedidos.IdArticulos AND IdEncabezado = ?';
         $params = array($this->id);
         return Database::getRows($sql, $params);
     }
