@@ -60,9 +60,9 @@ class Pedidos extends Validator{
 
     //Metodos para el manejo de SCRUD
     public function readPedidos(){
-        $sql='SELECT IdEncabezado, u.Nombre, u.Apellido, Fecha, en.IdEstadoPedido 
-        FROM encabezadopedidos en, usuarios u, estadopedidos es 
-        WHERE u.IdUsuario = en.IdUsuario AND en.IdEstadoPedido = es.IdEstadoPedido ORDER by IdEncabezado ASC ';
+        $sql='SELECT IdEncabezado, u.Nombre, u.Apellido, Fecha, TipoEstado 
+        FROM encabezadopedidos en INNER JOIN usuarios u USING (IdUsuario) 
+        INNER JOIN estadopedidos es USING(IdEstadoPedido) ORDER by IdEncabezado ASC ';
         $params=array(null);
         return Database::getRows($sql, $params);
     }
@@ -153,23 +153,39 @@ class Pedidos extends Validator{
 
     public function pedidosFechas($fecha1, $fecha2)
     {
-        $sql = 'SELECT Nombre, Apellido, Fecha, Email FROM encabezadopedidos INNER JOIN usuarios USING(IdUsuario) BETWEEN '.$fecha1.' AND'
-        .$fecha2.' ORDER BY Fecha';
+        $sql = 'SELECT en.IdEncabezado, Nombre, Apellido, Email, Fecha, ROUND(SUM(PrecioDetalle), 2) AS Total 
+        FROM detallepedidos d INNER JOIN encabezadopedidos en USING(IdEncabezado) 
+        INNER JOIN usuarios u USING(IdUsuario) 
+        WHERE Fecha BETWEEN '.$fecha1.' AND '.$fecha2.'  GROUP BY IdEncabezado ORDER BY Total DESC';
         $params = array(null);
         return Database::getRows($sql, $params); 
     }
 
-    public function readPedidosFecha($fecha1, $fecha2, $estado)
-	{
-		$sql = 'SELECT idPedido, nombreCliente, apellidoCliente, correo, fecha, pedido.estado,
-				(SELECT SUM((cantidad * precioVenta)) FROM detallepedido d WHERE d.idPedido = pedido.idPedido) as montoTotal
-				FROM pedido 
-				INNER JOIN cliente ON pedido.idCliente = cliente.idCliente
-				WHERE pedido.estado = ' . $estado . ' AND pedido.fecha BETWEEN ' . $fecha1 . ' AND ' . $fecha2 . ' ORDER BY idPedido DESC';
-		$params = array(null);
-		return Database::getRows($sql, $params);
-	}
+    public function selectEstadoPedidosReport()
+    {
+        $sql = 'SELECT IdEstadoPedido, TipoEstado FROM estadopedidos';
+        $params = array(null);
+        return Database::getRows($sql, $params);
+    }
 
+    public function pedidosEstados($IdEstadoPedido)
+    {
+        $sql = 'SELECT en.IdEncabezado AS encabezado, Nombre, Apellido, Email, Fecha, es.TipoEstado,ROUND(SUM(PrecioDetalle), 2) AS Total 
+        FROM detallepedidos d INNER JOIN encabezadopedidos en USING(IdEncabezado) 
+        INNER JOIN usuarios u USING(IdUsuario) 
+        INNER JOIN estadopedidos es USING(IdEstadoPedido) WHERE IdEstadoPedido = '.$IdEstadoPedido.' GROUP BY IdEncabezado ORDER BY Fecha ASC ';
+        $params = array(null);
+        return Database::getRows($sql, $params); 
+    }
+
+    public function mayoresVentas()
+    {
+        $sql = 'SELECT ROUND(SUM(PrecioDetalle), 2) AS Total, en.IdEncabezado, Nombre, Apellido, Fecha 
+        FROM detallepedidos d INNER JOIN encabezadopedidos en USING(IdEncabezado) 
+        INNER JOIN usuarios u USING(IdUsuario) WHERE en.IdEstadoPedido = 2 GROUP BY IdEncabezado ORDER BY Total DESC ';
+        $params = array(null);
+        return Database::getRows($sql, $params);
+    }
     
 
     

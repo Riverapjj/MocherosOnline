@@ -39,7 +39,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                     if ($usuario->setDireccion($_POST['profile_direccion'])) {
                                         if ($usuario->setTelefono($_POST['profile_telefono'])) {
                                             if ($usuario->setEmail($_POST['profile_correo'])) {
-                                                if ($usuario->updateUsuario()) {
+                                                if ($usuario->updateUsuarioProfile()) {
                                                     $_SESSION['nombreUsuario'] = $_POST['profile_usuario'];
                                                     $result['status'] = 1;
                                                 } else {

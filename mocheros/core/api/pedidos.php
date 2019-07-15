@@ -12,7 +12,6 @@ if(isset($_GET['site']) && isset($_GET['action'])){
         switch ($_GET['action']){  
             
             case 'readPedidosTable':
-            print_r('ok');
                 if($result['dataset'] = $pedidos->readPedidos()){
                     $result['status'] = 1;
                 }else{
@@ -21,7 +20,7 @@ if(isset($_GET['site']) && isset($_GET['action'])){
             break;
 
             case 'detalle':
-                if($pedidos->setId($_POST['idVenta'])){
+                if($pedidos->setId($_POST['id'])){
                     if($result['dataset']=$pedidos->obtenerDetalle()){
                         $result['status']=1; 
                     }else{

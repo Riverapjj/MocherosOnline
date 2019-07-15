@@ -116,6 +116,7 @@ class dashboardHelper{
                     <li><a href="dashboard.php" class="waves-effect waves white-text">Inicio</a></li>
                     <li><a href="#" onclick="modalprofile()" class="waves-effect waves white-text" data-target="dropdown" data-activates="menu_escrow_accounts" data-beloworigin="true">Mi cuenta</a></li>
                     
+                    
                     <li><a href="priv_usuarios.php" class="waves-effect waves white-text">Gestión de usuarios</a></li>
                     <li><a href="priv_productos.php" class="waves-effect waves white-text">Administración de productos</a></li>                        
                     <li><a href="priv_estados.php" class="waves-effect waves white-text">Gestión de pedidos</a></li>
@@ -155,7 +156,7 @@ class dashboardHelper{
                                                 <thead>
                                                     <tr>                                                        
                                                         <th>Mayor consumidor<br>
-                                                            <a href="../../core/reportes/dashboard/reporteMaximoConsumidor.php" class="btn-floating pulse">
+                                                            <a href="../../core/reportes/dashboard/reporteMayoresConsumidor.php" class="btn-floating pulse">
                                                             <i class="material-icons">menu</i>
                                                             </a>
                                                         </th>
@@ -195,7 +196,7 @@ class dashboardHelper{
                                                 <thead>
                                                     <tr>                                                        
                                                         <th>Mayor venta<br>
-                                                            <a href="../../core/reportes/dashboard/reporteVentaMax.php" class="btn-floating pulse">
+                                                            <a href="../../core/reportes/dashboard/reporteMayoresVentas.php" class="btn-floating pulse">
                                                             <i class="material-icons">menu</i>
                                                             </a>
                                                         </th>
@@ -242,7 +243,7 @@ class dashboardHelper{
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-center my-4 ml-5">
-                            <button type="button" onclick="enviarReporte()" class="btn btn-success py-3">Generar Reporte
+                            <button type="button" onclick="enviarReporteFechas()" class="btn waves-effect blue">Generar Reporte
                                 <i class="material-icons">insert_drive_file</i>
                             </button>   
                         </div>
@@ -254,12 +255,15 @@ class dashboardHelper{
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="fecha1">Estados</label>
-                                    <select>
+                                    <select id="estado-pedidosreport">
                                         <option value="" disabled selected>Seleccione un estado</option>
-                                        <option value="1">Entregado</option>
-                                        <option value="2">Pendiente</option>
-                                        <option value="3">Anulado</option>
                                     </select>
+                                    <br><br>
+                                    <div class="col-12 d-flex justify-content-center my-4 ml-5">
+                                        <button type="button" onclick="enviarReporteEstados()" class="btn waves-effect blue">Generar Reporte
+                                            <i class="material-icons">insert_drive_file</i>
+                                        </button>   
+                                    </div>
                                 </div>
                             </div>
                         </div>

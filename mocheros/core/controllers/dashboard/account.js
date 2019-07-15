@@ -43,10 +43,12 @@ function modalProfile()
             const result = JSON.parse(response);
             //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
             if (result.status) {
-                $('#profile_nombres').val(result.dataset.nombres_usuario);
-                $('#profile_apellidos').val(result.dataset.apellidos_usuario);
-                $('#profile_correo').val(result.dataset.correo_usuario);
-                $('#profile_alias').val(result.dataset.alias_usuario);
+                $('#profile_usuario').val(result.dataset.NomUsuario);
+                $('#profile_nombre').val(result.dataset.Nombre);
+                $('#profile_apellido').val(result.dataset.Apellido);
+                $('#profile_direccion').val(result.dataset.Direccion);
+                $('#profile_telefono').val(result.dataset.Telefono);
+                $('#profile_correo').val(result.dataset.Email);
                 M.updateTextFields();
                 $('#modal-profile').modal('open');
             } else {

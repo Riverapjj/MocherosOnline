@@ -1,3 +1,7 @@
+$(document).ready(function()
+{
+    showSelectEstadosReport('estado-pedidosreport', null);
+})
 /*
 *   Función para manejar los mensajes de notificación al usuario.
 *
@@ -349,9 +353,58 @@ function polarAreaGraph(canvas, xAxis, yAxis, legend, title)
     });
 }
 
+const apiEstados = '../../core/api/dashboard.php?site=dashboard&action=';
 
-const enviarReporte = () => {
+function showSelectEstadosReport(idSelect, value)
+{
+    $.ajax({
+        url: apiEstados + 'selectEstadoPedidosReport',
+        type: 'post',
+        data: null,
+        datatype: 'json'
+    })
+    .done(function(response){
+        //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+            if (result.status) {
+                let content = '';
+                if (!value) {
+                    content += '<option value="" disabled selected>Seleccione una opción</option>';
+                }
+                result.dataset.forEach(function(row){
+                    if (row.IdEstadoPedido != value) {
+                        content += `<option value="${row.IdEstadoPedido}" id="estado-pedidos">${row.TipoEstado}</option>`;
+                    } else {
+                        content += `<option value="${row.IdEstadoPedido}" id="estado-pedidos" selected>${row.TipoEstado}</option>`;
+                    }
+                });
+                $('#' + idSelect).html(content);
+            } else {
+                $('#' + idSelect).html('<option value="">No hay opciones</option>');
+            }
+            $('select').formSelect();
+        } else {
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
+
+
+const enviarReporteFechas = () => {
     let fecha1 = $('#fecha1').val()
     let fecha2 = $('#fecha2').val()
-    location.href = `../../core/reportes/dashboard/pedidosFecha.php?fecha1=${fecha1}&fecha2=${fecha2}`;
+    location.href = `../../core/reportes/dashboard/reportePedidosFecha.php?fecha1=${fecha1}&fecha2=${fecha2}`;
 }
+
+const enviarReporteEstados = () => {
+    let estado = $('#estado-pedidosreport').val()
+    location.href = `../../core/reportes/dashboard/reportePedidosEstados.php?estado=${estado}`;
+}
+
+
