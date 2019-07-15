@@ -162,3 +162,6 @@ function modalDetalles(id)
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 }
+
+
+

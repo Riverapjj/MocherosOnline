@@ -197,6 +197,7 @@
                 </tbody>
             </table>
             <!-- Creando el efecto modal para cada accion a realizar (agregar, modificar y eliminar) -->
+            
             <!-- Creando modal-create-category para opcion agregar -->
             <div id="modal-create-category" class="modal">
                 <div class="modal-content">
@@ -255,31 +256,31 @@
                                 <label for="descrip">Descripción</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                    <!--Creación de un select para definir las opciones predeterminadas para cada tipo de usuario-->
-                                    <p>
-                                        <div class="switch">
-                                            <span>Estado:</span>
-                                            <label>
-                                                <i class="material-icons">visibility_off</i>
-                                                <input id="c" type="checkbox" name="update-status-name"
-                                                    checked />
-                                                <span class="lever"></span>
-                                                <i class="material-icons">visibility</i>
-                                            </label>
-                                        </div>
-                                    </p>
-                                </div>
+                                <!--Creación de un select para definir las opciones predeterminadas para cada tipo de usuario-->
+                                <p>
+                                    <div class="switch">
+                                        <span>Estado:</span>
+                                        <label>
+                                            <i class="material-icons">visibility_off</i>
+                                            <input id="c" type="checkbox" name="update-statuscat-name"
+                                                checked />
+                                            <span class="lever"></span>
+                                            <i class="material-icons">visibility</i>
+                                        </label>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Declarando como es el estilo del footer del modal -->
+                        <div class="modal-footer">
+                        <div class="row center-align">
+                                    <a href="#" class="btn waves-effect grey tooltipped modal-close"
+                                        data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
+                                    <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Modificar"><i
+                                            class="material-icons">save</i></button>
+                            </div>
                         </div>
                     </form>
-                </div>
-                <!-- Declarando como es el estilo del footer del modal -->
-                <div class="modal-footer">
-                <div class="row center-align">
-                            <a href="#" class="btn waves-effect grey tooltipped modal-close"
-                                data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
-                            <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Crear"><i
-                                    class="material-icons">save</i></button>
-                    </div>
                 </div>
             </div>
             <!-- Declarando el boton siempre fijo para agregar y modificar tipo de usuarios con su respectivo icono y modal a ejecutar -->

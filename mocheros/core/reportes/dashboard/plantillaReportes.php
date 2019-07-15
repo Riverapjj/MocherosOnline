@@ -1,5 +1,7 @@
 <?php
 require('../../lib/fpdf181/fpdf.php');
+require('../../helpers/database.php');
+require('../../helpers/validator.php');
 
 class PDF extends FPDF
 {
@@ -14,6 +16,9 @@ class PDF extends FPDF
     //función para establecer la plantilla del encabezado del reporte
     function Header()
     {
+        if(!isset($_SESSION)){
+            session_start();
+        }
         $this->Image('../../../resources/img/mocheros-logo.jpg',5,5, 30);
         $this->SetFont('Arial','B',20);
         $this->Cell(30);
@@ -23,10 +28,12 @@ class PDF extends FPDF
         $this->Ln(0);
         $this->setTextColor(0,0,0);
         $this->SetFont('Arial','B',12);
-        $this->Ln(20);
-        $this->Cell(80,20, ('Fecha de realizacion: '. date('d/m/Y')),0 , 0, 'R', false);
+        $this->Ln(30);
+        $this->setAuthor($this->Cell(80,20, 'Usuario: '. $_SESSION['nombreUsuario'] ,0 , 0, 'L', false));
         $this->Ln(5);
-        $this->Cell(73,20, (' Hora de realizacion: '.date('G:i:s')),0 , 0, 'R', false);
+        $this->Cell(80,20, ('Fecha de realizacion: '. date('d/m/Y')),0 , 0, 'L', false);
+        $this->Ln(5);
+        $this->Cell(73,20, ('Hora de realizacion: '.date('G:i:s')),0 , 0, 'L', false);
         $this->Ln();                
     }
 

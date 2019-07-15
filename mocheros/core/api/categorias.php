@@ -67,10 +67,18 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 if ($categoria->setIdCategoria($_POST['IdCategoria'])) {
                     if ($categoria->getCategoria()) {
                         if ($categoria->setNomCategoria($_POST['name-category-update'])) {
+                            if ($categoria->setNomCategoria($_POST['update-descrip-category'])) {
+                                if ($articulo->setIdEstado(isset($_POST['update-statuscat-name']) ? 1 : 2)) {
                             if ($categoria->updateCategoria()) {
                                 $result['status'] = 1;
                             } else {
                                 $result['exception'] = 'Operación fallida';
+                            }
+                        }else {
+                            $result['exception'] = 'Estado incorrecto';
+                            }
+                        }else {
+                                $result['exception'] = 'Descripcion incorrecta';
                             }
                         } else {
                             $result['exception'] = 'Nombre incorrecto';

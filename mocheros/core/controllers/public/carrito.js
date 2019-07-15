@@ -242,8 +242,9 @@ function confirmDelete(id)
             const result = JSON.parse(response);
             //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
             if (result.status) {
-                if (result.status == 1) {
+                if (result.status != 1) {
                     sweetAlert(1, 'Venta procesada correctamente', 'index.php');
+                    $('#modal-factura').modal('open');
                 } else if(result.status == 2) {
                     sweetAlert(3, 'Venta procesada. ' + result.exception, 'index.php');
                 } else {

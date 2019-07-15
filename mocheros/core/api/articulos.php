@@ -345,7 +345,6 @@
                     $_POST = $articulo->validateForm($_POST);
                     if ($articulo->setIdPre($_POST['idPre'])) {
                         if ($articulo->setCantidad($_POST['cantidadPre'])) {
-
                             if ($articulo->updateCantidadPreDetalle()) {
                                 $result['status'] = 1;
                             } else {
@@ -384,11 +383,8 @@
                                 if ($data) {
                                     print_r(' algo');
                                     if ($articulo->getLastSale()) {
-                                        print_r(' será que sirve? \n');
-                                        print_r('IdEncabezado ' . $articulo->getIdEncabezado());
-                                        print_r('Articulo ' . $articulo->getIdArticulos());
-                                        print_r('Cantidad articulo' . $articulo->getCantidad());
-                                        print_r('Precio ' . $articulo->getPrecioUnitario());
+                                        print_r(' xd');
+                                        print_r($data);
                                         if ($articulo->createDetailsSale()) {
                                             print_r(' será que si sirve?!');
                                             $result['status'] = 1;

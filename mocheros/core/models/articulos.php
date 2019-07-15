@@ -413,7 +413,7 @@ class Articulos extends Validator
 	public function createDetailsSale(){
 		//esta hace el insert en la tabla detalle pedidos
         $sql = 'INSERT INTO detallepedidos(IdEncabezado, IdArticulos, CantidadArticulo, PrecioDetalle) VALUES(?, ?, ? ,?)';
-        $params = array($this->idencabezado, $this->idarticulos, $this->cantidad, $this->preciounitario);
+        $params = array($this->idencabezado, $this->idarticulos, $this->cantidad, $this->preciounitario*$this->cantidad);
         Database::executeRow($sql,$params);
 	}
 	
@@ -437,7 +437,10 @@ class Articulos extends Validator
 	}
 	
 	function getProductosCategoria(){
-        $sql = 'SELECT NomArticulo, PrecioUnitario, Cantidad, NomCategoria as categoria FROM articulos INNER JOIN categorias USING (IdCategoria) WHERE articulos.IdEstado = 1 ORDER BY categoria ASC';
+        $sql = 'SELECT NomArticulo, PrecioUnitario, Cantidad, NomCategoria as categoria, ROUND((SELECT PrecioUnitario * Cantidad), 2) AS Subtotal 
+		FROM articulos 
+		INNER JOIN categorias USING (IdCategoria) 
+		WHERE articulos.IdEstado = 1 ORDER BY categoria ASC';
         $params = array(null);
         return Database::getRows($sql, $params);
 	}
@@ -453,6 +456,21 @@ class Articulos extends Validator
         $params = array(null);
         return Database::getRows($sql, $params);
 	}
+
+	public function maximoConsumidor(){
+        $sql = 'SELECT Nombre, Apellido, Fecha, ROUND(SUM(d.PrecioDetalle), 2) AS Total 
+		FROM detallepedidos d INNER JOIN encabezadopedidos en USING(IdEncabezado) 
+		INNER JOIN usuarios USING(IdUsuario) GROUP BY Nombre ORDER BY Total DESC';
+        $params = array(null);
+        return Database::getRows($sql, $params);
+	}
 	
+	public function totalesCategorias(){
+
+		$sql = 'SELECT c.NomCategoria, ROUND(SUM(PrecioUnitario * Cantidad),2) AS Total
+		FROM articulos a INNER JOIN categorias c USING(IdCategoria) WHERE a.IdEstado = 1 GROUP BY c.NomCategoria';
+		$params = array(null);
+		return Database::getRows($sql, $params);
+	}
 	
 }

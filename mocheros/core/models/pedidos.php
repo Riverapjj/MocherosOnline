@@ -118,14 +118,14 @@ class Pedidos extends Validator{
 
     public function getLastSale()
     {
-        $sql = 'SELECT MAX(idVenta) as idV, fecha_hora as fecha, cliente.nombre as CN, cliente.apellido as CA, cliente.telefono as telefono, cliente.direccion, cliente.correo as correo FROM venta, cliente WHERE venta.idCliente = cliente.idCliente and venta.idCliente = ? and venta.idEstado = 2';
+        $sql = 'SELECT MAX(IdEncabezado) as idE, Fecha as fecha, usuarios.Nombre as CN, usuarios.Apellido as CA, usuarios.Telefono as telefono, usuarios.Direccion as direccion, usuarios.Email as correo FROM encabezadopedidos, usuarios WHERE encabezadopedidos.IdUsuario = usuarios.IdUsuario and encabezadopedidos.IdUsuario = ? and encabezadopedidos.IdEstadoPedido = 2';
         $params = array($this->idcliente);
         return Database::getRow($sql,$params);
     }
 
     public function getSaleDetailReport()
     {
-        $sql = 'SELECT idDetalle,nombre as producto, detalle_venta.cantidad as cantidad, producto.precio as precio, (producto.precio * detalle_venta.cantidad) AS Total FROM detalle_venta, producto WHERE producto.idProducto= detalle_venta.idProducto AND idVenta = ?';
+        $sql = 'SELECT IdDetallePedido, NomArticulo as articulo, detallepedidos.CantidadArticulo as cantidad, articulos.PrecioUnitario as precio, (articulos.PrecioUnitario * detallepedidos.CantidadArticulo) AS Total FROM detallepedidos, articulos WHERE articulos.IdArticulos = detallepedidos.IdArticulos AND IdDetallePedido = ?';
         $params = array($this->id);
         return Database::getRows($sql, $params);
     }
@@ -150,6 +150,27 @@ class Pedidos extends Validator{
         $params = array(null);
         return Database::getRows($sql, $params); 
     }
+
+    public function pedidosFechas($fecha1, $fecha2)
+    {
+        $sql = 'SELECT Nombre, Apellido, Fecha, Email FROM encabezadopedidos INNER JOIN usuarios USING(IdUsuario) BETWEEN '.$fecha1.' AND'
+        .$fecha2.' ORDER BY Fecha';
+        $params = array(null);
+        return Database::getRows($sql, $params); 
+    }
+
+    public function readPedidosFecha($fecha1, $fecha2, $estado)
+	{
+		$sql = 'SELECT idPedido, nombreCliente, apellidoCliente, correo, fecha, pedido.estado,
+				(SELECT SUM((cantidad * precioVenta)) FROM detallepedido d WHERE d.idPedido = pedido.idPedido) as montoTotal
+				FROM pedido 
+				INNER JOIN cliente ON pedido.idCliente = cliente.idCliente
+				WHERE pedido.estado = ' . $estado . ' AND pedido.fecha BETWEEN ' . $fecha1 . ' AND ' . $fecha2 . ' ORDER BY idPedido DESC';
+		$params = array(null);
+		return Database::getRows($sql, $params);
+	}
+
+    
 
     
     
