@@ -6,6 +6,7 @@ $(document).ready(function()
 //Constante para establecer la ruta y parámetros de comunicación con la API
 const apiSesion = '../../core/api/usuarios.php?site=dashboard&action=';
 
+
 //Función para verificar si existen usuarios en el sitio privado
 function checkUsuarios()
 {
@@ -33,6 +34,19 @@ function checkUsuarios()
     });
 }
 
+//Función para sumar intentos cada vez que exista un error al iniciar sesión
+function sumandoIntentos(alias)
+{   
+    $.ajax({
+        url: apiSesion + 'intentos',
+        type: 'post',
+        data: {
+            NomUsuario: alias
+        },
+        datatype: 'json'
+    })
+}
+
 //Función para validar el usuario al momento de iniciar sesión
 $('#form-sesion').submit(function()
 {
@@ -53,6 +67,8 @@ $('#form-sesion').submit(function()
                 sweetAlert(1, 'Autenticación correcta', 'dashboard.php');
             } else {
                 sweetAlert(2, result.exception, null);
+                let alias = $('#log-username').val();
+                sumandoIntentos(alias);
             }
         } else {
             console.log(response);

@@ -114,7 +114,8 @@ class Categorias extends Validator
 		return Database::executeRow($sql, $params);
 	}
 
-	public function productosCategorias(){
+	public function productosCategorias()
+	{
 
 		$sql = 'SELECT NomCategoria, SUM(Cantidad) AS Cantidad 
 		FROM categorias c, articulos a WHERE c.IdCategoria = a.IdCategoria GROUP BY c.IdCategoria';
@@ -125,7 +126,7 @@ class Categorias extends Validator
 	public function categoriasCantidad(){
 
 		$sql = 'SELECT Nombre, Apellido, COUNT(IdEncabezado) AS Encabezados 
-		FROM usuarios u, encabezadopedidos en WHERE u.IdUsuario = en.IdUsuario GROUP BY Nombre LIMIT 5 ';
+		FROM usuarios u, encabezadopedidos en WHERE u.IdUsuario = en.IdUsuario GROUP BY Nombre ORDER BY Encabezados DESC LIMIT 5';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}

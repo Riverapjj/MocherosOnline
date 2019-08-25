@@ -446,13 +446,15 @@ class Articulos extends Validator
 	}
 
 	public function productosMaxVendidos(){
-        $sql = 'SELECT COUNT(d.IdArticulos) AS CantidadArticulos, NomArticulo FROM articulos a INNER JOIN detallepedidos d USING(IdArticulos) GROUP BY NomArticulo LIMIT 5 ';
+        $sql = 'SELECT COUNT(d.IdArticulos) AS CantidadArticulos, NomArticulo 
+		FROM articulos a INNER JOIN detallepedidos d USING(IdArticulos) GROUP BY NomArticulo ORDER BY CantidadArticulos DESC LIMIT 5 ';
         $params = array(null);
         return Database::getRows($sql, $params);
 	}
 
 	public function productoCalificacion(){
-        $sql = 'SELECT SUM(c.Calificacion) AS Calificacion, ROUND(AVG(calificacion), 2) AS Promedio, NomArticulo FROM calificaciones c INNER JOIN articulos a USING(IdArticulos) GROUP BY NomArticulo LIMIT 5 ';
+        $sql = 'SELECT SUM(c.Calificacion) AS Calificacion, ROUND(AVG(calificacion), 2) AS Promedio, NomArticulo 
+		FROM calificaciones c INNER JOIN articulos a USING(IdArticulos) GROUP BY NomArticulo LIMIT 5';
         $params = array(null);
         return Database::getRows($sql, $params);
 	}
@@ -460,7 +462,7 @@ class Articulos extends Validator
 	public function maximosConsumidores(){
         $sql = 'SELECT IdUsuario, Nombre, Apellido, Email, ROUND(SUM(d.PrecioDetalle), 2) AS Total 
 		FROM detallepedidos d INNER JOIN encabezadopedidos en USING(IdEncabezado) 
-		INNER JOIN usuarios USING(IdUsuario) WHERE en.IdEstadoPedido = 2 GROUP BY Nombre ORDER BY Total DESC';
+		INNER JOIN usuarios USING(IdUsuario) GROUP BY Nombre ORDER BY Total DESC';
         $params = array(null);
         return Database::getRows($sql, $params);
 	}

@@ -12,6 +12,7 @@ class Usuarios extends Validator
     private $email = null;
     private $clave = null;
     private $idestado = null;
+    private $intentos = null;
 
     //Método para sobrecarga de propiedades
     public function setIdUsuario($value)
@@ -163,7 +164,22 @@ class Usuarios extends Validator
     {
         return $this->idestado;
     }
+    
+    public function setIntentos($value)
+	{
+		if ($this->validateNumeric($value)) {
+			$this->intentos = $value;
+			return true;
+		} else {
+			return false;
+		}
+	}
 
+	public function getIntentos()
+	{
+		return $this->intentos;
+    }
+    
     //Métodos para manejar la sesión del usuario
     public function checkNomUsuario()
 	{
@@ -180,7 +196,7 @@ class Usuarios extends Validator
 
     public function checkPassword()
     {
-        $sql = 'SELECT Clave FROM usuarios WHERE IdUsuario = ?';
+        $sql = 'SELECT Clave FROM usuarios WHERE IdUsuario = ? AND Intentos < 3';
         $params = array($this->idusuario);
         $data = Database::getRow($sql, $params);
         if (password_verify($this->clave, $data['Clave'])) {
@@ -202,14 +218,16 @@ class Usuarios extends Validator
     //Metodos para manejar el CRUD
 	public function readUsuarios()
 	{
-		$sql = 'SELECT IdRol, Nombre, Apellido, Telefono, Email, u.IdEstado, IdUsuario FROM usuarios u ORDER BY Apellido';
+		$sql = 'SELECT IdRol, Nombre, Apellido, Telefono, Email, u.IdEstado, IdUsuario 
+        FROM usuarios u ORDER BY Apellido';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}
 
 	public function searchUsuarios($value)
 	{
-		$sql = 'SELECT IdUsuario, NomUsuario, Nombre, Apellido, Email FROM usuarios WHERE Apellido LIKE ? OR Nombre LIKE ? ORDER BY Apellido';
+		$sql = 'SELECT IdUsuario, NomUsuario, Nombre, Apellido, Email 
+        FROM usuarios WHERE Apellido LIKE ? OR Nombre LIKE ? ORDER BY Apellido';
 		$params = array("%$value%", "%$value%");
 		return Database::getRows($sql, $params);
 	}
@@ -224,9 +242,16 @@ class Usuarios extends Validator
 
 	public function getUsuario()
 	{
-		$sql = 'SELECT IdUsuario, IdRol, NomUsuario, Nombre, Apellido, Email, Direccion, Telefono, IdEstado  FROM usuarios WHERE IdUsuario = ?';
+		$sql = 'SELECT IdUsuario, IdRol, NomUsuario, Nombre, Apellido, Email, Direccion, Telefono, IdEstado 
+         FROM usuarios WHERE IdUsuario = ?';
 		$params = array($this->idusuario);
 		return Database::getRow($sql, $params);
+    }
+
+    public function sumarIntentos(){
+        $sql = 'UPDATE usuarios SET Intentos = Intentos + 1 WHERE NomUsuario = ?';
+		$params = array($this->nomusuario);
+        return Database::executeRow($sql, $params);
     }
     
     public function readRoles(){

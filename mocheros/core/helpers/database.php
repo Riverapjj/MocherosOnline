@@ -69,8 +69,17 @@ class Database
             case 1049:
                 $message = 'Base de datos desconocida';
                 break;
+            case 1051:
+                $message = 'Tabla desconocida';
+                break;
+            case 1052:
+                $message = 'La columna especificada es ambigüa';
+                break;
             case 1054:
                 $message = 'Nombre de campo desconocido';
+                break;
+            case 1060:
+                $message = 'El nombre de la columna esta duplicado';
                 break;
             case 1062:
                 $message = 'Dato duplicado, no se puede guardar';
@@ -85,7 +94,7 @@ class Database
                 $message = 'Servidor desconocido';
                 break;
             default:
-                $message = 'xd'.$code.'';
+                $message = 'error '.$code.'';
         }
         return $message;
     }

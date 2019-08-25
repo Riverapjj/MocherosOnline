@@ -151,9 +151,33 @@ class Validator
 
     //función para validar contraseña
 	public function validatePassword($value)
-	{
-		if (strlen($value) > 5) {
-			return true;
+	{   
+        $error;
+        
+		if (strlen($value) > 7) {
+            if (preg_match('#[0-9]+#', $value)) {
+                if (preg_match('#[a-z]+#', $value)) {
+                    if (preg_match('#[A-Z]+#', $value)) {
+                        if (preg_match("/[`'\"~!@# $*()<>,.:;¡!][¿?-+{}\|]/", $value)) {
+                            
+                            return true;
+
+                        }else{
+                            $error = "Su contraseña debe contener al menos un signo";
+                            return false;
+                        }
+                    }else{
+                        $error = "Su contraseña debe contener al menos una letra mayúscula";
+                        return false;
+                    }
+                }else{
+                    $error = "Su contraseña debe contener al menos una letra minúscula";
+                    return false;
+                }
+            }else{
+                $error = "Su contraseña debe contener al menos un número 0-9";
+                return false;
+            }		
 		} else {
 			return false;
 		}
