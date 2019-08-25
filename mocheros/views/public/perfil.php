@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row center-align">
             <h3 class="center-align">Mis datos</h3>
-            <form method="post" id="form-profile">
+            <form method="post" id="form-profile" autocomplete="off">
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix">assignment_ind</i>
                     <input id="profile_usuario" type="text" name="profile_usuario" class="validate" required/>

@@ -181,7 +181,17 @@ class Validator
 		} else {
 			return false;
 		}
-	}
+    }
+    
+    //función para realizar el patrón del captcha
+    public function randomText($length) {
+        $pattern = "1234567890abcdefghijklmnopqrstuvwxyz";
+        $key 		= '';
+        for($i=0;$i<$length;$i++) {
+          $key .= $pattern{rand(0,35)};
+        }
+        return $key;
+    }
 
     //función para guardar el archivo
 	public function saveFile($file, $path, $name)

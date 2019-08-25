@@ -5,7 +5,7 @@
 <main class="grey lighten-2">
     <div class="container">
         <div class="row">
-            <form method="post" id="form-session">
+            <form method="post" id="form-session" autocomplete="off">
                 <h2 class="center">Iniciar sesión</h2>
                 <div class="input-field col s12 m6 offset-m3">
                     <i class="material-icons prefix">person</i>

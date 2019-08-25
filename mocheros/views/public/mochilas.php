@@ -5,7 +5,7 @@ publicHelper::header('Mochilas');
 <!--buscador-->
 <div class="container-fluid grey lighten-2">
     <h1 class="center indigo-text" id="title"></h1>
-    <form class="col s12" method="post" id="form-search">
+    <form class="col s12" method="post" id="form-search" autocomplete="off">
         <div class="row">
             <div class="input-field col s6 m4">
                 <i class="material-icons prefix">search</i>
