@@ -2,7 +2,8 @@
 require_once('../../core/helpers/database.php');
 require_once('../../core/helpers/validator.php');
 require_once('../../core/models/usuarios_public.php');
-
+require_once('../../core/helpers/captcha.php');
+require_once('../../core/helpers/captcha.php');
 //Se comprueba si existe una petición del sitio web y la acción a realizar, de lo contrario se muestra una página de error
 if (isset($_GET['site']) && isset($_GET['action'])) {
     session_start();
@@ -123,43 +124,43 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'create':
                 $_POST = $usuario->validateForm($_POST);
-                    if ($usuario->setNomUsuario($_POST['create_nomusuario'])) {
-                        if ($usuario->setNombre($_POST['create_nombre'])) {
-                            if ($usuario->setApellido($_POST['create_apellido'])) {
-                                if ($usuario->setDireccion($_POST['create_direccion'])) {
-                                    if ($usuario->setTelefono($_POST['create_telefono'])) {
-                                        if ($usuario->setEmail($_POST['create_email'])) {
-                                            if ($_POST['create_clave1'] == $_POST['create_clave2']) {
-                                                if ($usuario->setClave($_POST['create_clave1'])) {
-                                                    if ($usuario->createCliente()) {
-                                                        $result['status'] = 1;
-                                                    } else {
-                                                        $result['exception'] = 'Operación fallida';
-                                                    }
+                if ($usuario->setNomUsuario($_POST['create_nomusuario'])) {
+                    if ($usuario->setNombre($_POST['create_nombre'])) {
+                        if ($usuario->setApellido($_POST['create_apellido'])) {
+                            if ($usuario->setDireccion($_POST['create_direccion'])) {
+                                if ($usuario->setTelefono($_POST['create_telefono'])) {
+                                    if ($usuario->setEmail($_POST['create_email'])) {
+                                        if ($_POST['create_clave1'] == $_POST['create_clave2']) {
+                                            if ($usuario->setClave($_POST['create_clave1'])) {
+                                                if ($usuario->createCliente()) {
+                                                    $result['status'] = 1;
                                                 } else {
-                                                    $result['exception'] = 'Contraseña menor a 6 caracteres';
+                                                    $result['exception'] = 'Operación fallida';
                                                 }
                                             } else {
-                                                $result['exception'] = 'Las claves no coinciden';
+                                                $result['exception'] = 'Contraseña menor a 6 caracteres';
                                             }
                                         } else {
-                                            $result['exception'] = 'El correo eléctronico no es válido';
+                                            $result['exception'] = 'Las claves no coinciden';
                                         }
                                     } else {
-                                        $result['exception'] = 'Teléfono incorrecto';
+                                        $result['exception'] = 'El correo eléctronico no es válido';
                                     }
                                 } else {
-                                    $result['exception'] = 'La dirección ingresada no es válida';
+                                    $result['exception'] = 'Teléfono incorrecto';
                                 }
                             } else {
-                                $result['exception'] = 'El apellido ingresado no es válido';
+                                $result['exception'] = 'La dirección ingresada no es válida';
                             }
                         } else {
-                            $result['exception'] = 'El nombre ingresado no es válido';
+                            $result['exception'] = 'El apellido ingresado no es válido';
                         }
                     } else {
-                        $result['exception'] = 'El nombre de usuario ingresado no es válido';
+                        $result['exception'] = 'El nombre ingresado no es válido';
                     }
+                } else {
+                    $result['exception'] = 'El nombre de usuario ingresado no es válido';
+                }
                 break;
             case 'get':
                 if ($usuario->setIdUsuario($_POST['IdUsuario'])) {
@@ -238,47 +239,71 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'register':
                 $_POST = $usuario->validateForm($_POST);
-                        if ($usuario->setNomUsuario($_POST['usuario'])) {
-                            if ($usuario->setNombre($_POST['nombre'])) {
-                                if ($usuario->setApellido($_POST['apellido'])) {
-                                    if ($usuario->setDireccion($_POST['direccion'])) {
-                                        if ($usuario->setTelefono($_POST['telefono'])) {
-                                            if ($usuario->setEmail($_POST['correo'])) {
-                                                if ($_POST['clave1'] == $_POST['clave2']) {
-                                                    if ($usuario->setClave($_POST['clave1'])) {
-                                                        if ($usuario->createCliente()) {
-                                                            $result['status'] = 1;
+                if ($usuario->setNomUsuario($_POST['usuario'])) {
+                    if ($usuario->setNombre($_POST['nombre'])) {
+                        if ($usuario->setApellido($_POST['apellido'])) {
+                            if ($usuario->setDireccion($_POST['direccion'])) {
+                                if ($usuario->setTelefono($_POST['telefono'])) {
+                                    if ($usuario->setEmail($_POST['correo'])) {
+                                        if ($_POST['clave1'] == $_POST['clave2']) {
+                                            if ($_POST['usuario'] != $_POST['clave1']) {
+                                                if ($usuario->setClave($_POST['clave1'])) {
+                                                    if ($usuario->randomText($_SESSION['tmptxt'])) {
+                                                        if ($_POST['tmptxt'] == $_SESSION['tmptxt']) {
+                                                            if ($usuario->createCliente()) {
+                                                                $result['status'] = 1;
+                                                            } else {
+                                                                $result['exception'] = 'Operación fallida';
+                                                            }
                                                         } else {
-                                                            $result['exception'] = 'Operación fallida';
+                                                            $result['exception'] = 'Captcha incorrecto';
                                                         }
                                                     } else {
-                                                        $result['exception'] = 'Contraseña menor a 6 caracteres';
+                                                        echo '
+                                                            <h1>Captcha Simple en PHP</1><br />
+                                                            <form method="post" action="">
+                                                            <img src="../../core/resources/img/captcha.php" width="100" height="30" class="img-polaroid" /><br />
+                                                            <input type="text" name="tmptxt" placeholder="Ingresa el Código" /><br />
+                                                            <input type="submit" class="btn btn-primary"/>
+                                                            </form>
+                                                            ';
+                                                    }
+                                                    if ($usuario->createCliente()) {
+                                                        $result['status'] = 1;
+                                                    } else {
+                                                        $result['exception'] = 'Operación fallida';
                                                     }
                                                 } else {
-                                                    $result['exception'] = 'Las contraseñas no coinciden';
+                                                    $result['exception'] = 'Contraseña menor a 6 caracteres';
                                                 }
                                             } else {
-                                                $result['exception'] = 'Correo no válido';
+                                                $result['excpetion'] = 'El nombre de usuario no puede ser igual a la contraseña';
                                             }
                                         } else {
-                                            $result['exception'] = 'Teléfono no válido';
+                                            $result['exception'] = 'Las contraseñas no coinciden';
                                         }
                                     } else {
-                                        $result['exception'] = 'Dirección no válida';
+                                        $result['exception'] = 'Correo no válido';
                                     }
                                 } else {
-                                    $result['exception'] = 'Apellido no válido';
+                                    $result['exception'] = 'Teléfono no válido';
                                 }
-                            } else { 
-                                $result['exception'] = 'Nombre no válido';
+                            } else {
+                                $result['exception'] = 'Dirección no válida';
                             }
                         } else {
-                        $result['exception'] = 'Nombre de usuario no válido';
+                            $result['exception'] = 'Apellido no válido';
                         }
+                    } else {
+                        $result['exception'] = 'Nombre no válido';
+                    }
+                } else {
+                    $result['exception'] = 'Nombre de usuario no válido';
+                }
                 break;
             case 'read':
                 if ($usuario->readUsuarios()) {
-                   // $result['status'] = 1;
+                    // $result['status'] = 1;
                     //$result['exception'] = 'Existe al menos un usuario registrado';
                 } else {
                     $result['status'] = 2;
@@ -313,7 +338,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
     } else {
         exit('Acceso no disponible 1');
     }
-	print(json_encode($result));
+    print(json_encode($result));
 } else {
-	exit('Recurso denegado');
+    exit('Recurso denegado');
 }

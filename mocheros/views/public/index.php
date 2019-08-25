@@ -7,7 +7,7 @@ publicHelper::header('Inicio');
     <div class="modal-content">
         <h4 class="cyan-text">Registrarse</h4>
         <div class="row">
-            <form class="col s12">
+            <form class="col s12" autocomplete="off">
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">account_circle</i>
