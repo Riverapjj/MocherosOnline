@@ -158,7 +158,7 @@ class Validator
             if (preg_match('#[0-9]+#', $value)) {
                 if (preg_match('#[a-z]+#', $value)) {
                     if (preg_match('#[A-Z]+#', $value)) {
-                        if (preg_match("/[`'\"~!@# $*()<>,.:;¡!][¿?-+{}\|]/", $value)) {
+                        if (preg_match("/[`'\"~!@# $*()<>,.:;{}\|]/", $value)) {
                             
                             return true;
 

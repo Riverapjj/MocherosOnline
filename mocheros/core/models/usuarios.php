@@ -230,6 +230,14 @@ class Usuarios extends Validator
         FROM usuarios WHERE Apellido LIKE ? OR Nombre LIKE ? ORDER BY Apellido';
 		$params = array("%$value%", "%$value%");
 		return Database::getRows($sql, $params);
+    }
+
+    public function registerUsuario()
+	{
+		$hash = password_hash($this->clave, PASSWORD_DEFAULT);
+		$sql = 'INSERT INTO usuarios(IdRol,  IdEstado, NomUsuario, Nombre, Apellido, Direccion, Telefono, Email, Clave) VALUES(1, 1, ?, ?, ?, ?, ?, ?, ?)';
+		$params = array($this->nomusuario, $this->nombre, $this->apellido, $this->direccion, $this->telefono, $this->email, $hash);
+		return Database::executeRow($sql, $params);
 	}
 
 	public function createUsuario()

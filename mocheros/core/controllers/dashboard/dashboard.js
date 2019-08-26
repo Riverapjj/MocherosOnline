@@ -41,7 +41,6 @@ function chartProductosCategorias(){
     .done(function(response){
         if(isJSONString(response)){
             const result = JSON.parse(response);
-            console.log(result);
 
             if(result.status){
                 let categorias = [];
@@ -81,7 +80,6 @@ function chartCategorias(){
     .done(function(response){
         if(isJSONString(response)){
             const result = JSON.parse(response);
-            console.log(result);
 
             if(result.status){
                 let nombre = [];
@@ -122,7 +120,6 @@ function chartEstadoPedidos(){
     .done(function(response){
         if(isJSONString(response)){
             const result = JSON.parse(response);
-            console.log(result);
 
             if(result.status){
                 let tipoestado = [];
@@ -162,7 +159,6 @@ function chartProductosVendidos(){
     .done(function(response){
         if(isJSONString(response)){
             const result = JSON.parse(response);
-            console.log(result);
 
             if(result.status){
                 let nomarticulo = [];
@@ -202,7 +198,6 @@ function chartProductosCalificacion(){
     .done(function(response){
         if(isJSONString(response)){
             const result = JSON.parse(response);
-            console.log(result);
 
             if(result.status){
                 let nomarticulo = [];

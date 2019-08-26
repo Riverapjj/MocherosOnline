@@ -35,6 +35,7 @@ DashboardHelper::headerTemplate('Registrar primer usuario');
             <input id="register-pass2" type="password" name="register-pass2-name" class="validate" required/>
             <label for="register-pass2">Confirmar clave</label>
         </div>
+        <div class="g-recaptcha" data-sitekey="6LfnzrQUAAAAAOOuNJrf5pYJQIcMHy-YIDwQMQFw"></div>
     </div>
     <div class="row center-align">
  	    <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Registrar"><i class="material-icons">send</i></button>

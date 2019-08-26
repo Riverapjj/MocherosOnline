@@ -10,23 +10,23 @@
         <h3 id="geeting" class="cyan-text center"></h3>
         <!-- Inicio de Grafico -->
         <div class="row center">
-            <div class="col s12 m6 l12 card hoverable">
+            <div class="col s8 m10 l12 card hoverable">
                 <canvas id="chartProductosCat"></canvas>
             </div>
 <br><br><br><br><br><br>
-            <div class="col s12 m6 l12 card hoverable">
+            <div class="col s8 m10 l12 card hoverable">
                 <canvas id="chartCategoriasCantidad"></canvas>
             </div>
 <br><br><br><br><br><br>
-            <div class="col s12 m6 l12 card hoverable">
+            <div class="col s8 m10 l12 card hoverable">
                 <canvas id="chartEstadosPedidos"></canvas>
             </div>
 <br><br><br><br><br><br>
-            <div class="col s12 m6 l12 card hoverable">
+            <div class="col s8 m10 l12 card hoverable">
                 <canvas id="chartProductosVendidos"></canvas>
             </div>
 <br><br><br><br><br><br>
-            <div class="col s12 m6 l12 card hoverable">
+            <div class="col s8 m10 l12 card hoverable">
                 <canvas id="chartProductosCalificaciones"></canvas>
             </div>
         </div>

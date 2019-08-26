@@ -22,7 +22,7 @@ function checkUsuarios()
             const dataset = JSON.parse(response);
             //Se comprueba que no hay usuarios registrados para redireccionar al registro del primer usuario
             if (dataset.status == 2) {
-                sweetAlert(3, dataset.exception,);
+                sweetAlert(3, dataset.exception, null);
             }
         } else {
             console.log(response);

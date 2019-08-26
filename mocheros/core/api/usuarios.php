@@ -4,9 +4,10 @@ require_once('../../core/helpers/validator.php');
 require_once('../../core/models/usuarios.php');
 
 //Se comprueba si existe una petición del sitio web y la acción a realizar, de lo contrario se muestra una página de error
+if (session_status() != PHP_SESSION_ACTIVE) {
 if (isset($_GET['site']) && isset($_GET['action'])) {
-    if (session_status() != PHP_SESSION_ACTIVE) {
-        session_start();
+    
+    session_start();
     $usuario = new Usuarios;
     $result = array('status' => 0, 'exception' => '', 'dataset' => '');
     //Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
@@ -258,10 +259,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 
             default:
                 exit('Acción no disponible 1');
-        }
-    }else{
-            session_destroy();
-        }
+            }
     } else if ($_GET['site'] == 'dashboard') {
         switch ($_GET['action']) {
             case 'read':
@@ -274,35 +272,39 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             case 'register':
-                $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setNombre($_POST['nombres'])) {
-                    if ($usuario->setApellido($_POST['apellidos'])) {
-                        if ($usuario->setEmail($_POST['correo'])) {
-                            if ($usuario->setNomUsuario($_POST['alias'])) {
-                                if ($_POST['clave1'] == $_POST['clave2']) {
-                                    if ($usuario->setClave($_POST['clave1'])) {
-                                        if ($usuario->createUsuario()) {
-                                            $result['status'] = 1;
+                $_POST = $usuario->validateForm($_POST);                
+                if ($_POST['g-recaptcha-response']){
+                    if ($usuario->setNombre($_POST['register-name-name'])) {
+                        if ($usuario->setApellido($_POST['register-lastname-name'])) {
+                            if ($usuario->setEmail($_POST['register-email-name'])) {
+                                if ($usuario->setNomUsuario($_POST['register-user-name'])) {
+                                    if ($_POST['register-pass-name'] == $_POST['register-pass2-name']) {
+                                        if ($usuario->setClave($_POST['register-pass-name'])) {
+                                            if ($usuario->registerUsuario()) {
+                                                $result['status'] = 1;
+                                            } else {
+                                                $result['exception'] = 'Operación fallida';
+                                            }
                                         } else {
-                                            $result['exception'] = 'Operación fallida';
+                                            $result['exception'] = 'Clave menor a 6 caracteres';
                                         }
                                     } else {
-                                        $result['exception'] = 'Clave menor a 6 caracteres';
+                                        $result['exception'] = 'Claves diferentes';
                                     }
                                 } else {
-                                    $result['exception'] = 'Claves diferentes';
+                                    $result['exception'] = 'Alias incorrecto';
                                 }
                             } else {
-                                $result['exception'] = 'Alias incorrecto';
+                                $result['exception'] = 'Correo incorrecto';
                             }
                         } else {
-                            $result['exception'] = 'Correo incorrecto';
+                            $result['exception'] = 'Apellidos incorrectos';
                         }
                     } else {
-                        $result['exception'] = 'Apellidos incorrectos';
+                        $result['exception'] = 'Nombres incorrectos';
                     }
-                } else {
-                    $result['exception'] = 'Nombres incorrectos';
+                }else{
+                    $result['exception'] = 'Por favor, validar humano';
                 }
                 break;
                 case 'intentos':
@@ -353,4 +355,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
 } else {
 	exit('Recurso denegado');
 }
+}else{
+        session_destroy();
+    }
 ?>

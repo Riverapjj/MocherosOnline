@@ -379,7 +379,8 @@ class dashboardHelper{
                 <script type="text/javascript" src="../../resources/js/Chart.js"></script>
                 <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                 <script type="text/javascript" src="../../core/helpers/functions.js"></script>
-                <script type="text/javascript" src="../../core/helpers/componentes.js"></script>                
+                <script type="text/javascript" src="../../core/helpers/componentes.js"></script>   
+                <script src="https://www.google.com/recaptcha/api.js" async defer></script             
                 <script type="text/javascript" src="../../core/controllers/dashboard/account.js"></script>              
                 <script type="text/javascript" src="../../core/controllers/dashboard/'.$firstcontroller.'"></script>
                 <script type="text/javascript" src="../../core/controllers/dashboard/'.$secondcontroller.'"></script>
@@ -410,10 +411,12 @@ class dashboardHelper{
                 <!--Import jQuery before materialize.js-->
                 <script type="text/javascript" src="../../resources/js/jquery-3.3.1.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
+                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
                 <script type="text/javascript" src="../../resources/js/main.js"></script> 
                 <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                 <script type="text/javascript" src="../../core/helpers/functions.js"></script>
                 <script type="text/javascript" src="../../core/controllers/dashboard/'.$controller.'"></script>
+                
             </body>
             </html>
             ');
