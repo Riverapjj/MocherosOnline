@@ -135,7 +135,7 @@ class Usuarios extends Validator
 
     public function setClave($value)
     {
-        if ($this->validateId($value)) {
+        if ($this->validatePassword($value)) {
             $this->clave = $value;
             return true;
         } else {

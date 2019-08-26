@@ -15,28 +15,28 @@ class Validator
     {
         switch ($this->imageError) {
             case 1:
-            $error = 'El tipo de la imagen debe ser .jpg, .png o .gif.';
-            break;
+                $error = 'El tipo de la imagen debe ser .jpg, .png o .gif.';
+                break;
 
             case 2:
-            $error = 'La dimensión de la imagen no es válida.';
-            break;
+                $error = 'La dimensión de la imagen no es válida.';
+                break;
 
             case 3:
-            $error = 'El tamaño de la imagen debe ser menor a 2MB';
-            break;
+                $error = 'El tamaño de la imagen debe ser menor a 2MB';
+                break;
 
             case 4:
-            $error = 'El archivo de imagen no existe.';
-            break;
+                $error = 'El archivo de imagen no existe.';
+                break;
 
             default:
-            $error = 'Ocurrió un problema con la imagen.';
+                $error = 'Ocurrió un problema con la imagen.';
         }
         return $error;
     }
 
-    
+
     public function validateForm($fields)
     {
         foreach ($fields as $index => $value) {
@@ -46,9 +46,9 @@ class Validator
         return $fields;
     }
 
-    public function validateId($value) 
+    public function validateId($value)
     {
-        if(filter_var($value, FILTER_VALIDATE_INT, array('min_range' => 1))) {
+        if (filter_var($value, FILTER_VALIDATE_INT, array('min_range' => 1))) {
             return true;
         } else {
             return false;
@@ -59,7 +59,7 @@ class Validator
     public function validateImageFile($file, $path, $name, $maxWidth, $maxHeight)
     {
         if ($file) {
-            if($file['size'] <= 2097152) {
+            if ($file['size'] <= 2097152) {
                 list($width, $height, $type) = getimagesize($file['tmp_name']);
                 if ($width <= $maxWidth && $height <= $maxHeight) {
                     if ($type == 1 || $type == 2 || $type == 3) {
@@ -89,7 +89,7 @@ class Validator
                 return false;
             }
         } else {
-            if(file_exists($path.$name)) {
+            if (file_exists($path . $name)) {
                 $this->imageName = $name;
                 return true;
             } else {
@@ -102,7 +102,7 @@ class Validator
     //función para validar correo electrónico
     public function validateEmail($email)
     {
-        if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return true;
         } else {
             return false;
@@ -112,7 +112,7 @@ class Validator
     //función para validar texto, recibe un valor mínimo y un máximo
     public function validateAlphabetic($value, $minimum, $maximum)
     {
-        if (preg_match('/^[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{'.$minimum.','.$maximum.'}$/', $value)) {
+        if (preg_match('/^[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{' . $minimum . ',' . $maximum . '}$/', $value)) {
             return true;
         } else {
             return false;
@@ -122,7 +122,7 @@ class Validator
     //función para validar texto con números, recibe un valor mínimo y un máximo
     public function validateAlphaNumeric($value, $minimum, $maximum)
     {
-        if (preg_match('/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{'.$minimum.','.$maximum.'}$/', $value)) {
+        if (preg_match('/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{' . $minimum . ',' . $maximum . '}$/', $value)) {
             return true;
         } else {
             return false;
@@ -131,70 +131,59 @@ class Validator
 
     //función para validar números
     public function validateNumeric($value)
-	{
-		if (preg_match('/^[1-9][0-9]{0,15}$/', $value)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+    {
+        if (preg_match('/^[1-9][0-9]{0,15}$/', $value)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     //función para validar dinero
     public function validateMoney($value)
-	{
-		if (preg_match('/^[0-9]+(?:\.[0-9]{1,2})?$/', $value)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+    {
+        if (preg_match('/^[0-9]+(?:\.[0-9]{1,2})?$/', $value)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     //función para validar contraseña
-	public function validatePassword($value)
-	{
-		if (strlen($value) > 7) {
-			return true;
-		} else {
-			return false;
-		}
+    public function validatePassword($value)
+    {
+        if (strlen($value) > 7) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
-    //función para realizar el patrón del captcha
-    public function randomText($length) {
-        $pattern = "1234567890abcdefghijklmnopqrstuvwxyz";
-        $key 		= '';
-        for($i=0;$i<$length;$i++) {
-          $key .= $pattern{rand(0,35)};
+    //función para guardar el archivo
+    public function saveFile($file, $path, $name)
+    {
+        if (file_exists($path)) {
+            if (move_uploaded_file($file['tmp_name'], $path . $name)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
         }
-        return $key;
     }
 
-    //función para guardar el archivo
-	public function saveFile($file, $path, $name)
-    {
-		if (file_exists($path)) {
-			if (move_uploaded_file($file['tmp_name'], $path.$name)) {
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
-  	}
-
     //función para borrar el archivo
-	public function deleteFile($path, $name)
+    public function deleteFile($path, $name)
     {
-		if (file_exists($path)) {
-			if (unlink($path.$name)) {
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
-	}
+        if (file_exists($path)) {
+            if (unlink($path . $name)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }
-?>

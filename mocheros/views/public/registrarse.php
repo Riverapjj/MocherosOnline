@@ -30,7 +30,7 @@ publicHelper::header('Registrate');
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix">phone</i>
-                    <input id="telefono" type="text" name="telefono" class="validate" required />
+                    <input id="telefono" type="text" name="telefono" class="validate" minlength="8"maxlength="8" required />
                     <label for="telefono">Teléfono</label>
                 </div>
                 <div class="input-field col s12 m6">
@@ -55,7 +55,7 @@ publicHelper::header('Registrate');
                 <div class="col s12">
                     <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Registrar"><i class="material-icons left">send</i>Registrarse</button>
                 </div>
-                <div class="g-recaptcha" data-sitekey="API_KEY"></div>
+
                 <div class="container">
                     <div class="hero-unit" style="margin-top:10px;"></div>
                 </div>

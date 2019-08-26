@@ -2,8 +2,6 @@
 require_once('../../core/helpers/database.php');
 require_once('../../core/helpers/validator.php');
 require_once('../../core/models/usuarios_public.php');
-require_once('../../core/helpers/captcha.php');
-require_once('../../core/helpers/captcha.php');
 //Se comprueba si existe una petición del sitio web y la acción a realizar, de lo contrario se muestra una página de error
 if (isset($_GET['site']) && isset($_GET['action'])) {
     session_start();
@@ -246,38 +244,22 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                 if ($usuario->setTelefono($_POST['telefono'])) {
                                     if ($usuario->setEmail($_POST['correo'])) {
                                         if ($_POST['clave1'] == $_POST['clave2']) {
-                                            if ($_POST['usuario'] != $_POST['clave1']) {
+                                            if ($_POST['usuario'] != $_POST['clave1'] && $_POST['usuario'] != $_POST['clave2']) {
                                                 if ($usuario->setClave($_POST['clave1'])) {
-                                                    if ($usuario->randomText($_SESSION['tmptxt'])) {
-                                                        if ($_POST['tmptxt'] == $_SESSION['tmptxt']) {
-                                                            if ($usuario->createCliente()) {
-                                                                $result['status'] = 1;
-                                                            } else {
-                                                                $result['exception'] = 'Operación fallida';
-                                                            }
+                                                    //if ($_POST['captcha'] == $_SESSION['code']) {
+                                                        if ($usuario->createCliente()) {
+                                                            $result['status'] = 1;
                                                         } else {
-                                                            $result['exception'] = 'Captcha incorrecto';
+                                                            $result['exception'] = 'Operación fallida';
                                                         }
-                                                    } else {
-                                                        echo '
-                                                            <h1>Captcha Simple en PHP</1><br />
-                                                            <form method="post" action="">
-                                                            <img src="../../core/resources/img/captcha.php" width="100" height="30" class="img-polaroid" /><br />
-                                                            <input type="text" name="tmptxt" placeholder="Ingresa el Código" /><br />
-                                                            <input type="submit" class="btn btn-primary"/>
-                                                            </form>
-                                                            ';
-                                                    }
-                                                    if ($usuario->createCliente()) {
-                                                        $result['status'] = 1;
-                                                    } else {
-                                                        $result['exception'] = 'Operación fallida';
-                                                    }
+                                                    /*} else {
+                                                        $result['exception'] = 'Captcha incorrecto';
+                                                    }*/
                                                 } else {
-                                                    $result['exception'] = 'Contraseña menor a 6 caracteres';
+                                                    $result['exception'] = 'La contraseña debe ser mínimo de 8 caracteres. Debe contener letras, números y al menos un caracter especial.';
                                                 }
                                             } else {
-                                                $result['excpetion'] = 'El nombre de usuario no puede ser igual a la contraseña';
+                                                $result['exception'] = 'El nombre de usuario no puede ser igual a la contraseña';
                                             }
                                         } else {
                                             $result['exception'] = 'Las contraseñas no coinciden';

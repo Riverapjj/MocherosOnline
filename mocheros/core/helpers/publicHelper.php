@@ -1,14 +1,22 @@
 <?php
-class publicHelper{
+class publicHelper
+{
 
-    public static function header($title){
+    public static function header($title)
+    {
         session_start();
+        header("Cache-Control: no-cache, must-revalidate");
+        header("Expires: Sat, 1 Jul 2018 00:00:00 GMT");
         print('
             <!DOCTYPE html>
 			<html lang="es">
 			<head>
-				<meta charset="utf-8">
-				<title>Mocheros SV - '.$title.'</title>
+                <meta charset="utf-8">
+                <meta http-equiv="Expires" content="0">
+                <meta http-equiv="Last-Modified" content="0">
+                <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+				<title>Mocheros SV - ' . $title . '</title>
                 <link href="../../resources/css/material_icons.css" rel="stylesheet">
                 <!--importando el css materialize.css-->
                 <link type="text/css" rel="stylesheet" href="../../resources/css/materialize.min.css" media="screen,projection" />
@@ -22,11 +30,11 @@ class publicHelper{
             </head>
             <body>
             ');
-            if (isset($_SESSION['idUsuario'])) {
-                $filename = basename($_SERVER['PHP_SELF']);
-                if ($filename != 'login.php') {
-                    self::modals();
-                    print('
+        if (isset($_SESSION['idUsuario'])) {
+            $filename = basename($_SERVER['PHP_SELF']);
+            if ($filename != 'login.php') {
+                self::modals();
+                print('
                     <header>
                         <div class="header">
                             <!--<div class="row">
@@ -46,7 +54,7 @@ class publicHelper{
                                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                                     <li><a href="index.php"><i class="material-icons left">home</i>Inicio</a></li>
                                     <li><a href="mochilas.php"><i class="material-icons left">work</i>Productos</a></li>
-                                    <li><a href="#" class="dropdown-trigger" data-target="dropdown"><i class="material-icons left">person</i>Mi cuenta - '.$_SESSION['nombreUsuario'].'<i class="material-icons right">arrow_drop_down</i></a></li>
+                                    <li><a href="#" class="dropdown-trigger" data-target="dropdown"><i class="material-icons left">person</i>Mi cuenta - ' . $_SESSION['nombreUsuario'] . '<i class="material-icons right">arrow_drop_down</i></a></li>
                                     <!--<li><a href="registrarse.php"><i class="material-icons left">person_add</i>Registrarse</a></li>-->
                                     <li><a href="carrito.php"><i class="material-icons left">shopping_cart</i>Carrito</a></li>
                                 </ul>
@@ -70,16 +78,16 @@ class publicHelper{
                         <li><a href="#" onclick="signOff()">Cerrar sesión</a></li>
                     </ul>
                     ');
-                } else {
-                    header('location: mochilas.php');
-                }
             } else {
-                $filename = basename($_SERVER['PHP_SELF']);
-                if ($filename != 'index.php' && $filename != 'login.php' && $filename != 'registrarse.php' && $filename != 'mochilas.php') {
-                    header('location: index.php');
-                } else {
-                    self::modals();
-                    print('
+                header('location: mochilas.php');
+            }
+        } else {
+            $filename = basename($_SERVER['PHP_SELF']);
+            if ($filename != 'index.php' && $filename != 'login.php' && $filename != 'registrarse.php' && $filename != 'mochilas.php') {
+                header('location: index.php');
+            } else {
+                self::modals();
+                print('
                     <header>
                         <div class="header">
                             <!--<div class="row">
@@ -118,11 +126,12 @@ class publicHelper{
                         <li><a href="registrarse.php">Registrarse</a></li>
                     </ul>
                     ');
-                }
             }
         }
+    }
 
-    public static function footer($controller){
+    public static function footer($controller)
+    {
         print('
         <footer class="page-footer orange darken-2">
             <div class="container">
@@ -164,13 +173,14 @@ class publicHelper{
         <script type="text/javascript" src="../../resources/js/functions.js"></script>
         <script type="text/javascript" src="../../core/helpers/componentes.js"></script>
         <script type="text/javascript" src="../../core/controllers/public/logout.js"></script>
-        <script type="text/javascript" src="../../core/controllers/public/'.$controller.'"></script>
+        <script type="text/javascript" src="../../core/controllers/public/' . $controller . '"></script>
         </body>
         
         </html>');
     }
 
-    public static function slider(){
+    public static function slider()
+    {
         print('<!--Comienza a crearse slider-->
         <div class="slider">
             <ul class="slides">
@@ -243,7 +253,8 @@ class publicHelper{
         </div>');
     }
 
-    public function modals(){
+    public function modals()
+    {
         print('
             <div id="modal-profile" class="modal">
                 <div class="modal-content">
