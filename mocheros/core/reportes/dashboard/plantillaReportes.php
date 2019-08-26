@@ -29,7 +29,7 @@ class PDF extends FPDF
         $this->setTextColor(0,0,0);
         $this->SetFont('Arial','B',12);
         $this->Ln(30);
-        $this->setAuthor($this->Cell(80,20, 'Usuario: '. $_SESSION['nombreUsuario'] ,0 , 0, 'L', false));
+        $this->setAuthor($this->Cell(80,20, 'Usuario: '. $_SESSION['NomUsuario'] ,0 , 0, 'L', false));
         $this->Ln(5);
         $this->Cell(80,20, ('Fecha de realizacion: '. date('d/m/Y')),0 , 0, 'L', false);
         $this->Ln(5);
@@ -47,7 +47,7 @@ class PDF extends FPDF
         $this->SetTextColor(0,0,0);
         // Número de página
         $this->Cell(0,10,'Pagina '.$this->PageNo().'/{nb}',0,0,'C');
-        $this->Cell(0,10,utf8_decode('Realizado por: '.$_SESSION['nombreUsuario']),0,'L','R');
+        $this->Cell(0,10,utf8_decode('Realizado por: '.$_SESSION['NomUsuario']),0,'L','R');
         
     }
    

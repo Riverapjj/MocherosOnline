@@ -37,7 +37,8 @@ require_once('../../models/articulos.php');
     $pdf->Output();
 
     /* Función para imprimir encabezado(Nombre de categoria y columnas) */
-    function imprimirHeader($nomcategoria,$pdf){
+    function imprimirHeader($nomcategoria,$pdf)
+    {
 
             $pdf->Ln(10);
             $pdf->setTextColor(255,255,255);
@@ -55,11 +56,12 @@ require_once('../../models/articulos.php');
     }
 
     /* Función para imprimir cuerpo(llena las columnas) */
-    function imprimirBody($nomcategoria,$data,$pdf){
+    function imprimirBody($nomcategoria,$data,$pdf)
+    {
 
-        foreach($data as $datos){
+        foreach ($data as $datos) {
 
-            if($datos['categoria'] == $nomcategoria){
+            if ($datos['categoria'] == $nomcategoria) {
                // print($datos['categoria'].' - '.$nomcategoria);
             $pdf->setTextColor(0,0,0);
             $pdf->Cell(75,10, utf8_decode($datos['NomArticulo']),1 , 0, 'C');

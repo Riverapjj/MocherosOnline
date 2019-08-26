@@ -5,7 +5,8 @@ require_once('../../core/models/usuarios.php');
 
 //Se comprueba si existe una petición del sitio web y la acción a realizar, de lo contrario se muestra una página de error
 if (isset($_GET['site']) && isset($_GET['action'])) {
-    session_start();
+    if (session_status() != PHP_SESSION_ACTIVE) {
+        session_start();
     $usuario = new Usuarios;
     $result = array('status' => 0, 'exception' => '', 'dataset' => '');
     //Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
@@ -258,6 +259,9 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
             default:
                 exit('Acción no disponible 1');
         }
+    }else{
+            session_destroy();
+        }
     } else if ($_GET['site'] == 'dashboard') {
         switch ($_GET['action']) {
             case 'read':
@@ -301,9 +305,21 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Nombres incorrectos';
                 }
                 break;
+                case 'intentos':
+                $_POST = $usuario->validateForm($_POST);                
+                    if($usuario->setNomUsuario($_POST['log-username-name'])){  
+                        print_r($_POST);                      
+                        if($result['dataset'] = $usuario->sumarIntentos()){
+                            $result['status'] = 1;
+                        }else{
+                            $result['exception'] = 'No pudimos sumar intentos';
+                        }
+                    }else{
+                        $result['exception'] = 'Alias incorrecto';
+                    }
+                    break;
                 case 'login':
                 $_POST = $usuario->validateForm($_POST);
-             //  print_r($_POST);
                 if ($usuario->setNomUsuario($_POST['log-username-name'])) {
                     if ($usuario->checkNomUsuario()) {
                         if ($usuario->setClave($_POST['log-pass-name'])) {
@@ -333,7 +349,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
         exit('Acceso no disponible 2');
     }
     echo json_encode($result);
-
+    
 } else {
 	exit('Recurso denegado');
 }
