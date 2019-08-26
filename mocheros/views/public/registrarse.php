@@ -1,13 +1,12 @@
 <?php
 require_once('../../core/helpers/publicHelper.php');
-require_once('../../core/helpers/formulario.php');
 publicHelper::header('Registrate');
 ?>
 <main class="grey lighten-2">
     <div class="container">
         <div class="row center-align">
             <h3 class="center-align indigo-text">Registrate</h3>
-            <form method="post" id="form-register" action="formulario.php" autocomplete="off">
+            <form method="post" id="form-register" autocomplete="off">
                 <div class="input-field col s11 m6">
                     <i class="material-icons prefix">assignment_ind</i>
                     <input id="usuario" type="text" name="usuario" class="validate" required />
@@ -53,17 +52,15 @@ publicHelper::header('Registrate');
                     <span class="black-text">Acepto los <a href="#terminos" class="modal-trigger orange-text text-darken-3">términos y condiciones</a></span>
                 </label>
                 <div class="col s12">
-                    <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Registrar"><i class="material-icons left">send</i>Registrarse</button>
+                    <div class="g-recaptcha" data-sitekey="6LfnzrQUAAAAAOOuNJrf5pYJQIcMHy-YIDwQMQFw"></div>
                 </div>
-
-                <div class="container">
-                    <div class="hero-unit" style="margin-top:10px;"></div>
+                <div class="col s12 center-align">
+                    <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Registrar"><i class="material-icons left">send</i>Registrarse</button>
                 </div>
             </form>
         </div>
     </div>
 </main>
-<script src='https://www.google.com/recaptcha/api.js'></script>
 <?php
-publicHelper::footer('registrar.js');
+publicHelper::footer('registrar.js', null);
 ?>

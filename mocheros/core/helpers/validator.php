@@ -122,7 +122,7 @@ class Validator
     //función para validar texto con números, recibe un valor mínimo y un máximo
     public function validateAlphaNumeric($value, $minimum, $maximum)
     {
-        if (preg_match('/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{' . $minimum . ',' . $maximum . '}$/', $value)) {
+        if (preg_match('/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.,]{' . $minimum . ',' . $maximum . '}$/', $value)) {
             return true;
         } else {
             return false;

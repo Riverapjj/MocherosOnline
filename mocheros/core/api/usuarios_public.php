@@ -237,50 +237,50 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'register':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setNomUsuario($_POST['usuario'])) {
-                    if ($usuario->setNombre($_POST['nombre'])) {
-                        if ($usuario->setApellido($_POST['apellido'])) {
-                            if ($usuario->setDireccion($_POST['direccion'])) {
-                                if ($usuario->setTelefono($_POST['telefono'])) {
-                                    if ($usuario->setEmail($_POST['correo'])) {
-                                        if ($_POST['clave1'] == $_POST['clave2']) {
-                                            if ($_POST['usuario'] != $_POST['clave1'] && $_POST['usuario'] != $_POST['clave2']) {
-                                                if ($usuario->setClave($_POST['clave1'])) {
-                                                    //if ($_POST['captcha'] == $_SESSION['code']) {
+                if ($_POST['g-recaptcha-response']) {
+                    if ($usuario->setNomUsuario($_POST['usuario'])) {
+                        if ($usuario->setNombre($_POST['nombre'])) {
+                            if ($usuario->setApellido($_POST['apellido'])) {
+                                if ($usuario->setDireccion($_POST['direccion'])) {
+                                    if ($usuario->setTelefono($_POST['telefono'])) {
+                                        if ($usuario->setEmail($_POST['correo'])) {
+                                            if ($_POST['clave1'] == $_POST['clave2']) {
+                                                if ($_POST['usuario'] != $_POST['clave1'] && $_POST['usuario'] != $_POST['clave2']) {
+                                                    if ($usuario->setClave($_POST['clave1'])) {
                                                         if ($usuario->createCliente()) {
                                                             $result['status'] = 1;
                                                         } else {
                                                             $result['exception'] = 'Operación fallida';
                                                         }
-                                                    /*} else {
-                                                        $result['exception'] = 'Captcha incorrecto';
-                                                    }*/
+                                                    } else {
+                                                        $result['exception'] = 'La contraseña debe ser mínimo de 8 caracteres. Debe contener letras, números y al menos un caracter especial.';
+                                                    }
                                                 } else {
-                                                    $result['exception'] = 'La contraseña debe ser mínimo de 8 caracteres. Debe contener letras, números y al menos un caracter especial.';
+                                                    $result['exception'] = 'El nombre de usuario no puede ser igual a la contraseña';
                                                 }
                                             } else {
-                                                $result['exception'] = 'El nombre de usuario no puede ser igual a la contraseña';
+                                                $result['exception'] = 'Las contraseñas no coinciden';
                                             }
                                         } else {
-                                            $result['exception'] = 'Las contraseñas no coinciden';
+                                            $result['exception'] = 'Correo no válido';
                                         }
                                     } else {
-                                        $result['exception'] = 'Correo no válido';
+                                        $result['exception'] = 'Teléfono no válido';
                                     }
                                 } else {
-                                    $result['exception'] = 'Teléfono no válido';
+                                    $result['exception'] = 'Dirección no válida';
                                 }
                             } else {
-                                $result['exception'] = 'Dirección no válida';
+                                $result['exception'] = 'Apellido no válido';
                             }
                         } else {
-                            $result['exception'] = 'Apellido no válido';
+                            $result['exception'] = 'Nombre no válido';
                         }
                     } else {
-                        $result['exception'] = 'Nombre no válido';
+                        $result['exception'] = 'Nombre de usuario no válido';
                     }
                 } else {
-                    $result['exception'] = 'Nombre de usuario no válido';
+                    $result['exception'] = 'Debes comprobar que no eres un robot.';
                 }
                 break;
             case 'read':

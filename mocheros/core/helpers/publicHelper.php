@@ -170,6 +170,7 @@ class publicHelper
         <script type="text/javascript" src="../../resources/js/main.js"></script>
         <script type="text/javascript" src="../../resources/js/public.js"></script>
         <script type="text/javascript" src="../../resources/js/Chart.js"></script>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script type="text/javascript" src="../../resources/js/functions.js"></script>
         <script type="text/javascript" src="../../core/helpers/componentes.js"></script>
         <script type="text/javascript" src="../../core/controllers/public/logout.js"></script>
