@@ -1,3 +1,7 @@
+$(document).ready(function () {
+    //sessionDestroy();
+})
+
 const apiLogout = '../../core/api/usuarios_public.php?site=publicHelper&action=';
 
 //Función para cerrar sesión
@@ -25,6 +29,11 @@ function signOff()
             });
         }
     });
+}
+
+function sessionDestroy()
+{
+       
 }
 
 //Función para mostrar datos del usuario en el modal
