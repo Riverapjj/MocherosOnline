@@ -15,7 +15,7 @@ class publicHelper
                 <meta http-equiv="Expires" content="0">
                 <meta http-equiv="Last-Modified" content="0">
                 <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
-        <meta http-equiv="Pragma" content="no-cache">
+                <meta http-equiv="Pragma" content="no-cache">
 				<title>Mocheros SV - ' . $title . '</title>
                 <link href="../../resources/css/material_icons.css" rel="stylesheet">
                 <!--importando el css materialize.css-->
@@ -31,6 +31,7 @@ class publicHelper
             <body>
             ');
         if (isset($_SESSION['idUsuario'])) {
+            include ('../../core/api/session2.php');
             $filename = basename($_SERVER['PHP_SELF']);
             if ($filename != 'login.php') {
                 self::modals();
@@ -72,7 +73,7 @@ class publicHelper
                         <li><a href="index.php">Inicio</a></li>
                         <li><a href="mochilas.php">Productos</a></li>
                         <li><a href="carrito.php">Carrito</a></li>
-                        <li><a href="login.php">Mi cuenta</a></li>
+                        <li><a href="#" class="dropdown-trigger" data-target"dropdown">Mi cuenta - '.$_SESSION['nombreUsuario'].'</a></li>
                         <li><a href="registrarse.php">Registrarse</a></li>
                         <hr>
                         <li><a href="#" onclick="signOff()">Cerrar sesión</a></li>
@@ -170,6 +171,7 @@ class publicHelper
         <script type="text/javascript" src="../../resources/js/main.js"></script>
         <script type="text/javascript" src="../../resources/js/public.js"></script>
         <script type="text/javascript" src="../../resources/js/Chart.js"></script>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script type="text/javascript" src="../../resources/js/functions.js"></script>
         <script type="text/javascript" src="../../core/helpers/componentes.js"></script>
         <script type="text/javascript" src="../../core/controllers/public/logout.js"></script>

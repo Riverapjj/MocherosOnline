@@ -21,6 +21,7 @@
                     <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Ingresar"><i class="material-icons left">check</i>Iniciar sesión</button>
                 </div>
                 <div class="col s12 center-align">
+                    <p class="center-align"><a href=""></a></p>
                     <p class="center-align">¿No tienes una cuenta? <a href="registrarse.php" class="orange-text text-darken-4">Registrate</a></p>
                 </div>
             </form>

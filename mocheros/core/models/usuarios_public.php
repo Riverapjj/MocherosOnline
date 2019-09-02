@@ -246,6 +246,11 @@ class Usuarios extends Validator
 		$sql = 'DELETE FROM usuarios WHERE IdUsuario = ?';
 		$params = array($this->idusuario);
 		return Database::executeRow($sql, $params);
-	}
+    }
+    
+    public function setOnlie()
+    {
+        $sql = 'UPDATE FROM usuarios SET estado_sesion '
+    }
 }
 ?>

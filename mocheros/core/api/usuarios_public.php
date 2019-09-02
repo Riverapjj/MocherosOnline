@@ -6,7 +6,7 @@ require_once('../../core/models/usuarios_public.php');
 if (isset($_GET['site']) && isset($_GET['action'])) {
     session_start();
     $usuario = new Usuarios;
-    $result = array('status' => 0, 'exception' => '');
+    $result = array('status' => 0, 'exception' => '','session' => 1);
     //Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
     if (isset($_SESSION['idUsuario']) && $_GET['site'] == 'publicHelper') {
         switch ($_GET['action']) {
@@ -17,6 +17,19 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     header('location: ../../views/public/registrarse.php');
                 }
                 break;
+            /*case 'destroy':
+                //comparamos el tiempo transcurrido  
+                if ($tiempo_transcurrido >= 10) {
+                    //si pasaron 5 segundos o más  
+                    //$result['session'] = 0;//envío al usuario a la pag. de autenticación  
+                    $result['exception'] = 'Su sesión ha caducado';
+                    session_destroy(); // destruyo la sesión  
+                    header('location: ../../views/public/');
+                    exit(json_encode($result));
+                } else {
+                    $_SESSION["ultimoAcceso"] = time();
+                }
+                break;*/
             case 'readProfile':
                 if ($usuario->setIdUsuario($_SESSION['idUsuario'])) {
                     if ($result['dataset'] = $usuario->getUsuario()) {
@@ -76,14 +89,19 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                         if ($usuario->setClave($_POST['clave_actual_1'])) {
                             if ($usuario->checkPassword()) {
                                 if ($_POST['clave_nueva_1'] == $_POST['clave_nueva_2']) {
-                                    if ($usuario->setClave($_POST['clave_nueva_1'])) {
-                                        if ($usuario->changePassword()) {
-                                            $result['status'] = 1;
+                                    if ($_POST['clave_actual_1'] != $_POST['clave_actual_2']) {
+                                        if ($usuario->setClave($_POST['clave_nueva_1'])) {
+                                            if ($usuario->changePassword()) {
+                                                $result['status'] = 1;
+                                            } else {
+                                                $result['exception'] = 'Operación fallida';
+                                            }
                                         } else {
-                                            $result['exception'] = 'Operación fallida';
+                                            $result['exception'] = 'La nueva contraseña debe tener un mínimo de 8 caracteres y 
+                                             debe contener números y caracteres especiales';
                                         }
                                     } else {
-                                        $result['exception'] = 'Clave nueva menor a 6 caracteres';
+                                        $result['exception'] = 'La contraseña nueva no puede ser la misma a la antigua';
                                     }
                                 } else {
                                     $result['exception'] = 'Claves nuevas diferentes';
@@ -92,7 +110,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                 $result['exception'] = 'Clave actual incorrecta';
                             }
                         } else {
-                            $result['exception'] = 'Clave actual menor a 6 caracteres';
+                            $result['exception'] = 'Clave actual menor a 8 caracteres';
                         }
                     } else {
                         $result['exception'] = 'Claves actuales diferentes';
@@ -237,50 +255,50 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'register':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setNomUsuario($_POST['usuario'])) {
-                    if ($usuario->setNombre($_POST['nombre'])) {
-                        if ($usuario->setApellido($_POST['apellido'])) {
-                            if ($usuario->setDireccion($_POST['direccion'])) {
-                                if ($usuario->setTelefono($_POST['telefono'])) {
-                                    if ($usuario->setEmail($_POST['correo'])) {
-                                        if ($_POST['clave1'] == $_POST['clave2']) {
-                                            if ($_POST['usuario'] != $_POST['clave1'] && $_POST['usuario'] != $_POST['clave2']) {
-                                                if ($usuario->setClave($_POST['clave1'])) {
-                                                    //if ($_POST['captcha'] == $_SESSION['code']) {
+                if ($_POST['g-recaptcha-response']) {
+                    if ($usuario->setNomUsuario($_POST['usuario'])) {
+                        if ($usuario->setNombre($_POST['nombre'])) {
+                            if ($usuario->setApellido($_POST['apellido'])) {
+                                if ($usuario->setDireccion($_POST['direccion'])) {
+                                    if ($usuario->setTelefono($_POST['telefono'])) {
+                                        if ($usuario->setEmail($_POST['correo'])) {
+                                            if ($_POST['clave1'] == $_POST['clave2']) {
+                                                if ($_POST['usuario'] != $_POST['clave1'] && $_POST['usuario'] != $_POST['clave2']) {
+                                                    if ($usuario->setClave($_POST['clave1'])) {
                                                         if ($usuario->createCliente()) {
                                                             $result['status'] = 1;
                                                         } else {
                                                             $result['exception'] = 'Operación fallida';
                                                         }
-                                                    /*} else {
-                                                        $result['exception'] = 'Captcha incorrecto';
-                                                    }*/
+                                                    } else {
+                                                        $result['exception'] = 'La contraseña debe ser mínimo de 8 caracteres. Debe contener letras, números y al menos un caracter especial.';
+                                                    }
                                                 } else {
-                                                    $result['exception'] = 'La contraseña debe ser mínimo de 8 caracteres. Debe contener letras, números y al menos un caracter especial.';
+                                                    $result['exception'] = 'El nombre de usuario no puede ser igual a la contraseña';
                                                 }
                                             } else {
-                                                $result['exception'] = 'El nombre de usuario no puede ser igual a la contraseña';
+                                                $result['exception'] = 'Las contraseñas no coinciden';
                                             }
                                         } else {
-                                            $result['exception'] = 'Las contraseñas no coinciden';
+                                            $result['exception'] = 'Correo no válido';
                                         }
                                     } else {
-                                        $result['exception'] = 'Correo no válido';
+                                        $result['exception'] = 'Teléfono no válido';
                                     }
                                 } else {
-                                    $result['exception'] = 'Teléfono no válido';
+                                    $result['exception'] = 'Dirección no válida';
                                 }
                             } else {
-                                $result['exception'] = 'Dirección no válida';
+                                $result['exception'] = 'Apellido no válido';
                             }
                         } else {
-                            $result['exception'] = 'Apellido no válido';
+                            $result['exception'] = 'Nombre no válido';
                         }
                     } else {
-                        $result['exception'] = 'Nombre no válido';
+                        $result['exception'] = 'Nombre de usuario no válido';
                     }
                 } else {
-                    $result['exception'] = 'Nombre de usuario no válido';
+                    $result['exception'] = 'Debes comprobar que no eres un robot.'; 
                 }
                 break;
             case 'read':
@@ -298,14 +316,12 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     if ($usuario->checkUsuario()) {
                         if ($usuario->setClave($_POST['clave'])) {
                             if ($usuario->checkPassword()) {
-                                $_SESSION['idUsuario'] = $usuario->getIdUsuario();
-                                $_SESSION['nombreUsuario'] = $usuario->getNomUsuario();
-                                $result['status'] = 1;
+                                if 
                             } else {
-                                $result['exception'] = 'Clave inexistente';
+                                $result['exception'] = 'Contraseña inexistente';
                             }
                         } else {
-                            $result['exception'] = 'Clave menor a 6 caracteres';
+                            $result['exception'] = 'Contraseña incorrecta';
                         }
                     } else {
                         $result['exception'] = 'El usuario no está registrado';
