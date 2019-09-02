@@ -2,6 +2,12 @@
 require_once('../../core/helpers/database.php');
 require_once('../../core/helpers/validator.php');
 require_once('../../core/models/usuarios.php');
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require '../../core/lib/PHPMailer-master/src/Exception.php';
+require '../../core/lib/PHPMailer-master/src/PHPMailer.php';
+require '../../core/lib/PHPMailer-master/src/SMTP.php';
 
 //Se comprueba si existe una petición del sitio web y la acción a realizar, de lo contrario se muestra una página de error
 if (session_status() != PHP_SESSION_ACTIVE) {
@@ -308,39 +314,119 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
                 case 'intentos':
-                $_POST = $usuario->validateForm($_POST);                
-                    if($usuario->setNomUsuario($_POST['log-username-name'])){  
-                        print_r($_POST);                      
-                        if($result['dataset'] = $usuario->sumarIntentos()){
-                            $result['status'] = 1;
+                    $_POST = $usuario->validateForm($_POST);               
+                        if($usuario->setNomUsuario($_POST['NomUsuario'])) {        
+                            if($result['dataset'] = $usuario->sumarIntentos()){
+                                $result['status'] = 1;
+                            }else{
+                                $result['exception'] = 'No pudimos sumar intentos';
+                            }
                         }else{
-                            $result['exception'] = 'No pudimos sumar intentos';
+                            $result['exception'] = 'Alias incorrecto';
                         }
-                    }else{
-                        $result['exception'] = 'Alias incorrecto';
+                    break;
+                case 'enviarCorreo':
+                    $_POST = $usuario->validateForm($_POST);
+                    if($usuario->setEmail($_POST['email-name'])) {
+                        if($usuario->getEmailUser()){
+                            $token = md5(uniqid(rand(), true)); 
+                            if($usuario->setToken($token)) {
+                                if($usuario->updateToken()) {
+                                if($emailusuario = $usuario->getEmail()) {
+                                    $result['status'] = 1; 
+                                    $mail = new PHPMailer(true);
+                                    $mail ->charSet = "UTF-8";
+                                        try {
+                                            //Server settings
+                                            $mail->SMTPDebug = 2;                                       // Enable verbose debug output
+                                            $mail->isSMTP();                                            // Set mailer to use SMTP
+                                            $mail->Host       = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+                                            $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+                                            $mail->Username   = 'mocherossv@gmail.com';                     // SMTP username
+                                            $mail->Password   = 'mocheros123';                               // SMTP password
+                                            $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
+                                            $mail->Port       = 587;                                    // TCP port to connect to
+
+                                            //Recipients
+                                            $mail->setFrom('mocherossv@gmail.com', 'Departamento de Informática');
+                                            $mail->addAddress($emailusuario);     // Add a recipient
+                                            
+                                            // Content
+                                            $mail->isHTML(true);                                  // Set email format to HTML
+                                            $mail->Subject = 'Recuperación de contraseña';
+                                            $mail->Body    = 'Haz click <a href="http://localhost/MocherosOnline/mocheros/views/dashboard/contrasenas.php?token='.$token.'">aquí</<a> para recuperar su contraseña';
+
+                                            $mail->send();
+                                            echo 'Message has been sent';
+                                        } catch (Exception $e) {
+                                            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                                        }
+                                } else {
+                                    $result['exception'] = 'Error al obtener el correo';  
+                                }                                
+                                } else {
+                                    $result['exception'] = 'Error al asignar el token';
+                                }  
+                            } else{
+                                $result['exception'] = 'Error al generar el token';
+                            }  
+                        } else{
+                            $result['exception'] = 'Correo no existe';
+                        }   
+                    }  else {
+                        $result['exception'] = 'Correo invalido';
+                    }             
+
+                    break;
+                case 'recoverPassword':
+                    $_POST = $usuario->validateForm($_POST);
+                    if($usuario->setToken($_POST['token'])) {
+                        if($usuario->getUserByToken()) {
+                            if ($_POST['new_pwd'] == $_POST['pwd_confirmed']) {
+                                $password = $usuario->setClave($_POST['new_pwd']);
+                                if ($password[0]) {
+                                    if ($usuario->changePasswordByToken()) { 
+                                        $result['status'] = 1;
+                                    } else {
+                                        $result['exception'] = 'Operación fallida';
+                                    }
+                                } else {
+                                    $result['exception'] = $password[1];
+                                }
+                            } else {
+                                $result['exception'] = 'Claves diferentes';
+                                
+                            } 
+                        } else {
+                            $result['exception'] = 'Error al obtener los datos del usuario';
+                        }
+                    } else {
+                        $result['exception'] = 'Error al setear el token';
                     }
+                    
                     break;
                 case 'login':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setNomUsuario($_POST['log-username-name'])) {
-                    if ($usuario->checkNomUsuario()) {
-                        if ($usuario->setClave($_POST['log-pass-name'])) {
-                            if ($usuario->checkPassword()) {
-                                $_SESSION['idUsuario'] = $usuario->getIdUsuario();
-                                $_SESSION['NomUsuario'] = $usuario->getNomUsuario();
-                                $result['status'] = 1;
+                    if ($usuario->setNomUsuario($_POST['log-username-name'])) {
+                        if ($usuario->checkNomUsuario()) {
+                            $password = $usuario->setClave($_POST['log-pass-name']);
+                            if ($password[0]) {
+                                if ($usuario->checkPassword()) {
+                                    $_SESSION['idUsuario'] = $usuario->getIdUsuario();
+                                    $_SESSION['NomUsuario'] = $usuario->getNomUsuario();
+                                    $result['status'] = 1;
+                                } else {
+                                    $result['exception'] = 'Clave inexistente';
+                                }
                             } else {
-                                $result['exception'] = 'Clave inexistente';
+                                $result['exception'] = $password[1];
                             }
                         } else {
-                            $result['exception'] = 'Clave menor a 6 caracteres';
+                            $result['exception'] = 'Alias inexistente';
                         }
                     } else {
-                        $result['exception'] = 'Alias inexistente';
+                        $result['exception'] = 'Alias incorrecto';
                     }
-                } else {
-                    $result['exception'] = 'Alias incorrecto';
-                }
                 break;
             
             default:

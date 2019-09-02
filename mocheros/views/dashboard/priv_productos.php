@@ -47,7 +47,7 @@
                         <div class="row">
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="update-name" name="update-name-name" type="text" class="validate" required>
+                                <input id="update-name" name="update-name-name" type="text" class="validate" autocomplete="off" required>
                                 <label for="update-name">Nombre del producto</label>
                             </div>
                             <div class="input-field col s12 m6">
@@ -55,26 +55,26 @@
                                 </select>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="update-exist" name="update-exist-name" type="number" class="validate" required>
+                                <input id="update-exist" name="update-exist-name" type="number" class="validate" autocomplete="off" required>
                                 <label for="update-exist">Existencias</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="update-price" name="update-price-name" type="number" class="validate" required>
+                                <input id="update-price" name="update-price-name" type="number" class="validate" autocomplete="off" required>
                                 <label for="update-price">Precio</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="update-descrip" name="update-descrip-name" type="text" class="validate" required>
+                                <input id="update-descrip" name="update-descrip-name" type="text" class="validate" autocomplete="off" required>
                                 <label for="update-descrip">Descripción</label>
                             </div>
                             <br>
                             <div class="file-field input-field col s12 m6">
                                 <div class="btn-large waves-effect waves-orange">
                                     <span><i class="material-icons">image</i></span>
-                                    <input id="update-file" type="file" name="update-file-name"/>
+                                    <input id="update-file" type="file" name="update-file-name" autocomplete="off"/>
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text"
-                                        placeholder="Seleccione una imagen de 500x500" required/>
+                                        placeholder="Seleccione una imagen de 500x500" disabled required/>
                                 </div>
                             </div>
                             <div class="input-field col s12 m6">
@@ -111,7 +111,7 @@
                     <form class="col s12" id="form-create-products">
                         <div class="row">
                             <div class="input-field col s12 m6">
-                                <input id="create-name" name="create-name-name" type="text" class="validate" required>
+                                <input id="create-name" name="create-name-name" type="text" class="validate" autocomplete="off" required>
                                 <label for="create-name">Nombre del producto</label>
                             </div>
                             <div class="input-field col s12 m6">
@@ -119,15 +119,15 @@
                                 </select>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="create-exist" name="create-exist-name" type="number" class="validate" required>
+                                <input id="create-exist" name="create-exist-name" type="number" class="validate" autocomplete="off" required>
                                 <label for="create-exist">Existencias</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="create-price" name="create-price-name" type="number" class="validate" required>
+                                <input id="create-price" name="create-price-name" type="number" class="validate" autocomplete="off" required>
                                 <label for="create-price">Precio</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="create-descrip" name="create-descrip-name" type="text" class="validate" required>
+                                <input id="create-descrip" name="create-descrip-name" type="text" class="validate" autocomplete="off" required>
                                 <label for="create-descrip">Descripción</label>
                             </div>
                             <br>
@@ -138,7 +138,7 @@
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text"
-                                        placeholder="Seleccione una imagen de 500x500" required/>
+                                        placeholder="Seleccione una imagen de 500x500" disabled required/>
                                 </div>
                             </div>
                             <div class="input-field col s12 m6">
@@ -205,11 +205,11 @@
                     <form class="col s12" id="form-create-category">
                         <div class="row">
                             <div class="input-field col s12 m6">
-                                <input id="name" type="text" name="create-name-name" class="validate" require>
+                                <input id="name" type="text" name="create-name-name" class="validate" autocomplete="off" require>
                                 <label for="name">Nombre de la categoria</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="descrip" type="text" name="create-descrip-name" class="validate" require>
+                                <input id="descrip" type="text" name="create-descrip-name" class="validate" autocomplete="off" require>
                                 <label for="descrip">Descripción</label>
                             </div>
                             <div class="input-field col s12 m6">
@@ -248,11 +248,11 @@
                             <input type="hidden" id="IdCategoria" name="IdCategoria"/>
                         <div class="row">
                             <div class="input-field col s12 m6">
-                                <input id="name-category-update" name="name-category-update" type="text" class="validate" require>
+                                <input id="name-category-update" name="name-category-update" type="text" class="validate" autocomplete="off" require>
                                 <label for="name">Nombre de la categoria</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="update-descrip-category" type="text" name="update-descrip-category-name" class="validate" require>
+                                <input id="update-descrip-category" type="text" name="update-descrip-category-name" class="validate" autocomplete="off" require>
                                 <label for="descrip">Descripción</label>
                             </div>
                             <div class="input-field col s12 m6">

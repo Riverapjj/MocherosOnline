@@ -35,14 +35,18 @@
             <form method="post" id="form-sesion">
                 <div class="input-field col s12 m6 offset-m3">
                     <i class="material-icons prefix">person_pin</i>
-                    <input id="log-username" type="text" name="log-username-name" class="validate" required />
+                    <input id="log-username" type="text" name="log-username-name" class="validate" autocomplete="off" required/>
                     <label for="log-username">Usuario</label>
                 </div>
                 <div class="input-field col s12 m6 offset-m3">
                     <i class="material-icons prefix">security</i>
-                    <input id="log-pass" type="password" name="log-pass-name" class="validate" required />
+                    <input id="log-pass" type="password" name="log-pass-name" class="validate" autocomplete="off" required />
                     <label for="log-pass">Contraseña</label>
                 </div>
+                <div class="col s12 center-align">
+                    <label><a href="recuperarContra.php">¿Olvidó su contraseña?</a></label>
+                </div>
+                <br> <br> <br>
                 <div class="col s12 center-align">
                     <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Ingresar"><i
                             class="material-icons">send</i></button>

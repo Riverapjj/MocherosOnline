@@ -154,32 +154,32 @@ class Validator
 	{   
         $error;
         
-		if (strlen($value) > 7) {
+		if (strlen($value) > 7 && strlen($value) < 61) {
             if (preg_match('#[0-9]+#', $value)) {
                 if (preg_match('#[a-z]+#', $value)) {
                     if (preg_match('#[A-Z]+#', $value)) {
-                        if (preg_match("/[`'\"~!@# $*()<>,.:;{}\|]/", $value)) {
+                        if (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,100}$/", $value)) {
                             
-                            return true;
+                            return array(true, "");
 
                         }else{
                             $error = "Su contraseña debe contener al menos un signo";
-                            return false;
+                            return array(false, $error);
                         }
                     }else{
                         $error = "Su contraseña debe contener al menos una letra mayúscula";
-                        return false;
+                        return array(false, $error);
                     }
                 }else{
                     $error = "Su contraseña debe contener al menos una letra minúscula";
-                    return false;
+                    return array(false, $error);
                 }
             }else{
-                $error = "Su contraseña debe contener al menos un número 0-9";
-                return false;
+                $error = "Su contraseña debe contener al menos un número entre 0-9";
+                return array(false, $error);
             }		
 		} else {
-			return false;
+			return array(false, "");
 		}
     }
     

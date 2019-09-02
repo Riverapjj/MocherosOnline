@@ -41,11 +41,11 @@
                         <div class="row">
                             <!--Creando los campos requeridos para agregar un usuario-->
                             <div class="input-field col s12 m6">
-                                <input id="name" type="text" class="validate">
+                                <input id="name" type="text" class="validate" autocomplete="off" required>
                                 <label for="name">Cliente</label>
                             </div>
                             <div class="input-field col s12 m6">
-                                <input id="contact" type="text" class="validate">
+                                <input id="contact" type="text" class="validate" autocomplete="off" required>
                                 <label for="contact">Fecha</label>
                             </div>
                             <div class="input-field col s12">

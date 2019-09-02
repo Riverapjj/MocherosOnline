@@ -13,6 +13,7 @@ class Usuarios extends Validator
     private $clave = null;
     private $idestado = null;
     private $intentos = null;
+    private $token = null;
 
     //Método para sobrecarga de propiedades
     public function setIdUsuario($value)
@@ -137,11 +138,12 @@ class Usuarios extends Validator
 
     public function setClave($value)
     {
-        if ($this->validatePassword($value)) {
+        $validator = $this->validatePassword($value);
+        if ($validator[0]) {
             $this->clave = $value;
-            return true;
+            return array(true, '');
         } else {
-            return false;
+            return array(false, $validator[1]);
         }
     }
 
@@ -179,6 +181,21 @@ class Usuarios extends Validator
 	{
 		return $this->intentos;
     }
+
+    public function setToken($value)
+    {
+        if ($this->validateAlphaNumeric($value, 1, 32)) {
+            $this->token = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getToken()
+    {
+        return $this->token;
+    }
     
     //Métodos para manejar la sesión del usuario
     public function checkNomUsuario()
@@ -196,7 +213,7 @@ class Usuarios extends Validator
 
     public function checkPassword()
     {
-        $sql = 'SELECT Clave FROM usuarios WHERE IdUsuario = ? AND Intentos < 3';
+        $sql = 'SELECT Clave FROM usuarios WHERE IdUsuario = ? AND Intentos < 3 AND IdEstado = 1';
         $params = array($this->idusuario);
         $data = Database::getRow($sql, $params);
         if (password_verify($this->clave, $data['Clave'])) {
@@ -256,13 +273,15 @@ class Usuarios extends Validator
 		return Database::getRow($sql, $params);
     }
 
-    public function sumarIntentos(){
+    public function sumarIntentos()
+    {
         $sql = 'UPDATE usuarios SET Intentos = Intentos + 1 WHERE NomUsuario = ?';
 		$params = array($this->nomusuario);
         return Database::executeRow($sql, $params);
     }
     
-    public function readRoles(){
+    public function readRoles()
+    {
 
         $sql = 'SELECT IdRol, TipoRol FROM roles  WHERE IdEstado = 1 ORDER BY IdRol';
         $params = array(null);
@@ -288,6 +307,41 @@ class Usuarios extends Validator
 		$sql = 'DELETE FROM usuarios WHERE IdUsuario = ?';
 		$params = array($this->idusuario);
 		return Database::executeRow($sql, $params);
-	}
+    }
+    
+    public function updateToken()
+	{
+		$sql = 'UPDATE usuarios SET Token = ? WHERE Email = ?';
+		$params = array($this->token, $this->email);
+		return Database::executeRow($sql, $params);
+    }
+    
+    public function getEmailUser()
+	{
+		$sql = 'SELECT Email FROM usuarios WHERE Email = ?';
+		$params = array($this->email);
+		return Database::getRow($sql, $params);
+    }
+    
+    public function getUserByToken()
+	{
+		$sql = 'SELECT IdUsuario FROM usuarios WHERE Token = ?';
+		$params = array($this->token);
+		$data = Database::getRow($sql, $params);
+		if ($data) {
+			$this->idusuario = $data['IdUsuario'];
+			return true;
+		} else {
+			return false;
+		}
+    }
+    
+    public function changePasswordByToken()
+    {
+        $hash = password_hash($this->clave, PASSWORD_DEFAULT);
+        $sql = 'UPDATE usuarios SET Clave = ? WHERE Token = ?';
+        $params = array($hash, $this->token);
+        return Database::executeRow($sql, $params);
+    }
 }
 ?>

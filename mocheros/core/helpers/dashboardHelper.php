@@ -114,7 +114,7 @@ class dashboardHelper{
                     <li><a class="white-text" href="#">Mocheros</a></li>
                     <hr color="white">
                     <li><a href="dashboard.php" class="waves-effect waves white-text">Inicio</a></li>
-                    <li><a href="#" onclick="modalprofile()" class="waves-effect waves white-text" data-target="dropdown" data-activates="menu_escrow_accounts" data-beloworigin="true">Mi cuenta</a></li>
+                    <li><a href="#" onclick="modalProfile()" class="waves-effect waves white-text">Mi cuenta</a></li>
                     
                     
                     <li><a href="priv_usuarios.php" class="waves-effect waves white-text">Gestión de usuarios</a></li>
@@ -274,7 +274,7 @@ class dashboardHelper{
 			}
 		} else {
 			$filename = basename($_SERVER['PHP_SELF']);
-			if ($filename != 'index.php' && $filename != 'register.php') {
+			if ($filename != 'index.php' && $filename != 'register.php' && $filename != 'recuperarContra.php' && $filename != 'contrasenas.php') {
 				header('location: index.php');
 			} else {
 				print('
@@ -379,8 +379,7 @@ class dashboardHelper{
                 <script type="text/javascript" src="../../resources/js/Chart.js"></script>
                 <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                 <script type="text/javascript" src="../../core/helpers/functions.js"></script>
-                <script type="text/javascript" src="../../core/helpers/componentes.js"></script>   
-                <script src="https://www.google.com/recaptcha/api.js" async defer></script             
+                <script type="text/javascript" src="../../core/helpers/componentes.js"></script>     
                 <script type="text/javascript" src="../../core/controllers/dashboard/account.js"></script>              
                 <script type="text/javascript" src="../../core/controllers/dashboard/'.$firstcontroller.'"></script>
                 <script type="text/javascript" src="../../core/controllers/dashboard/'.$secondcontroller.'"></script>
