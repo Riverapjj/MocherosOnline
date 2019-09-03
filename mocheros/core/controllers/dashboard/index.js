@@ -50,6 +50,35 @@ function sumandoIntentos(alias)
 
         if (isJSONString(response)) {
             const result = JSON.parse(response);
+            sweetAlert(2, 'Tienes 3 intentos para iniciar sesión', null);
+        } else {
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
+
+
+//Función para cambiar estado del usuario al llegar a 3 intentos
+function bloquearUsuario(alias)
+{   
+    $.ajax({
+        url: apiSesion + 'bloquearUsuario',
+        type: 'post',
+        data: {
+            NomUsuario: alias
+        },
+        datatype: 'json'
+    })
+    .done(function(response){
+        //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            sweetAlert(2, 'Su usuario ha sido bloqueado', null);
         } else {
             console.log(response);
         }
@@ -82,6 +111,7 @@ $('#form-sesion').submit(function()
                 sweetAlert(2, result.exception, null);
                 let alias = $('#log-username').val();
                 sumandoIntentos(alias);
+                bloquearUsuario(alias); 
             }
         } else {
             console.log(response);

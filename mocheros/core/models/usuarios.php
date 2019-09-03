@@ -213,7 +213,7 @@ class Usuarios extends Validator
 
     public function checkPassword()
     {
-        $sql = 'SELECT Clave FROM usuarios WHERE IdUsuario = ? AND Intentos < 3 AND IdEstado = 1';
+        $sql = 'SELECT Clave FROM usuarios WHERE IdUsuario = ?';
         $params = array($this->idusuario);
         $data = Database::getRow($sql, $params);
         if (password_verify($this->clave, $data['Clave'])) {
@@ -273,13 +273,6 @@ class Usuarios extends Validator
 		return Database::getRow($sql, $params);
     }
 
-    public function sumarIntentos()
-    {
-        $sql = 'UPDATE usuarios SET Intentos = Intentos + 1 WHERE NomUsuario = ?';
-		$params = array($this->nomusuario);
-        return Database::executeRow($sql, $params);
-    }
-    
     public function readRoles()
     {
 
@@ -343,5 +336,27 @@ class Usuarios extends Validator
         $params = array($hash, $this->token);
         return Database::executeRow($sql, $params);
     }
+
+    public function bloquearUsuario()
+    {
+        $sql = 'UPDATE usuarios SET IdEstado = 2, Intentos = 0 WHERE NomUsuario = ? AND Intentos >= 3';
+        $params = array($this->nomusuario);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function updateIntentos()
+    {
+        $sql = 'UPDATE usuarios SET Intentos = 0 WHERE NomUsuario = ?';
+        $params = array($this->nomusuario);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function sumarIntentos()
+    {
+        $sql = 'UPDATE usuarios SET Intentos = Intentos + 1 WHERE NomUsuario = ?';
+		$params = array($this->nomusuario);
+        return Database::executeRow($sql, $params);
+    }
+
 }
 ?>
