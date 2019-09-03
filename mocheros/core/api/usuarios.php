@@ -312,7 +312,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }else{
                     $result['exception'] = 'Por favor, validar humano';
                 }
-                break;
+                    break;
                 case 'intentos':
                     $_POST = $usuario->validateForm($_POST);               
                         if($usuario->setNomUsuario($_POST['NomUsuario'])) {        
@@ -325,6 +325,18 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                             $result['exception'] = 'Alias incorrecto';
                         }
                     break;
+                case 'bloquearUsuario':
+                $_POST = $usuario->validateForm($_POST);               
+                    if($usuario->setNomUsuario($_POST['NomUsuario'])) {        
+                        if($result['dataset'] = $usuario->bloquearUsuario()){
+                            $result['status'] = 1;
+                        }else{
+                            $result['exception'] = 'No se bloqueó el usuario';
+                        }
+                    }else{
+                        $result['exception'] = 'Alias incorrecto';
+                    }
+                    break;
                 case 'enviarCorreo':
                     $_POST = $usuario->validateForm($_POST);
                     if($usuario->setEmail($_POST['email-name'])) {
@@ -332,38 +344,38 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                             $token = md5(uniqid(rand(), true)); 
                             if($usuario->setToken($token)) {
                                 if($usuario->updateToken()) {
-                                if($emailusuario = $usuario->getEmail()) {
-                                    $result['status'] = 1; 
-                                    $mail = new PHPMailer(true);
-                                    $mail ->charSet = "UTF-8";
-                                        try {
-                                            //Server settings
-                                            $mail->SMTPDebug = 2;                                       // Enable verbose debug output
-                                            $mail->isSMTP();                                            // Set mailer to use SMTP
-                                            $mail->Host       = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-                                            $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-                                            $mail->Username   = 'mocherossv@gmail.com';                     // SMTP username
-                                            $mail->Password   = 'mocheros123';                               // SMTP password
-                                            $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
-                                            $mail->Port       = 587;                                    // TCP port to connect to
+                                    if($emailusuario = $usuario->getEmail()) {
+                                        $result['status'] = 1; 
+                                        $mail = new PHPMailer(true);
+                                        $mail ->charSet = "UTF-8";
+                                            try {
+                                                //Server settings
+                                                $mail->SMTPDebug = 2;                                       // Enable verbose debug output
+                                                $mail->isSMTP();                                            // Set mailer to use SMTP
+                                                $mail->Host       = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+                                                $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+                                                $mail->Username   = 'mocherossv@gmail.com';                     // SMTP username
+                                                $mail->Password   = 'mocheros123';                               // SMTP password
+                                                $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
+                                                $mail->Port       = 587;                                    // TCP port to connect to
 
-                                            //Recipients
-                                            $mail->setFrom('mocherossv@gmail.com', 'Departamento de Informática');
-                                            $mail->addAddress($emailusuario);     // Add a recipient
-                                            
-                                            // Content
-                                            $mail->isHTML(true);                                  // Set email format to HTML
-                                            $mail->Subject = 'Recuperación de contraseña';
-                                            $mail->Body    = 'Haz click <a href="http://localhost/MocherosOnline/mocheros/views/dashboard/contrasenas.php?token='.$token.'">aquí</<a> para recuperar su contraseña';
+                                                //Recipients
+                                                $mail->setFrom('mocherossv@gmail.com', 'Departamento de Informática');
+                                                $mail->addAddress($emailusuario);     // Add a recipient
+                                                
+                                                // Content
+                                                $mail->isHTML(true);                                  // Set email format to HTML
+                                                $mail->Subject = 'Recuperación de contraseña';
+                                                $mail->Body    = 'Haz click <a href="http://localhost/MocherosOnline/mocheros/views/dashboard/contrasenas.php?token='.$token.'">aquí</<a> para recuperar su contraseña';
 
-                                            $mail->send();
-                                            echo 'Message has been sent';
-                                        } catch (Exception $e) {
-                                            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-                                        }
-                                } else {
-                                    $result['exception'] = 'Error al obtener el correo';  
-                                }                                
+                                                $mail->send();
+                                                echo 'Message has been sent';
+                                            } catch (Exception $e) {
+                                                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                                            }
+                                    } else {
+                                        $result['exception'] = 'Error al obtener el correo';  
+                                    }                                
                                 } else {
                                     $result['exception'] = 'Error al asignar el token';
                                 }  
@@ -412,12 +424,16 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                             $password = $usuario->setClave($_POST['log-pass-name']);
                             if ($password[0]) {
                                 if ($usuario->checkPassword()) {
-                                    $_SESSION['idUsuario'] = $usuario->getIdUsuario();
-                                    $_SESSION['NomUsuario'] = $usuario->getNomUsuario();
-                                    $result['status'] = 1;
+                                    if ($usuario->updateIntentos()) {
+                                        $_SESSION['idUsuario'] = $usuario->getIdUsuario();
+                                        $_SESSION['NomUsuario'] = $usuario->getNomUsuario();
+                                        $result['status'] = 1;
+                                    }else{
+                                        $result['exception'] = 'No se actualizaron los intentos';
+                                    }
                                 } else {
                                     $result['exception'] = 'Clave inexistente';
-                                }
+                                }                                
                             } else {
                                 $result['exception'] = $password[1];
                             }
@@ -427,7 +443,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     } else {
                         $result['exception'] = 'Alias incorrecto';
                     }
-                break;
+                    break;
             
             default:
                 exit('Acción no disponible 2');
