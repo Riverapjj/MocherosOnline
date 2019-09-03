@@ -15,7 +15,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
     
     session_start();
     $usuario = new Usuarios;
-    $result = array('status' => 0, 'exception' => '', 'dataset' => '');
+    $result = array('status' => 0, 'exception' => '', 'dataset' => '', 'session' => 1);
     //Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
     if (  isset($_SESSION['idUsuario']) &&   $_GET['site'] == 'dashboard') {
         switch ($_GET['action']) {
@@ -414,6 +414,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                 if ($usuario->checkPassword()) {
                                     $_SESSION['idUsuario'] = $usuario->getIdUsuario();
                                     $_SESSION['NomUsuario'] = $usuario->getNomUsuario();
+                                    $_SESSION['ultimoAcceso'] = time();
                                     $result['status'] = 1;
                                 } else {
                                     $result['exception'] = 'Clave inexistente';

@@ -1,13 +1,29 @@
 <?php
-$tiempo_transcurrido = time() - $_SESSION["ultimoAcceso"];
+$tiempo_transcurrido = time() - $_SESSION['ultimoAcceso'];
 //comparamos el tiempo transcurrido  
-if ($tiempo_transcurrido >= 10) {
+if ($tiempo_transcurrido >= 300) {
     //si pasaron 5 segundos o más  
     session_destroy(); // destruyo la sesión  
-    $result['session'] = 0;//envío al usuario a la pag. de autenticación  
-    $result['message'] = 'Su sesión ha caducado';
-    exit(json_encode($result));
+    echo '
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/functions.js"></script>
+    <script>
+    swal({
+        title: "Advertencia",
+        text: "La sesión ha caducado debido a que se ha excedido el tiempo de inactividad",
+        icon: "warning",
+        button: "Aceptar",
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    })
+    .then(function(value){
+        if (value) {
+            location.href = "../../views/dashboard/index.php";
+        }
+    });
+    </script>';
+    //header('location: index.php');
 } else {  
-    $_SESSION["ultimoAcceso"] = time();
+    $_SESSION['ultimoAcceso'] = time();
 }
 ?>

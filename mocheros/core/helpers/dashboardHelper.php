@@ -84,6 +84,7 @@ class dashboardHelper{
 				<body>
 		');
 		if (isset($_SESSION['idUsuario'])) {
+            include ('../../core/api/session.php');
 			$filename = basename($_SERVER['PHP_SELF']);
 			if ($filename != 'index.php') {
 				self::modals();

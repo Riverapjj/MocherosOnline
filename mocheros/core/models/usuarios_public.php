@@ -11,6 +11,7 @@ class Usuarios extends Validator
     private $telefono = null;
     private $email = null;
     private $clave = null;
+    private $sesion = null;
 
     //Método para sobrecarga de propiedades
     public function setIdUsuario($value)
@@ -192,8 +193,8 @@ class Usuarios extends Validator
     public function changePassword()
     {
         $hash = password_hash($this->clave, PASSWORD_DEFAULT);
-        $sql = 'UPDATE usuarios SET Clave = ? WHERE IdUsuario = ?';
-        $params = array($hash, $this->idusuario);
+        $sql = 'UPDATE usuarios SET Clave = ?, FechaClave = ? WHERE IdUsuario = ?';
+        $params = array($hash, $this->date(), $this->idusuario);
         return Database::executeRow($sql, $params);
     }
 
@@ -248,9 +249,9 @@ class Usuarios extends Validator
 		return Database::executeRow($sql, $params);
     }
     
-    public function setOnlie()
+    public function setOnline()
     {
-        $sql = 'UPDATE FROM usuarios SET estado_sesion '
+        $sql = 'UPDATE FROM usuarios SET estado_sesion ';
     }
 }
 ?>

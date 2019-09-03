@@ -6,18 +6,19 @@ require_once('../../core/models/usuarios_public.php');
 if (isset($_GET['site']) && isset($_GET['action'])) {
     session_start();
     $usuario = new Usuarios;
-    $result = array('status' => 0, 'exception' => '','session' => 1);
+    $result = array('status' => 0, 'exception' => '', 'session' => 1);
     //Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
     if (isset($_SESSION['idUsuario']) && $_GET['site'] == 'publicHelper') {
         switch ($_GET['action']) {
             case 'logout':
                 if (session_destroy()) {
+                    $usuario->changeSession();
                     header('location: ../../views/public/');
                 } else {
                     header('location: ../../views/public/registrarse.php');
                 }
                 break;
-            /*case 'destroy':
+                /*case 'destroy':
                 //comparamos el tiempo transcurrido  
                 if ($tiempo_transcurrido >= 10) {
                     //si pasaron 5 segundos o más  
@@ -298,7 +299,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                         $result['exception'] = 'Nombre de usuario no válido';
                     }
                 } else {
-                    $result['exception'] = 'Debes comprobar que no eres un robot.'; 
+                    $result['exception'] = 'Debes comprobar que no eres un robot.';
                 }
                 break;
             case 'read':
@@ -316,7 +317,11 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     if ($usuario->checkUsuario()) {
                         if ($usuario->setClave($_POST['clave'])) {
                             if ($usuario->checkPassword()) {
-                                if 
+                                $_SESSION['idUsuario'] = $usuario->getIdUsuario();
+                                $_SESSION['nombreUsuario'] = $usuario->getNomUsuario();
+                                $_SESSION['ultimoAcceso'] = time();
+                                $result['status'] = 1;
+                                $result['exception'] = 'Inicio de sesión correcto';
                             } else {
                                 $result['exception'] = 'Contraseña inexistente';
                             }

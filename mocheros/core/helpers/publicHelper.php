@@ -31,7 +31,7 @@ class publicHelper
             <body>
             ');
         if (isset($_SESSION['idUsuario'])) {
-            include ('../../core/api/session2.php');
+            include ('../../core/api/sessionPublic.php');
             $filename = basename($_SERVER['PHP_SELF']);
             if ($filename != 'login.php') {
                 self::modals();
