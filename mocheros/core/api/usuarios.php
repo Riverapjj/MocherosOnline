@@ -427,6 +427,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                     if ($usuario->updateIntentos()) {
                                         $_SESSION['idUsuario'] = $usuario->getIdUsuario();
                                         $_SESSION['NomUsuario'] = $usuario->getNomUsuario();
+                                        $_SESSION['ultimoAcceso'] = time();
                                         $result['status'] = 1;
                                     }else{
                                         $result['exception'] = 'No se actualizaron los intentos';
