@@ -12,6 +12,7 @@ class Usuarios extends Validator
     private $email = null;
     private $clave = null;
     private $sesion = null;
+    private $date = null;
 
     //Método para sobrecarga de propiedades
     public function setIdUsuario($value)
@@ -164,6 +165,8 @@ class Usuarios extends Validator
         return $this->idestado;
     }
 
+
+
     //Métodos para manejar la sesión del usuario
     public function checkUsuario()
     {
@@ -193,8 +196,8 @@ class Usuarios extends Validator
     public function changePassword()
     {
         $hash = password_hash($this->clave, PASSWORD_DEFAULT);
-        $sql = 'UPDATE usuarios SET Clave = ?, FechaClave = ? WHERE IdUsuario = ?';
-        $params = array($hash, $this->date(), $this->idusuario);
+        $sql = 'UPDATE usuarios SET Clave = ?, FechaClave = CURRENT_TIME WHERE IdUsuario = ?';
+        $params = array($hash, $this->idusuario);
         return Database::executeRow($sql, $params);
     }
 
@@ -216,8 +219,8 @@ class Usuarios extends Validator
 	public function createCliente()
 	{
 		$hash = password_hash($this->clave, PASSWORD_DEFAULT);
-		$sql = 'INSERT INTO usuarios(IdRol, NomUsuario, Nombre, Apellido, Direccion, Telefono, Email, Clave) VALUES(?, ?, ?, ?, ?, ?, ?, ?)';
-		$params = array(6, $this->nomusuario, $this->nombre, $this->apellido, $this->direccion, $this->telefono, $this->email, $hash);
+        $sql = 'INSERT INTO usuarios(IdRol, IdEstado, NomUsuario, Nombre, Apellido, Direccion, Telefono, Email, Clave, FechaClave) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIME)';
+		$params = array(6, 1, $this->nomusuario, $this->nombre, $this->apellido, $this->direccion, $this->telefono, $this->email, $hash);
 		return Database::executeRow($sql, $params);
 	}
 
