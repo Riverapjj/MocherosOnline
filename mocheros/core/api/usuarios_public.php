@@ -12,7 +12,6 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'logout':
                 if (session_destroy()) {
-                    $usuario->changeSession();
                     header('location: ../../views/public/');
                 } else {
                     header('location: ../../views/public/registrarse.php');
