@@ -19,7 +19,11 @@ $('#form-session').submit(function()
         if (isJSONString(response)) {
             const dataset = JSON.parse(response);
             if (dataset.status) {
-                sweetAlert(1, 'Inicio de sesión correcto', 'index.php');
+                if (localStorage.getItem('languaje') == 'ES') {
+                    sweetAlert(1, 'Inicio de sesión correcto', 'index.php');
+                } else if (localStorage.getItem('languaje') == 'EN') {
+                    sweetAlert(1, 'Log in successfully', 'index.php');
+                }
             } else {
                 sweetAlert(2, dataset.exception, null);
             }

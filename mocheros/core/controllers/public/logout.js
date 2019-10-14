@@ -7,28 +7,53 @@ const apiLogout = '../../core/api/usuarios_public.php?site=publicHelper&action='
 //Función para cerrar sesión
 function signOff()
 {
-    swal({
-        title: 'Advertencia',
-        text: '¿Quieres cerrar sesión?',
-        icon: 'warning',
-        buttons: ['Cancelar', 'Aceptar'],
-        closeOnClickOutside: false,
-        closeOnEsc: false
-    })
-    .then(function(value){
-        if (value) {
-            location.href = apiLogout + 'logout';
-        } else {
-            swal({
-                title: 'Enhorabuena',
-                text: 'Continue con la sesión',
-                icon: 'info',
-                button: 'Aceptar',
-                closeOnClickOutside: false,
-                closeOnEsc: false
-            });
-        }
-    });
+    if (localStorage.getItem('languaje') == 'ES') {
+        swal({
+            title: 'Advertencia',
+            text: '¿Quieres cerrar sesión?',
+            icon: 'warning',
+            buttons: ['Cancelar', 'Aceptar'],
+            closeOnClickOutside: false,
+            closeOnEsc: false
+        })
+        .then(function(value){
+            if (value) {
+                location.href = apiLogout + 'logout';
+            } else {
+                swal({
+                    title: 'Enhorabuena',
+                    text: 'Continue con la sesión',
+                    icon: 'info',
+                    button: 'Aceptar',
+                    closeOnClickOutside: false,
+                    closeOnEsc: false
+                });
+            }
+        });
+    } else if (localStorage.getItem('languaje') == 'EN') {
+        swal({
+            title: 'Warning',
+            text: 'Are you sure you want to log out?',
+            icon: 'warning',
+            buttons: ['Cancel', 'Accept'],
+            closeOnClickOutside: false,
+            closeOnEsc: false
+        })
+        .then(function(value){
+            if (value) {
+                location.href = apiLogout + 'logout';
+            } else {
+                swal({
+                    title: 'OK',
+                    text: 'Continue online',
+                    icon: 'info',
+                    button: 'Accept',
+                    closeOnClickOutside: false,
+                    closeOnEsc: false
+                });
+            }
+        });
+    }
 }
 
 function sessionDestroy()

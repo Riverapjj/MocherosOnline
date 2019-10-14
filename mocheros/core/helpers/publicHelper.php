@@ -52,16 +52,16 @@ class publicHelper
                                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                                     <li><a class="lang" key="inicio" href="index.php"><i class="material-icons left">home</i>Inicio</a></li>
-                                    <li><a href="mochilas.php"><i class="material-icons left">work</i>Productos</a></li>
-                                    <li><a href="#" class="dropdown-trigger" data-target="dropdown"><i class="material-icons left">person</i>Mi cuenta - ' . $_SESSION['nombreUsuario'] . '<i class="material-icons right">arrow_drop_down</i></a></li>
+                                    <li><a href="mochilas.php" class="lang" key="productos"><i class="material-icons left">work</i>Productos</a></li>
+                                    <li><a href="#" class="dropdown-trigger lang" data-target="dropdown" key="cuenta"><i class="material-icons left">person</i>Mi cuenta - ' . $_SESSION['nombreUsuario'] . '<i class="material-icons right">arrow_drop_down</i></a></li>
                                     <!--<li><a href="registrarse.php"><i class="material-icons left">person_add</i>Registrarse</a></li>-->
-                                    <li><a href="carrito.php"><i class="material-icons left">shopping_cart</i>Carrito</a></li>
+                                    <li><a href="carrito.php" class="lang" key="carrito"><i class="material-icons left">shopping_cart</i>Carrito</a></li>
                                     <li><a class="dropdown-trigger" href="#!" data-target="traslate"><span class="idioma">ES</span></li></a></li>
                                 </ul>
                                 <ul id="dropdown" class="dropdown-content">
-                                    <li><a href="#" onclick="modalProfile()" class="orange-text text-darken-4"><i class="material-icons">person</i>Ver mi cuenta</a></li>
-                                    <li><a href="#modal-password" class="modal-trigger orange-text text-darken-4"><i class="material-icons">lock</i>Cambiar mi contraseña</a></li>
-                                    <li><a href="#" onclick="signOff()" class="orange-text text-darken-4"><i class="material-icons">exit_to_app</i>Cerrar sesión</a></li>
+                                    <li><a href="#" onclick="modalProfile()" class="orange-text text-darken-4 lang" key="ver-cuenta"><i class="material-icons">person</i>Ver mi cuenta</a></li>
+                                    <li><a href="#modal-password" class="modal-trigger orange-text text-darken-4 lang" key="cambiar-clave"><i class="material-icons">lock</i>Cambiar mi contraseña</a></li>
+                                    <li><a href="#" onclick="signOff()" class="orange-text text-darken-4 lang" key="cerrar-sesion"><i class="material-icons">exit_to_app</i>Cerrar sesión</a></li>
                                 </ul>
                                 <ul id="traslate" class="dropdown-content">
                                     <li><a class="españolOnClick" onclick="showEs()">Español</a></li>
@@ -277,7 +277,7 @@ class publicHelper
         print('
             <div id="modal-profile" class="modal">
                 <div class="modal-content">
-                    <h3 class="center-align">Mi cuenta</h3>
+                    <h3 class="center-align lang" key="cuenta">Mi cuenta</h3>
                     <form method="post" id="form-profile">
                         <div class="input-field col s12 m6">
                             <i class="material-icons prefix">assignment_ind</i>
@@ -310,44 +310,44 @@ class publicHelper
                             <label for="profile_correo" class="lang" key="correo">Correo electrónico</label>
                         </div>
                         <div class="col s12">
-                            <button type="submit" class="btn waves-effect orange tooltipped" data-tooltip="Guardar"><i class="material-icons left">edit</i>Editar perfil</button>
-                            <a href="#" class="btn waves-effect red tooltipped modal-close" data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
+                            <a href="#" class="btn waves-effect red modal-close"><i class="material-icons">cancel</i></a>
+                            <button type="submit" class="btn waves-effect orange lang" key="editar-perfil"><i class="material-icons left">edit</i>Editar perfil</button>
                         </div>
                     </form>
                 </div>
             </div>
             <div id="modal-password" class="modal">
 				<div class="modal-content">
-					<h4 class="center-align">Cambiar contraseña</h4>
+					<h4 class="center-align lang" key="cambiar-clave">Cambiar contraseña</h4>
 					<form method="post" id="form-password">
 						<div class="row center-align">
-							<label>Contraseña actual</label>
+							<label class="lang" key="clave-actual">Contraseña actual</label>
 						</div>
 						<div class="row">
 							<div class="input-field col s12 m6">
 								<i class="material-icons prefix">lock_outline</i>
 								<input id="clave_actual_1" type="password" name="clave_actual_1" class="validate" required/>
-								<label for="clave_actual_1">Clave</label>
+								<label for="clave_actual_1" class="lang" key="contrasena">Clave</label>
 							</div>
 							<div class="input-field col s12 m6">
 								<i class="material-icons prefix">lock_outline</i>
 								<input id="clave_actual_2" type="password" name="clave_actual_2" class="validate" required/>
-								<label for="clave_actual_2">Confirmar clave</label>
+								<label for="clave_actual_2" class="lang" key="confirmar">Confirmar clave</label>
 							</div>
 						</div>
 						<div class="row center-align">
-							<label>Nueva contraseña</label>
+							<label class="lang" key="clave-nueva">Nueva contraseña</label>
 						</div>
 						<div class="row">
 							<div class="input-field col s12 m6">
 								<i class="material-icons prefix">lock</i>
 								<input id="clave_nueva_1" type="password" name="clave_nueva_1" class="validate" required/>
-								<label for="clave_nueva_1">Clave</label>
+								<label for="clave_nueva_1" class="lang" key="contrasena">Clave</label>
 							</div>
 							<div class="input-field col s12 m6">
 								<i class="material-icons prefix">lock</i>
 								<input id="clave_nueva_2" type="password" name="clave_nueva_2" class="validate" required/>
-								<label for="clave_nueva_2">Confirmar clave</label>
+								<label for="clave_nueva_2" class="lang" key="confirmar">Confirmar clave</label>
 							</div>
 						</div>
 						<div class="row center-align">

@@ -324,7 +324,7 @@
                                 if ($result['dataset'] = $articulo->readPreDetalle()) {
                                     $result['status'] = 1;
                                 } else {
-                                    $result['exception'] = 'Contenido no disponible xdxd';
+                                    //$result['exception'] = ;
                                 }
                             }
                         } else {
