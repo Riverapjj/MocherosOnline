@@ -54,10 +54,10 @@ publicHelper::slider();
 <div class="blue lightned-2 container-fluid">
     <div class="row">
         <div class="col s12">
-            <h3 class="caption center-align grey-text text-lighten-2">PERSONALIZAMOS TUS PRODUCTOS</h3>
+            <h3 class="caption center-align grey-text text-lighten-2 lang" key="personalizamos">PERSONALIZAMOS TUS PRODUCTOS</h3>
         </div>
         <div class="col s12 l6">
-            <p class="flow-text">Personalizamos nuestros productos a tu gusto, solo envianos tus diseños a
+            <p class="flow-text lang" key="personalizado">Personalizamos nuestros productos a tu gusto, solo envianos tus diseños a
                 nuestro correo <u>contacto@mocheros.com</u> y nosotros te responderemos lo más pronto posible.
             </p>
         </div>
