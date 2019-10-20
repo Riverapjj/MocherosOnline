@@ -5,8 +5,6 @@ class publicHelper
     public static function header($title)
     {
         session_start();
-        header("Cache-Control: no-cache, must-revalidate");
-        header("Expires: Sat, 1 Jul 2018 00:00:00 GMT");
         print('
             <!DOCTYPE html>
 			<html lang="es">
@@ -53,22 +51,31 @@ class publicHelper
                                 <a href="index.php" class="brand-logo"><img src="../../resources/img/mocheros-mini.jpg"></a>
                                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                                    <li><a href="index.php"><i class="material-icons left">home</i>Inicio</a></li>
-                                    <li><a href="mochilas.php"><i class="material-icons left">work</i>Productos</a></li>
-                                    <li><a href="#" class="dropdown-trigger" data-target="dropdown"><i class="material-icons left">person</i>Mi cuenta - ' . $_SESSION['nombreUsuario'] . '<i class="material-icons right">arrow_drop_down</i></a></li>
+                                    <li><a class="lang" key="inicio" href="index.php"><i class="material-icons left">home</i>Inicio</a></li>
+                                    <li><a href="mochilas.php" class="lang" key="productos"><i class="material-icons left">work</i>Productos</a></li>
+                                    <li><a href="#" class="dropdown-trigger lang" data-target="dropdown" key="cuenta"><i class="material-icons left">person</i>Mi cuenta - ' . $_SESSION['nombreUsuario'] . '<i class="material-icons right">arrow_drop_down</i></a></li>
                                     <!--<li><a href="registrarse.php"><i class="material-icons left">person_add</i>Registrarse</a></li>-->
-                                    <li><a href="carrito.php"><i class="material-icons left">shopping_cart</i>Carrito</a></li>
+                                    <li><a href="carrito.php" class="lang" key="carrito"><i class="material-icons left">shopping_cart</i>Carrito</a></li>
+                                    <li><a class="dropdown-trigger" href="#!" data-target="traslate"><span class="idioma">ES</span></li></a></li>
                                 </ul>
                                 <ul id="dropdown" class="dropdown-content">
-                                    <li><a href="#" onclick="modalProfile()" class="orange-text text-darken-4"><i class="material-icons">person</i>Ver mi cuenta</a></li>
-                                    <li><a href="#modal-password" class="modal-trigger orange-text text-darken-4"><i class="material-icons">lock</i>Cambiar mi contraseña</a></li>
-                                    <li><a href="#" onclick="signOff()" class="orange-text text-darken-4"><i class="material-icons">exit_to_app</i>Cerrar sesión</a></li>
+                                    <li><a href="#" onclick="modalProfile()" class="orange-text text-darken-4 lang" key="ver-cuenta"><i class="material-icons">person</i>Ver mi cuenta</a></li>
+                                    <li><a href="#modal-password" class="modal-trigger orange-text text-darken-4 lang" key="cambiar-clave"><i class="material-icons">lock</i>Cambiar mi contraseña</a></li>
+                                    <li><a href="#" onclick="signOff()" class="orange-text text-darken-4 lang" key="cerrar-sesion"><i class="material-icons">exit_to_app</i>Cerrar sesión</a></li>
+                                </ul>
+                                <ul id="traslate" class="dropdown-content">
+                                    <li><a class="españolOnClick" onclick="showEs()">Español</a></li>
+                                    <li><a class="englishOnClick" onclick="showEn()">English</a></li>
                                 </ul>
                             </div>
                         </nav>
                     </div>
+                    <ul id="traslate2" class="dropdown-content">
+                        <li><a class="españolOnClick" onclick="showEs()">Español</a></li>
+                        <li><a class="englishOnClick" onclick="showEn()">English</a></li>
+                    </ul>
                     <ul class="sidenav" id="mobile-demo">
-                        <li><a href="index.php">Mocheros</a></li>
+                        <li><a class="lang" key="inicio" href="index.php">Mocheros</a></li>
                         <hr>
                         <li><a href="index.php">Inicio</a></li>
                         <li><a href="mochilas.php">Productos</a></li>
@@ -106,18 +113,27 @@ class publicHelper
                                 <a href="index.php" class="brand-logo"><img src="../../resources/img/mocheros-mini.jpg"></a>
                                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                                    <li><a href="index.php"><i class="material-icons left">home</i>Inicio</a></li>
-                                    <li><a href="mochilas.php"><i class="material-icons left">work</i>Productos</a></li>
-                                    <li><a href="login.php"><i class="material-icons left">person</i>Iniciar sesión</a></li>
-                                    <li><a href="registrarse.php"><i class="material-icons left">person_add</i>Registrarse</a></li>
+                                    <li><a class="lang" key="inicio" href="index.php"><i class="material-icons left">home</i>Inicio</a></li>
+                                    <li><a class="lang" key="productos" href="mochilas.php"><i class="material-icons left">work</i>Productos</a></li>
+                                    <li><a class="lang" key="login" href="login.php"><i class="material-icons left">person</i>Iniciar sesión</a></li>
+                                    <li><a class="lang" key="registrarse" href="registrarse.php"><i class="material-icons left">person_add</i>Registrarse</a></li>
+                                    <li><a class="dropdown-trigger" href="#!" data-target="traslate"><span class="idioma">ES</span></li></a></li>
                                 </ul>
-                                <!--<ul id="dropdown" class="dropdown-content">
+                                <ul id="dropdown" class="dropdown-content">
                                     <li><a href="login.php" class="orange-text text-darken-4"><i class="material-icons">person</i>Iniciar sesión</a></li>
                                     <li><a href="#" onclick="s" class="orange-text text-darken-4"><i class="material-icons">clear</i>Cerrar sesión</a></li>
-                                </ul>-->
+                                </ul>
+                                <ul id="traslate" class="dropdown-content">
+                                    <li><a class="españolOnClick" onclick="showEs()">Español</a></li>
+                                    <li><a class="englishOnClick" onclick="showEn()">English</a></li>
+                                </ul>
                             </div>
                         </nav>
                     </div>
+                    <ul id="traslate2" class="dropdown-content">
+                        <li><a class="españolOnClick" onclick="showEs()">Español</a></li>
+                        <li><a class="englishOnClick" onclick="showEn()">English</a></li>
+                    </ul>
                     <ul class="sidenav" id="mobile-demo">
                         <li><a href="index.php">Mocheros</a></li>
                         <hr>
@@ -138,18 +154,18 @@ class publicHelper
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
-                        <h5 class="white-text"><b>Contáctanos</b></h5>
-                        <p class="grey-text text-lighten-4"><b>Correo electrónico</b></p>
+                        <h5 class="white-text lang" key="contactanos"><b>Contáctanos</b></h5>
+                        <p class="grey-text text-lighten-4 lang" key="correo"><b>Correo electrónico</b></p>
                         <blockquote>
                             <p class="grey-text text-lighten-4">contacto@mocheros.com</p>
                         </blockquote>
-                        <p class="grey-text text-lighten-4"><b>Teléfono</b></p>
+                        <p class="grey-text text-lighten-4 lang" key="telefono"><b>Teléfono</b></p>
                         <blockquote>
                             <p class="grey-text text-lighten-4">(503) 2245-5455</p>
                         </blockquote>
                     </div>
                     <div class="col l4 offset-l2 s12">
-                        <p class="grey-text text-lighten-4"><b>Dirección</b></p>
+                        <p class="grey-text text-lighten-4 lang" key="direccion"><b>Dirección</b></p>
                         <blockquote>
                             <p class="grey-text text-lighten-4">CALLE SIEMENS, URB. INDUSTRIAL SANTA ELENA, #54, ANTIGUO
                                 CUSCATLAN, LA LIBERTAD, Antiguo Cuscatlan CP 1503</p>
@@ -158,7 +174,7 @@ class publicHelper
                 </div>
             </div>
             <div class="footer-copyright">
-                <div class="container">
+                <div class="container lang" key="copyright">
                     © 2019 Derechos reservados a Mocheros S.A. de C.V.
                 </div>
             </div>
@@ -174,6 +190,7 @@ class publicHelper
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script type="text/javascript" src="../../resources/js/functions.js"></script>
         <script type="text/javascript" src="../../core/helpers/componentes.js"></script>
+        <script type="text/javascript" src="../../core/helpers/translate.js"></script>
         <script type="text/javascript" src="../../core/controllers/public/logout.js"></script>
         <script type="text/javascript" src="../../core/controllers/public/' . $controller . '"></script>
         </body>
@@ -189,65 +206,65 @@ class publicHelper
                 <li>
                     <img src="../../resources/img/banner-mochilas3.jpeg"> 
                     <div class="caption center-align">
-                        <h1 class="yellow-text text-darken-1 center-align">MOCHILAS</h1>
+                        <h1 class="yellow-text text-darken-1 center-align lang" key="mochilas">MOCHILAS</h1>
                     </div>
                 </li>
                 <li>
                     <img src="../../resources/img/banner-mochilas2.jpeg"> 
                     <div class="caption center-align">
-                        <h3 class="yellow-text text-darken-1 flow-text"><b>¡Bienvenido a Mocheros!</b></h3>
-                        <h5 class="orange-text text-darken-3 flow-text"><b>Somos tus compañeros en tus aventuras del día a día</b></h5>
+                        <h3 class="yellow-text text-darken-1 flow-text lang" key="bienvenido"><b>¡Bienvenido a Mocheros!</b></h3>
+                        <h5 class="orange-text text-darken-3 flow-text lang" key="slider1"><b>Somos tus compañeros en tus aventuras del día a día</b></h5>
                     </div>
                 </li>
                 <li>
                     <img src="../../resources/img/mochilas-8.jpg"> 
                     <div class="caption center-align">
-                        <h3 class="yellow-text text-darken-1 flow-text">Las mejores mochilas a tu alcance</h3>
-                        <h5 class="orange-text text-darken-3 flow-text">Mochilas que puedes utilizar en cualquier momento</h5>
+                        <h3 class="yellow-text text-darken-1 flow-text lang" key="slider2">Las mejores mochilas a tu alcance</h3>
+                        <h5 class="orange-text text-darken-3 flow-text lang" key="slider3">Mochilas que puedes utilizar en cualquier momento</h5>
                     </div>
                 </li>
                 <li>
                     <img src="../../resources/img/mochilas-8.jpg"> 
                     <div class="caption center-align">
-                        <h1 class="yellow-text text-darken-1 center-align">LONCHERAS</h1>
+                        <h1 class="yellow-text text-darken-1 center-align lang" key="loncheras">LONCHERAS</h1>
                     </div>
                 </li>
                 <li>
                     <img src="../../resources/img/banner-mochilas3.jpeg"> 
                     <div class="caption center-align">
-                        <h3 class="yellow-text text-darken-1 flow-text">Nuestras loncheras destacan por sus diseños y
+                        <h3 class="yellow-text text-darken-1 flow-text lang" key="slider4">Nuestras loncheras destacan por sus diseños y
                             calidad</h3>
-                        <h5 class="orange-text text-darken-3 flow-text">Nuestras loncheras poseen los mejores diseños en el mercado</h5>
+                        <h5 class="orange-text text-darken-3 flow-text lang" key="slider5">Nuestras loncheras poseen los mejores diseños en el mercado</h5>
                     </div>
                 </li>
                 <li>
                     <img src="../../resources/img/banner-mochilas2.jpeg"> 
                     <div class="caption center-align">
-                        <h3 class="yellow-text text-darken-1 flow-text">¡Las mejores loncheras para ti!</h3>
-                        <h5 class="orange-text text-darken-3 flow-text">Loncheras con diseños irresistibles</h5>
+                        <h3 class="yellow-text text-darken-1 flow-text lang" key="slider6">¡Las mejores loncheras para ti!</h3>
+                        <h5 class="orange-text text-darken-3 flow-text lang" key="slider7">Loncheras con diseños irresistibles</h5>
                     </div>
                 </li>
                 <li class="flow-text">
                     <img src="../../resources/img/banner-accesorios.jpeg"> 
                     <div class="caption center-align">
-                        <h1 class="yellow-text text-darken-1">ACCESORIOS</h1>
+                        <h1 class="yellow-text text-darken-1 lang" key="accesorios">ACCESORIOS</h1>
                     </div>
                 </li>
                 <li>
                     <img src="../../resources/img/banner-mochilas3.jpeg"> 
                     <div class="caption center-align">
-                        <h3 class="yellow-text text-darken-1 flow-text">Los mejores accesorios para toda ocasión que
+                        <h3 class="yellow-text text-darken-1 flow-text lang" key="slider8">Los mejores accesorios para toda ocasión que
                             podrás encontrar</h3>
-                        <h5 class="orange-text text-darken-3 flow-text">Perfecto para la escuela, la universidad, el
+                        <h5 class="orange-text text-darken-3 flow-text lang" key="slider9">Perfecto para la escuela, la universidad, el
                             trabajo y muchas cosas más</h5>
                     </div>
                 </li>
                 <li>
                     <img src="../../resources/img/mochilas-8.jpg"> 
                     <div class="caption center-align">
-                        <h3 class="yellow-text text-darken-1 flow-text">¡Todos nuestros accesorios son elaborados para
+                        <h3 class="yellow-text text-darken-1 flow-text lang" key="slider10">¡Todos nuestros accesorios son elaborados para
                             ti!</h3>
-                        <h5 class="orange-text text-darken-3 flow-text">Ponemos empeño y dedicación en cada producto que
+                        <h5 class="orange-text text-darken-3 flow-text lang" key="slider11">Ponemos empeño y dedicación en cada producto que
                             realizamos</h5>
                     </div>
                 </li>
@@ -260,77 +277,77 @@ class publicHelper
         print('
             <div id="modal-profile" class="modal">
                 <div class="modal-content">
-                    <h3 class="center-align">Mi cuenta</h3>
+                    <h3 class="center-align lang" key="cuenta">Mi cuenta</h3>
                     <form method="post" id="form-profile">
                         <div class="input-field col s12 m6">
                             <i class="material-icons prefix">assignment_ind</i>
                             <input id="profile_usuario" type="text" name="profile_usuario" class="validate" required/>
-                            <label for="profile_usuario">Nombre de usuario</label>
+                            <label for="profile_usuario" class="lang" key="usuario">Nombre de usuario</label>
                         </div>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">account_circle</i>
                             <input id="profile_nombre" type="text" name="profile_nombre" class="validate" required/>
-                            <label for="profile_nombre">Nombres</label>
+                            <label for="profile_nombre" class="lang" key="nombres">Nombres</label>
                         </div>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">account_circle</i>
                             <input id="profile_apellido" type="text" name="profile_apellido" class="validate" required/>
-                            <label for="profile_apellido">Apellidos</label>
+                            <label for="profile_apellido" class="lang" key="apellidos">Apellidos</label>
                         </div>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">home</i>
                             <textarea id="profile_direccion" name="profile_direccion" class="materialize-textarea validate" required></textarea>
-                            <label for="profile_direccion">Dirección</label>
+                            <label for="profile_direccion" class="lang" key="direccion">Dirección</label>
                         </div>
                         <div class="input-field col s12 m6">
                             <i class="material-icons prefix">phone</i>
                             <input id="profile_telefono" type="text" name="profile_telefono" class="validate" required/>
-                            <label for="profile_telefono">Teléfono</label>
+                            <label for="profile_telefono" class="lang" key="telefono">Teléfono</label>
                         </div>
                         <div class="input-field col s12 m6">
                             <i class="material-icons prefix">email</i>
                             <input id="profile_correo" type="text" name="profile_correo" class="validate" required/>
-                            <label for="profile_correo">Correo electrónico</label>
+                            <label for="profile_correo" class="lang" key="correo">Correo electrónico</label>
                         </div>
                         <div class="col s12">
-                            <button type="submit" class="btn waves-effect orange tooltipped" data-tooltip="Guardar"><i class="material-icons left">edit</i>Editar perfil</button>
-                            <a href="#" class="btn waves-effect red tooltipped modal-close" data-tooltip="Cancelar"><i class="material-icons">cancel</i></a>
+                            <a href="#" class="btn waves-effect red modal-close"><i class="material-icons">cancel</i></a>
+                            <button type="submit" class="btn waves-effect orange lang" key="editar-perfil"><i class="material-icons left">edit</i>Editar perfil</button>
                         </div>
                     </form>
                 </div>
             </div>
             <div id="modal-password" class="modal">
 				<div class="modal-content">
-					<h4 class="center-align">Cambiar contraseña</h4>
+					<h4 class="center-align lang" key="cambiar-clave">Cambiar contraseña</h4>
 					<form method="post" id="form-password">
 						<div class="row center-align">
-							<label>Contraseña actual</label>
+							<label class="lang" key="clave-actual">Contraseña actual</label>
 						</div>
 						<div class="row">
 							<div class="input-field col s12 m6">
 								<i class="material-icons prefix">lock_outline</i>
 								<input id="clave_actual_1" type="password" name="clave_actual_1" class="validate" required/>
-								<label for="clave_actual_1">Clave</label>
+								<label for="clave_actual_1" class="lang" key="contrasena">Clave</label>
 							</div>
 							<div class="input-field col s12 m6">
 								<i class="material-icons prefix">lock_outline</i>
 								<input id="clave_actual_2" type="password" name="clave_actual_2" class="validate" required/>
-								<label for="clave_actual_2">Confirmar clave</label>
+								<label for="clave_actual_2" class="lang" key="confirmar">Confirmar clave</label>
 							</div>
 						</div>
 						<div class="row center-align">
-							<label>Nueva contraseña</label>
+							<label class="lang" key="clave-nueva">Nueva contraseña</label>
 						</div>
 						<div class="row">
 							<div class="input-field col s12 m6">
 								<i class="material-icons prefix">lock</i>
 								<input id="clave_nueva_1" type="password" name="clave_nueva_1" class="validate" required/>
-								<label for="clave_nueva_1">Clave</label>
+								<label for="clave_nueva_1" class="lang" key="contrasena">Clave</label>
 							</div>
 							<div class="input-field col s12 m6">
 								<i class="material-icons prefix">lock</i>
 								<input id="clave_nueva_2" type="password" name="clave_nueva_2" class="validate" required/>
-								<label for="clave_nueva_2">Confirmar clave</label>
+								<label for="clave_nueva_2" class="lang" key="confirmar">Confirmar clave</label>
 							</div>
 						</div>
 						<div class="row center-align">

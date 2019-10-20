@@ -10,16 +10,16 @@ publicHelper::header('Mochilas');
             <div class="input-field col s6 m4">
                 <i class="material-icons prefix">search</i>
                 <input id="buscar" type="text" name="busqueda" />
-                <label for="buscar">Buscar</label>
+                <label class="lang" key="buscar" for="buscar">Buscar</label>
             </div>
             <div class="input-field col s6 m4">
                 <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Buscar producto"><i class="material-icons">check_circle</i></button>
             </div>
-            <a href="../../core/reportes/dashboard/reporteMaxVendidos.php"> Hola </a>
+            <!--<a href="../../core/reportes/dashboard/reporteMaxVendidos.php"> Hola </a>-->
         </div>
     </form>
     <!--apartado para mostrar los resultados de la busqueda a partir de catalogo.js-->
-    <h4 class="center indigo-text" id="titulo"></h4>
+    <h4 class="center indigo-text lang" id="titulo" key="productos"></h4>
     <div class="row" id="resultado"></div>
     <!--apartado para mostrar los productos a partir de catalogo.js-->
     <div class="row" id="catalogo"></div>

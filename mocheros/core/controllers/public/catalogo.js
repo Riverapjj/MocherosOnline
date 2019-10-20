@@ -26,7 +26,7 @@ function readCategorias() {
                         <div class="card hoverable">
                             <div class="card-content">
                                 <span class="card-title activator">${row.NomCategoria}<i class="material-icons"></i></span>
-                                <p class="center"><a href="#" onclick="readProductosCategoria(${row.IdCategoria}, '${row.NomCategoria}')" class="tooltipped" data-tooltip="Ver más"><i class="material-icons small">more_horiz</i></a></p>
+                                <p class="center"><a href="#" onclick="readProductosCategoria(${row.IdCategoria}, '${row.NomCategoria}')" class="tooltipped lang" data-tooltip="Ver más" key="vermas"><i class="material-icons small">more_horiz</i></a></p>
                             </div>
                             <div class="card-reveal">
                                 <span class="card-title">${row.NomCategoria}<i class="material-icons right">close</i></span>
@@ -35,7 +35,7 @@ function readCategorias() {
                     </div>
                     `;
                     });
-                    $('#title').text('Nuestros productos');
+                    //$('#title').text('');
                     $('#catalogo').html(content);
                     $('.tooltipped').tooltip();
                 } else {
@@ -124,7 +124,7 @@ function getProducto(id) {
                                 <div class="card-content">
                                     <h3 class="header">${result.dataset.NomArticulo}</h3>
                                     <p>${result.dataset.DescripcionArt}</p>
-                                    <p>Existencias disponibles: ${result.dataset.Cantidad}</p>
+                                    <p class="lang" key="existencias"> ${result.dataset.Cantidad}</p>
                                     <p><b>$${result.dataset.PrecioUnitario}</b></p>
                                     <p><!--<a href="#" onclick="readComments(${result.dataset.IdArticulos})" class="waves-effect waves-grey btn blue tooltipped" data-tooltip="Comentarios"><i class="material-icons">list</i></a>-->
                                     <a href="#" onclick="readRatings(${result.dataset.IdArticulos})" class="waves-effect waves-grey btn orange tooltipped" data-tooltip="Puntuaciones"><i class="material-icons">star</i></a>
@@ -140,7 +140,7 @@ function getProducto(id) {
                                             <input id="idProducto3" type="hidden" name="idProducto3" value="${result.dataset.IdArticulos}">
                                                 <i class="material-icons prefix">list</i>
                                                 <input id="cantidad" type="number" name="cantidad" min="1" class="validate" required>
-                                                <label for="cantidad">Cantidad</label>
+                                                <label for="cantidad" class="lang" key="cantidad">Cantidad</label>
                                             </div> 
                                             <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Crear"  onclick="agregarCarrito()"><i class="material-icons">add_shopping_cart</i></button>
                                         </div>                                    

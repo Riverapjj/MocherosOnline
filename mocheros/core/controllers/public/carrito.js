@@ -94,7 +94,11 @@ function readPreDetalle()
                 $('.tooltipped').tooltip();
             } else {
                 /* $('#title').html('<i class="material-icons small">cloud_off</i><span class="red-text">' + result.exception + '</span>'); */
-                sweetAlert(2, result.exception, 'index.php');
+                if (localStorage.getItem('languaje') == 'ES') {
+                    sweetAlert(2, 'result.exception', 'index.php');
+                } else if (localStorage.getItem('languaje') == 'EN') {
+                    sweetAlert(2, 'Content not available', 'index.php');
+                }
             }
         } else {
             console.log(response);
