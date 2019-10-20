@@ -227,7 +227,7 @@ class Usuarios extends Validator
     public function changePassword()
     {
         $hash = password_hash($this->clave, PASSWORD_DEFAULT);
-        $sql = 'UPDATE usuarios SET Clave = ? WHERE IdUsuario = ?';
+        $sql = 'UPDATE usuarios SET Clave = ?, FechaClave = CURRENT_TIME WHERE IdUsuario = ?';
         $params = array($hash, $this->idusuario);
         return Database::executeRow($sql, $params);
     }
@@ -260,7 +260,7 @@ class Usuarios extends Validator
 	public function createUsuario()
 	{
 		$hash = password_hash($this->clave, PASSWORD_DEFAULT);
-		$sql = 'INSERT INTO usuarios(IdRol,  IdEstado, NomUsuario, Nombre, Apellido, Direccion, Telefono, Email, Clave) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO usuarios(IdRol,  IdEstado, NomUsuario, Nombre, Apellido, Direccion, Telefono, Email, Clave, FechaClave) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIME)';
 		$params = array($this->idrol, $this->idestado, $this->nomusuario, $this->nombre, $this->apellido, $this->direccion, $this->telefono, $this->email, $hash);
 		return Database::executeRow($sql, $params);
 	}

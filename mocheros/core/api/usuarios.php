@@ -10,7 +10,6 @@ require '../../core/lib/PHPMailer-master/src/PHPMailer.php';
 require '../../core/lib/PHPMailer-master/src/SMTP.php';
 
 //Se comprueba si existe una petición del sitio web y la acción a realizar, de lo contrario se muestra una página de error
-if (session_status() != PHP_SESSION_ACTIVE) {
 if (isset($_GET['site']) && isset($_GET['action'])) {
     
     session_start();
@@ -458,7 +457,4 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
 } else {
 	exit('Recurso denegado');
 }
-}else{
-        session_destroy();
-    }
 ?>

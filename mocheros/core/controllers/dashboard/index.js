@@ -75,7 +75,6 @@ function bloquearUsuario(alias)
     })
     .done(function(response){
         //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
-
         if (isJSONString(response)) {
             const result = JSON.parse(response);
             sweetAlert(2, 'Su usuario ha sido bloqueado', null);
